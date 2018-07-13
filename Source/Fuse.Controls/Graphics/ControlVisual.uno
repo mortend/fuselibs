@@ -2,6 +2,7 @@
 namespace Fuse.Controls.Graphics
 {
 	public abstract class ControlVisual<T>: Visual
+		where T : Node
 	{
 		T FindControl()
 		{
@@ -11,7 +12,7 @@ namespace Fuse.Controls.Graphics
 				if (p is T) return (T)p;
 				p = p.Parent;
 			}
-			return default(T);
+			return null;
 		}
 
 		T _control;
@@ -22,7 +23,7 @@ namespace Fuse.Controls.Graphics
 			base.OnRooted();
 			_control = FindControl();
 
-			if ((object)_control == null)
+			if (_control == null)
 				throw new Uno.Exception(this + " must be rooted in the subtree of a " + typeof(T));
 
 			Attach();
@@ -31,7 +32,7 @@ namespace Fuse.Controls.Graphics
 		protected override void OnUnrooted()
 		{
 			Detach();
-			_control = default(T);
+			_control = null;
 			base.OnUnrooted();
 		}
 
