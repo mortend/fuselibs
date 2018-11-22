@@ -18,7 +18,7 @@ namespace FuseTest
 			ReadOnly = 1 << 0,
 		}
 		Flags _flags;
-		protected ObservableData( Flags flags )
+		protected ObservableData(Flags flags)
 		{
 			_flags = flags;
 		}
@@ -61,21 +61,21 @@ namespace FuseTest
 				Source.Unsubscribe(Observer);
 			}
 			
-			void ISubscription.ClearExclusive() { Fuse.Diagnostics.InternalError( "Unsupported", this ); }
-			void ISubscription.SetExclusive(object newValue) { Fuse.Diagnostics.InternalError( "Unsupported", this ); }
+			void ISubscription.ClearExclusive() { Fuse.Diagnostics.InternalError("Unsupported", this); }
+			void ISubscription.SetExclusive(object newValue) { Fuse.Diagnostics.InternalError("Unsupported", this); }
 			void ISubscription.ReplaceAllExclusive(IArray values) { Source.ReplaceAllExclusive(values); }
 		}
 		
 		class ReadOnlySubscription : Subscription
 		{
-			void ISubscription.ClearExclusive() { Fuse.Diagnostics.InternalError( "ReadOnly array", this ); }
-			void ISubscription.SetExclusive(object newValue) { Fuse.Diagnostics.InternalError( "ReadOnly array", this ); }
-			void ISubscription.ReplaceAllExclusive(IArray values) { Fuse.Diagnostics.InternalError( "ReadOnly array", this ); }
+			void ISubscription.ClearExclusive() { Fuse.Diagnostics.InternalError("ReadOnly array", this); }
+			void ISubscription.SetExclusive(object newValue) { Fuse.Diagnostics.InternalError("ReadOnly array", this); }
+			void ISubscription.ReplaceAllExclusive(IArray values) { Fuse.Diagnostics.InternalError("ReadOnly array", this); }
 		}
 		
 		virtual protected void OnSubscription() { }
 		virtual protected void OnUnsubscription() { }
-		virtual protected void ReplaceAllExclusive(IArray values) {  Fuse.Diagnostics.InternalError( "Unsupported", this ); }
+		virtual protected void ReplaceAllExclusive(IArray values) {  Fuse.Diagnostics.InternalError("Unsupported", this); }
 
 		protected bool HasSubscription
 		{
@@ -172,7 +172,7 @@ namespace FuseTest
 	public class ObservableList<T> : ObservableData
 	{
 		public ObservableList()
-			: base( Flags.None )
+			: base(Flags.None)
 		{ }
 		
 		List<T> _values = new List<T>();
@@ -228,7 +228,7 @@ namespace FuseTest
 		{
 			_values.Clear();
 			for (int i=0; i < values.Length; ++i)
-				_values.Add( (T)values[i]);
+				_values.Add((T)values[i]);
 		}
 		
 		public int Count { get { return _values.Count; } }
@@ -241,11 +241,11 @@ namespace FuseTest
 	public class ReadOnlyObservableData<T> : ObservableData where T : object
 	{
 		public ReadOnlyObservableData() 
-			: base( Flags.ReadOnly )
+			: base(Flags.ReadOnly)
 		{ }
 		
-		public ReadOnlyObservableData( T initialValue )
-			: base( Flags.ReadOnly )
+		public ReadOnlyObservableData(T initialValue)
+			: base(Flags.ReadOnly)
 		{
 			_value = initialValue;
 		}

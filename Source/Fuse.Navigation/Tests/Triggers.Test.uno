@@ -85,10 +85,10 @@ namespace Fuse.Navigation.Test
 			var p = new UX.Issue2633();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "One", p.TheText.Value );
+				Assert.AreEqual("One", p.TheText.Value);
 				p.Active = p.B;
 				root.StepFrame(5); //stabilize animation
-				Assert.AreEqual( "Two", p.TheText.Value );
+				Assert.AreEqual("Two", p.TheText.Value);
 			}
 		}
 			

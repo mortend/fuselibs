@@ -76,33 +76,33 @@ namespace Fuse.Reactive.Test
 			var e = new UX.VarArgs.LostData();
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
-				Assert.AreEqual( "*", e.a.StringValue );
-				Assert.AreEqual( "**", e.b.StringValue );
-				Assert.AreEqual( "***", e.c.StringValue );
+				Assert.AreEqual("*", e.a.StringValue);
+				Assert.AreEqual("**", e.b.StringValue);
+				Assert.AreEqual("***", e.c.StringValue);
 				
 				e.strct.Value = e.strctData1.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "/x", e.a.StringValue );
-				Assert.AreEqual( "/xy", e.b.StringValue );
-				Assert.AreEqual( "xy*", e.c.StringValue );
+				Assert.AreEqual("/x", e.a.StringValue);
+				Assert.AreEqual("/xy", e.b.StringValue);
+				Assert.AreEqual("xy*", e.c.StringValue);
 				
 				e.strct.Value = e.strctData2.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "/x", e.a.StringValue );
-				Assert.AreEqual( "x*", e.b.StringValue );
-				Assert.AreEqual( "x*z", e.c.StringValue );
+				Assert.AreEqual("/x", e.a.StringValue);
+				Assert.AreEqual("x*", e.b.StringValue);
+				Assert.AreEqual("x*z", e.c.StringValue);
 				
 				e.strct.Value = e.strctData3.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "*", e.a.StringValue );
-				Assert.AreEqual( "*y", e.b.StringValue );
-				Assert.AreEqual( "*yz", e.c.StringValue );
+				Assert.AreEqual("*", e.a.StringValue);
+				Assert.AreEqual("*y", e.b.StringValue);
+				Assert.AreEqual("*yz", e.c.StringValue);
 				
 				e.strct.Value = e.strctData4.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "/x", e.a.StringValue );
-				Assert.AreEqual( "/xy", e.b.StringValue );
-				Assert.AreEqual( "/xyz", e.c.StringValue );
+				Assert.AreEqual("/x", e.a.StringValue);
+				Assert.AreEqual("/xy", e.b.StringValue);
+				Assert.AreEqual("/xyz", e.c.StringValue);
 			}
 		}
 	}

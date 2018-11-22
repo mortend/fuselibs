@@ -72,7 +72,7 @@ namespace Fuse.Resources
 			if (dr == DisposalRequest.LowMemory && (!resource.IsPinned || AllowPinnedFree))
 				return true;
 
-			if ( (AllowPinnedFree || !resource.IsPinned) && UnusedTimeout > 0)
+			if ((AllowPinnedFree || !resource.IsPinned) && UnusedTimeout > 0)
 			{
 				var elapsed = Time.FrameTime - resource.LastUsed;
 				if (elapsed > UnusedTimeout)

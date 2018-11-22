@@ -190,7 +190,7 @@ namespace Fuse.Test
 			l.Add("llo");
 			
 			string c ="";
-			foreach( var d in l )
+			foreach(var d in l)
 				c += d;
 				
 			Assert.AreEqual("hello",c);
@@ -198,7 +198,7 @@ namespace Fuse.Test
 		}
 		
 		
-		string Join( ref MiniList<string>.Enumerator iter )
+		string Join(ref MiniList<string>.Enumerator iter)
 		{
 			string c = "";
 			while (iter.MoveNext())

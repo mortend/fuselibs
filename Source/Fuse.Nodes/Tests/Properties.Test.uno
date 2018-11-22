@@ -13,9 +13,9 @@ namespace Fuse.Test
 		public int Value;
 		
 		public Counter() {}
-		public Counter( int value ) { Value = value; }
+		public Counter(int value) { Value = value; }
 		
-		static public void Add( object value, object state )
+		static public void Add(object value, object state)
 		{
 			if (value is Counter)
 				((Counter)state).Value += ((Counter)value).Value;	
@@ -42,15 +42,15 @@ namespace Fuse.Test
 			props.Set(handleB, objA);
 			props.Set(handleC, objB);
 			
-			Assert.AreEqual( 1, props.Get(handleA) );
-			Assert.AreEqual( objA, props.Get(handleB) );
-			Assert.AreEqual( objB, props.Get(handleC) );
+			Assert.AreEqual(1, props.Get(handleA));
+			Assert.AreEqual(objA, props.Get(handleB));
+			Assert.AreEqual(objB, props.Get(handleC));
 			
 			object value;
-			Assert.IsTrue( props.TryGet(handleA, out value) );
-			Assert.AreEqual( 1, value );
-			Assert.IsTrue( props.TryGet(handleB, out value) );
-			Assert.AreEqual( objA, value );
+			Assert.IsTrue(props.TryGet(handleA, out value));
+			Assert.AreEqual(1, value);
+			Assert.IsTrue(props.TryGet(handleB, out value));
+			Assert.AreEqual(objA, value);
 		}
 		
 		[Test]
@@ -59,57 +59,57 @@ namespace Fuse.Test
 			var props = new Properties();
 			
 			object value;
-			Assert.IsFalse( props.TryGet(handleA, out value) );
+			Assert.IsFalse(props.TryGet(handleA, out value));
 			
 			props.Set(handleB, 123);
-			Assert.IsFalse( props.TryGet(handleA, out value) );
+			Assert.IsFalse(props.TryGet(handleA, out value));
 			
 			props.Set(handleA, 1);
 			props.Clear(handleA);
-			Assert.IsFalse( props.TryGet(handleA, out value) );
+			Assert.IsFalse(props.TryGet(handleA, out value));
 
 			props.Clear(handleB);
-			Assert.IsFalse( props.TryGet(handleA, out value) );
+			Assert.IsFalse(props.TryGet(handleA, out value));
 		}
 		
 		[Test]
 		public void List()
 		{
 			var pa = new Properties();
-			pa.AddToList( handleA, 1 );
-			pa.AddToList( handleB, 2 );
-			pa.AddToList( handleA, 10 );
-			pa.Set( handleC, 3 );
-			pa.AddToList( handleA, 100 );
-			pa.AddToList( handleA, 1000 );
-			pa.AddToList( handleA, 100 );
+			pa.AddToList(handleA, 1);
+			pa.AddToList(handleB, 2);
+			pa.AddToList(handleA, 10);
+			pa.Set(handleC, 3);
+			pa.AddToList(handleA, 100);
+			pa.AddToList(handleA, 1000);
+			pa.AddToList(handleA, 100);
 
 			var c = new Counter();
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 1211, c.Value );
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(1211, c.Value);
 			
 			c.Value = 0;
-			pa.RemoveFromList( handleA, 100);
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 1111, c.Value );
+			pa.RemoveFromList(handleA, 100);
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(1111, c.Value);
 			
-			pa.Clear( handleB );
+			pa.Clear(handleB);
 			c.Value = 0;
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 1111, c.Value );
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(1111, c.Value);
 			
-			pa.AddToList( handleA, 100 );
-			pa.RemoveAllFromList( handleA, 100 );
+			pa.AddToList(handleA, 100);
+			pa.RemoveAllFromList(handleA, 100);
 			c.Value = 0;
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 1011, c.Value );
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(1011, c.Value);
 			
-			pa.Clear( handleA );
+			pa.Clear(handleA);
 			c.Value = 0;
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 0, c.Value );
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(0, c.Value);
 			
-			Assert.AreEqual( 3, (int)pa.Get(handleC) );
+			Assert.AreEqual(3, (int)pa.Get(handleC));
 		}
 		
 		[Test]
@@ -123,40 +123,40 @@ namespace Fuse.Test
 			var v1000 = new Counter(1000);
 			
 			var pa = new Properties();
-			pa.AddToList( handleA, v1 );
-			pa.AddToList( handleB, v2 );
-			pa.AddToList( handleA, v10 );
-			pa.Set( handleC, v3 );
-			pa.AddToList( handleA, v100 );
-			pa.AddToList( handleA, v1000 );
-			pa.AddToList( handleA, v100 );
+			pa.AddToList(handleA, v1);
+			pa.AddToList(handleB, v2);
+			pa.AddToList(handleA, v10);
+			pa.Set(handleC, v3);
+			pa.AddToList(handleA, v100);
+			pa.AddToList(handleA, v1000);
+			pa.AddToList(handleA, v100);
 
 			var c = new Counter();
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 1211, c.Value );
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(1211, c.Value);
 			
 			c.Value = 0;
-			pa.RemoveFromList( handleA, v100);
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 1111, c.Value );
+			pa.RemoveFromList(handleA, v100);
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(1111, c.Value);
 			
-			pa.Clear( handleB );
+			pa.Clear(handleB);
 			c.Value = 0;
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 1111, c.Value );
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(1111, c.Value);
 			
-			pa.AddToList( handleA, v100 );
-			pa.RemoveAllFromList( handleA, v100 );
+			pa.AddToList(handleA, v100);
+			pa.RemoveAllFromList(handleA, v100);
 			c.Value = 0;
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 1011, c.Value );
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(1011, c.Value);
 			
-			pa.Clear( handleA );
+			pa.Clear(handleA);
 			c.Value = 0;
-			pa.ForeachInList( handleA, Counter.Add, c );
-			Assert.AreEqual( 0, c.Value );
+			pa.ForeachInList(handleA, Counter.Add, c);
+			Assert.AreEqual(0, c.Value);
 			
-			Assert.AreEqual( 3, ((Counter)pa.Get(handleC)).Value );
+			Assert.AreEqual(3, ((Counter)pa.Get(handleC)).Value);
 		}
 	}
 	

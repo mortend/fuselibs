@@ -6,81 +6,81 @@ namespace Fuse.Reactive
 	//reference: http://www.easyrgb.com/en/math.php
 	static class ColorModel
 	{
-		static public float4 RgbaToHsla( float4 v ) 
+		static public float4 RgbaToHsla(float4 v) 
 		{
 			var r = v[0];
 			var g = v[1];
 			var b = v[2];
 
-			var min = Math.Min( r, Math.Min( g, b) ); //Min. value of RGB
-			var max = Math.Max( r, Math.Max( g, b ) ); //Max. value of RGB
+			var min = Math.Min(r, Math.Min(g, b)); //Min. value of RGB
+			var max = Math.Max(r, Math.Max(g, b)); //Max. value of RGB
 			var del_max = max - min; //Delta RGB value
 
-			var l = ( max + min )/ 2;
+			var l = (max + min)/ 2;
 
 			float h = 0;
 			float s = 0;
-			if ( del_max < 1e-4 ) //This is a gray, no chroma...
+			if (del_max < 1e-4) //This is a gray, no chroma...
 			{
 				h = 0;
 				s = 0;
 			}
 			else //Chromatic data...
 			{
-				if ( l < 0.5 ) 
-					s = del_max / ( max + min );
+				if (l < 0.5) 
+					s = del_max / (max + min);
 				else           
-					s = del_max / ( 2 - max - min );
+					s = del_max / (2 - max - min);
 
-				var del_r = ( ( ( max - r ) / 6 ) + ( del_max / 2 ) ) / del_max;
-				var del_g = ( ( ( max - g ) / 6 ) + ( del_max / 2 ) ) / del_max;
-				var del_b = ( ( ( max - b ) / 6 ) + ( del_max / 2 ) ) / del_max;
+				var del_r = (((max - r) / 6) + (del_max / 2)) / del_max;
+				var del_g = (((max - g) / 6) + (del_max / 2)) / del_max;
+				var del_b = (((max - b) / 6) + (del_max / 2)) / del_max;
 
 				if (r > g && r > b) //r == max
 					h = del_b - del_g;
 				else if (g > b) //g == max
-					h = ( 1 / 3.0f ) + del_r - del_b;
+					h = (1 / 3.0f) + del_r - del_b;
 				else //b == max
-					h = ( 2 / 3.0f ) + del_g - del_r;
+					h = (2 / 3.0f) + del_g - del_r;
 
-				if ( h < 0 ) 
+				if (h < 0) 
 					h += 1;
-				if ( h > 1 ) 
+				if (h > 1) 
 					h -= 1;
 			}
 			
 			return float4(h,s,l,v[3]);
 		}
 		
-		static public float4 HslaToRgba( float4 v )
+		static public float4 HslaToRgba(float4 v)
 		{
 			var h = v[0];
 			var s = v[1];
 			var l = v[2];
 			
 			float var_2;
-			if ( l < 0.5f ) 
-				var_2 = l * ( 1.0f + s );
+			if (l < 0.5f) 
+				var_2 = l * (1.0f + s);
 			else           
-				var_2 = ( l + s ) - ( s * l );
+				var_2 = (l + s) - (s * l);
 
 			var var_1 = 2 * l - var_2;
 
-			var r = Hue_2_RGB( var_1, var_2, h + ( 1.0f / 3.0f ) );
-			var g = Hue_2_RGB( var_1, var_2, h );
-			var b = Hue_2_RGB( var_1, var_2, h - ( 1.0f / 3.0f ) );
+			var r = Hue_2_RGB(var_1, var_2, h + (1.0f / 3.0f));
+			var g = Hue_2_RGB(var_1, var_2, h);
+			var b = Hue_2_RGB(var_1, var_2, h - (1.0f / 3.0f));
 			
 			return float4(r,g,b, v[3]);
 		}
 
-		static float Hue_2_RGB( float v1, float v2, float vH )
+		static float Hue_2_RGB(float v1, float v2, float vH)
 		{
-			if ( vH < 0 ) vH += 1;
-			if( vH > 1 ) vH -= 1;
-			if ( ( 6 * vH ) < 1 ) return ( v1 + ( v2 - v1 ) * 6 * vH );
-			if ( ( 2 * vH ) < 1 ) return ( v2 );
-			if ( ( 3 * vH ) < 2 ) return ( v1 + ( v2 - v1 ) * ( ( 2 / 3.0f ) - vH ) * 6 );
-			return ( v1 );
+			if (vH < 0) vH += 1;
+			if(vH > 1) vH -= 1;
+			if ((6 * vH) < 1) return (v1 + (v2 - v1) * 6 * vH);
+			if ((2 * vH) < 1) return (v2);
+			if ((3 * vH) < 2) return (v1 + (v2 - v1) * ((2 / 3.0f) - vH) * 6);
+			return (v1);
 		}
 	}
 
@@ -108,8 +108,8 @@ namespace Fuse.Reactive
 			
 			float4 color = float4(0);
 			float value = 0;
-			if (!Marshal.TryToColorFloat4( color_, out color ) ||
-				!Marshal.TryToType<float>( value_, out value ))
+			if (!Marshal.TryToColorFloat4(color_, out color) ||
+				!Marshal.TryToType<float>(value_, out value))
 				return false;
 				
 			result = ColorCompute(color, value);
@@ -270,12 +270,12 @@ namespace Fuse.Reactive
 		[UXConstructor]
 		public AdjustHueFunction([UXParameter("Color")] Expression color, 
 			[UXParameter("Hue")] Expression hue) : 
-			base(color, hue, "adjustHue" ) { }
+			base(color, hue, "adjustHue") { }
 			
 		internal override float4 ColorCompute(float4 color, float value)
 		{
 			var h = ColorModel.RgbaToHsla(color);
-			h[0] = Math.Mod( h[0] + value, 1 );
+			h[0] = Math.Mod(h[0] + value, 1);
 			return ColorModel.HslaToRgba(h);
 		}
 	}
@@ -285,7 +285,7 @@ namespace Fuse.Reactive
 		
 		The result is a float4 with this format:
 		
-			float4( hue, saturation, lightness, alpha )
+			float4(hue, saturation, lightness, alpha)
 		
 		Values in HSL are normalized just like in RGB. Hue is 0..1, covering the range 0° to 360°. Saturation and lightness are 0..1. Alpha is 0..1 is copied from the input RGBA value.
 	*/
@@ -301,7 +301,7 @@ namespace Fuse.Reactive
 			result = null;
 			
 			float4 color = float4(0);
-			if (!Marshal.TryToColorFloat4( color_, out color ))
+			if (!Marshal.TryToColorFloat4(color_, out color))
 				return false;
 				
 			result = ColorModel.RgbaToHsla(color);
@@ -326,7 +326,7 @@ namespace Fuse.Reactive
 			result = null;
 			
 			float4 color = float4(0);
-			if (!Marshal.TryToColorFloat4( color_, out color ))
+			if (!Marshal.TryToColorFloat4(color_, out color))
 				return false;
 				
 			result = ColorModel.HslaToRgba(color);

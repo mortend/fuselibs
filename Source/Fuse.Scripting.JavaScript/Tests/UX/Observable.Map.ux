@@ -3,12 +3,12 @@
 		var Observable = require("FuseJS/Observable")
 		
 		var items = Observable("a")
-		exports.items = items.map( function(val) {
+		exports.items = items.map(function(val) {
 			return "$" + val
 		})
 		
 		exports.step1 = function() {
-			items.add( "b" )
+			items.add("b")
 		}
 		
 		exports.step2 = function() {
@@ -20,7 +20,7 @@
 		}
 		
 		exports.step4 = function() {
-			items.insertAll(1, ["d","e","f","g"] )
+			items.insertAll(1, ["d","e","f","g"])
 		}
 		
 		exports.step5 = function() {

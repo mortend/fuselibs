@@ -9,11 +9,11 @@
 		
 		exports.items = Observable()
 		for (var i=0; i < 30; ++i) {
-			exports.items.add( new Item() )
+			exports.items.add(new Item())
 		}
 
 		exports.add = function() {
-			exports.items.add( new Item() )
+			exports.items.add(new Item())
 		}
 		
 		exports.remove = function() {

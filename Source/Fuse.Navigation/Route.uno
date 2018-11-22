@@ -48,7 +48,7 @@ namespace Fuse.Navigation
 		}
 
 		/** Returns a new route with the given @SubRoute attached. */
-		public Route Append( Route subRoute )
+		public Route Append(Route subRoute)
 		{
 			var sub = SubRoute == null ? subRoute : SubRoute.Append(subRoute);
 			return new Route(Path, Parameter, sub);
@@ -168,7 +168,7 @@ namespace Fuse.Navigation
 		{
 			if (count <0)
 			{
-				Fuse.Diagnostics.InternalError( "count can't be < 0", this );
+				Fuse.Diagnostics.InternalError("count can't be < 0", this);
 				return null;
 			}
 			

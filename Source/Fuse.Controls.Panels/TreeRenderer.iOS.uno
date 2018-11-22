@@ -209,7 +209,7 @@ namespace Fuse.Controls
 					c = ssc.Color;
 
 				if (sc == null && ssc == null)
-					Fuse.Diagnostics.Unsupported( "Cannot convert to a color", brush );
+					Fuse.Diagnostics.Unsupported("Cannot convert to a color", brush);
 			}
 			return c;
 		}

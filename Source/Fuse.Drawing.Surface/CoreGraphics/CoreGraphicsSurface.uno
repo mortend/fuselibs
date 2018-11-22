@@ -50,7 +50,7 @@ namespace Fuse.Drawing
 		protected void VerifyCreated()
 		{
 			if (_context == IntPtr.Zero)
-				throw new Exception( "Object disposed" );
+				throw new Exception("Object disposed");
 		}
 
 		protected abstract void VerifyBegun();
@@ -74,41 +74,41 @@ namespace Fuse.Drawing
 			delete ctx;
 		@}
 
-		float2 PixelFromPoint( float2 point )
+		float2 PixelFromPoint(float2 point)
 		{
 			//return (point + Area.Minimum) * _pixelsPerPoint;
 			return point * _pixelsPerPoint;
 		}
 
-		public override SurfacePath CreatePath(IList<LineSegment> segments, FillRule fillRule = FillRule.NonZero )
+		public override SurfacePath CreatePath(IList<LineSegment> segments, FillRule fillRule = FillRule.NonZero)
 		{
 			var path = PathCreateMutable();
-			AddSegments( path, segments, float2(0) );
+			AddSegments(path, segments, float2(0));
 			return new CoreGraphicsSurfacePath{ Path = path, FillRule = fillRule };
 		}
 		
 		List<LineSegment> _temp = new List<LineSegment>();
-		float2 AddSegments( IntPtr path, IList<LineSegment> segments, float2 prevPoint )
+		float2 AddSegments(IntPtr path, IList<LineSegment> segments, float2 prevPoint)
 		{
-			for (int i=0; i < segments.Count; ++i )
+			for (int i=0; i < segments.Count; ++i)
 			{
 				var seg = segments[i];
 				var to = PixelFromPoint(seg.To);
 				switch (seg.Type)
 				{
 					case LineSegmentType.Move:
-						PathMoveTo( path, to.X, to.Y );
+						PathMoveTo(path, to.X, to.Y);
 						break;
 						
 					case LineSegmentType.Straight:
-						PathLineTo( path, to.X, to.Y );
+						PathLineTo(path, to.X, to.Y);
 						break;
 						
 					case LineSegmentType.BezierCurve:
 					{
 						var a = PixelFromPoint(seg.A);
 						var b = PixelFromPoint(seg.B);
-						PathCurveTo( path, to.X, to.Y, a.X, a.Y, b.X, b.Y );
+						PathCurveTo(path, to.X, to.Y, a.X, a.Y, b.X, b.Y);
 						break;
 					}
 					
@@ -116,13 +116,13 @@ namespace Fuse.Drawing
 					{	
 						_temp.Clear();
 						SurfaceUtil.EllipticArcToBezierCurve(prevPoint, seg, _temp);
-						prevPoint = AddSegments( path, _temp, prevPoint );
+						prevPoint = AddSegments(path, _temp, prevPoint);
 						break;
 					}
 					
 					case LineSegmentType.Close:
 					{
-						PathClose( path );
+						PathClose(path);
 						break;
 					}
 				}
@@ -132,18 +132,18 @@ namespace Fuse.Drawing
 			return prevPoint;
 		}
 		
-		public override void DisposePath( SurfacePath path )
+		public override void DisposePath(SurfacePath path)
 		{
 			var cgPath = path as CoreGraphicsSurfacePath;
 			if (cgPath == null)
 			{
-				Fuse.Diagnostics.InternalError( "Non CoreGraphicSurfacePath used", path );
+				Fuse.Diagnostics.InternalError("Non CoreGraphicSurfacePath used", path);
 				return;
 			}
 			
 			if (cgPath.Path == IntPtr.Zero)
 			{
-				Fuse.Diagnostics.InternalError( "Duplicate dipose of SurfacePath", path );
+				Fuse.Diagnostics.InternalError("Duplicate dipose of SurfacePath", path);
 				return;
 			}
 			
@@ -164,30 +164,30 @@ namespace Fuse.Drawing
 		@}
 		
 		[Foreign(Language.CPlusPlus)]
-		static void PathMoveTo( IntPtr path, float x, float y )
+		static void PathMoveTo(IntPtr path, float x, float y)
 		@{
-			CGPathMoveToPoint( (CGMutablePathRef)path, nullptr, x, y );
+			CGPathMoveToPoint((CGMutablePathRef)path, nullptr, x, y);
 		@}
 		
 		[Foreign(Language.CPlusPlus)]
-		static void PathLineTo( IntPtr path, float x, float y )
+		static void PathLineTo(IntPtr path, float x, float y)
 		@{
-			CGPathAddLineToPoint( (CGMutablePathRef)path, nullptr, x, y );
+			CGPathAddLineToPoint((CGMutablePathRef)path, nullptr, x, y);
 		@}
 		
 		[Foreign(Language.CPlusPlus)]
-		static void PathCurveTo( IntPtr path, float x, float y, float ax, float ay, float bx, float by )
+		static void PathCurveTo(IntPtr path, float x, float y, float ax, float ay, float bx, float by)
 		@{
-			CGPathAddCurveToPoint( (CGMutablePathRef)path, nullptr, ax, ay, bx, by, x, y );
+			CGPathAddCurveToPoint((CGMutablePathRef)path, nullptr, ax, ay, bx, by, x, y);
 		@}
 		
 		[Foreign(Language.CPlusPlus)]
-		static void PathClose( IntPtr path)
+		static void PathClose(IntPtr path)
 		@{
-			CGPathCloseSubpath( (CGMutablePathRef)path );
+			CGPathCloseSubpath((CGMutablePathRef)path);
 		@}
 		
-		public override void Prepare( Brush brush )
+		public override void Prepare(Brush brush)
 		{
 			VerifyCreated();
 			Unprepare(brush);
@@ -208,7 +208,7 @@ namespace Fuse.Drawing
 				return;
 			}
 
-			Fuse.Diagnostics.UserError( "Unsupported brush", brush );
+			Fuse.Diagnostics.UserError("Unsupported brush", brush);
 		}
 			
 		Dictionary<Brush, IntPtr> _gradientBrushes = new Dictionary<Brush,IntPtr>();
@@ -228,16 +228,16 @@ namespace Fuse.Drawing
 				CGFloatSet(offsets, i, Math.Clamp(stop.Offset, 0.0f, 1.0f));
 
 				if (stop.Offset > 1.0f || stop.Offset < 0.0f)
-					Fuse.Diagnostics.UserWarning( "iOS/OSX does not support gradient stops outside of 0.0 to 1.0", stop.Offset );
+					Fuse.Diagnostics.UserWarning("iOS/OSX does not support gradient stops outside of 0.0 to 1.0", stop.Offset);
 			}
-			_gradientBrushes[lg] = CreateLinearGradient(_context, colors, offsets, stops.Length );
+			_gradientBrushes[lg] = CreateLinearGradient(_context, colors, offsets, stops.Length);
 				
 			CGFloatDeleteArray(colors);
 			CGFloatDeleteArray(offsets);
 		}
 
 		protected Dictionary<Brush, IntPtr> _imageBrushes = new Dictionary<Brush,IntPtr>();
-		protected abstract void PrepareImageFill( ImageFill img );
+		protected abstract void PrepareImageFill(ImageFill img);
 
 		[Foreign(Language.CPlusPlus)]
 		extern(OSX) static IntPtr LoadImage(IntPtr cp, int glTexture, int width, int height)
@@ -254,9 +254,9 @@ namespace Fuse.Drawing
 			auto tempRow = new UInt8[rowSize];
 			for (int y=0; y < height/2; ++y)
 			{
-				memcpy( tempRow, pixelData + y * rowSize, rowSize );
-				memcpy( pixelData + y * rowSize, pixelData + (height-y-1) * rowSize, rowSize );
-				memcpy( pixelData + (height-y-1) * rowSize, tempRow, rowSize );
+				memcpy(tempRow, pixelData + y * rowSize, rowSize);
+				memcpy(pixelData + y * rowSize, pixelData + (height-y-1) * rowSize, rowSize);
+				memcpy(pixelData + (height-y-1) * rowSize, tempRow, rowSize);
 			}
 			
 			CFDataRef data = CFDataCreate(NULL, pixelData, size);
@@ -271,16 +271,16 @@ namespace Fuse.Drawing
 			return imageRef;
 		@}
 
-		public override void Unprepare( Brush brush )
+		public override void Unprepare(Brush brush)
 		{
 			IntPtr ip;
-			if (_gradientBrushes.TryGetValue( brush, out ip ))
+			if (_gradientBrushes.TryGetValue(brush, out ip))
 			{
 				VerifyCreated();
 				ReleaseGradient(_context, ip);
 				_gradientBrushes.Remove(brush);
 			}
-			if (_imageBrushes.TryGetValue( brush, out ip ))
+			if (_imageBrushes.TryGetValue(brush, out ip))
 			{
 				VerifyCreated();
 				ReleaseImage(_context, ip);
@@ -288,19 +288,19 @@ namespace Fuse.Drawing
 			}
 		}
 		
-		public override void FillPath( SurfacePath path, Brush fill )
+		public override void FillPath(SurfacePath path, Brush fill)
 		{
 			VerifyBegun();
 			var cgPath = path as CoreGraphicsSurfacePath;
 			if (cgPath == null)
 			{
-				Fuse.Diagnostics.InternalError( "Non CoreGraphicSurfacePath used", path );
+				Fuse.Diagnostics.InternalError("Non CoreGraphicSurfacePath used", path);
 				return;
 			}
 			FillPathImpl(cgPath.Path, fill, cgPath.FillRule);
 		}
 		
-		void FillPathImpl( IntPtr path, Brush fill, FillRule fillRule)
+		void FillPathImpl(IntPtr path, Brush fill, FillRule fillRule)
 		{
 			bool eoFill = fillRule == FillRule.EvenOdd;
 
@@ -316,9 +316,9 @@ namespace Fuse.Drawing
 			if (linearGradient != null)
 			{
 				IntPtr gradient;
-				if (!_gradientBrushes.TryGetValue( fill, out gradient ))
+				if (!_gradientBrushes.TryGetValue(fill, out gradient))
 				{
-					Fuse.Diagnostics.InternalError( "Unprepared LinearGradient", fill );
+					Fuse.Diagnostics.InternalError("Unprepared LinearGradient", fill);
 					return;
 				}
 				
@@ -331,17 +331,17 @@ namespace Fuse.Drawing
 			if (imageFill != null)
 			{
 				IntPtr image;
-				if (!_imageBrushes.TryGetValue( fill, out image ) )
+				if (!_imageBrushes.TryGetValue(fill, out image))
 				{
-					Fuse.Diagnostics.InternalError( "Unprepared ImageFill", fill );
+					Fuse.Diagnostics.InternalError("Unprepared ImageFill", fill);
 					return;
 				}
 				
 				var sizing = imageFill.SizingContainer;
 				sizing.absoluteZoom = _pixelsPerPoint; //TODO: probably not good to modify sizing here...?
 				var imageSize = imageFill.Source.Size;
-				var scale = sizing.CalcScale( ElementSize, imageSize );
-				var origin = sizing.CalcOrigin( ElementSize, imageSize * scale );
+				var scale = sizing.CalcScale(ElementSize, imageSize);
+				var origin = sizing.CalcOrigin(ElementSize, imageSize * scale);
 				
 				var tileSize = imageSize * _pixelsPerPoint * scale;
 				var pixelOrigin = origin * _pixelsPerPoint;
@@ -350,11 +350,11 @@ namespace Fuse.Drawing
 				return;
 			}
 
-			Fuse.Diagnostics.UserError( "Unsupported brush", fill );
+			Fuse.Diagnostics.UserError("Unsupported brush", fill);
 		}
 		
 		static bool _strokeWarning;
-		public override void StrokePath( SurfacePath path, Stroke stroke )
+		public override void StrokePath(SurfacePath path, Stroke stroke)
 		{
 			VerifyBegun();
 		
@@ -363,13 +363,13 @@ namespace Fuse.Drawing
 				&& !_strokeWarning)
 			{
 				_strokeWarning = true;
-				Fuse.Diagnostics.UserWarning( "iOS/OSX does not support non-center alignment strokes", stroke );
+				Fuse.Diagnostics.UserWarning("iOS/OSX does not support non-center alignment strokes", stroke);
 			}
 			
 			var cgPath = path as CoreGraphicsSurfacePath;
 			if (cgPath == null)
 			{
-				Fuse.Diagnostics.InternalError( "Non CoreGraphicSurfacePath used", path );
+				Fuse.Diagnostics.InternalError("Non CoreGraphicSurfacePath used", path);
 				return;
 			}
 			
@@ -389,7 +389,7 @@ namespace Fuse.Drawing
 			CGLineCap capMap[] = { kCGLineCapButt, kCGLineCapRound, kCGLineCapSquare };
 			auto cap = capMap[std::max(0,std::min(2,fcap))];
 			
-			auto res = CGPathCreateCopyByStrokingPath( (CGPathRef)path, nullptr, 
+			auto res = CGPathCreateCopyByStrokingPath((CGPathRef)path, nullptr, 
 				width, cap, join, miterLimit);
 			return (void*)res;
 		@}
@@ -446,7 +446,7 @@ namespace Fuse.Drawing
 			ctx->ClipPath((CGPathRef)path, eoFill);
 
 			CGContextDrawTiledImage(ctx->Context, 
-				CGRectMake(originX, originY, tileSizeX, tileSizeY), (CGImageRef)image );
+				CGRectMake(originX, originY, tileSizeX, tileSizeY), (CGImageRef)image);
 
 			ctx->RestoreState();
 		@}
@@ -472,7 +472,7 @@ namespace Fuse.Drawing
 		@}
 		
 		static bool _transformWarn;
-		public override void PushTransform( float4x4 t )
+		public override void PushTransform(float4x4 t)
 		{
 			VerifyBegun();
 			SaveContextState(_context);
@@ -490,8 +490,8 @@ namespace Fuse.Drawing
 				Math.Abs(t.M44-1) > zeroTolerance))
 			{
 				//skip M33 since Z scaling of flat objects is okay and common
-				Fuse.Diagnostics.UserWarning( 
-					"iOS/OSX does not support 3d or shear transforms for vector graphics", this );
+				Fuse.Diagnostics.UserWarning(
+					"iOS/OSX does not support 3d or shear transforms for vector graphics", this);
 				_transformWarn = true;
 			}
 				

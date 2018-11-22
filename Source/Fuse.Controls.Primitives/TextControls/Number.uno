@@ -12,7 +12,7 @@ namespace Fuse.Controls
 		TextControl _text;
 		public Number()
 		{
-			Fuse.Diagnostics.Deprecated( "The Number control has been deprecated. Use a Text control instead and do the formatting inside JavaScript.", this );
+			Fuse.Diagnostics.Deprecated("The Number control has been deprecated. Use a Text control instead and do the formatting inside JavaScript.", this);
 			_text = new Text();
 			Children.Add(_text);
 		}
@@ -87,7 +87,7 @@ namespace Fuse.Controls
 				_text.Value = String.Format(FormatString, Value);
 			} catch (Exception e) {
 				//TODO: restore, branch mixup
-				//Fuse.Diagnostics.Exception( "Invalidat format: " + FormatString, e, this );
+				//Fuse.Diagnostics.Exception("Invalidat format: " + FormatString, e, this);
 				throw e;
 			} 
 		}

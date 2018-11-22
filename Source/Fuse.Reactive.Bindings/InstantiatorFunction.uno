@@ -16,7 +16,7 @@ namespace Fuse.Reactive
 		
 		Selector _item;
 		
-		internal InstantiatorFunction( Selector item )
+		internal InstantiatorFunction(Selector item)
 			: base()
 		{
 			_item = item;
@@ -31,12 +31,12 @@ namespace Fuse.Reactive
 		{
 			if (Arguments.Count > 1)
 			{
-				Fuse.Diagnostics.UserError( "too many parameters for " + _item, this );
+				Fuse.Diagnostics.UserError("too many parameters for " + _item, this);
 				return null;
 			}
 			
 			var node = Arguments.Count > 0 ? Arguments[0] : null;
-			var ins = new InstantiatorSubscription(this, _item, listener, context, node );
+			var ins = new InstantiatorSubscription(this, _item, listener, context, node);
 			ins.Init(context);
 			return ins;
 		}
@@ -57,7 +57,7 @@ namespace Fuse.Reactive
 			IDisposable _nodeSub;
 
 			public InstantiatorSubscription(InstantiatorFunction expr, Selector item, IListener listener, 
-				IContext context, IExpression node ) : 
+				IContext context, IExpression node) : 
 				base()
 			{
 				_node = node;
@@ -99,7 +99,7 @@ namespace Fuse.Reactive
 				var searchNode = obj as Node ?? _context.Node;
 				if (searchNode == null)
 				{
-					Fuse.Diagnostics.UserError( "invalid search node for InstantiatorFunction", this );
+					Fuse.Diagnostics.UserError("invalid search node for InstantiatorFunction", this);
 					_listener.OnLostData(_expr);
 					return;
 				}
@@ -107,7 +107,7 @@ namespace Fuse.Reactive
 				_instantiator = searchNode.FindBehavior<Instantiator>();
 				if (_instantiator == null)
 				{
-					Fuse.Diagnostics.UserError( "Could not find an Instantiator", this );
+					Fuse.Diagnostics.UserError("Could not find an Instantiator", this);
 					_listener.OnLostData(_expr);
 					return;
 				}
@@ -119,7 +119,7 @@ namespace Fuse.Reactive
 				if (p == null)
 				{
 					//given that instantiator wasn't null this shouldn't ever really happen
-					Fuse.Diagnostics.InternalError( "Unable to resolve Instantiator node", this );
+					Fuse.Diagnostics.InternalError("Unable to resolve Instantiator node", this);
 					_listener.OnLostData(_expr);
 					return;
 				}
@@ -172,7 +172,7 @@ namespace Fuse.Reactive
 	{
 		[UXConstructor]
 		public IndexFunction()
-			: base( DataIndexName )
+			: base(DataIndexName)
 		{
 		}
 	}
@@ -182,7 +182,7 @@ namespace Fuse.Reactive
 	{
 		[UXConstructor]
 		public OffsetIndexFunction()
-			: base( OffsetIndexName )
+			: base(OffsetIndexName)
 		{
 		}
 	}

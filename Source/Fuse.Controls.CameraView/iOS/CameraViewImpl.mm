@@ -97,7 +97,7 @@ namespace fcv {
 				return;
 			}
 
-			if ([avState->session canAddInput:input] ) {
+			if ([avState->session canAddInput:input]) {
 				[avState->session addInput:input];
 				avState->deviceInput = input;
 
@@ -248,7 +248,7 @@ namespace fcv {
 			AVCaptureConnection* videoConnection = NULL;
 			for (AVCaptureConnection* connection in avState->imageOutput.connections) {
 				for (AVCaptureInputPort* port in [connection inputPorts]) {
-					if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
+					if ([[port mediaType] isEqual:AVMediaTypeVideo]) {
 						videoConnection = connection;
 						break;
 					}

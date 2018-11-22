@@ -14,7 +14,7 @@ namespace Fuse.Navigation
 			var ctx = NavigationContext ?? Navigation.TryFind(n);
 			if (ctx == null)
 			{
-				Fuse.Diagnostics.UserError( "No navigation context was found", this );
+				Fuse.Diagnostics.UserError("No navigation context was found", this);
 				return;
 			}
 			Perform(ctx, n);
@@ -115,7 +115,7 @@ namespace Fuse.Navigation
 			set 
 			{
 				_context = value;
-				Fuse.Diagnostics.Deprecated( "NavigateToggle.NavigationContext is no longer supported as it isn't needed", this );
+				Fuse.Diagnostics.Deprecated("NavigateToggle.NavigationContext is no longer supported as it isn't needed", this);
 			}
 		}
 	
@@ -130,7 +130,7 @@ namespace Fuse.Navigation
 			if (page != null)
 				ctx.Toggle(page);
 			else
-				Fuse.Diagnostics.UserError( "No Page was found", this );
+				Fuse.Diagnostics.UserError("No Page was found", this);
 		}
 	}
 
@@ -146,7 +146,7 @@ namespace Fuse.Navigation
 			if (nav != null)
 				Perform(nav, n);
 			else
-				Fuse.Diagnostics.UserError( "No Navigation context was found", this );
+				Fuse.Diagnostics.UserError("No Navigation context was found", this);
 		}
 
 		protected abstract void Perform(IBaseNavigation ctx, Node node);

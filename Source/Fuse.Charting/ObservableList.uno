@@ -46,9 +46,9 @@ namespace Fuse.Charting
 				Source.Unsubscribe(Observer);
 			}
 			
-			public void ClearExclusive() { Fuse.Diagnostics.InternalError( "ReadOnly array", this ); }
-			public void SetExclusive(object newValue) { Fuse.Diagnostics.InternalError( "ReadOnly array", this ); }
-			public void ReplaceAllExclusive(IArray values) { Fuse.Diagnostics.InternalError( "ReadOnly array", this ); }
+			public void ClearExclusive() { Fuse.Diagnostics.InternalError("ReadOnly array", this); }
+			public void SetExclusive(object newValue) { Fuse.Diagnostics.InternalError("ReadOnly array", this); }
+			public void ReplaceAllExclusive(IArray values) { Fuse.Diagnostics.InternalError("ReadOnly array", this); }
 		}
 		
 		virtual protected void OnSubscription() { }
@@ -208,7 +208,7 @@ namespace Fuse.Charting
 	{
 		public ReadOnlyObservableData() { }
 		
-		public ReadOnlyObservableData( T initialValue )
+		public ReadOnlyObservableData(T initialValue)
 		{
 			_value = initialValue;
 		}

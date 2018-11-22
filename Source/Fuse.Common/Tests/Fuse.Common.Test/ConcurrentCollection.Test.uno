@@ -7,10 +7,10 @@ namespace Fuse.Test
 {
 	public class ConcurrentCollectionTest : TestBase
 	{
-		int Sum( IEnumerable<int> list )
+		int Sum(IEnumerable<int> list)
 		{
 			var c = 0;
-			foreach( var i in list )
+			foreach(var i in list)
 				c += i;
 			return c;
 		}

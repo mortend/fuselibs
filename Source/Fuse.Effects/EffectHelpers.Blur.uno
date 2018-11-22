@@ -117,7 +117,7 @@ namespace Fuse.Effects
 				DepthTestEnabled: false;
 				float2 tc: VertexPosition.XY * 0.5f + 0.5f;
 				float3 crossOffsets: float3(float2(offset) / texSize, 0);
-				float4 cornerOffsets: float4( float2(offset) / texSize,
+				float4 cornerOffsets: float4(float2(offset) / texSize,
 				                             -float2(offset) / texSize);
 				float2 tc1: tc + crossOffsets.XZ;
 				float2 tc2: tc - crossOffsets.XZ;

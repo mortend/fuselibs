@@ -1,6 +1,6 @@
 <Panel ux:Class="UX.MathFunctions.MarshalFunctions">
-	<Let Value="float( (10,20) )" ux:Name="a2"/>
-	<Let Value="float( (3,7) )" ux:Name="b2"/>
+	<Let Value="float((10,20))" ux:Name="a2"/>
+	<Let Value="float((3,7))" ux:Name="b2"/>
 	
 	<Let Value="float(10)" ux:Name="a"/>
 	<Let Value="float(5)" ux:Name="b"/>

@@ -50,7 +50,7 @@ namespace Fuse.Test
 			
 			//force a grow
 			for (int i=0; i < ObjectList<Dummy>.InitialCapacity; ++i)
-				l.Add( new Dummy() );
+				l.Add(new Dummy());
 			Assert.AreEqual(2 + ObjectList<Dummy>.InitialCapacity,l.Count);
 			Assert.AreEqual(a, l[0]);
 			Assert.AreEqual(b, l[1]);
@@ -174,7 +174,7 @@ namespace Fuse.Test
 			ol.Add(init);
 			refList.Add(init);
 			
-			for (int i=0; i < 100; ++i )
+			for (int i=0; i < 100; ++i)
 			{
 				var d1 = new Dummy();
 				var d2 = new Dummy();
@@ -217,8 +217,8 @@ namespace Fuse.Test
 				_list.Add(new Dummy());
 			}
 			
-			public void InsertNeg() { _list.Insert(-1, new Dummy() ); }
-			public void InsertOver() { _list.Insert(_list.Count+1, new Dummy() ); }
+			public void InsertNeg() { _list.Insert(-1, new Dummy()); }
+			public void InsertOver() { _list.Insert(_list.Count+1, new Dummy()); }
 			public void RemoveNeg() { _list.RemoveAt(-1); }
 			public void RemoveOver() { _list.RemoveAt(_list.Count+1); }
 			public void IndexNeg() { Ignore(_list[-1]); }
@@ -231,7 +231,7 @@ namespace Fuse.Test
 		{
 			var l = new ObjectList<Dummy>();
 			for (int i=0; i < size; ++i)
-				l.Add( new Dummy(i) );
+				l.Add(new Dummy(i));
 			return l;
 		}
 		
@@ -278,7 +278,7 @@ namespace Fuse.Test
 			using (var iter = l.GetEnumeratorVersionedStruct())
 			{
 				for (int i=0; i < 20; ++i)
-					l.RemoveAt( r.Next(l.Count));
+					l.RemoveAt(r.Next(l.Count));
 					
 				//iter still sees the list prior to the removed items
 				while (iter.MoveNext())
@@ -360,7 +360,7 @@ namespace Fuse.Test
 			l.Add(b);
 			
 			int c =0;
-			foreach( var d in l )
+			foreach(var d in l)
 				c += d.Value;
 				
 			Assert.AreEqual(11,c);
@@ -371,7 +371,7 @@ namespace Fuse.Test
 			Assert.IsTrue(l.TestIsConsistent);
 		}
 		
-		string Join( ref ObjectList<Dummy>.Enumerator iter )
+		string Join(ref ObjectList<Dummy>.Enumerator iter)
 		{
 			string c = "";
 			while (iter.MoveNext())
@@ -385,7 +385,7 @@ namespace Fuse.Test
 			return c;
 		}
 		
-		string Join( Dummy[] items )
+		string Join(Dummy[] items)
 		{
 			string c = "";
 			for (int i=0; i < items.Length; ++i)

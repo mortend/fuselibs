@@ -93,7 +93,7 @@ namespace Fuse
 			{
 				if (RootViewport == null)
 					return 1; //for tests
-					//throw new Exception("Unknown density: RootViewport not created" );
+					//throw new Exception("Unknown density: RootViewport not created");
 				return RootViewport.PixelsPerPoint;
 			}
 		}
@@ -104,7 +104,7 @@ namespace Fuse
 			{
 				if (RootViewport == null)
 					return 1; //for tests
-					//throw new Exception("Unknown density: RootViewport not created" );
+					//throw new Exception("Unknown density: RootViewport not created");
 				return RootViewport.PixelsPerOSPoint;
 			}
 		}
@@ -186,7 +186,7 @@ namespace Fuse
 
 		//allows test setup to override this
 		static RootViewport _testRootViewport;
-		static internal void TestSetRootViewport( RootViewport rv)
+		static internal void TestSetRootViewport(RootViewport rv)
 		{
 			_testRootViewport = rv;
 		}
@@ -199,11 +199,11 @@ namespace Fuse
 					return _testRootViewport;
 					
 				if (Current == null)
-					throw new Exception( "No AppBase Current defined" );
+					throw new Exception("No AppBase Current defined");
 					
 				var rv = Current.RootViewport;
 				if (rv == null)
-					throw new Exception( "No RootViewport defined" );
+					throw new Exception("No RootViewport defined");
 					
 				return rv;
 			}

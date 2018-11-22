@@ -46,7 +46,7 @@ namespace Fuse.Triggers
 		{
 			if (_args != null)
 			{
-				Fuse.Diagnostics.InternalError( "Double removal of Visual", this );
+				Fuse.Diagnostics.InternalError("Double removal of Visual", this);
 				return;
 			}
 			
@@ -59,7 +59,7 @@ namespace Fuse.Triggers
 		{
 			if (_args == null)
 			{
-				Fuse.Diagnostics.InternalError( "Unexpected done", this );
+				Fuse.Diagnostics.InternalError("Unexpected done", this);
 				return;
 			}
 			

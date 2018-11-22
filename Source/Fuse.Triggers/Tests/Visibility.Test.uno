@@ -16,31 +16,31 @@ namespace Fuse.Triggers.Test
 			var p = new UX.Visibility.Basic();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( Visibility.Visible, p.a.Visibility );
+				Assert.AreEqual(Visibility.Visible, p.a.Visibility);
 				
 				p.hide1.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( Visibility.Hidden, p.a.Visibility );
+				Assert.AreEqual(Visibility.Hidden, p.a.Visibility);
 				
 				p.show1.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( Visibility.Visible, p.a.Visibility );
+				Assert.AreEqual(Visibility.Visible, p.a.Visibility);
 				
 				p.collapse1.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( Visibility.Collapsed, p.a.Visibility );
+				Assert.AreEqual(Visibility.Collapsed, p.a.Visibility);
 				
 				p.hide2.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( Visibility.Hidden, p.a.Visibility );
+				Assert.AreEqual(Visibility.Hidden, p.a.Visibility);
 				
 				p.show2.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( Visibility.Visible, p.a.Visibility );
+				Assert.AreEqual(Visibility.Visible, p.a.Visibility);
 				
 				p.collapse2.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( Visibility.Collapsed, p.a.Visibility );
+				Assert.AreEqual(Visibility.Collapsed, p.a.Visibility);
 			}
 		}
 	}

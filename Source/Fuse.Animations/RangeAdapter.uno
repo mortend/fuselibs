@@ -57,7 +57,7 @@ namespace Fuse.Animations
 		
 		public void SetValue(T value, IPropertyListener origin)
 		{
-			Source.Set( In(value), origin );
+			Source.Set(In(value), origin);
 		}
 		
 		protected override void OnRooted()

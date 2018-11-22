@@ -5,7 +5,7 @@
 		<Page Color="#AFA" ux:Name="one">
 			<JavaScript dep:router="findRouter()">
 				exports.go = function() {
-					router.goto( "two" )
+					router.goto("two")
 				}
 			</JavaScript>
 			<FuseTest.Invoke Handler="{go}" ux:Name="OneGo"/>
@@ -14,7 +14,7 @@
 		<Page Color="#FAA" ux:Name="two">
 			<JavaScript dep:router="findRouter()">
 				exports.go = function() {
-					router.goto( "one" )
+					router.goto("one")
 				}
 			</JavaScript>
 			<FuseTest.Invoke Handler="{go}" ux:Name="TwoGo"/>

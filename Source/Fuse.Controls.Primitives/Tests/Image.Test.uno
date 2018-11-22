@@ -50,7 +50,7 @@ namespace Fuse.Controls.Primitives.Test
 				Assert.AreEqual(0, TriggerProgress(p.W1));
 				Assert.AreEqual(0, TriggerProgress(p.W2));
 				
-				p.L.Fail( "nope" );
+				p.L.Fail("nope");
 				root.PumpDeferred();
 				//Assert.AreEqual(1, TriggerProgress(p.W1)); //Not in current version
 				Assert.AreEqual(1, TriggerProgress(p.W2));
@@ -73,7 +73,7 @@ namespace Fuse.Controls.Primitives.Test
 			using (var dg = new RecordDiagnosticGuard())
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				p.src.Fail( "Not there" );
+				p.src.Fail("Not there");
 
 				p.CallRetry.Perform();
 				root.StepFrameJS();

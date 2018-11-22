@@ -57,20 +57,20 @@ namespace Fuse.Navigation
 			HasOperation = false;
 		}
 		
-		public bool AddHow( ModifyRouteHow how ) 
+		public bool AddHow(ModifyRouteHow how) 
 		{
 			How = how;
 			return true;
 		}
 		
-		public bool AddPath( object value )
+		public bool AddPath(object value)
 		{
 			if (_flags.HasFlag(Flags.FlatRoute))
 			{
 				var path = value as IArray;
 				if (path == null)
 				{
-					Fuse.Diagnostics.UserError( "`path` should be an array", this );
+					Fuse.Diagnostics.UserError("`path` should be an array", this);
 					return false;
 				}
 				
@@ -106,7 +106,7 @@ namespace Fuse.Navigation
 				return AddHow(Marshal.ToType<ModifyRouteHow>(value));
 
 			if (name == "path" && allow.HasFlag(Fields.Path))
-				return AddPath( value );
+				return AddPath(value);
 			
 			if (name == "relative" && allow.HasFlag(Fields.Relative))
 			{
@@ -117,7 +117,7 @@ namespace Fuse.Navigation
 				NavigationGotoMode v;
 				if (!Marshal.TryToType<NavigationGotoMode>(value, out v))
 				{
-					Fuse.Diagnostics.UserError( "Invalid transition value", this );
+					Fuse.Diagnostics.UserError("Invalid transition value", this);
 					return false;
 				} 
 				else
@@ -138,7 +138,7 @@ namespace Fuse.Navigation
 				RoutingOperation v;
 				if (!Marshal.TryToType<RoutingOperation>(value, out v))
 				{
-					Fuse.Diagnostics.UserError( "Invalid operation value", this );
+					Fuse.Diagnostics.UserError("Invalid operation value", this);
 					return false;
 				}
 				else
@@ -148,7 +148,7 @@ namespace Fuse.Navigation
 			}
 			else
 			{
-				Fuse.Diagnostics.UserError( "Unrecognized or unsupported argument: " + name, this );
+				Fuse.Diagnostics.UserError("Unrecognized or unsupported argument: " + name, this);
 				return false;
 			}
 			
@@ -174,13 +174,13 @@ namespace Fuse.Navigation
 			{
 				if (targetRoute != null)
 				{
-					Fuse.Diagnostics.UserError( "A path and bookmark cannot both be specified", router);
+					Fuse.Diagnostics.UserError("A path and bookmark cannot both be specified", router);
 					return false;
 				}
 				
 				if (!router.Bookmarks.TryGetValue(Bookmark, out targetRoute))
 				{	
-					Fuse.Diagnostics.UserError( "Unknown bookmark: " + Bookmark, router);
+					Fuse.Diagnostics.UserError("Unknown bookmark: " + Bookmark, router);
 					return false;
 				}
 			}
@@ -188,7 +188,7 @@ namespace Fuse.Navigation
 			if (Relative != null)
 				targetRoute = router.GetRelativeRoute(Relative, targetRoute);
 				
-			router.Modify( How, targetRoute, Transition, Style );
+			router.Modify(How, targetRoute, Transition, Style);
 			return true;
 		}
 
@@ -209,20 +209,20 @@ namespace Fuse.Navigation
 			if (path != null)
 			{
 				if (args.Length <= pos+1) return new RouterPageRoute(
-					new RouterPage( args[pos] as string ), null );
+					new RouterPage(args[pos] as string), null);
 
 				var arg = args[pos+1];
 
 				if (!ValidateParameter(arg, 0)) return null;
 
 				var parameter = Json.Stringify(arg, true);
-				return new RouterPageRoute( 
-					new RouterPage( path, parameter ), ParseFlatRoute(args, pos+2));
+				return new RouterPageRoute(
+					new RouterPage(path, parameter), ParseFlatRoute(args, pos+2));
 			}
 			else
 			{
 				return new RouterPageRoute(
-					new RouterPage( PagesMap.GetObjectPath(args[pos]), null, args[pos] ), 
+					new RouterPage(PagesMap.GetObjectPath(args[pos]), null, args[pos]), 
 						ParseFlatRoute(args, pos+1));
 			}
 		}
@@ -283,11 +283,11 @@ namespace Fuse.Navigation
 			var path = PagesMap.GetObjectPath(value);
 			if (path == null)
 			{
-				Fuse.Diagnostics.UserError( "Object does not contain a $path", null);
+				Fuse.Diagnostics.UserError("Object does not contain a $path", null);
 				return false;
 			}
 			
-			route = new RouterPageRoute( new RouterPage( path, null, value), route);
+			route = new RouterPageRoute(new RouterPage(path, null, value), route);
 			return true;
 		}
 		
@@ -317,14 +317,14 @@ namespace Fuse.Navigation
 			//require a "string", rather than use TryToType, to avoid nonsense being accepted
 			if (value is string)
 			{
-				route = new RouterPageRoute( new RouterPage( (string)value ),  route);
+				route = new RouterPageRoute(new RouterPage((string)value),  route);
 				return true;
 			}
 			
 			var nvp = value as NameValuePair;
 			if (nvp != null)
 			{
-				route = new RouterPageRoute( new RouterPage( nvp.Name, 
+				route = new RouterPageRoute(new RouterPage(nvp.Name, 
 					Json.Stringify(nvp.Value)), route);
 				return true;
 			}

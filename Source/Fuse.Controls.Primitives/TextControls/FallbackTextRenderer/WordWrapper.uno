@@ -70,7 +70,7 @@ namespace Fuse.Controls.FallbackTextRenderer
 		{
 			var ret = new List<WordWrapperWord>();
 
-			for (int i = 0; i < text.Length; )
+			for (int i = 0; i < text.Length;)
 			{
 				int contentsIndex = i;
 				int contentsLength = 0;

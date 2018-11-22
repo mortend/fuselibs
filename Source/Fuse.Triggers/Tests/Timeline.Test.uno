@@ -191,39 +191,39 @@ namespace Fuse.Triggers.Test
 			{
 				//the timeline may animate the first frame it is rooted
 				var bp = TriggerProgress(p.T1);
-				root.StepFrame( (float)(0.5f - bp) ); //duration is 1, so this works
-				Assert.AreEqual( 1, p.C10.PerformedCount );
-				Assert.AreEqual( 0, p.C11.PerformedCount );
-				Assert.AreEqual( 0, p.C20.PerformedCount );
-				Assert.AreEqual( 1, p.C21.PerformedCount );
-				Assert.AreEqual( 1, p.B10.PerformedCount );
-				Assert.AreEqual( 0, p.B11.PerformedCount );
-				Assert.AreEqual( 0, p.B20.PerformedCount );
-				Assert.AreEqual( 1, p.B21.PerformedCount );
+				root.StepFrame((float)(0.5f - bp)); //duration is 1, so this works
+				Assert.AreEqual(1, p.C10.PerformedCount);
+				Assert.AreEqual(0, p.C11.PerformedCount);
+				Assert.AreEqual(0, p.C20.PerformedCount);
+				Assert.AreEqual(1, p.C21.PerformedCount);
+				Assert.AreEqual(1, p.B10.PerformedCount);
+				Assert.AreEqual(0, p.B11.PerformedCount);
+				Assert.AreEqual(0, p.B20.PerformedCount);
+				Assert.AreEqual(1, p.B21.PerformedCount);
 				
 				root.StepFrame(0.45f);
 				root.IncrementFrame(0.1f); //the increment forces a big gap over the wrapping ends
-				Assert.AreEqual( 2, p.C10.PerformedCount );
-				Assert.AreEqual( 1, p.C11.PerformedCount );
-				Assert.AreEqual( 1, p.C20.PerformedCount );
-				Assert.AreEqual( 2, p.C21.PerformedCount );
-				Assert.AreEqual( 2, p.B10.PerformedCount );
-				Assert.AreEqual( 1, p.B11.PerformedCount );
-				Assert.AreEqual( 1, p.B20.PerformedCount );
-				Assert.AreEqual( 2, p.B21.PerformedCount );
+				Assert.AreEqual(2, p.C10.PerformedCount);
+				Assert.AreEqual(1, p.C11.PerformedCount);
+				Assert.AreEqual(1, p.C20.PerformedCount);
+				Assert.AreEqual(2, p.C21.PerformedCount);
+				Assert.AreEqual(2, p.B10.PerformedCount);
+				Assert.AreEqual(1, p.B11.PerformedCount);
+				Assert.AreEqual(1, p.B20.PerformedCount);
+				Assert.AreEqual(2, p.B21.PerformedCount);
 				
 				//standard stepping a few more times
 				for (int i=1; i < 4; ++i)
 				{
 					root.StepFrame(1);
-					Assert.AreEqual( 2+i, p.C10.PerformedCount );
-					Assert.AreEqual( 1+i, p.C11.PerformedCount );
-					Assert.AreEqual( 1+i, p.C20.PerformedCount );
-					Assert.AreEqual( 2+i, p.C21.PerformedCount );
-					Assert.AreEqual( 2+i, p.B10.PerformedCount );
-					Assert.AreEqual( 1+i, p.B11.PerformedCount );
-					Assert.AreEqual( 1+i, p.B20.PerformedCount );
-					Assert.AreEqual( 2+i, p.B21.PerformedCount );
+					Assert.AreEqual(2+i, p.C10.PerformedCount);
+					Assert.AreEqual(1+i, p.C11.PerformedCount);
+					Assert.AreEqual(1+i, p.C20.PerformedCount);
+					Assert.AreEqual(2+i, p.C21.PerformedCount);
+					Assert.AreEqual(2+i, p.B10.PerformedCount);
+					Assert.AreEqual(1+i, p.B11.PerformedCount);
+					Assert.AreEqual(1+i, p.B20.PerformedCount);
+					Assert.AreEqual(2+i, p.B21.PerformedCount);
 				}
 			}
 		}
@@ -285,10 +285,10 @@ namespace Fuse.Triggers.Test
 				{
 					root.StepFrame();
 					bp += root.StepIncrement;
-					Assert.AreEqual( ExpectedProgress(bp, p.T1, 1), TriggerProgress(p.T1));
-					Assert.AreEqual( ExpectedProgressInv(bp, p.T3, 1), TriggerProgress(p.T3));
-					Assert.AreEqual( ExpectedProgress(bp, p.T2, p.N2.Duration), TriggerProgress(p.T2));
-					Assert.AreEqual( ExpectedProgressInv(bp, p.T4, p.N4.Duration), TriggerProgress(p.T4));
+					Assert.AreEqual(ExpectedProgress(bp, p.T1, 1), TriggerProgress(p.T1));
+					Assert.AreEqual(ExpectedProgressInv(bp, p.T3, 1), TriggerProgress(p.T3));
+					Assert.AreEqual(ExpectedProgress(bp, p.T2, p.N2.Duration), TriggerProgress(p.T2));
+					Assert.AreEqual(ExpectedProgressInv(bp, p.T4, p.N4.Duration), TriggerProgress(p.T4));
 				}
 			}
 		}
@@ -307,17 +307,17 @@ namespace Fuse.Triggers.Test
 				{
 					root.StepFrame((float)step);
 					time += step;
-					Assert.AreEqual( Math.Fract(time/p.nt.Duration), p.tl.Progress );
+					Assert.AreEqual(Math.Fract(time/p.nt.Duration), p.tl.Progress);
 				}
 			}
 		}
 		
-		double ExpectedProgress( double time, Timeline t, double duration )
+		double ExpectedProgress(double time, Timeline t, double duration)
 		{
 			return Math.Mod(time * t.TimeMultiplier / duration + t.InitialProgress, 1);
 		}
 		
-		double ExpectedProgressInv( double time, Timeline t, double duration )
+		double ExpectedProgressInv(double time, Timeline t, double duration)
 		{
 			return Math.Mod(t.InitialProgress - time * t.TimeMultiplier / duration, 1);
 		}

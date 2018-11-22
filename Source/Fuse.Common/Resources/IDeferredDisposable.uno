@@ -23,13 +23,13 @@ namespace Fuse.Resources
 		
 		public void MarkUsed()
 		{
-			if( Policy != null )
+			if(Policy != null)
 				Policy.MarkUsed();
 		}
 		
 		public bool CanDispose(DisposalRequest dr) 
 		{ 
-			if( Policy != null )
+			if(Policy != null)
 				return Policy.CanDispose(dr, IsPinned);
 				
 			//actually misconfigured, so allow disposable for easiest debugging path

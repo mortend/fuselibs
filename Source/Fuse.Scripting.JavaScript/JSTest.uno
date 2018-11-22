@@ -28,7 +28,7 @@ namespace Fuse.Scripting.JavaScript.Test
 
 		void AddTestToJSContext(Fuse.Scripting.Context context)
 		{
-			var f = context.Evaluate("", "(function(obj, assert) { obj['test'] = { assert: function(exp, msg) { try { assert(Boolean(exp ? 1 : 0), msg); } catch(e) { assert(0, 'Error: ' + e); } } }; } )") as Fuse.Scripting.Function;
+			var f = context.Evaluate("", "(function(obj, assert) { obj['test'] = { assert: function(exp, msg) { try { assert(Boolean(exp ? 1 : 0), msg); } catch(e) { assert(0, 'Error: ' + e); } } }; })") as Fuse.Scripting.Function;
 			f.Call(context, context.GlobalObject, (Callback)JSAssertCallback);
 		}
 

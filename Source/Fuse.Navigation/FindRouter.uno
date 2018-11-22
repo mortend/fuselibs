@@ -14,7 +14,7 @@ namespace Fuse.Navigation
 			<Page>
 				<JavaScript dep:router="findRouter()">
 					exports.go = function() {
-						router.goto( "anotherPageName" )
+						router.goto("anotherPageName")
 					}
 				</JavaScript>
 
@@ -46,7 +46,7 @@ namespace Fuse.Navigation
 				
 				var router = Router.TryFindRouter(origin);
 				if (router == null)
-					Fuse.Diagnostics.UserError( "unable to find a router", this );
+					Fuse.Diagnostics.UserError("unable to find a router", this);
 				else
 					listener.OnNewData(_expr, router);
 			}

@@ -163,13 +163,13 @@ namespace Fuse.Reactive
 		void ItemsWindowList<WindowItem>.IListener.SetValid()
 		{
 			if (Parent != null)
-				BusyTask.SetBusy(Parent, ref _busyTask, BusyTaskActivity.None );
+				BusyTask.SetBusy(Parent, ref _busyTask, BusyTaskActivity.None);
 		}
 
 		void ItemsWindowList<WindowItem>.IListener.SetFailed(string message)
 		{
 			if (Parent != null)
-				BusyTask.SetBusy(Parent, ref _busyTask, BusyTaskActivity.Failed, message );
+				BusyTask.SetBusy(Parent, ref _busyTask, BusyTaskActivity.Failed, message);
 		}
 		
 		//prevents creation of this delegate each time an item is removed
@@ -390,10 +390,10 @@ namespace Fuse.Reactive
 		/** @hide */
 		protected object GetItems() { return _watcher.GetItems(); }
 		/** @hide */
-		protected void SetItems( object value ) { _watcher.SetItems(value); }
+		protected void SetItems(object value) { _watcher.SetItems(value); }
 		/** Call to set the items during the OnRooted override (post base.OnRooted call)
 			@hide */
-		protected void SetItemsDerivedRooting( object value ) { _watcher.SetItemsDerivedRooting(value); }
+		protected void SetItemsDerivedRooting(object value) { _watcher.SetItemsDerivedRooting(value); }
 
 		/* A placeholder item. A Data context is not provided for these items. */
 		internal class NoContextItem { }
@@ -516,7 +516,7 @@ namespace Fuse.Reactive
 
 		internal int DataCount { get { return _watcher.GetDataCount(); } }
 		
-		ContextDataResult ISubtreeDataProvider.TryGetDataProvider( Node n, DataType type, out object provider )
+		ContextDataResult ISubtreeDataProvider.TryGetDataProvider(Node n, DataType type, out object provider)
 		{
 			provider = null;
 			
@@ -555,13 +555,13 @@ namespace Fuse.Reactive
 		bool _pendingNew;
 		
 		/** Inserts a new window item associated with the given data */
-		void ItemsWindowList<WindowItem>.IListener.AddedWindowItem( int windowIndex, WindowItem wi )
+		void ItemsWindowList<WindowItem>.IListener.AddedWindowItem(int windowIndex, WindowItem wi)
 		{
-			PrepareWindowItem( windowIndex, wi );
+			PrepareWindowItem(windowIndex, wi);
 			OnUpdatedWindowItems();
 		}
 		
-		void PrepareWindowItem( int windowIndex, WindowItem wi )
+		void PrepareWindowItem(int windowIndex, WindowItem wi)
 		{
 			if (Defer == InstanceDefer.Immediate)
 			{
@@ -570,7 +570,7 @@ namespace Fuse.Reactive
 			else if (!_pendingNew)
 			{
 				if (Defer == InstanceDefer.Deferred)
-					DeferredManager.AddPending(this, float2(DeferredPriority,NodeDepth) );
+					DeferredManager.AddPending(this, float2(DeferredPriority,NodeDepth));
 				else
 					UpdateManager.AddDeferredAction(CompleteWindowItemsAction);
 				_pendingNew = true;
@@ -666,10 +666,10 @@ namespace Fuse.Reactive
 			var match = GetDataTemplate(wi.CurrentData);
 			var reuse = AddMatchingTemplates(wi, match);
 			
-			if ( (wi.Template.All && Templates.Count != wi.Nodes.Count) ||
+			if ((wi.Template.All && Templates.Count != wi.Nodes.Count) ||
 				(wi.Template.Template != null && wi.Nodes.Count != 1))
 			{
-				Fuse.Diagnostics.InternalError( "inconsistent instance state", this );
+				Fuse.Diagnostics.InternalError("inconsistent instance state", this);
 			}
 			
 
@@ -678,9 +678,9 @@ namespace Fuse.Reactive
 
 			//InsertOrMove is slower than Insert, thus optimize if we can 
 			if (reuse)
-				Parent.InsertOrMoveNodesAfter( lastNode, wi.Nodes.GetEnumerator() );
+				Parent.InsertOrMoveNodesAfter(lastNode, wi.Nodes.GetEnumerator());
 			else
-				Parent.InsertNodesAfter( lastNode, wi.Nodes.GetEnumerator() );
+				Parent.InsertNodesAfter(lastNode, wi.Nodes.GetEnumerator());
 		}
 		
 		/* `null` for the template indicates to use all templates, otherwise a specific one will be used. 
@@ -738,7 +738,7 @@ namespace Fuse.Reactive
 			var elm = f.New() as Node;
 			if (elm == null)
 			{
-				Fuse.Diagnostics.InternalError( "Template contains a non-Node", this );
+				Fuse.Diagnostics.InternalError("Template contains a non-Node", this);
 				return;
 			}
 			item.Nodes.Add(elm);
@@ -834,13 +834,13 @@ namespace Fuse.Reactive
 			_pendingNew = false;
 		}
 		
-		void DisposeWindowItem( WindowItem wi)
+		void DisposeWindowItem(WindowItem wi)
 		{
 			CleanupWindowItem(wi);
 			wi.Dispose();
 		}
 		
-		void CleanupWindowItem( WindowItem wi )
+		void CleanupWindowItem(WindowItem wi)
 		{
 			if (wi.Nodes != null)
 			{
@@ -872,7 +872,7 @@ namespace Fuse.Reactive
 			{
 				if (_availableItems == null)
 					_availableItems = new ObjectList<WindowItem>();
-				_availableItems.Add( wi );
+				_availableItems.Add(wi);
 			}
 			
 			ScheduleRemoveAvailableItems();
@@ -883,10 +883,10 @@ namespace Fuse.Reactive
 		void RecreateTemplates()
 		{
 			for (int i = 0; i < _watcher.WindowItemCount; i++)
-				CleanupWindowItem( _watcher.GetWindowItem(i) );
+				CleanupWindowItem(_watcher.GetWindowItem(i));
 				
 			for (int i = 0; i < _watcher.WindowItemCount; i++)
-				PrepareWindowItem( i, _watcher.GetWindowItem(i) );
+				PrepareWindowItem(i, _watcher.GetWindowItem(i));
 			
 			ScheduleRemoveAvailableItems();
 		}
@@ -895,12 +895,12 @@ namespace Fuse.Reactive
 		{
 			//check for new template
 			var tpl = GetDataTemplate(wi.CurrentData);
-			if (!tpl.Matches( wi.Template) )
+			if (!tpl.Matches(wi.Template))
 			{
 				var index = _watcher.GetWindowItemIndex(wi);
 				if (index == -1)
 				{
-					Fuse.Diagnostics.InternalError( "Invalid WindowItem updated", this );
+					Fuse.Diagnostics.InternalError("Invalid WindowItem updated", this);
 					return;
 				}
 				

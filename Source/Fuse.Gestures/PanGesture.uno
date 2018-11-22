@@ -46,9 +46,9 @@ namespace Fuse.Gestures
 			_startTranslation = Target.Translation;
 			_startTransform = FastMatrix.Identity();
 			Target.AppendRotationScale(_startTransform);
-			_invTransform = Matrix.Invert(_startTransform.Matrix );
+			_invTransform = Matrix.Invert(_startTransform.Matrix);
 			_screenStartTranslation = _screenPrevTranslation = 
-				Vector.Transform(_startTranslation, _startTransform.Matrix ).XY;
+				Vector.Transform(_startTranslation, _startTransform.Matrix).XY;
 			
 			Region.Position = _screenStartTranslation;
 			UpdateConstraint();

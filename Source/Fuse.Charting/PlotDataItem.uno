@@ -60,14 +60,14 @@ namespace Fuse.Charting
 				if (n is IPlotDataItemProvider)
 				{
 					object o;
-					(n as Node.ISubtreeDataProvider).TryGetDataProvider( p, Node.DataType.Prime, out o );
+					(n as Node.ISubtreeDataProvider).TryGetDataProvider(p, Node.DataType.Prime, out o);
 					return o as T;
 				}
 				p = n;
 				n = n.ContextParent;
 			}
 			
-			Fuse.Diagnostics.UserError( "Must be used within a Plot", from );
+			Fuse.Diagnostics.UserError("Must be used within a Plot", from);
 			return null;
 		}		
 
@@ -89,7 +89,7 @@ namespace Fuse.Charting
 	*/
 	class PlotDataPoint : IPlotDataItem
 	{
-		public void Update( Data data, int index )
+		public void Update(Data data, int index)
 		{
 			Data = data;
 			Index = index;
@@ -135,7 +135,7 @@ namespace Fuse.Charting
 		
 		float GetValue(int axis)
 		{
-			return Plot.PlotStats.GetRelativeValue( RawValue[axis], axis );
+			return Plot.PlotStats.GetRelativeValue(RawValue[axis], axis);
 		}
 		
 		public float Count { get { return Plot.PlotStats.Count; } }
@@ -162,10 +162,10 @@ namespace Fuse.Charting
 		public Size W { get { return new Size(ScreenRelativeValue.W * 100,Unit.Percent); } }
 		
 		public float4 ScreenRelativeValue
-		{ get { return Plot.ScreenValue(Plot.PlotStats.GetRelativeValue( RawValue )); } }
+		{ get { return Plot.ScreenValue(Plot.PlotStats.GetRelativeValue(RawValue)); } }
 		
 		public float4 RelativeValue
-		{ get { return Plot.PlotStats.GetRelativeValue( RawValue ); } }
+		{ get { return Plot.PlotStats.GetRelativeValue(RawValue); } }
 		
 		public float4 AccumulatedValue { get { return CumulativeValue - RawValue; } }
 		
@@ -182,7 +182,7 @@ namespace Fuse.Charting
 			}
 		}
 		
-		public object GetValue( string key )
+		public object GetValue(string key)
 		{
 			if (key == XName) return X;
 			if (key == YName) return Y;
@@ -235,7 +235,7 @@ namespace Fuse.Charting
 		const string ObjectName = "object";
 		const string ScreenIndexName = "screenIndex";
 
-		public void Update( AxisEntryData data )
+		public void Update(AxisEntryData data)
 		{
 			Data = data;
 			OnChanged();

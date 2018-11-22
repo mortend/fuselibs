@@ -17,7 +17,7 @@ namespace Fuse.Drawing.Primitives
 		public float2 LocalPosition: undefined;
 
 		ClipPosition: req(LocalPosition as float2)
-			Vector.Transform( LocalPosition, DrawContext.GetLocalToClipTransform(Visual));
+			Vector.Transform(LocalPosition, DrawContext.GetLocalToClipTransform(Visual));
 		CullFace: DrawContext.CullFace;
 		DepthTestEnabled: false;
 		public float2 TexCoord: LocalPosition / CanvasSize;
@@ -81,23 +81,23 @@ namespace Fuse.Drawing.Primitives
 			var extend = Math.Max(0,r[0]+r[1]) + Smoothness;
 			
 			Draw(dc ,visual, Size, CornerRadius, stroke.Brush, sc,
-				float2(extend), Position, Smoothness );
+				float2(extend), Position, Smoothness);
 		}
 
 		FillCoverage _fillCoverage = new FillCoverage();
 		public void Fill(DrawContext dc, Visual visual, float2 Size, float4 CornerRadius, Brush brush,
-			float2 Position = float2(0), float Smoothness = 1 )
+			float2 Position = float2(0), float Smoothness = 1)
 		{
 			Draw(dc, visual, Size, CornerRadius, brush, _fillCoverage,
-				float2(Smoothness), Position, Smoothness );
+				float2(Smoothness), Position, Smoothness);
 		}
 
 		Falloff _shadowFalloff = new ShadowFalloff();
 		public void Shadow(DrawContext dc, Visual visual, float2 Size, float4 CornerRadius, Brush brush,
-			float2 Position = float2(0), float Smoothness = 1 )
+			float2 Position = float2(0), float Smoothness = 1)
 		{
 			Draw(dc, visual, Size, CornerRadius, brush, _fillCoverage,
-				float2(Smoothness), Position, Smoothness, _shadowFalloff );
+				float2(Smoothness), Position, Smoothness, _shadowFalloff);
 		}
 
 		float[] add(float[] a, float[] b)
@@ -154,14 +154,14 @@ namespace Fuse.Drawing.Primitives
 				sub(SizeX,CornerRadius1), add(SizeY,ExtendY),
 
 				neg(ExtendX), sub(SizeY, CornerRadius0),
-				CornerRadius0, sub(SizeY, CornerRadius0 ),
-				sub( SizeX, CornerRadius1), sub(SizeY, CornerRadius1 ),
-				add( SizeX, ExtendX), sub(SizeY, CornerRadius1 ),
+				CornerRadius0, sub(SizeY, CornerRadius0),
+				sub(SizeX, CornerRadius1), sub(SizeY, CornerRadius1),
+				add(SizeX, ExtendX), sub(SizeY, CornerRadius1),
 
 				Mn, sub(SizeY,Mn),
-				sub( SizeX, Mn), sub(SizeY, Mn),
+				sub(SizeX, Mn), sub(SizeY, Mn),
 				Mn, Mn,
-				sub( SizeX, Mn), Mn,
+				sub(SizeX, Mn), Mn,
 
 				neg(ExtendX), CornerRadius3,
 				CornerRadius3, CornerRadius3,
@@ -289,13 +289,13 @@ namespace Fuse.Drawing.Primitives
 
 			for(int i=0; i < vsr.Length; ++i)
 			{
-				bufferVertex.Set( i * _vertexInfo.BufferStride, float4(offsets[vsr[i]*2], offsets[vsr[i]*2+1]) );
-				bufferEdge.Set( i * _edgeInfo.BufferStride, float4(offsets[ptr[i]*2], offsets[ptr[i]*2+1]) );
+				bufferVertex.Set(i * _vertexInfo.BufferStride, float4(offsets[vsr[i]*2], offsets[vsr[i]*2+1]));
+				bufferEdge.Set(i * _edgeInfo.BufferStride, float4(offsets[ptr[i]*2], offsets[ptr[i]*2+1]));
 
-				_bufferDistance.Append( (ushort)(1 + (i < (4*3*4) ? 8 /*mn*/ :
+				_bufferDistance.Append((ushort)(1 + (i < (4*3*4) ? 8 /*mn*/ :
 					i < (4*3*4+6) ? 0 /*CornerRadius[0]*/ :
 					i < (4*3*4+12) ? 1 /*CornerRadius[1]*/ :
-					i < (4*3*4+18) ? 2 /*CornerRadius[2]*/ : 3 /*CornerRadius[3]*/)) );
+					i < (4*3*4+18) ? 2 /*CornerRadius[2]*/ : 3 /*CornerRadius[3]*/)));
 			}
 
 			_vertexInfo.Buffer.Update(bufferVertex);
@@ -305,7 +305,7 @@ namespace Fuse.Drawing.Primitives
 
 		float[] _uniforms = new float[10];
 		void Draw(DrawContext dc, Visual visual, float2 Size, float4 CornerRadius, Brush brush,
-			Coverage cover, float2 extend, float2 position, float smoothness, Falloff falloff = new Falloff() )
+			Coverage cover, float2 extend, float2 position, float smoothness, Falloff falloff = new Falloff())
 		{
 			if (_bufferDistance == null)
 				InitBuffers();

@@ -48,7 +48,7 @@ namespace Fuse.Navigation
 	public delegate void NavigationPageCountHandler(object sender);
 	public delegate void NavigationPageProgressHandler(object sender, double Current, double Previous);
 	public delegate void ActivePageChangedHandler(object sender, Visual active);
-	public delegate void NavigationStateChangedHandler(object sender, ValueChangedArgs<NavigationState> args );
+	public delegate void NavigationStateChangedHandler(object sender, ValueChangedArgs<NavigationState> args);
 
 	/**
 		A minimal interface implemented by simple navigation behaviors and controls.

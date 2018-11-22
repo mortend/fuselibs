@@ -83,7 +83,7 @@ namespace Fuse.Charting
 		
 		void AddArrayData(IArray data)
 		{
-			for (int i=0; i < data.Length; ++i )
+			for (int i=0; i < data.Length; ++i)
 				AddDataObject(data[i]);
 			InvalidateData();
 		}
@@ -101,14 +101,14 @@ namespace Fuse.Charting
 				float v = (float)value;
 				if (Uno.Float.IsNaN(v) || Uno.Float.IsInfinity(v))
 				{
-					Fuse.Diagnostics.UserError( "Invalid floating point value: " + value, this );
+					Fuse.Diagnostics.UserError("Invalid floating point value: " + value, this);
 					return 0;
 				}
 				
 				return v;
 			}
 			
-			Fuse.Diagnostics.UserError( "Invalid floating point value: " + a, this );
+			Fuse.Diagnostics.UserError("Invalid floating point value: " + a, this);
 			return 0;
 		}
 		
@@ -196,7 +196,7 @@ namespace Fuse.Charting
 		void IObserver.OnFailed(string message)
 		{
 			_data.Clear();
-			Fuse.Diagnostics.InternalError( "Error on the SourceData", this );
+			Fuse.Diagnostics.InternalError("Error on the SourceData", this);
 			InvalidateData();
 		}
 		
@@ -207,7 +207,7 @@ namespace Fuse.Charting
 				_plot.InvalidateData();
 		}
 		
-		internal void Root( PlotBehavior plot )
+		internal void Root(PlotBehavior plot)
 		{
 			_plot = plot;
 			AddSubscription();

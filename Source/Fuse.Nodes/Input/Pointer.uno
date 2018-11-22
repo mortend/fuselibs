@@ -34,13 +34,13 @@ namespace Fuse.Input
 	
 	static public class CaptureTypeHelper
 	{
-		static public bool GainedCapture( CaptureType prev, CaptureType next )
+		static public bool GainedCapture(CaptureType prev, CaptureType next)
 		{
 			return !prev.HasFlag(CaptureType.Soft) && !prev.HasFlag(CaptureType.Hard) &&
 				(next.HasFlag(CaptureType.Soft) || next.HasFlag(CaptureType.Hard));
 		}
 		
-		static public bool BecameHard( CaptureType prev, CaptureType next )
+		static public bool BecameHard(CaptureType prev, CaptureType next)
 		{
 			return !prev.HasFlag(CaptureType.Hard) && next.HasFlag(CaptureType.Hard);
 		}
@@ -61,7 +61,7 @@ namespace Fuse.Input
 		public Capture(Visual n, object identity)
 		{
 			if (n == null || identity == null)
-				throw new Exception( "Invalid Capture parameters" );
+				throw new Exception("Invalid Capture parameters");
 				
 			Visual = n;
 			Identity = identity;
@@ -76,7 +76,7 @@ namespace Fuse.Input
 			}
 		}
 		
-		public bool AcceptsPoint( int index)
+		public bool AcceptsPoint(int index)
 		{
 			return PointIndex.Contains(index);
 		}
@@ -235,13 +235,13 @@ namespace Fuse.Input
 				//safety
 				if (Count < 0)
 				{
-					Fuse.Diagnostics.InternalError( "Inconsistent Count", this );
+					Fuse.Diagnostics.InternalError("Inconsistent Count", this);
 					Count = 0;
 				}
 				
 				if (AnyDeleted)
 				{
-					for (int i=_captures.Count-1; i >= 0; --i )
+					for (int i=_captures.Count-1; i >= 0; --i)
 					{
 						if (_captures[i].Deleted)
 							_captures.RemoveAt(i);
@@ -250,7 +250,7 @@ namespace Fuse.Input
 				}
 			}
 			
-			public void Delete( Capture c )
+			public void Delete(Capture c)
 			{
 				c.Deleted = true;
 				AnyDeleted = true;
@@ -287,7 +287,7 @@ namespace Fuse.Input
 					}
 					
 					var str = best == null ? 1 : c.CompareStrength(best);
-					if ( (str > 0) || //first come wins on tie
+					if ((str > 0) || //first come wins on tie
 						(str == 0 && c.VisualDepth > best.VisualDepth)) //or lower in tree on tie
 						best = c;
 				}
@@ -317,15 +317,15 @@ namespace Fuse.Input
 
 		public static bool IsCaptured(int pointIndex, object identity)
 		{
-			return IsCaptured( CaptureType.None, pointIndex, identity );
+			return IsCaptured(CaptureType.None, pointIndex, identity);
 		}
 		
 		public static bool IsCaptured(CaptureType type, int pointIndex, object identity)
 		{
-			return GetFirstCapture( type, pointIndex, identity ) != null;
+			return GetFirstCapture(type, pointIndex, identity) != null;
 		}
 		
-		static Capture GetFirstCapture( CaptureType type, int pointIndex, object identity )
+		static Capture GetFirstCapture(CaptureType type, int pointIndex, object identity)
 		{
 			for (int i=0; i < _captures.Count; ++i)
 			{
@@ -336,7 +336,7 @@ namespace Fuse.Input
 					continue;
 				if (identity != null && c.Identity != identity)
 					continue;
-				if ( (c.Type & type) != type )
+				if ((c.Type & type) != type)
 					continue;
 					
 				return c;
@@ -347,14 +347,14 @@ namespace Fuse.Input
 		/**
 			Is the new capture request allowed based on what is already in the capture list.
 		*/
-		static bool IsCaptureAllowed( CaptureType type, Visual visual, int pointIndex, object identity )
+		static bool IsCaptureAllowed(CaptureType type, Visual visual, int pointIndex, object identity)
 		{
 			for (int i=0; i < _captures.Count; ++i)
 			{
 				var c = _captures[i];
 				if (c.Deleted)
 					continue;
-				if (!IsCaptureAllowedAgainst( c, type, visual, pointIndex, identity ))
+				if (!IsCaptureAllowedAgainst(c, type, visual, pointIndex, identity))
 					return false;
 			}
 			
@@ -364,8 +364,8 @@ namespace Fuse.Input
 		/**
 			Is the capture allowed given an existing `current` capture?
 		*/
-		static bool IsCaptureAllowedAgainst( Capture current, CaptureType type, Visual visual, 
-			int pointIndex, object identity )
+		static bool IsCaptureAllowedAgainst(Capture current, CaptureType type, Visual visual, 
+			int pointIndex, object identity)
 		{
 			if (current.Identity == identity)
 				return true;
@@ -382,7 +382,7 @@ namespace Fuse.Input
 		/**
 			Remove any captures that are no longer allowed due to `to` being added to the list.
 		*/
-		static void LoseSoftCapturesTo( Capture to )
+		static void LoseSoftCapturesTo(Capture to)
 		{
 			using(var cl = CaptureLock())
 			{
@@ -394,7 +394,7 @@ namespace Fuse.Input
 			
 					for (int p=0; p < c.PointIndex.Count; ++p)
 					{
-						if (!IsCaptureAllowedAgainst( to, c.Type,  c.Visual, c.PointIndex[p], c.Identity))
+						if (!IsCaptureAllowedAgainst(to, c.Type,  c.Visual, c.PointIndex[p], c.Identity))
 						{
 							c.LostCallback();
 							cl.Delete(c);
@@ -453,24 +453,24 @@ namespace Fuse.Input
 			CaptureType type, int pointIndex)
 		{
 			if (lostCallback == null)
-				throw new Exception( "Capture requires lostCallback Action" );
+				throw new Exception("Capture requires lostCallback Action");
 			if (identity == null)
-				throw new Exception( "Capture requires identity object" );
+				throw new Exception("Capture requires identity object");
 			if (visual == null)
-				throw new Exception( "Capture requires visual" );
+				throw new Exception("Capture requires visual");
 			//we can't emit an error here as there are too many cases with async events, especially 
 			//with Gesture, where the state suddenly changes. Simply failing should be fine
 			if (!visual.IsContextEnabled || !visual.IsRootingCompleted)
 				return false;
 				
-			if (!IsCaptureAllowed( type, visual, pointIndex, identity ))
+			if (!IsCaptureAllowed(type, visual, pointIndex, identity))
 				return false;
 				
 			var c = GetCapture(identity);
 			if (c != null)
 			{
 				if (c.Visual != visual)
-					Fuse.Diagnostics.InternalError( "Cannot modify the Visual of a capture", identity);
+					Fuse.Diagnostics.InternalError("Cannot modify the Visual of a capture", identity);
 			}
 			else
 			{
@@ -496,7 +496,7 @@ namespace Fuse.Input
 			var c = GetCapture(identity);
 			if (c == null)
 			{
-				Fuse.Diagnostics.InternalError( "Attempting to modify an unknown capture", identity );
+				Fuse.Diagnostics.InternalError("Attempting to modify an unknown capture", identity);
 				return false;
 			}
 			
@@ -518,11 +518,11 @@ namespace Fuse.Input
 			var c = GetCapture(identity);
 			if (c == null)
 			{
-				Fuse.Diagnostics.InternalError( "Attempting to extend unknown capture", identity );
+				Fuse.Diagnostics.InternalError("Attempting to extend unknown capture", identity);
 				return false;
 			}
 			
-			if (!IsCaptureAllowed( c.Type, c.Visual, pointIndex, c.Identity ))
+			if (!IsCaptureAllowed(c.Type, c.Visual, pointIndex, c.Identity))
 				return false;
 			
 			if (!c.PointIndex.Contains(pointIndex))
@@ -616,9 +616,9 @@ namespace Fuse.Input
 		static void ProcessPointerEnterLeave(HitTestResult result, PointerEventData args)
 		{
 			var lastHitList = GetLastHitList(args.PointIndex);
-			MarkAncestorHits( result == null ? null : result.HitObject, lastHitList );
+			MarkAncestorHits(result == null ? null : result.HitObject, lastHitList);
 
-			for (int j = lastHitList.Count-1; j >=0; j-- )
+			for (int j = lastHitList.Count-1; j >=0; j--)
 			{
 				if (lastHitList[j].Status != PELStatus.Removed)
 					continue;
@@ -639,7 +639,7 @@ namespace Fuse.Input
 
 		static void MarkAncestorHits(Visual hitObject, List<PELHolder> list)
 		{
-			for( int i=0; i < list.Count; ++i )
+			for(int i=0; i < list.Count; ++i)
 				list[i].Status = PELStatus.Removed;
 				
 			while (hitObject != null)
@@ -657,7 +657,7 @@ namespace Fuse.Input
 				
 				if (!found)
 				{
-					list.Add( new PELHolder{
+					list.Add(new PELHolder{
 						Visual = hitObject,
 						Status = PELStatus.Added,
 					});
@@ -786,13 +786,13 @@ namespace Fuse.Input
 			/***** Deprecated interface, doesn't work fully *****/
 			[Obsolete("Use IsCaptured instead")]
 			public static bool IsSoftCaptured(int pointIndex)
-			{ return IsCaptured( CaptureType.Soft, pointIndex, null ); }
+			{ return IsCaptured(CaptureType.Soft, pointIndex, null); }
 			
 			[Obsolete("Use IsCaptured instead")]
 			public static bool IsSoftCaptured(int pointIndex, object capturerIdentity)
 			{ 
 				DeprecatedCapture();
-				return IsCaptured( CaptureType.Soft, pointIndex, capturerIdentity ); 
+				return IsCaptured(CaptureType.Soft, pointIndex, capturerIdentity); 
 			}
 			
 			[Obsolete("Use ReleaseCapture instead")]
@@ -812,21 +812,21 @@ namespace Fuse.Input
 			[Obsolete("Use IsCaptured instead")]
 			public static bool IsHardCaptured(int pointIndex)
 			{ 
-				return IsCaptured( CaptureType.Hard, pointIndex, null );
+				return IsCaptured(CaptureType.Hard, pointIndex, null);
 			}
 			
 			[Obsolete("Use IsCaptured instead")]
 			public static bool IsHardCaptured(int pointIndex, object behavior)
 			{ 
 				DeprecatedCapture();
-				return IsCaptured( CaptureType.Hard, pointIndex, behavior ); 
+				return IsCaptured(CaptureType.Hard, pointIndex, behavior); 
 			}
 			
 			[Obsolete("Use ReleaseCapture instead")]
 			public static void ReleaseHardCapture(int pointIndex)
 			{
 				DeprecatedCapture();
-				var c = GetFirstCapture( CaptureType.Hard, pointIndex, null );
+				var c = GetFirstCapture(CaptureType.Hard, pointIndex, null);
 				if (c != null)
 					ReleaseCapture(c.Identity);
 			}
@@ -838,7 +838,7 @@ namespace Fuse.Input
 				if (_dcWarn)
 					return;
 				
-				Fuse.Diagnostics.Deprecated( "The capture system no longer supports distinct captures for Soft and Hard capture, instead treating the same identity/behaviour as a single capture. Old code will only work if it captured just one pointer, and followed the pattern of soft then hard capture on it (or just a hard capture). It's advisable to migrate to avoid any potential issues.", null );
+				Fuse.Diagnostics.Deprecated("The capture system no longer supports distinct captures for Soft and Hard capture, instead treating the same identity/behaviour as a single capture. Old code will only work if it captured just one pointer, and followed the pattern of soft then hard capture on it (or just a hard capture). It's advisable to migrate to avoid any potential issues.", null);
 				_dcWarn = true;
 			}
 			/***** End deprecated interface *****/

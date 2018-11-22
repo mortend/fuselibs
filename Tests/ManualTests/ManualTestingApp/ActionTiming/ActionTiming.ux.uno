@@ -42,8 +42,8 @@ public sealed class Track : Fuse.Triggers.Actions.TriggerAction
 	public void Clear()
 	{
 		Count = 0;
-		Status.CountPanel.Background = new SolidColor( float4(0,0,0,0) );
-		Status.TimePanel.Background = new SolidColor( float4(0,0,0,0) );
+		Status.CountPanel.Background = new SolidColor(float4(0,0,0,0));
+		Status.TimePanel.Background = new SolidColor(float4(0,0,0,0));
 	}
 
 	protected override void Perform(Node target)
@@ -54,17 +54,17 @@ public sealed class Track : Fuse.Triggers.Actions.TriggerAction
 		var relative = Time.FrameTime - start;
 
 		Count = Count + 1;
-		Status.CountText.Value = String.Format( "{0:D}", Count );
-		Status.TimeText.Value = String.Format( "{0:F2}", relative );
+		Status.CountText.Value = String.Format("{0:D}", Count);
+		Status.TimeText.Value = String.Format("{0:F2}", relative);
 
 		if (Count == 1)
-			Status.CountPanel.Background = new SolidColor( float4(0,1,0,1) );
+			Status.CountPanel.Background = new SolidColor(float4(0,1,0,1));
 		else
-			Status.CountPanel.Background = new SolidColor( float4(1,0,0,1) );
+			Status.CountPanel.Background = new SolidColor(float4(1,0,0,1));
 
-		if ( Math.Abs( relative - Expect ) < 0.1f ) //close enough even at 10FPS
-			Status.TimePanel.Background = new SolidColor( float4(0,1,0,1) );
+		if (Math.Abs(relative - Expect) < 0.1f) //close enough even at 10FPS
+			Status.TimePanel.Background = new SolidColor(float4(0,1,0,1));
 		else
-			Status.TimePanel.Background = new SolidColor( float4(1,0,0,1) );
+			Status.TimePanel.Background = new SolidColor(float4(1,0,0,1));
 	}
 }

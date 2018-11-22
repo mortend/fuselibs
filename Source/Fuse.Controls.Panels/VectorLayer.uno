@@ -21,7 +21,7 @@ namespace Fuse.Controls
 	{
 		protected sealed override void DrawWithChildren(DrawContext dc)
 		{
-			LayoutSurface.Draw(dc, this, this );
+			LayoutSurface.Draw(dc, this, this);
 		}
 
 		void ISurfaceDrawable.Draw(Surface surface) { ISurfaceDrawableDraw(surface); }

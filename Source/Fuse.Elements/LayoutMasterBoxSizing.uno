@@ -32,7 +32,7 @@ namespace Fuse.Elements
 				return bp;
 			}
 				
-			return StandardBoxSizing.Singleton.CalcBoxPlacement(element, position, lp );
+			return StandardBoxSizing.Singleton.CalcBoxPlacement(element, position, lp);
 		}
 		
 		public override void RequestLayout(Element element)
@@ -123,12 +123,12 @@ namespace Fuse.Elements
 				else
 				{
 					var m = _master.Parent.GetTransformTo(Element.Parent);
-					pos = Vector.Transform( _master.ActualPosition, m ).XY;
-					var r = new Rect( float2(0), _master.ActualSize );
-					size = Rect.Transform( r, m ).Size;
+					pos = Vector.Transform(_master.ActualPosition, m).XY;
+					var r = new Rect(float2(0), _master.ActualSize);
+					size = Rect.Transform(r, m).Size;
 				}
 				
-				Element.ArrangeMarginBox( pos, LayoutParams.Create(size));
+				Element.ArrangeMarginBox(pos, LayoutParams.Create(size));
 			}
 			
 			void OnPlaced(object s, object args)

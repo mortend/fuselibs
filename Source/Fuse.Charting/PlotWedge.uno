@@ -57,20 +57,20 @@ namespace Fuse.Charting
 		/*
 			In order to keep a full circle during animation we need to animat the start and end location separately. This ensures all wedges will have their common points in sync. This is really not an optimal solution, but it's one that works without creating a specialized pie chart visual
 		*/
-		void IPlotDataItemListener<PlotDataPoint>.OnNewData( PlotDataPoint entry )
+		void IPlotDataItemListener<PlotDataPoint>.OnNewData(PlotDataPoint entry)
 		{
 			//use normalized input to be consistent with other convenience clases, allows the same
 			//AttractorConfig to be used everywhere
-			_animStart.SetValue( entry.AccumulatedWeight.Y, AnimStart );
-			_animEnd.SetValue( entry.CumulativeWeight.Y, AnimEnd );
+			_animStart.SetValue(entry.AccumulatedWeight.Y, AnimStart);
+			_animEnd.SetValue(entry.CumulativeWeight.Y, AnimEnd);
 		}
 		
-		void AnimStart( float value )
+		void AnimStart(float value)
 		{
 			StartAngle = value * Math.PIf * 2;
 		}
 		
-		void AnimEnd( float value )
+		void AnimEnd(float value)
 		{
 			EndAngle = value * Math.PIf * 2;
 		}

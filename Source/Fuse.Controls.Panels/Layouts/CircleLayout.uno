@@ -139,7 +139,7 @@ namespace Fuse.Layouts
 				var x = Math.Cos(angle) * elementRadius.X + lp.Size.X/2;
 				var y = Math.Sin(angle) * elementRadius.Y + lp.Size.Y/2;
 				var p = padding.XY + float2(x,y) - elementSize/2;
-				e.ArrangeMarginBox( p, nlp);
+				e.ArrangeMarginBox(p, nlp);
 				angle += step;
 			}
 		}

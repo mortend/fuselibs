@@ -7,7 +7,7 @@ namespace Fuse.Drawing
 {
 	static public class LineMetrics
 	{
-		static public Rect GetBounds( IList<LineSegment> segments )
+		static public Rect GetBounds(IList<LineSegment> segments)
 		{
 			return new LineMetricsImpl().GetBounds(segments);
 		}
@@ -19,7 +19,7 @@ namespace Fuse.Drawing
 		bool _hasInit = false;
 		float2 _curPos = float2(0);
 		
-		void AddPoint( float2 pt )
+		void AddPoint(float2 pt)
 		{
 			if (!_hasInit)
 			{
@@ -33,13 +33,13 @@ namespace Fuse.Drawing
 			_bounds.Maximum = Math.Max(_bounds.Maximum, pt);
 		}
 		
-		void AddRect( Rect r )
+		void AddRect(Rect r)
 		{
 			AddPoint(r.Minimum);
 			AddPoint(r.Maximum);
 		}
 		
-		public Rect GetBounds( IList<LineSegment> segments )
+		public Rect GetBounds(IList<LineSegment> segments)
 		{
 			for (int i=0; i < segments.Count; ++i)
 			{
@@ -55,13 +55,13 @@ namespace Fuse.Drawing
 						break;
 					
 					case LineSegmentType.Straight:
-						AddPoint( cur.To );
-						AddPoint( _curPos );
+						AddPoint(cur.To);
+						AddPoint(_curPos);
 						_curPos = cur.To;
 						break;
 						
 					case LineSegmentType.BezierCurve:
-						BezierBounds(_curPos, cur.To, cur.A, cur.B );
+						BezierBounds(_curPos, cur.To, cur.A, cur.B);
 						_curPos = cur.To;
 						break;
 						
@@ -80,13 +80,13 @@ namespace Fuse.Drawing
 			var x = BezierMinMax(s.X, c1.X, c2.X, e.X);
 			var y = BezierMinMax(s.Y, c1.Y, c2.Y, e.Y);
 			
-			AddPoint( Curves.CalcBezierAt(s,c1,c2,e,x[0]) );
-			AddPoint( Curves.CalcBezierAt(s,c1,c2,e,x[1]) );
-			AddPoint( Curves.CalcBezierAt(s,c1,c2,e,y[0]) );
-			AddPoint( Curves.CalcBezierAt(s,c1,c2,e,y[1]) );
+			AddPoint(Curves.CalcBezierAt(s,c1,c2,e,x[0]));
+			AddPoint(Curves.CalcBezierAt(s,c1,c2,e,x[1]));
+			AddPoint(Curves.CalcBezierAt(s,c1,c2,e,y[0]));
+			AddPoint(Curves.CalcBezierAt(s,c1,c2,e,y[1]));
 		}
 		
-		static float2 BezierMinMax(float p0, float p1, float p2, float p3 )
+		static float2 BezierMinMax(float p0, float p1, float p2, float p3)
 		{
 			//the derivative of he bezier curve is:
 			//F'(t) = 3(-(p0-3p1-p3+3p2)*t^2  + 2(p0-2p1+p2)t - p0 + p1)
@@ -96,7 +96,7 @@ namespace Fuse.Drawing
 			var a = -p0 + 3 * p1 - 3 * p2 + p3;
 			var c = p1 - p0;
 			//zero points are
-			// t = (-b ± sqrt( b^2 - 4ac)) / 2a
+			// t = (-b ± sqrt(b^2 - 4ac)) / 2a
 
 			//float precision stuff
 			const float zeroTolerance = 1e-05f;
@@ -125,7 +125,7 @@ namespace Fuse.Drawing
 			var t2 = (-b - rt) / (2 * a);
 			return float2(
 				Math.Clamp(t1, 0, 1),
-				Math.Clamp(t2, 0, 1) );
+				Math.Clamp(t2, 0, 1));
 		}
 
 		/*
@@ -145,20 +145,20 @@ namespace Fuse.Drawing
 			float2 c, angles;
 			var radius = seg.A;
 			var xAngle = seg.B.X;
-			SurfaceUtil.EndpointToCenterArcParams( from, seg.To, ref radius, xAngle,
+			SurfaceUtil.EndpointToCenterArcParams(from, seg.To, ref radius, xAngle,
 				seg.Flags.HasFlag(LineSegmentFlags.EllipticArcLarge), 
 				seg.Flags.HasFlag(LineSegmentFlags.EllipticArcSweep),
-				out c, out angles );
+				out c, out angles);
 
 			var ts = float4(0);
 			// solve the derivative of E(t).X == 0
 			// tan(t) = - r.Y * sin(xAngle) / (r.X * cos(xAngle))
-			ts[0] = Math.Atan2( -radius.Y * Math.Sin(xAngle), radius.X * Math.Cos(xAngle));
+			ts[0] = Math.Atan2(-radius.Y * Math.Sin(xAngle), radius.X * Math.Cos(xAngle));
 			ts[1] = ts[0] + Math.PIf;
 			
 			// for E(t).Y = 0
 			// tan(t) = r.Y * cos(xAngle) / (r.X * sin(xAngle))
-			ts[2] = Math.Atan2( radius.Y * Math.Cos(xAngle), radius.X * Math.Sin(xAngle) );
+			ts[2] = Math.Atan2(radius.Y * Math.Cos(xAngle), radius.X * Math.Sin(xAngle));
 			ts[3] = ts[2] + Math.PIf;
 			
 			//add any of those extents if they are in the angle range
@@ -166,12 +166,12 @@ namespace Fuse.Drawing
  			{
  				var t = ts[i];//i * Math.PIf/2;
  				if (SurfaceUtil.AngleInRange(t, angles[0], angles[0] + angles[1]))
- 					AddPoint( SurfaceUtil.EllipticArcPoint( c, radius, xAngle, t ));
+ 					AddPoint(SurfaceUtil.EllipticArcPoint(c, radius, xAngle, t));
  			}
 			
 			//add both angle end points
-			AddPoint( SurfaceUtil.EllipticArcPoint( c, radius, xAngle, angles[0] ) );
-			AddPoint( SurfaceUtil.EllipticArcPoint( c, radius, xAngle, angles[0] + angles[1] ) );
+			AddPoint(SurfaceUtil.EllipticArcPoint(c, radius, xAngle, angles[0]));
+			AddPoint(SurfaceUtil.EllipticArcPoint(c, radius, xAngle, angles[0] + angles[1]));
 		}
 	}
 	

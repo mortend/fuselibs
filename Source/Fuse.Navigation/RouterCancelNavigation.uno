@@ -17,7 +17,7 @@ namespace Fuse.Navigation
 			var useRouter = Router ?? Fuse.Navigation.Router.TryFindRouter(n);
 			if (useRouter == null)
 			{
-				Fuse.Diagnostics.UserError( "Router not set and none could be found", this );
+				Fuse.Diagnostics.UserError("Router not set and none could be found", this);
 				return;
 			}
 			

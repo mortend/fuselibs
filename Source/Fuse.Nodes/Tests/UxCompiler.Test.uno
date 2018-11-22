@@ -15,7 +15,7 @@ namespace Fuse.Test
 			var p = new UX.UxCompiler.PropNames();
 			using (var r = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "Hello", p.a.t.Value );
+				Assert.AreEqual("Hello", p.a.t.Value);
 			}
 		}
 

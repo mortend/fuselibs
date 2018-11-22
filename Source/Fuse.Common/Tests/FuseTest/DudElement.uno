@@ -100,7 +100,7 @@ namespace FuseTest
 			get { return _value; }
 		}
 		
-		protected override float2 GetContentSize( LayoutParams lp )
+		protected override float2 GetContentSize(LayoutParams lp)
 		{
 			return float2(0);
 		}

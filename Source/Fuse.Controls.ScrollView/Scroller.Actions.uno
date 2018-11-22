@@ -103,7 +103,7 @@ namespace Fuse.Gestures
 			var scrollView = Target ?? target.FindByType<ScrollView>();
 			if (scrollView == null)
 			{
-				Fuse.Diagnostics.UserError( "Unabled to locate ScrollView", this );
+				Fuse.Diagnostics.UserError("Unabled to locate ScrollView", this);
 				return;
 			}
 				
@@ -128,7 +128,7 @@ namespace Fuse.Gestures
 		//DEPRECATED: 2016-03-31
 		public ScrollableGoto()
 		{
-			Fuse.Diagnostics.Deprecated( "Use ScrollTo instead, it has the same interface", this );
+			Fuse.Diagnostics.Deprecated("Use ScrollTo instead, it has the same interface", this);
 		}
 	}
 }

@@ -20,7 +20,7 @@ namespace Fuse.Triggers
 			_scrollable = Parent.FindByType<ScrollViewBase>();
 			if (_scrollable == null)
 			{
-				Fuse.Diagnostics.UserError( "Scrolled could not find a Scrollable control.", this );
+				Fuse.Diagnostics.UserError("Scrolled could not find a Scrollable control.", this);
 				return;
 			}
 			

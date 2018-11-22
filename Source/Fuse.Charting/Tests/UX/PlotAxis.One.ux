@@ -2,17 +2,17 @@
 	<JavaScript>
 		var Observable = require("FuseJS/Observable")
 		
-		function Item( value, label ) {
+		function Item(value, label) {
 			this.value = value
 			this.label = label
 		}
 		
 		exports.values = Observable(
-			new Item( 11, "one" ),
-			new Item( 22, "two" ),
-			new Item( 33, "three" ),
-			new Item( 44, "four" ),
-			new Item( 55, "five" )
+			new Item(11, "one"),
+			new Item(22, "two"),
+			new Item(33, "three"),
+			new Item(44, "four"),
+			new Item(55, "five")
 		)
 	</JavaScript>
 	<c:Plot DataOffset="1" DataLimit="1" DataExtend="1,1" ux:Name="P">

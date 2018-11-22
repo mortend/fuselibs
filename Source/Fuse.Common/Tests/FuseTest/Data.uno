@@ -15,14 +15,14 @@ namespace FuseTest
 			set { SetValue(value); }
 		}
 		
-		void SetValue( object value )
+		void SetValue(object value)
 		{ 
 			_value = value; 
 			if (IsRootingCompleted)
 			{
-				OnPropertyChanged( "Value" );
-				OnPropertyChanged( "FloatValue" );
-				OnPropertyChanged( "StringValue" );
+				OnPropertyChanged("Value");
+				OnPropertyChanged("FloatValue");
+				OnPropertyChanged("StringValue");
 			}
 		}
 		

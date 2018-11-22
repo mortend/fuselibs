@@ -74,7 +74,7 @@
 	CFURLRef url = (__bridge CFURLRef) imageFileURL;
 	CGImageSourceRef imageSource = CGImageSourceCreateWithURL(url, nil);
 	if (imageSource == nil) {
-		return @[ @( 0 ), @( 0 )];
+		return @[ @(0), @(0)];
 	}
 
 	CFDictionaryRef imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil);
@@ -96,7 +96,7 @@
 		CFRelease(imageProperties);
 	}
 
-	return @[ @( (int)width ), @( (int)height )]; //Weird spacing here to avoid uxl expansion issues
+	return @[ @((int)width), @((int)height)]; //Weird spacing here to avoid uxl expansion issues
 }
 
 +(UIImage*) correctImageOrientation:(UIImage*)image {

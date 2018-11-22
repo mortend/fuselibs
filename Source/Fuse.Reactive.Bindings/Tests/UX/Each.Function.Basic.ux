@@ -4,7 +4,7 @@
 		
 		exports.items = Observable()
 		for (var i=0; i < 4; ++i) {
-			exports.items.add( { index: i } )
+			exports.items.add({ index: i })
 		}
 
 	</JavaScript>

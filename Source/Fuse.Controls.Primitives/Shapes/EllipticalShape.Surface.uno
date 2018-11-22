@@ -7,7 +7,7 @@ namespace Fuse.Controls
 {
 	public abstract partial class EllipticalShape : Shape
 	{
-		protected SurfacePath CreateEllipticalPath( Surface surface, float2 center, float2 radius,
+		protected SurfacePath CreateEllipticalPath(Surface surface, float2 center, float2 radius,
 			bool drawArc = false)
 		{
 			var list = new LineSegments();
@@ -22,28 +22,28 @@ namespace Fuse.Controls
 				
 				if (drawArc) 
 				{
-					list.MoveTo( center + s * radius );
+					list.MoveTo(center + s * radius);
 				}
 				else
 				{
-					list.MoveTo( center );
-					list.LineTo( center + s * radius );
+					list.MoveTo(center);
+					list.LineTo(center + s * radius);
 				}
 				
-				list.EllipticArcTo( center + c * radius, radius, 0, false, startAngle < endAngle );
-				list.EllipticArcTo( center + e * radius, radius, 0, false, startAngle < endAngle );
+				list.EllipticArcTo(center + c * radius, radius, 0, false, startAngle < endAngle);
+				list.EllipticArcTo(center + e * radius, radius, 0, false, startAngle < endAngle);
 				
 				if (!drawArc)
 				{
-					list.LineTo( center );
+					list.LineTo(center);
 					list.ClosePath();
 				}
 			}
 			else
 			{
-				list.MoveTo( center + float2(radius.X,0) );
-				list.EllipticArcTo( center - float2(radius.X,0), radius, 0, true, true );
-				list.EllipticArcTo( center + float2(radius.X,0), radius, 0, true, true );
+				list.MoveTo(center + float2(radius.X,0));
+				list.EllipticArcTo(center - float2(radius.X,0), radius, 0, true, true);
+				list.EllipticArcTo(center + float2(radius.X,0), radius, 0, true, true);
 				list.ClosePath();
 			}
 			return surface.CreatePath(list.Segments);

@@ -36,7 +36,7 @@ namespace Fuse.Drawing
 		{
 			if (!_rooted)
 			{
-				Fuse.Diagnostics.InternalError( "Sync while not rooted", this );
+				Fuse.Diagnostics.InternalError("Sync while not rooted", this);
 				return;
 			}
 			
@@ -133,7 +133,7 @@ namespace Fuse.Drawing
 			if (_rooted)
 				drawObject.AddPropertyListener(this);
 		
-			_items.Add( new Item{
+			_items.Add(new Item{
 				Used = true,
 				DrawObject = drawObject,
 				Listening = _rooted,

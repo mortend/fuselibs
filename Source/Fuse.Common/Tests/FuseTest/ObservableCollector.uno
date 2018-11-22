@@ -42,7 +42,7 @@ namespace FuseTest
 			public object Value;
 			public int Index;
 			
-			public LogItem( LogType type, object value = null, int index = -1 ) 
+			public LogItem(LogType type, object value = null, int index = -1) 
 			{
 				Type = type;
 				Value = value;
@@ -139,7 +139,7 @@ namespace FuseTest
 			_values.Clear();
 			for (int i=0; i < values.Length; ++i)
 			{
-				_values.Add( values[i] );
+				_values.Add(values[i]);
 				Assert.AreEqual(_values[i], _items[i]);
 			}
 				
@@ -151,7 +151,7 @@ namespace FuseTest
 			this.Failed = false;
 			if (index <0 || index >= _values.Count)
 			{
-				Fuse.Diagnostics.InternalError( "removing invalid observable item", this );
+				Fuse.Diagnostics.InternalError("removing invalid observable item", this);
 				return;
 			}
 			_values[index] = newValue;
@@ -164,7 +164,7 @@ namespace FuseTest
 		{
 			this.Failed = false;
 			_values.Clear();
-			_values.Add( newValue );
+			_values.Add(newValue);
 			
 			Assert.AreEqual(1, _items.Length);
 			Assert.AreEqual(newValue, _items[0]);
@@ -173,11 +173,11 @@ namespace FuseTest
 		void IObserver.OnAdd(object addedValue)
 		{
 			this.Failed = false;
-			_values.Add( addedValue );
+			_values.Add(addedValue);
 			
-			Assert.AreEqual( _values.Count, _items.Length);
-			Assert.AreEqual( _values[_values.Count-1], _items[_values.Count-1] );
-			Log.Add( new LogItem( LogType.Add, addedValue ) );
+			Assert.AreEqual(_values.Count, _items.Length);
+			Assert.AreEqual(_values[_values.Count-1], _items[_values.Count-1]);
+			Log.Add(new LogItem(LogType.Add, addedValue));
 		}
 		
 		void IObserver.OnRemoveAt(int index)
@@ -185,13 +185,13 @@ namespace FuseTest
 			this.Failed = false;
 			if (index <0 || index >= _values.Count)
 			{
-				Fuse.Diagnostics.InternalError( "removing invalid observable item", this );
+				Fuse.Diagnostics.InternalError("removing invalid observable item", this);
 				return;
 			}
 			
 			_values.RemoveAt(index);
-			Assert.AreEqual( _values.Count, _items.Length );
-			Log.Add( new LogItem( LogType.RemoveAt, null, index ) );
+			Assert.AreEqual(_values.Count, _items.Length);
+			Log.Add(new LogItem(LogType.RemoveAt, null, index));
 		}
 		
 		void IObserver.OnInsertAt(int index, object value)
@@ -199,14 +199,14 @@ namespace FuseTest
 			this.Failed = false;
 			if (index <0 || index > _values.Count)
 			{
-				Fuse.Diagnostics.InternalError( "removing invalid observable item", this );
+				Fuse.Diagnostics.InternalError("removing invalid observable item", this);
 				return;
 			}
 			
 			_values.Insert(index, value);
-			Assert.AreEqual( _values.Count, _items.Length );
-			Assert.AreEqual( value, _items[index] );
-			Log.Add( new LogItem( LogType.InsertAt, value, index ) );
+			Assert.AreEqual(_values.Count, _items.Length);
+			Assert.AreEqual(value, _items[index]);
+			Log.Add(new LogItem(LogType.InsertAt, value, index));
 		}
 
 		public bool AllowFailed;
@@ -215,7 +215,7 @@ namespace FuseTest
 		void IObserver.OnFailed(string message)
 		{
 			if (!AllowFailed)
-				Fuse.Diagnostics.InternalError( message, this );
+				Fuse.Diagnostics.InternalError(message, this);
 				
 			_values.Clear();
 			Assert.AreEqual(0, _items.Length);

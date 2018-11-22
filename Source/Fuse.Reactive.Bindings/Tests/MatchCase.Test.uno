@@ -29,7 +29,7 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "123", GetText(e.A) );
+				Assert.AreEqual("123", GetText(e.A));
 			}
 		}
 		
@@ -53,15 +53,15 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "01234", GetText(e.A) );
+				Assert.AreEqual("01234", GetText(e.A));
 
 				e.CallFlip.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "*1!4", GetText(e.A) );
+				Assert.AreEqual("*1!4", GetText(e.A));
 
 				e.CallFlip.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "01234", GetText(e.A) );
+				Assert.AreEqual("01234", GetText(e.A));
 			}
 		}
 		
@@ -73,7 +73,7 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "123", GetText(e) );
+				Assert.AreEqual("123", GetText(e));
 			}
 		}
 		
@@ -85,7 +85,7 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "112233", GetText(e) );
+				Assert.AreEqual("112233", GetText(e));
 			}
 		}
 	}

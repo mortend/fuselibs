@@ -105,7 +105,7 @@ namespace Fuse.iOS
 
 		static bool GetIsVisible()
 		{
-			for (var i = _stack.Count; i --> 0; )
+			for (var i = _stack.Count; i --> 0;)
 			{
 				if (_stack[i]._hasIsVisible)
 					return _stack[i].IsVisible;
@@ -115,7 +115,7 @@ namespace Fuse.iOS
 
 		static StatusBarStyle GetStyle()
 		{
-			for (var i = _stack.Count; i --> 0; )
+			for (var i = _stack.Count; i --> 0;)
 			{
 				if (_stack[i]._hasStyle)
 					return _stack[i].Style;
@@ -125,7 +125,7 @@ namespace Fuse.iOS
 
 		static StatusBarAnimation GetAnimation()
 		{
-			for (var i = _stack.Count; i --> 0; )
+			for (var i = _stack.Count; i --> 0;)
 			{
 				if (_stack[i]._hasAnimation)
 					return _stack[i].Animation;

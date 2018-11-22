@@ -3,16 +3,16 @@
 		var Observable = require("FuseJS/Observable")
 		
 		var items = Observable(0,1,2,3)
-		exports.high = items.where( function(x) {
+		exports.high = items.where(function(x) {
 			return x >= 2
 		})
-		exports.low = items.where( function(x) {
+		exports.low = items.where(function(x) {
 			return x < 2
 		})
 		
 		//0,1,2,3,4
 		exports.step1 = function() {
-			items.add( 4 )
+			items.add(4)
 		}
 		
 		//5, 0,1,2,3,4
@@ -27,7 +27,7 @@
 		
 		//5,6,7,8,1,2,3,4
 		exports.step4 = function() {
-			items.insertAll(1, [6,7,8] )
+			items.insertAll(1, [6,7,8])
 		}
 		
 		//5,6,2,3,4

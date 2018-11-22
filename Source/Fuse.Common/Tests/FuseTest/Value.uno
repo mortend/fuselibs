@@ -20,7 +20,7 @@ namespace FuseTest
 					return;
 					
 				_object = value;
-				OnPropertyChanged( ObjectName );
+				OnPropertyChanged(ObjectName);
 			}
 		}
 		

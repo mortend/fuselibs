@@ -130,7 +130,7 @@ namespace Fuse
 		public float4x4 ViewTransform;
 		public float4x4 ViewTransformInverse;
 		
-		public void Update( IViewport viewport, IFrustum frustum )
+		public void Update(IViewport viewport, IFrustum frustum)
 		{
 			if (frustum.TryGetProjectionTransform(viewport, out ProjectionTransform) &&
 			    frustum.TryGetProjectionTransformInverse(viewport, out ProjectionTransformInverse))
@@ -169,9 +169,9 @@ namespace Fuse
 		}
 		
 		public float4x4 LocalViewProjectionTransform;
-		public void Update( IViewport viewport, IFrustum frustum, Visual where )
+		public void Update(IViewport viewport, IFrustum frustum, Visual where)
 		{
-			Update( viewport, frustum );
+			Update(viewport, frustum);
 
 			LocalViewProjectionTransform =GetFlatWorldToVisualTransform(viewport.Size);
 		}
@@ -217,7 +217,7 @@ namespace Fuse
 		
 		IFrustum _frustum;
 		
-		public FixedViewport( int2 pixelSize, float pixelsPerPoint, IFrustum frustum )
+		public FixedViewport(int2 pixelSize, float pixelsPerPoint, IFrustum frustum)
 		{
 			_frustum = frustum;
 			_pixelSize = float2(pixelSize.X,pixelSize.Y);
@@ -232,7 +232,7 @@ namespace Fuse
 		FrustumViewport _childView;
 		Visual _child;
 		
-		public InheritViewport( IRenderViewport baseView, FrustumViewport childView, Visual child )
+		public InheritViewport(IRenderViewport baseView, FrustumViewport childView, Visual child)
 		{
 			_baseView = baseView;
 			_childView = childView;
@@ -251,7 +251,7 @@ namespace Fuse
 			get
 			{
 				return Matrix.Mul(Matrix.Mul(_childView.LocalViewProjectionTransform,
-					_child.WorldTransform), _baseView.ViewProjectionTransform );
+					_child.WorldTransform), _baseView.ViewProjectionTransform);
 			}
 		}
 		public float4x4 ViewTransform { get { return _baseView.ViewTransform; } }

@@ -11,7 +11,7 @@ namespace Fuse
 		{
 			var psd = new PreviewStateData();
 			for (int i=0; i < _savers.Count; ++i)
-				_savers[i].Save( psd );
+				_savers[i].Save(psd);
 			return psd;
 		}
 		
@@ -19,7 +19,7 @@ namespace Fuse
 		{
 			if (data != null && data.Consumed)
 			{
-				Fuse.Diagnostics.InternalError( "Attempting to restore an already consumed state", this );
+				Fuse.Diagnostics.InternalError("Attempting to restore an already consumed state", this);
 				_current = null;
 				return;
 			}
@@ -37,18 +37,18 @@ namespace Fuse
 		
 		List<IPreviewStateSaver> _savers = new List<IPreviewStateSaver>();
 		
-		public void AddSaver( IPreviewStateSaver saver )
+		public void AddSaver(IPreviewStateSaver saver)
 		{
-			_savers.Add( saver );
+			_savers.Add(saver);
 		}
 		
-		public void RemoveSaver( IPreviewStateSaver saver )
+		public void RemoveSaver(IPreviewStateSaver saver)
 		{
-			_savers.Remove( saver );
+			_savers.Remove(saver);
 		}
 		
 		/** Finds the appropriate PreviewState for a given node. May return null */
-		static public PreviewState Find( Node n )
+		static public PreviewState Find(Node n)
 		{
 			while (n != null)
 			{
@@ -75,25 +75,25 @@ namespace Fuse
 		Dictionary<string, Entry> _data = new Dictionary<string, Entry>();
 		
 		/** Sets the data for a key. Note that a null value will not be considered a value, and will erase an existing value. */
-		public void Set( string key, object data )
+		public void Set(string key, object data)
 		{
 			_data[key] = new Entry{ Data = data, Consumed = false };
 		}
 		
 		/** Returns true if data has been stored for this key. Note that a null value is not considered to be actual data. */
-		public bool Has( string key )
+		public bool Has(string key)
 		{
 			Entry v;
-			if (_data.TryGetValue( key, out v) )
+			if (_data.TryGetValue(key, out v))
 				return v.Data != null;
 			return false;
 		}
 		
 		/** Obtains the data just once, returning null on subsequent requests. This allows for rooting to only pick up the state data the first time, not if rerooted without it being saved again. */
-		public object Consume( string key )
+		public object Consume(string key)
 		{
 			Entry v;
-			if (_data.TryGetValue( key, out v ) && !v.Consumed)
+			if (_data.TryGetValue(key, out v) && !v.Consumed)
 			{
 				v.Consumed = true;
 				return v.Data;
@@ -104,6 +104,6 @@ namespace Fuse
 
 	interface IPreviewStateSaver
 	{
-		void Save( PreviewStateData data );
+		void Save(PreviewStateData data);
 	}
 }

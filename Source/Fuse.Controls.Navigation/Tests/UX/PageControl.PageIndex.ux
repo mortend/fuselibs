@@ -6,14 +6,14 @@
 		
 		exports.pageText = Observable("***")
 		exports.pageIndex = Observable(0)
-		exports.pageIndex.onValueChanged( module, function(value) {
+		exports.pageIndex.onValueChanged(module, function(value) {
 			exports.pageText.value = "Page" + value
 		})
 		
 		exports.goto0 = function() { exports.pageIndex.value = 0 }
 		exports.goto2 = function() { exports.pageIndex.value = 2 }
 		exports.goto4 = function() { exports.pageIndex.value = 4 }
-		exports.seek1 = function() { PC.seekToPath( "B" ) }
+		exports.seek1 = function() { PC.seekToPath("B") }
 	</JavaScript>
 	
 	<PageControl ActiveIndex="{pageIndex}" ClipToBounds="true" ux:Name="PC">

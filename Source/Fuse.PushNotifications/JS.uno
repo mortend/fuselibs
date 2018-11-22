@@ -137,7 +137,7 @@ namespace Fuse.PushNotifications
 		{
 			if (args.Length != 0)
 			{
-				Fuse.Diagnostics.UserError( "Push.register takes no arguments", this);
+				Fuse.Diagnostics.UserError("Push.register takes no arguments", this);
 				return null;
 			}
 			Fuse.PushNotifications.PushNotify.Register();

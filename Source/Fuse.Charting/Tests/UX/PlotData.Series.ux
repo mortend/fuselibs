@@ -1,9 +1,9 @@
 <Panel ux:Class="UX.PlotData.Series" xmlns:c="Fuse.Charting">
 	<JavaScript>
 		var Observable = require("FuseJS/Observable")
-		exports.values0 = Observable( 0, 0, 0, 0, 0 )
-		exports.values1 = Observable( 1, 2, 3, 4, 5 )
-		exports.values2 = Observable( 9, 8, 7, 6, 5 )
+		exports.values0 = Observable(0, 0, 0, 0, 0)
+		exports.values1 = Observable(1, 2, 3, 4, 5)
+		exports.values2 = Observable(9, 8, 7, 6, 5)
 	</JavaScript>
 	<c:Plot>
 		<c:DataSeries Data="{values0}"/>

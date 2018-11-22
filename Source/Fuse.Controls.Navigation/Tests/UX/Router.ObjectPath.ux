@@ -30,7 +30,7 @@
 			<PageControl ux:Name="pc">
 				<JavaScript>
 					exports.pushRelative = function() {
-						router.pushRelative( pc, { 
+						router.pushRelative(pc, { 
 							$path: "first",
 							title: "joyous",
 						})

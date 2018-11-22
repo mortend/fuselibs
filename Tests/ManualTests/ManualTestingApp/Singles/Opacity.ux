@@ -15,7 +15,7 @@
 			<Rectangle>
 				<ImageFill Color="{Property this.Color}" File="../Assets/white.png"/>
 			</Rectangle>
-			<Circle Color="( x({Property this.Color}), y({Property this.Color}), z({Property this.Color}), 1 )"
+			<Circle Color="(x({Property this.Color}), y({Property this.Color}), z({Property this.Color}), 1)"
 				Opacity="w({Property this.Color})"/>
 		</NodeGroup>
 				

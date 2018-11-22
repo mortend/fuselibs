@@ -17,7 +17,7 @@ namespace Fuse.Animations
 	
 	class NothingAnimatorState : TrackAnimatorState
 	{
-		public NothingAnimatorState( Nothing animator, CreateStateParams p )
+		public NothingAnimatorState(Nothing animator, CreateStateParams p)
 			:  base(animator, p)
 		{
 		}

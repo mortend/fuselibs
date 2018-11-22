@@ -43,7 +43,7 @@ namespace Fuse.Triggers.Test
 				double strength)
 		{
 			if (!IsActive)
-				throw new Exception( "_isActive is false" );
+				throw new Exception("_isActive is false");
 
 			//somewhat similar to OpenAnimator
 			var mayEnd = dir == SeekDirection.Forward ? progress >= 1 : progress <= 0;
@@ -55,7 +55,7 @@ namespace Fuse.Triggers.Test
 		}
 
 		internal override SeekResult SeekTime(double nominal, double interval, SeekDirection dir,
-			double strength )
+			double strength)
 		{
 			return SeekProgress(nominal/TotalDuration, interval, dir, strength);
 		}
@@ -63,7 +63,7 @@ namespace Fuse.Triggers.Test
 		public override void Disable()
 		{
 			if (!IsActive)
-				throw new Exception( "_isActive is false" );
+				throw new Exception("_isActive is false");
 			IsActive = false;
 			_animator.Active.Remove(this);
 		}

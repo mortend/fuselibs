@@ -15,7 +15,7 @@ namespace Fuse.Elements
 		override public float2 CalcMarginSize(Element element, LayoutParams lp)
 		{
 			var nlp = lp.CloneAndDerive();
-			nlp.RetainXY( !element.HasBit(FastProperty1.LimitWidth),	!element.HasBit(FastProperty1.LimitHeight) );
+			nlp.RetainXY(!element.HasBit(FastProperty1.LimitWidth),	!element.HasBit(FastProperty1.LimitHeight));
 				
 			var std = StandardBoxSizing.Singleton.CalcMarginSize(element, nlp);
 			var c = Limit(element, std);
@@ -34,7 +34,7 @@ namespace Fuse.Elements
 				var height = element.LimitHeight;
 				
 				bool known;
-				var size = UnitSize(element, height, std.Y, true, out known );
+				var size = UnitSize(element, height, std.Y, true, out known);
 				std.Y = Math.Min(std.Y,size);
 			}
 			
@@ -43,7 +43,7 @@ namespace Fuse.Elements
 				var width = element.LimitWidth; 
 				
 				bool known;
-				var size = UnitSize(element, width, std.X, true, out known );
+				var size = UnitSize(element, width, std.X, true, out known);
 				std.X = Math.Min(std.X,size);
 			}
 			
@@ -84,7 +84,7 @@ namespace Fuse.Elements
 			get { return Get(FastProperty1.LimitWidth, Uno.UX.Size.Auto); }
 			set 
 			{ 
-				if (LimitWidth != value )
+				if (LimitWidth != value)
 				{
 					Set(FastProperty1.LimitWidth, value, Uno.UX.Size.Auto); 
 					InvalidateLayout();

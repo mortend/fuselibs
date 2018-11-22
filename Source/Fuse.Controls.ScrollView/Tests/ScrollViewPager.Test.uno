@@ -8,7 +8,7 @@ namespace Fuse.Controls.ScrollViewTest
 {
 	public class ScrollViewPagerTest : TestBase
 	{
-		void WaitIdle( TestRootPanel root, ScrollViewPager svp, string where )
+		void WaitIdle(TestRootPanel root, ScrollViewPager svp, string where)
 		{
 			var start = Uno.Diagnostics.Clock.GetSeconds();
 			while (true) 
@@ -20,7 +20,7 @@ namespace Fuse.Controls.ScrollViewTest
 					
 				var elapsed = Uno.Diagnostics.Clock.GetSeconds() - start;
 				if (elapsed > 1.0) {
-					throw new Exception( "Waiting too long for idle: " + where );
+					throw new Exception("Waiting too long for idle: " + where);
 				}
 			}
 		}
@@ -56,7 +56,7 @@ namespace Fuse.Controls.ScrollViewTest
 				
 				float jiggleTolerance = 1e-2f;
 				int offset = 3;
-				for (int i=0; i < 4; ++i, offset +=3 )
+				for (int i=0; i < 4; ++i, offset +=3)
 				{
 					p.scroll.Goto(float2(0,600));
 					WaitIdle(root, p.svp, "goto 600 #" + i);
@@ -82,7 +82,7 @@ namespace Fuse.Controls.ScrollViewTest
 				Assert.AreEqual(0, _countReachedStart);
 				
 				//reach the start
-				while( p.scroll.ScrollPosition.Y > 0 )
+				while(p.scroll.ScrollPosition.Y > 0)
 				{
 					p.scroll.Goto(float2(0,0));
 					WaitIdle(root,p.svp, "scroll start: " + p.scroll.ScrollPosition.Y);
@@ -113,8 +113,8 @@ namespace Fuse.Controls.ScrollViewTest
 			var s = new UX.ScrollViewPager.Issue560();
 			using (var root = TestRootPanel.CreateWithChild(s, int2(300)))
 			{
-				s.scroll.Goto( float2(300) );
-				s.Children.Remove( s.scroll );
+				s.scroll.Goto(float2(300));
+				s.Children.Remove(s.scroll);
 				root.StepFrame(); //just not failing is good
 			}
 		}

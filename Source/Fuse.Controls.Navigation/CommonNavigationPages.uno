@@ -13,10 +13,10 @@ namespace Fuse.Controls
 		{
 			CommonNavigationPages PageControl;
 
-			public void Attach( CommonNavigationPages pageControl, IArray obs )
+			public void Attach(CommonNavigationPages pageControl, IArray obs)
 			{
 				PageControl = pageControl;
-				base.Attach( obs );
+				base.Attach(obs);
 			}
 			
 			public new void Detach()
@@ -70,7 +70,7 @@ namespace Fuse.Controls
 
 			if (_pages != null)
 			{
-				_pagesMap.Attach( this, _pages );
+				_pagesMap.Attach(this, _pages);
 			}
 			else
 			{
@@ -109,21 +109,21 @@ namespace Fuse.Controls
 					
 				if (mp.Data == null)
 				{
-					Fuse.Diagnostics.UserError( "null page in list", this );
+					Fuse.Diagnostics.UserError("null page in list", this);
 					continue;
 				}
 					
-				mp.Template = Fuse.Navigation.PagesMap.GetObjectPath( mp.Data );
+				mp.Template = Fuse.Navigation.PagesMap.GetObjectPath(mp.Data);
 				if (mp.Template == null)
 				{
-					Fuse.Diagnostics.UserError( "Model is missing a $template or $page property", this);
+					Fuse.Diagnostics.UserError("Model is missing a $template or $page property", this);
 					continue;
 				}
 
 				var f = _parent.FindTemplate(mp.Template);
 				if (f == null)
 				{
-					Fuse.Diagnostics.UserError( "No matching template path: " + mp.Template, this );
+					Fuse.Diagnostics.UserError("No matching template path: " + mp.Template, this);
 					continue;
 				}
 				
@@ -132,23 +132,23 @@ namespace Fuse.Controls
 					mp.Visual = f.New() as Visual;
 					if (mp.Visual == null)
 					{
-						Fuse.Diagnostics.UserError( "Template is not a Visual: " + mp.Template, this );
+						Fuse.Diagnostics.UserError("Template is not a Visual: " + mp.Template, this);
 						continue;
 					}
 				}
 
-				mp.Page = new RouterPage( mp.Template, null, mp.Data );
-				PageData.GetOrCreate(mp.Visual).AttachRouterPage( mp.Page );
+				mp.Page = new RouterPage(mp.Template, null, mp.Data);
+				PageData.GetOrCreate(mp.Visual).AttachRouterPage(mp.Page);
 				visualCount++;
 			}
 			
 			//remove pages still used
 			for (int i=0; i < _pagesMap.Count; ++i)
-				_addedPages.Remove( _pagesMap[i] );
+				_addedPages.Remove(_pagesMap[i]);
 				
 			//remaining are no longer used
 			for (int i=0; i < _addedPages.Count; ++i)
-				_parent.BeginRemoveChild( _addedPages[i].Visual );
+				_parent.BeginRemoveChild(_addedPages[i].Visual);
 				
 			//create a new list of used pages
 			_addedPages.Clear();
@@ -161,10 +161,10 @@ namespace Fuse.Controls
 					continue;
 					
 				ta[vc++] = _pagesMap[i].Visual;
-				_addedPages.Add( _pagesMap[i] );
+				_addedPages.Add(_pagesMap[i]);
 			}
-			_parent.InsertOrMoveNodesAfter( (Node)_parent.Navigation, 
-				((IEnumerable<Node>)ta).GetEnumerator() );
+			_parent.InsertOrMoveNodesAfter((Node)_parent.Navigation, 
+				((IEnumerable<Node>)ta).GetEnumerator());
 		}
 	}
 }

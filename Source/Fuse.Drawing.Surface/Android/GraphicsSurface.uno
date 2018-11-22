@@ -122,15 +122,15 @@ namespace Fuse.Drawing
 			We might end up not supporting ImageFill until this is fixed, but this is useful
 			here now to complete/test the sizing/tiling support.
 		*/
-		protected sealed override Java.Object PrepareImageFillImpl( ImageFill img )
+		protected sealed override Java.Object PrepareImageFillImpl(ImageFill img)
 		{
 			var src = img.Source;
 			var tex = src.GetTexture();
-			var fb = FramebufferPool.Lock( src.PixelSize, Uno.Graphics.Format.RGBA8888, false );
+			var fb = FramebufferPool.Lock(src.PixelSize, Uno.Graphics.Format.RGBA8888, false);
 
 			_drawContext.PushRenderTarget(fb);
 			Blitter.Singleton.Blit(tex, new Rect(float2(-1), float2(2)), float4x4.Identity, 1.0f, true);
-			Java.Object imageRef = LoadImage((int)tex.GLTextureHandle, src.PixelSize.X, src.PixelSize.Y );
+			Java.Object imageRef = LoadImage((int)tex.GLTextureHandle, src.PixelSize.X, src.PixelSize.Y);
 			FramebufferPool.Release(fb);
 			_drawContext.PopRenderTarget();
 
@@ -156,7 +156,7 @@ namespace Fuse.Drawing
 		protected sealed override void VerifyBegun()
 		{
 			if (_buffer == null)
-				throw new Exception( "Canvas.Begin was not called" );
+				throw new Exception("Canvas.Begin was not called");
 		}
 	}
 }

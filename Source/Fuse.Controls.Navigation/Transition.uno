@@ -12,7 +12,7 @@ namespace Fuse.Triggers
 	{
 		static Dictionary<Node, TransitionGroup> _groupMap = new Dictionary<Node, TransitionGroup>();
 		
-		static public TransitionGroup Root( Transition t )
+		static public TransitionGroup Root(Transition t)
 		{
 			var q = t.ContextParent;
 			Navigator nav = null;
@@ -23,19 +23,19 @@ namespace Fuse.Triggers
 			}
 			if (nav == null)
 			{
-				Fuse.Diagnostics.UserError( "Transition must have a Navigator ancestor", t );
+				Fuse.Diagnostics.UserError("Transition must have a Navigator ancestor", t);
 				return null;
 			}
 			
 			var vis = t.Parent as Visual;
 			if (vis == null)
 			{
-				Fuse.Diagnostics.UserError( "Transition must have a Visual parent", t );
+				Fuse.Diagnostics.UserError("Transition must have a Visual parent", t);
 				return null;
 			}
 			
 			TransitionGroup tg;
-			if (!_groupMap.TryGetValue( t.Parent, out tg ) )
+			if (!_groupMap.TryGetValue(t.Parent, out tg))
 			{
 				tg = new TransitionGroup(nav, vis);
 				_groupMap[t.Parent] = tg;
@@ -199,7 +199,7 @@ namespace Fuse.Triggers
 	*/
 	public class Transition : Trigger
 	{
-		static string Join( ref MiniList<string> list )
+		static string Join(ref MiniList<string> list)
 		{
 			var o = "";
 			for (int i=0; i < list.Count; ++i)
@@ -211,7 +211,7 @@ namespace Fuse.Triggers
 			return o;
 		}
 		
-		static void Parse( ref MiniList<string> list, string src )
+		static void Parse(ref MiniList<string> list, string src)
 		{
 			list.Clear();
 			var s = src.Split(',');
@@ -228,7 +228,7 @@ namespace Fuse.Triggers
 		public string To
 		{
 			get { return Join(ref _to); }
-			set { Parse( ref _to, value); }
+			set { Parse(ref _to, value); }
 		}
 		
 		MiniList<string> _from;
@@ -240,7 +240,7 @@ namespace Fuse.Triggers
 		public string From
 		{
 			get { return Join(ref _from); }
-			set { Parse( ref _from,value); }
+			set { Parse(ref _from,value); }
 		}
 		
 		TransitionDirection _direction = TransitionDirection.Any;

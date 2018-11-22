@@ -94,36 +94,36 @@ namespace Fuse.Reactive.Test
 						p.a.Float = v;
 						root.PumpDeferred();
 					}
-					Assert.AreEqual( Math.Sin(v), p.sin.Float );
-					Assert.AreEqual( Math.Cos(v), p.cos.Float );
-					Assert.AreEqual( Math.Tan(v), p.tan.Float );
-					Assert.AreEqual( Math.Asin(v), p.asin.Float );
-					Assert.AreEqual( Math.Acos(v), p.acos.Float );
-					Assert.AreEqual( Math.Atan(v), p.atan.Float );
-					Assert.AreEqual( Math.Abs(v), p.abs.Float );
-					Assert.AreEqual( Math.Ceil(v), p.ceil.Float );
-					Assert.AreEqual( Math.Floor(v), p.floor.Float );
-					Assert.AreEqual( Math.DegreesToRadians(v), p.degreesToRadians.Float );
-					Assert.AreEqual( Math.RadiansToDegrees(v), p.radiansToDegrees.Float );
-					Assert.AreEqual( Math.Exp(v), p.exp.Float );
-					Assert.AreEqual( Math.Exp2(v), p.exp2.Float );
-					Assert.AreEqual( Math.Fract(v), p.fract.Float );
-					Assert.AreEqual( Math.Sign(v), p.sign.Float );
-					Assert.AreEqual( Math.Floor(v + 0.5f), p.round.Float );
-					Assert.AreEqual( Trunc.Op(v), p.trunc.Float );
+					Assert.AreEqual(Math.Sin(v), p.sin.Float);
+					Assert.AreEqual(Math.Cos(v), p.cos.Float);
+					Assert.AreEqual(Math.Tan(v), p.tan.Float);
+					Assert.AreEqual(Math.Asin(v), p.asin.Float);
+					Assert.AreEqual(Math.Acos(v), p.acos.Float);
+					Assert.AreEqual(Math.Atan(v), p.atan.Float);
+					Assert.AreEqual(Math.Abs(v), p.abs.Float);
+					Assert.AreEqual(Math.Ceil(v), p.ceil.Float);
+					Assert.AreEqual(Math.Floor(v), p.floor.Float);
+					Assert.AreEqual(Math.DegreesToRadians(v), p.degreesToRadians.Float);
+					Assert.AreEqual(Math.RadiansToDegrees(v), p.radiansToDegrees.Float);
+					Assert.AreEqual(Math.Exp(v), p.exp.Float);
+					Assert.AreEqual(Math.Exp2(v), p.exp2.Float);
+					Assert.AreEqual(Math.Fract(v), p.fract.Float);
+					Assert.AreEqual(Math.Sign(v), p.sign.Float);
+					Assert.AreEqual(Math.Floor(v + 0.5f), p.round.Float);
+					Assert.AreEqual(Trunc.Op(v), p.trunc.Float);
 					//some have special exceptions where the Inf/NaN value doesn't compare right on some platforms
 					if (v > 0)
 					{
-						Assert.AreEqual( Math.Log(v), p.log.Float );
-						Assert.AreEqual( Math.Log2(v), p.log2.Float );
+						Assert.AreEqual(Math.Log(v), p.log.Float);
+						Assert.AreEqual(Math.Log2(v), p.log2.Float);
 					}
 					if (v >= 0)
 					{
-						Assert.AreEqual( Math.Sqrt(v), p.sqrt.Float );
-						Assert.AreEqual( Math.Pow(v,0.5f), p.pow.Float);
+						Assert.AreEqual(Math.Sqrt(v), p.sqrt.Float);
+						Assert.AreEqual(Math.Pow(v,0.5f), p.pow.Float);
 					}
 					
-					Assert.AreEqual( Math.Atan2(v,0.5f), p.atan2.Float);
+					Assert.AreEqual(Math.Atan2(v,0.5f), p.atan2.Float);
 				}
 			}
 		}
@@ -153,21 +153,21 @@ namespace Fuse.Reactive.Test
 						p.a.Float4 = v;
 						root.PumpDeferred();
 					}
-					Assert.AreEqual( Math.Sin(v), p.sin.Float4 );
-					Assert.IsTrue( p.sin.Object is float4 );
+					Assert.AreEqual(Math.Sin(v), p.sin.Float4);
+					Assert.IsTrue(p.sin.Object is float4);
 					
 					p.a.Float3 = v.YZW;
 					root.PumpDeferred();
-					Assert.AreEqual( Math.Sin(v.YZW), p.sin.Float3 );
+					Assert.AreEqual(Math.Sin(v.YZW), p.sin.Float3);
 					//special assignment is needed in test since assing to `Object` converts to a SolidColor :/
-					Assert.AreEqual( Math.Sin(v.YZW), p.sin3.Float3 );
-					Assert.IsTrue( p.sin3.Object is float3 );
+					Assert.AreEqual(Math.Sin(v.YZW), p.sin3.Float3);
+					Assert.IsTrue(p.sin3.Object is float3);
 					
 					p.a.Float2 = v.XW;
 					root.PumpDeferred();
-					Assert.AreEqual( Math.Sin(v.XW), p.sin.Float2 );
-					Assert.AreEqual( Math.Sin(v.XW), p.sin2.Float2 );
-					Assert.IsTrue( p.sin2.Object is float2 );
+					Assert.AreEqual(Math.Sin(v.XW), p.sin.Float2);
+					Assert.AreEqual(Math.Sin(v.XW), p.sin2.Float2);
+					Assert.IsTrue(p.sin2.Object is float2);
 				}
 			}
 		}
@@ -233,10 +233,10 @@ namespace Fuse.Reactive.Test
 			var p = new UX.MathFunctions.Add();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( 13.0, p.c.Object ); //this is expecting a double
-				Assert.AreEqual( float2(13,27), p.c2.Object );
-				Assert.AreEqual( float3(13,27,35), p.c3.Object );
-				Assert.AreEqual( float4(13,27,35,46), p.c4.Object );
+				Assert.AreEqual(13.0, p.c.Object); //this is expecting a double
+				Assert.AreEqual(float2(13,27), p.c2.Object);
+				Assert.AreEqual(float3(13,27,35), p.c3.Object);
+				Assert.AreEqual(float4(13,27,35,46), p.c4.Object);
 			}
 		}
 
@@ -246,8 +246,8 @@ namespace Fuse.Reactive.Test
 			var p = new UX.MathFunctions.Negate();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( -10.0, p.b.Object ); //this is expecting a double
-				Assert.AreEqual( 20.0, p.b2.Object );
+				Assert.AreEqual(-10.0, p.b.Object); //this is expecting a double
+				Assert.AreEqual(20.0, p.b2.Object);
 			}
 		}
 		
@@ -258,23 +258,23 @@ namespace Fuse.Reactive.Test
 			var p = new UX.MathFunctions.MarshalFunctions();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( float2(13,27), p.add.Object );
-				Assert.AreEqual( float2(7,13), p.sub.Object );
-				Assert.AreEqual( float2(30,140), p.mul.Object );
-				Assert.AreEqual( float2(10f/3, 20f/7), p.div.Object );
+				Assert.AreEqual(float2(13,27), p.add.Object);
+				Assert.AreEqual(float2(7,13), p.sub.Object);
+				Assert.AreEqual(float2(30,140), p.mul.Object);
+				Assert.AreEqual(float2(10f/3, 20f/7), p.div.Object);
 				
-				Assert.AreEqual( 5.0, p.min.Object );
-				Assert.AreEqual( 10.0, p.max.Object );
+				Assert.AreEqual(5.0, p.min.Object);
+				Assert.AreEqual(10.0, p.max.Object);
 			
-				Assert.AreEqual( false, p.lt.Object );
-				Assert.AreEqual( true, p.gt.Object );
-				Assert.AreEqual( false, p.lte.Object );
-				Assert.AreEqual( true, p.gte.Object );
-				Assert.AreEqual( false, p.eq.Object );
-				Assert.AreEqual( true, p.neq.Object );
+				Assert.AreEqual(false, p.lt.Object);
+				Assert.AreEqual(true, p.gt.Object);
+				Assert.AreEqual(false, p.lte.Object);
+				Assert.AreEqual(true, p.gte.Object);
+				Assert.AreEqual(false, p.eq.Object);
+				Assert.AreEqual(true, p.neq.Object);
 				
-				Assert.AreEqual( false, p.and.Object );
-				Assert.AreEqual( true, p.or.Object );
+				Assert.AreEqual(false, p.and.Object);
+				Assert.AreEqual(true, p.or.Object);
 			}
 		}
 	

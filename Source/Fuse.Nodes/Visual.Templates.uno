@@ -30,7 +30,7 @@ namespace Fuse
 		public Template FindTemplate(string key)
 		{
 			// Search backwards to allow key overrides
-			for (int i = Count-1; i >= 0; --i )
+			for (int i = Count-1; i >= 0; --i)
 			{
 				var t = _templates[i];
 				if (t.Key == key) return t;

@@ -10,7 +10,7 @@
 		
 		exports.items = Observable()
 		for (var i=0; i < 20; ++i) {
-			exports.items.add( new Item() )
+			exports.items.add(new Item())
 		}
 	</JavaScript>
 

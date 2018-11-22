@@ -4,7 +4,7 @@
 		
 		exports.items = Observable()
 		for (var i=0; i < 3; ++i) {
-			exports.items.add( { id: i } )
+			exports.items.add({ id: i })
 		}
 
 		exports.replace = function() {

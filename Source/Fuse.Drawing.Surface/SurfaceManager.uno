@@ -34,7 +34,7 @@ namespace Fuse.Drawing
 				else if defined(DOTNET)
 					c = new DotNetSurface();
 				else
-					throw new Exception( "Unsupported backend for Surface");
+					throw new Exception("Unsupported backend for Surface");
 			}
 
 			c.Owner = owner;

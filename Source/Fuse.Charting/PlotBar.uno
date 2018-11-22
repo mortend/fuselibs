@@ -82,15 +82,15 @@ namespace Fuse.Charting
 			{ 	
 				_animPosition.Motion = value;
 				_animSize.Motion = value;
-				if (value.Unit != MotionUnit.Normalized )
-					Fuse.Diagnostics.UserWarning( "Expecting Unit=\"Normalized\" for attractor", this );
+				if (value.Unit != MotionUnit.Normalized)
+					Fuse.Diagnostics.UserWarning("Expecting Unit=\"Normalized\" for attractor", this);
 			}
 		}
 		
 		DestinationBehavior<float4>_animPosition = new DestinationBehavior<float4>();
 		DestinationBehavior<float2>_animSize = new DestinationBehavior<float2>();
 		
-		internal override void OnDataPointChanged( PlotDataPoint entry )
+		internal override void OnDataPointChanged(PlotDataPoint entry)
 		{
 			var relValue = entry.RelativeValue;
 			var isVert = entry.Plot.GetAxisOrientation(0) == PlotOrientation.Vertical;
@@ -133,7 +133,7 @@ namespace Fuse.Charting
 				nY = 1-axisBase;
 				nHeight = barWidth;
 				nWidth = Math.Abs(barValue);
-				nAnchor = float2( primeAnchor, secondAnchor);
+				nAnchor = float2(primeAnchor, secondAnchor);
 			}
 			else
 			{
@@ -141,26 +141,26 @@ namespace Fuse.Charting
 				nY = 1- barBase;
 				nHeight = Math.Abs(barValue);
 				nWidth = barWidth;
-				nAnchor = float2( secondAnchor, primeAnchor);
+				nAnchor = float2(secondAnchor, primeAnchor);
 			}
 			
-			_animPosition.SetValue( float4( nX, nY, nAnchor.X, nAnchor.Y ), AnimPosition );
-			_animSize.SetValue( float2( nWidth, nHeight ), AnimSize );
+			_animPosition.SetValue(float4(nX, nY, nAnchor.X, nAnchor.Y), AnimPosition);
+			_animSize.SetValue(float2(nWidth, nHeight), AnimSize);
 		}
 		
-		void AnimPosition( float4 value )
+		void AnimPosition(float4 value)
 		{
-			X = new Size( value[0] * 100, Unit.Percent );
-			Y = new Size( value[1] * 100, Unit.Percent );
-			Anchor = new Size2( 
+			X = new Size(value[0] * 100, Unit.Percent);
+			Y = new Size(value[1] * 100, Unit.Percent);
+			Anchor = new Size2(
 				new Size(value[2] * 100, Unit.Percent),
-				new Size(value[3] * 100, Unit.Percent) );
+				new Size(value[3] * 100, Unit.Percent));
 		}
 		
-		void AnimSize( float2 value)
+		void AnimSize(float2 value)
 		{
-			Width = new Size( value[0] * 100, Unit.Percent );
-			Height = new Size( value[1] * 100, Unit.Percent );
+			Width = new Size(value[0] * 100, Unit.Percent);
+			Height = new Size(value[1] * 100, Unit.Percent);
 		}
 	}
 }

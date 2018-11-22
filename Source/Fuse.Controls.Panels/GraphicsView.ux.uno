@@ -357,7 +357,7 @@ namespace Fuse.Controls
 					Internal.DrawManager.PrepareDraw(_dc);
 
 					_dc.PushViewport(this);
-					_dc.PushScissor( new Recti(0, 0, size.X, size.Y) );
+					_dc.PushScissor(new Recti(0, 0, size.X, size.Y));
 					_dc.Clear(Color);
 
 					if defined(FUSELIBS_DEBUG_DRAW_RECTS)

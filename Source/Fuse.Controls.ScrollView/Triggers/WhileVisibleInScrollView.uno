@@ -60,20 +60,20 @@ namespace Fuse.Triggers
 			_scrollable = Parent.FindByType<ScrollViewBase>();
 			if (_scrollable == null)
 			{
-				Fuse.Diagnostics.UserError( "Could not find a ScrollView control.", this );
+				Fuse.Diagnostics.UserError("Could not find a ScrollView control.", this);
 				return;
 			}
 			
 			_element = Parent as Element;
 			if (_element == null)
 			{
-				Fuse.Diagnostics.UserError( "Parent must be an Element", this );
+				Fuse.Diagnostics.UserError("Parent must be an Element", this);
 				return;
 			}
 			
 			if (!_element.HasLayoutIn(_scrollable))
 			{
-				Fuse.Diagnostics.UserError( "Must have an Element path to the ScrollView", this );
+				Fuse.Diagnostics.UserError("Must have an Element path to the ScrollView", this);
 				return;
 			}
 			
@@ -167,7 +167,7 @@ namespace Fuse.Triggers
 
 			var min = _element.GetLayoutPositionIn(_scrollable);
 			var max = min + _element.ActualSize;
-			var maxDist = _scrollable.ToScalarPosition( RelativeTo.GetPoints(Distance, _scrollable) );
+			var maxDist = _scrollable.ToScalarPosition(RelativeTo.GetPoints(Distance, _scrollable));
 
 			bool isInView = false;
 
@@ -183,11 +183,11 @@ namespace Fuse.Triggers
 					var dist = _scrollable.DistanceToView(max, min);
 					var distStart = _scrollable.ToScalarPosition(float2(dist.X, dist.Y));
 					var distEnd = _scrollable.ToScalarPosition(float2(dist.Z, dist.W));
-					isInView = (distStart > (-1 * maxDist - zeroTolerance)) && (distEnd > ( -1 * maxDist - zeroTolerance));
+					isInView = (distStart > (-1 * maxDist - zeroTolerance)) && (distEnd > (-1 * maxDist - zeroTolerance));
 					break;
 			}
 
-			SetActive( isInView );
+			SetActive(isInView);
 		}
 		
 	}

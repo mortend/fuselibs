@@ -6,17 +6,17 @@ namespace Fuse.Animations
 {
 	class AverageMixer : MixerBase
 	{
-		protected override MasterProperty<T> CreateMaster<T>( Uno.UX.Property<T> property,
+		protected override MasterProperty<T> CreateMaster<T>(Uno.UX.Property<T> property,
 			MixerBase mixerBase)
 		{ return new AverageMasterProperty<T>(property, mixerBase); }
-		protected override MasterBase<Transform> CreateMasterTransform( Visual element,
+		protected override MasterBase<Transform> CreateMasterTransform(Visual element,
 			MixerBase mixerBase)
 		{ return new AverageMasterTransform(element, mixerBase); }
 	}
 	
 	class AverageMasterProperty<T> : MasterProperty<T>
 	{
-		public AverageMasterProperty( Uno.UX.Property<T> property, MixerBase mixerBase ) : 
+		public AverageMasterProperty(Uno.UX.Property<T> property, MixerBase mixerBase) : 
 			base(property, mixerBase) { }
 		
 		protected Internal.Blender<T> blender;
@@ -31,7 +31,7 @@ namespace Fuse.Animations
 		{
 			var weight = GetFullWeight();
 				
-			T nv = blender.Weight( RestValue, weight.Rest / weight.Full );
+			T nv = blender.Weight(RestValue, weight.Rest / weight.Full);
 			var c = Handles.Count;
 			for (int i=0; i < c; ++i)
 			{
@@ -41,13 +41,13 @@ namespace Fuse.Animations
 					
 				T add;
 				if (v.MixOp == MixOp.Weight)
-					add = blender.Weight( v.Value, Math.Max(0,v.Strength) / weight.Full );
+					add = blender.Weight(v.Value, Math.Max(0,v.Strength) / weight.Full);
 				else if (v.MixOp == MixOp.Offset)
-					add = blender.Weight( blender.Sub( v.Value, RestValue ), v.Strength );
+					add = blender.Weight(blender.Sub(v.Value, RestValue), v.Strength);
 				else
-					add = blender.Weight( v.Value, v.Strength );
+					add = blender.Weight(v.Value, v.Strength);
 
-				nv = blender.Add( nv, add );
+				nv = blender.Add(nv, add);
 			}
 
 			Set(nv);
@@ -56,8 +56,8 @@ namespace Fuse.Animations
 	
 	class AverageMasterTransform : MasterTransform
 	{
-		public AverageMasterTransform( Visual node, MixerBase mixerBase ) : 
-			base( node, mixerBase ) { }
+		public AverageMasterTransform(Visual node, MixerBase mixerBase) : 
+			base(node, mixerBase) { }
 		
 		public override void OnComplete()
 		{
@@ -73,9 +73,9 @@ namespace Fuse.Animations
 					continue;
 					
 				if (v.MixOp == MixOp.Weight)
-					v.Value.AppendTo( nv, v.Strength / weight.Full );
+					v.Value.AppendTo(nv, v.Strength / weight.Full);
 				else
-					v.Value.AppendTo( nv, v.Strength );
+					v.Value.AppendTo(nv, v.Strength);
 			}
 
 			if (!nv.Matrix.Equals(FMT.Matrix.Matrix))

@@ -15,7 +15,7 @@ namespace Fuse.Internal
 		/**
 			Scalar projection of `a` on `b`
 		*/
-		public static float ScalarProjection(float2 a, float2 b )
+		public static float ScalarProjection(float2 a, float2 b)
 		{
 			return Vector.Dot(a,b)/Vector.Length(b);
 		}
@@ -31,7 +31,7 @@ namespace Fuse.Internal
 		
 		public static float NormRejection(float2 a, float2 b)
 		{
-			return Vector.Length( Rejection(a,b) );
+			return Vector.Length(Rejection(a,b));
 		}
 		
 		/**
@@ -40,7 +40,7 @@ namespace Fuse.Internal
 		*/
 		public static float Angle(float2 a, float2 b)
 		{
-			return Math.Acos( Vector.Dot(a,b) / (Vector.Length(a) * Vector.Length(b)) );
+			return Math.Acos(Vector.Dot(a,b) / (Vector.Length(a) * Vector.Length(b)));
 		}
 		
 		/**
@@ -48,7 +48,7 @@ namespace Fuse.Internal
 		*/
 		public static float DistanceLine(float4 line, float2 p)
 		{
-			return Vector.Length( Rejection( p - line.XY, line.ZW - line.XY ) );
+			return Vector.Length(Rejection(p - line.XY, line.ZW - line.XY));
 		}
 	}
 }

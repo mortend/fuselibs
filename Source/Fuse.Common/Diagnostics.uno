@@ -98,7 +98,7 @@ namespace Fuse
 			return Format(true);
 		}
 		
-		internal string Format( bool withType )
+		internal string Format(bool withType)
 		{
 			var msg = string.Empty;
 
@@ -148,7 +148,7 @@ namespace Fuse
 		int LineNumber { get; }
 	}
 	
-	public delegate void DiagnosticHandler( Diagnostic d );
+	public delegate void DiagnosticHandler(Diagnostic d);
 	
 	/** 
 		Static API for reporting diagnostic warnings and errors for display in visual tools 
@@ -254,7 +254,7 @@ namespace Fuse
 		*/
 		public static void UserSuccess(string msg, object obj,
 			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, 
-			[CallerMemberName] string memberName = "" )
+			[CallerMemberName] string memberName = "")
 		{
 			Report(new Diagnostic(DiagnosticType.UserSuccess, msg, obj, filePath, lineNumber, memberName));
 		}
@@ -264,7 +264,7 @@ namespace Fuse
 			
 			This just drops the namespace name for now.
 		*/
-		static string UserTypeOf( object a )
+		static string UserTypeOf(object a)
 		{
 			var q = "" + a;
 			var e = q.LastIndexOf('.');
@@ -279,12 +279,12 @@ namespace Fuse
 			A node was rooted in a place where it should not have been. This is a common enough scenario
 			to warrant custom handling for consistency.
 		*/
-		public static void UserRootError( string expectedType, object actualParent, object obj,
+		public static void UserRootError(string expectedType, object actualParent, object obj,
 			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, 
 			[CallerMemberName] string memberName = "")
 		{
-			UserError( UserTypeOf(obj) + " cannot be used in a " + UserTypeOf(actualParent) + "." +
-				" A " + expectedType + " parent is expected", obj, filePath, lineNumber, memberName );
+			UserError(UserTypeOf(obj) + " cannot be used in a " + UserTypeOf(actualParent) + "." +
+				" A " + expectedType + " parent is expected", obj, filePath, lineNumber, memberName);
 		}
 		
 		/**
@@ -293,7 +293,7 @@ namespace Fuse
 		*/
 		public static void InternalError(string msg, object obj = null, 
 			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, 
-			[CallerMemberName] string memberName = "" )
+			[CallerMemberName] string memberName = "")
 		{
 			Report(new Diagnostic(DiagnosticType.InternalError, msg, obj, filePath, lineNumber, memberName));
 		}
@@ -304,28 +304,28 @@ namespace Fuse
 		*/
 		public static void UnknownException(string msg, Exception ex, object obj, 
 			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, 
-			[CallerMemberName] string memberName = "" )
+			[CallerMemberName] string memberName = "")
 		{
 			Report(new Diagnostic(DiagnosticType.InternalError, msg, obj, filePath, lineNumber, memberName, ex));
 		}
 		
 		public static void Deprecated(string msg, object obj, 
 			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, 
-			[CallerMemberName] string memberName = "" )
+			[CallerMemberName] string memberName = "")
 		{
 			Report(new Diagnostic(DiagnosticType.Deprecated, msg, obj, filePath, lineNumber, memberName));
 		}
 		
 		public static void Unsupported(string msg, object obj,
 			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, 
-			[CallerMemberName] string memberName = "" )
+			[CallerMemberName] string memberName = "")
 		{
 			Report(new Diagnostic(DiagnosticType.Unsupported, msg, obj, filePath, lineNumber, memberName));
 		}
 
 		public static void PerformanceWarning(string msg,
 			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0,
-			[CallerMemberName] string memberName = "" )
+			[CallerMemberName] string memberName = "")
 		{
 			Report(new Diagnostic(DiagnosticType.PerformanceWarning, msg, null, filePath, lineNumber, memberName));
 		}
@@ -339,7 +339,7 @@ namespace Fuse
 		*/
 		public static void UserWarning(string msg, object obj,
 			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0,
-			[CallerMemberName] string memberName = "" )
+			[CallerMemberName] string memberName = "")
 		{
 			Report(new Diagnostic(DiagnosticType.UserWarning, msg, obj, filePath, lineNumber, memberName));
 		}

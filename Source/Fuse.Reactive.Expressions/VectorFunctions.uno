@@ -50,7 +50,7 @@ namespace Fuse.Reactive
 	/**
 		Returns the `Z` value of a `float3` or `float4` value.
 	*/
-	[UXFunction("z" )]
+	[UXFunction("z")]
 	public sealed class VectorZ : UnaryOperator
 	{
 		[UXConstructor]
@@ -69,7 +69,7 @@ namespace Fuse.Reactive
 		}
 	}
 	
-	[UXFunction("w" )]
+	[UXFunction("w")]
 	/**
 		Returns the `W` value of a `float4` value.
 	*/

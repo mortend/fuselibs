@@ -1,12 +1,12 @@
 class Item {
-	constructor( name ) {
+	constructor(name) {
 		this.name = name
 	}
 }
 
 export default class UseCase1 {
 	constructor() {
-		this.items = [ "one", "two", "three", "four", "five" ].map( n => new Item(n) )
+		this.items = [ "one", "two", "three", "four", "five" ].map(n => new Item(n))
 		this.sel = [ this.items[4] ]
 	}
 
@@ -15,6 +15,6 @@ export default class UseCase1 {
 	}
 	
 	remove(args) {
-		this.sel.splice( this.sel.indexOf(args.data), 1 )
+		this.sel.splice(this.sel.indexOf(args.data), 1)
 	}
 }

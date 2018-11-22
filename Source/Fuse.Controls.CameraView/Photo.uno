@@ -82,7 +82,7 @@ namespace Fuse.Controls
 		/**
 			Save a downscaled version of the photo
 
-			@scriptmethod saveThumbnail( sizeHint )
+			@scriptmethod saveThumbnail(sizeHint)
 
 			Use this method if you need a downscaled versions of the photo. An optional argument can
 			be passed with a size hint. The thumbnail will try to fit the provided size hint and maintain

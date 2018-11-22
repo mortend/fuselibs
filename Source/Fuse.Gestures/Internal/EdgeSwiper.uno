@@ -50,7 +50,7 @@ namespace Fuse.Gestures.Internal
 			}
 		}
 		
-		public void Seek( double progress )
+		public void Seek(double progress)
 		{
 			Progress = progress;
 		}
@@ -128,7 +128,7 @@ namespace Fuse.Gestures.Internal
 
 		void OnUpdated()
 		{
-			_pointBody1D.Update( Time.FrameInterval );
+			_pointBody1D.Update(Time.FrameInterval);
 			Progress = _pointBody1D.Position;
 			CheckNeedUpdated(true);
 		}
@@ -178,9 +178,9 @@ namespace Fuse.Gestures.Internal
 			var elapsed = t - _prevTime;
 			_prevTime = t;
 			
-			_velocity.AddSample( _currentCoord, (float)elapsed, 
+			_velocity.AddSample(_currentCoord, (float)elapsed, 
 				(!_isHardCapture ? SampleFlags.Tentative : SampleFlags.None) |
-				(release ? SampleFlags.Release : SampleFlags.None) );
+				(release ? SampleFlags.Release : SampleFlags.None));
 		}
 		
 		void OnPointerMoved(object sender, PointerMovedArgs args)

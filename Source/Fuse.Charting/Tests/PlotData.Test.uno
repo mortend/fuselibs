@@ -18,7 +18,7 @@ namespace Fuse.Test
 			var e = v as Element;
 			if (e == null)
 				return float4(0);
-			return float4( e.ActualPosition, e.ActualSize );
+			return float4(e.ActualPosition, e.ActualSize);
 		}
 		
 		[Test]
@@ -33,21 +33,21 @@ namespace Fuse.Test
 				//There's no actual guarantee on the ordering, but we have no other easy way to check this,
 				//so we'll assume index ordering for now
 				int b = IndexOf(p.B.Children,p.B.FirstChild<PlotBar>());
-				Assert.IsTrue( b + 4 < p.B.Children.Count );
-				Assert.AreEqual( float4(0,800,100,200), Place(p.B.Children[b+0]));
-				Assert.AreEqual( float4(100,600,100,400), Place(p.B.Children[b+1]));
-				Assert.AreEqual( float4(400,0,100,1000), Place(p.B.Children[b+4]));
+				Assert.IsTrue(b + 4 < p.B.Children.Count);
+				Assert.AreEqual(float4(0,800,100,200), Place(p.B.Children[b+0]));
+				Assert.AreEqual(float4(100,600,100,400), Place(p.B.Children[b+1]));
+				Assert.AreEqual(float4(400,0,100,1000), Place(p.B.Children[b+4]));
 				
 				//check expecting anchoring
 				var e = p.B.Children[b] as Element;
-				Assert.AreEqual( new Size2( new Size(50,Unit.Percent), new Size(100, Unit.Percent)), e.Anchor );
-				Assert.AreEqual( new Size( 10, Unit.Percent ), e.X );
-				Assert.AreEqual( new Size( 100, Unit.Percent ), e.Y );
+				Assert.AreEqual(new Size2(new Size(50,Unit.Percent), new Size(100, Unit.Percent)), e.Anchor);
+				Assert.AreEqual(new Size(10, Unit.Percent), e.X);
+				Assert.AreEqual(new Size(100, Unit.Percent), e.Y);
 				
 				b = IndexOf(p.C.Children,p.C.FirstChild<CurvePoint>());
-				Assert.AreEqual( float2(0.1f,0.8f), (p.C.Children[b+0] as CurvePoint).At);
-				Assert.AreEqual( float2(0.5f,0.4f), (p.C.Children[b+2] as CurvePoint).At);
-				Assert.AreEqual( float2(0.9f,0f), (p.C.Children[b+4] as CurvePoint).At);
+				Assert.AreEqual(float2(0.1f,0.8f), (p.C.Children[b+0] as CurvePoint).At);
+				Assert.AreEqual(float2(0.5f,0.4f), (p.C.Children[b+2] as CurvePoint).At);
+				Assert.AreEqual(float2(0.9f,0f), (p.C.Children[b+4] as CurvePoint).At);
 			}
 		}
 		
@@ -58,8 +58,8 @@ namespace Fuse.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "1,2,3,4,5", GetText(p.B));
-				Assert.AreEqual( "9,8,7,6,5", GetText(p.C));
+				Assert.AreEqual("1,2,3,4,5", GetText(p.B));
+				Assert.AreEqual("9,8,7,6,5", GetText(p.C));
 			}
 		}
 		
@@ -111,7 +111,7 @@ namespace Fuse.Test
 		}
 		
 		//missing functionality in our IList
-		int IndexOf( IList<Node> list, Node obj )
+		int IndexOf(IList<Node> list, Node obj)
 		{
 			for (int i=0; i < list.Count; ++i)
 				if (list[i] == obj)

@@ -61,13 +61,13 @@ namespace Fuse.Gestures
 
 			Control = FindRangeControl();
 			if (Control == null)
-				Fuse.Diagnostics.UserRootError( "RangeControl", Parent, this );
+				Fuse.Diagnostics.UserRootError("RangeControl", Parent, this);
 			
 			_boundsElement = Parent as Element;
 			if (_boundsElement == null)
-				Fuse.Diagnostics.UserRootError( "Element", Parent, this );
+				Fuse.Diagnostics.UserRootError("Element", Parent, this);
 			else
-				_gesture = Input.Gestures.Add( this, _boundsElement, GestureType.Primary );
+				_gesture = Input.Gestures.Add(this, _boundsElement, GestureType.Primary);
 		}
 
 		protected override void OnUnrooted()
@@ -106,8 +106,8 @@ namespace Fuse.Gestures
 		{
 			get 
 			{
-				return new GesturePriorityConfig( GesturePriority.Normal,
-					Gesture.VectorSignificance( Direction, _currentCoord - _startCoord ) );
+				return new GesturePriorityConfig(GesturePriority.Normal,
+					Gesture.VectorSignificance(Direction, _currentCoord - _startCoord));
 			}
 		}
 		

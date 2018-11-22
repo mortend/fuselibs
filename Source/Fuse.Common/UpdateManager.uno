@@ -113,7 +113,7 @@ namespace Fuse
 		}
 
 		//insert them in sequenced order
-		public void Insert( List<UpdateListener> list, UpdateListener us )
+		public void Insert(List<UpdateListener> list, UpdateListener us)
 		{
 			for (int i=list.Count; i > 0; --i)
 			{
@@ -127,7 +127,7 @@ namespace Fuse
 			list.Insert(0,us);
 		}
 
-		public void AddDeferredAction( Action pu, IUpdateListener ul, LayoutPriority priority = LayoutPriority.Layout)
+		public void AddDeferredAction(Action pu, IUpdateListener ul, LayoutPriority priority = LayoutPriority.Layout)
 		{
 			var queue = PhaseDeferredActions[(int)priority];
 			queue.Enqueue(new UpdateAction{ action = pu, update = ul });
@@ -152,7 +152,7 @@ namespace Fuse
 		static UpdateManager()
 		{
 			for (int i=0; i <= (int)UpdateStage.Draw; ++i)
-				_stages.Add( new Stage((UpdateStage)i) );
+				_stages.Add(new Stage((UpdateStage)i));
 		}
 
 		public static readonly Uno.Threading.IDispatcher Dispatcher = new UpdateDispatcher();
@@ -166,7 +166,7 @@ namespace Fuse
 			//us.sequence = sequence;
 
 			var s = _stages[(int)stage];
-			s.Insert( s.Listeners, us );
+			s.Insert(s.Listeners, us);
 		}
 
 		public static void AddAction(IUpdateListener pu, UpdateStage stage = UpdateStage.Primary)
@@ -175,20 +175,20 @@ namespace Fuse
 			us.update = pu;
 
 			var s = _stages[(int)stage];
-			s.Insert( s.Listeners, us );
+			s.Insert(s.Listeners, us);
 		}
 
 
-		static bool RemoveFrom( List<UpdateListener> list, Action action, IUpdateListener update)
+		static bool RemoveFrom(List<UpdateListener> list, Action action, IUpdateListener update)
 		{
 			//must defer removal from list since remove will most likely be called during an update
-			for( int i=0; i < list.Count; ++i )
+			for(int i=0; i < list.Count; ++i)
 			{
 				if (list[i].removed)
 					continue;
 
-				if ( (action != null && object.Equals(action, list[i].action)) ||
-					(update != null && object.Equals(update, list[i].update)) )
+				if ((action != null && object.Equals(action, list[i].action)) ||
+					(update != null && object.Equals(update, list[i].update)))
 				{
 					list[i].removed = true;
 					return true;
@@ -200,7 +200,7 @@ namespace Fuse
 		public static void RemoveAction(Action pu, UpdateStage stage = UpdateStage.Primary)
 		{
 			var s = _stages[(int)stage];
-			if (!RemoveFrom( s.Listeners, pu, null ))
+			if (!RemoveFrom(s.Listeners, pu, null))
 				throw new Exception("no Action found to remove");
 			s.HasListenersRemoved = true;
 		}
@@ -208,7 +208,7 @@ namespace Fuse
 		public static void RemoveAction(IUpdateListener pu, UpdateStage stage = UpdateStage.Primary)
 		{
 			var s = _stages[(int)stage];
-			if (!RemoveFrom( s.Listeners, null, pu ))
+			if (!RemoveFrom(s.Listeners, null, pu))
 				throw new Exception("no Action found to remove");
 			s.HasListenersRemoved = true;
 		}
@@ -223,10 +223,10 @@ namespace Fuse
 		public static void RemoveOnceAction(Action pu, UpdateStage stage = UpdateStage.Primary)
 		{
 			var s = _stages[(int)stage];
-			if (RemoveFrom( s.OncesPending, pu, null ))
+			if (RemoveFrom(s.OncesPending, pu, null))
 				return;
 
-			if (!RemoveFrom( s.Onces, pu, null ))
+			if (!RemoveFrom(s.Onces, pu, null))
 				throw new Exception("no OnceAction found to remove");
 		}
 
@@ -337,9 +337,9 @@ namespace Fuse
 			_currentStage = stage;
 			List<Exception> _exceptions = null;
 
-			ProcessOnces( stage, ref _exceptions );
-			ProcessListeners( stage, ref _exceptions );
-			ProcessDeferredActions( stage, ref _exceptions );
+			ProcessOnces(stage, ref _exceptions);
+			ProcessListeners(stage, ref _exceptions);
+			ProcessDeferredActions(stage, ref _exceptions);
 
 			_currentStage = null;
 			CheckExceptions(_exceptions);
@@ -469,7 +469,7 @@ namespace Fuse
 				if (a.Count == 0)
 					break;
 
-				for (int i=0; i < a.Count; ++i )
+				for (int i=0; i < a.Count; ++i)
 				{
 					try
 					{

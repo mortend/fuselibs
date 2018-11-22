@@ -3,12 +3,12 @@
 		var Observable = require("FuseJS/Observable")
 
 		exports.items = Observable()
-		exports.items.add( { id: 1, v: 10 })
-		exports.items.add( { id: 2, v: 20 })
-		exports.items.add( { id: 3, v: 30 })
+		exports.items.add({ id: 1, v: 10 })
+		exports.items.add({ id: 2, v: 20 })
+		exports.items.add({ id: 3, v: 30 })
 		
 		exports.replaceAt = function() {
-			exports.items.replaceAt( 1, { id: 2, v: "21" })
+			exports.items.replaceAt(1, { id: 2, v: "21" })
 		}
 		
 		exports.replaceAll = function() {

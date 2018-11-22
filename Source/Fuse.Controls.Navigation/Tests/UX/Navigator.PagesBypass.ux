@@ -3,7 +3,7 @@
 		var Observable = require("FuseJS/Observable")
 			
 		exports.pages = Observable()
-		exports.pages.add( {
+		exports.pages.add({
 			$path: "one"
 		})
 	</JavaScript>

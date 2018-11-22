@@ -53,7 +53,7 @@ namespace Fuse.Elements
 			get { return _mode; }
 			set
 			{
-				if ( value == _mode)
+				if (value == _mode)
 					return;
 
 				_mode = value;
@@ -256,7 +256,7 @@ namespace Fuse.Elements
 
 			if (Mode == ViewportMode.RenderToTexture) {
 				var pxSize = ((ICommonViewport)this).PixelSize;
-				var fb = FramebufferPool.Lock( int2((int)pxSize.X,(int)pxSize.Y), Format.RGBA8888, true );
+				var fb = FramebufferPool.Lock(int2((int)pxSize.X,(int)pxSize.Y), Format.RGBA8888, true);
 				dc.PushRenderTargetViewport(fb, this);
 
 				dc.Clear(float4(0),1);
@@ -278,12 +278,12 @@ namespace Fuse.Elements
 			} else {
 				if (IsRoot)
 				{
-					dc.PushViewport( this );
+					dc.PushViewport(this);
 				}
 				else
 				{
 					var local = new InheritViewport(dc.Viewport, FrustumViewport, this);
-					dc.PushViewport( local );
+					dc.PushViewport(local);
 				}
 				RootVisual.Draw(dc);
 				dc.PopViewport();

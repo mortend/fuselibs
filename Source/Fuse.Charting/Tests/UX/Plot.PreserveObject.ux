@@ -3,7 +3,7 @@
 		var Observable = require("FuseJS/Observable")
 		exports.values = Observable()
 		for (var i=0;i<20; ++i) {
-			exports.values.add( { value: i, label: "#" + i } )
+			exports.values.add({ value: i, label: "#" + i })
 		}
 	</JavaScript>
 	<c:Plot ux:Name="plot" DataOffset="5" DataLimit="10">

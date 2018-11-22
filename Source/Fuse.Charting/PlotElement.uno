@@ -35,6 +35,6 @@ namespace Fuse.Charting
 		}
 		
 		void IPlotDataItemListener<PlotDataPoint>.OnNewData(PlotDataPoint entry) { OnDataPointChanged(entry); }
-		internal abstract void OnDataPointChanged( PlotDataPoint entry );
+		internal abstract void OnDataPointChanged(PlotDataPoint entry);
 	}
 }

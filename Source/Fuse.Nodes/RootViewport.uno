@@ -141,7 +141,7 @@ namespace Fuse
 		FrustumViewport _frustumViewport = new FrustumViewport();
 
 		bool _sizeOverridden;
-		internal void OverrideSize( float2 pixelSize, float pixelsPerPoint, float pixelsPerOSPoint )
+		internal void OverrideSize(float2 pixelSize, float pixelsPerPoint, float pixelsPerOSPoint)
 		{
 			_pixelSize = pixelSize;
 			_pixelsPerPoint = pixelsPerPoint;
@@ -192,7 +192,7 @@ namespace Fuse
 			var pointAspect = (float)osPointSize.X / (float)osPointSize.Y;
 			var pixelAspect = (float)pixelSize.X / (float)pixelSize.Y;
 			var aspectFlip = false;
-			if ( (pointAspect > 1 && pixelAspect < 1) || (pointAspect < 1 && pixelAspect > 1))
+			if ((pointAspect > 1 && pixelAspect < 1) || (pointAspect < 1 && pixelAspect > 1))
 			{
 				pixelSize = pixelSize.YX;
 				aspectFlip = true;
@@ -202,7 +202,7 @@ namespace Fuse
 
 			var pixelsPerOSPoint = pixelSize / osPointSize;
 			if (Math.Abs(pixelsPerOSPoint.X - pixelsPerOSPoint.Y) > zeroTolerance)
-				Fuse.Diagnostics.InternalError( "non-square pixelsPerOSPoint: " + pixelsPerOSPoint );
+				Fuse.Diagnostics.InternalError("non-square pixelsPerOSPoint: " + pixelsPerOSPoint);
 
 			var osWindowDensity = PlatformWindowImpl.GetDensity(wnd);
 			_pixelsPerPoint = pixelsPerOSPoint.X * osWindowDensity;
@@ -301,7 +301,7 @@ namespace Fuse
 		{
 			var psd = state as PreviewStateData;
 			if (psd == null && state != null)
-				Fuse.Diagnostics.InternalError( "Incorrect state type for PreviewSetState", this );
+				Fuse.Diagnostics.InternalError("Incorrect state type for PreviewSetState", this);
 				
 			if (_previewState != null)
 				_previewState.SetState(psd);

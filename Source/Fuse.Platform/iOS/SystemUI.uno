@@ -188,7 +188,7 @@ namespace Fuse.Platform
 		}
 		
 		[Foreign(Language.ObjC)]
-		static void GetOSVersion( out int major, out int minor, out int revision )
+		static void GetOSVersion(out int major, out int minor, out int revision)
 		@{
 			if (NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0)
 			{
@@ -245,7 +245,7 @@ namespace Fuse.Platform
 			if (major >= 11) 
 			{
 				float l, t, r, b;
-				GetSafeArea( out l, out t, out r, out b );
+				GetSafeArea(out l, out t, out r, out b);
 				return float4(l,t,r,b);
 			}
 			

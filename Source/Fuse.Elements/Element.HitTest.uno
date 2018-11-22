@@ -89,9 +89,9 @@ namespace Fuse.Elements
 				var n = VisualBounds.Empty;
 				
 				if (HitTestMode.HasFlag(HitTestMode.LocalBounds))
-					n = n.AddRect( float2(0), ActualSize );
+					n = n.AddRect(float2(0), ActualSize);
 				if (HitTestMode.HasFlag(HitTestMode.LocalVisual))
-					n = n.Merge( HitTestLocalVisualBounds );
+					n = n.Merge(HitTestLocalVisualBounds);
 				return n;
 			}
 		}

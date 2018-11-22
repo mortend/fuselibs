@@ -46,7 +46,7 @@ a password field:
 			}
 			else
 			{
-				Fuse.Diagnostics.UserError( "No TextInput or Source found for string", this );
+				Fuse.Diagnostics.UserError("No TextInput or Source found for string", this);
 			}
 		}
 
@@ -74,7 +74,7 @@ a password field:
 	{
 		public ContainingText()
 		{
-			Fuse.Diagnostics.Deprecated( "Use the trigger WhileContainsText instead", this );
+			Fuse.Diagnostics.Deprecated("Use the trigger WhileContainsText instead", this);
 		}
 	}
 	

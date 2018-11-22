@@ -11,13 +11,13 @@ namespace Fuse.Charting
 
 		public T Data { get { return _data; } }
 
-		public ObjectWrapper( string name, T data )
+		public ObjectWrapper(string name, T data)
 		{
 			_name = name;
 			_data = data;
 		}
 		
-		public bool ContainsKey( string key )
+		public bool ContainsKey(string key)
 		{
 			return key == _name && _data != null;
 		}

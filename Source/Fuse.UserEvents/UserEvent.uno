@@ -75,7 +75,7 @@ namespace Fuse
 		internal void DirectRaise(Node source = null, Dictionary<string,object> args = null)
 		{
 			var m = new UserEventArgs(this, source, args);
-			OnRaised( m );
+			OnRaised(m);
 		}
 		
 		internal void OnRaised(UserEventArgs args)
@@ -203,7 +203,7 @@ namespace Fuse
 			base.OnRooted();
 			if (Name == null)
 			{
-				Fuse.Diagnostics.UserError( "UserEvent requires a Name", this );
+				Fuse.Diagnostics.UserError("UserEvent requires a Name", this);
 				return;
 			}
 			
@@ -249,7 +249,7 @@ namespace Fuse
 		{
 			if (Dispatch == null)
 			{
-				Fuse.Diagnostics.InternalError( "Trying to Raise on unrooted UserEvent", this );
+				Fuse.Diagnostics.InternalError("Trying to Raise on unrooted UserEvent", this);
 				return;
 			}
 			
@@ -262,7 +262,7 @@ namespace Fuse
 			var ev = ScanTree(from, name, out n);
 			if (ev == null)
 			{
-				Fuse.Diagnostics.InternalError( "Unknown event: " + name );
+				Fuse.Diagnostics.InternalError("Unknown event: " + name);
 				return;
 			}
 			

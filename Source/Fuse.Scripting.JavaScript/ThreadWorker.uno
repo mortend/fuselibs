@@ -61,7 +61,7 @@ namespace Fuse.Scripting.JavaScript
 			}
 			catch(Exception e)
 			{
-				Fuse.Diagnostics.UnknownException( "ThreadWorked failed", e, this );
+				Fuse.Diagnostics.UnknownException("ThreadWorked failed", e, this);
 				DispatchException(e);
 			}
 		}

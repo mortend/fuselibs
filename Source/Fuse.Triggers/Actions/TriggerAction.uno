@@ -42,7 +42,7 @@ namespace Fuse.Triggers.Actions
 			set 
 			{ 
 				//DEPRECATED: 2016-11-11
-				Fuse.Diagnostics.Deprecated( "Use `Trigger.When` instead of `Trigger.Direction`", this );
+				Fuse.Diagnostics.Deprecated("Use `Trigger.When` instead of `Trigger.Direction`", this);
 				When = value;
 			}
 		}
@@ -97,7 +97,7 @@ namespace Fuse.Triggers.Actions
 			set { _isActive = value; }
 		}
 		
-		public float ProgressWhen( float totalDuration )
+		public float ProgressWhen(float totalDuration)
 		{
 			if (_hasProgress)
 				return _progress;
@@ -109,7 +109,7 @@ namespace Fuse.Triggers.Actions
 		public void PerformFromNode(Node target)
 		{
 			if (IsActive)
-				Perform( TargetNode ?? target );
+				Perform(TargetNode ?? target);
 		}
 		
 		protected abstract void Perform(Node target);

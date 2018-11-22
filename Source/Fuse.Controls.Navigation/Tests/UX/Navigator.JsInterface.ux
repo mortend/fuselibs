@@ -1,8 +1,8 @@
 <Panel ux:Class="UX.Navigator.JsInterface">
 	<JavaScript>
 		var count = 0;
-		exports.gotoP1 = function(){ theNav.gotoPath('P1', "" + (++count) );};
-		exports.seekToP2 = function(){ theNav.seekToPath('P2', "" + (++count) );};
+		exports.gotoP1 = function(){ theNav.gotoPath('P1', "" + (++count));};
+		exports.seekToP2 = function(){ theNav.seekToPath('P2', "" + (++count));};
 	</JavaScript>
 	<DockPanel>
 		<FuseTest.Invoke Handler="{gotoP1}" ux:Name="GotoP1"/>

@@ -61,7 +61,7 @@ namespace Fuse.Resources
 		{
 			get
 			{
-				if( _texture != null )
+				if(_texture != null)
 					return float2(_texture.Size.X, _texture.Size.Y) / _density;
 				return float2(0);
 			}
@@ -81,7 +81,7 @@ namespace Fuse.Resources
 		{
 			get
 			{
-				if( _texture != null )
+				if(_texture != null)
 					return ImageSourceState.Ready;
 				return ImageSourceState.Pending;
 			}

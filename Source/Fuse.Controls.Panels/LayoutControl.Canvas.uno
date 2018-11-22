@@ -31,7 +31,7 @@ namespace Fuse.Controls
 		{
 			if (Surface == null)
 			{
-				Fuse.Diagnostics.InternalError( "Prepare without surface", this );
+				Fuse.Diagnostics.InternalError("Prepare without surface", this);
 				return;
 			}
 			
@@ -44,7 +44,7 @@ namespace Fuse.Controls
 		{
 			if (Surface == null)
 			{
-				Fuse.Diagnostics.InternalError( "Prepare without surface", this );
+				Fuse.Diagnostics.InternalError("Prepare without surface", this);
 				return;
 			}
 			
@@ -102,12 +102,12 @@ namespace Fuse.Controls
 		{
 			if (_surface == null)
 			{
-				Fuse.Diagnostics.InternalError( "LayoutControl not properly rooted in Surface", this );
+				Fuse.Diagnostics.InternalError("LayoutControl not properly rooted in Surface", this);
 				return;
 			}
 			if (_surface.Surface != surface)
 			{
-				Fuse.Diagnostics.InternalError( "Mismatched surface", this );
+				Fuse.Diagnostics.InternalError("Mismatched surface", this);
 			}
 
 			_surface.Watcher.Reset();
@@ -120,10 +120,10 @@ namespace Fuse.Controls
 				{
 					var rs = ActualSize;
 					var rect = new LineSegments();
-					rect.MoveTo( float2(0) );
-					rect.LineTo( float2(rs.X,0) );
-					rect.LineTo( float2(rs.X,rs.Y));
-					rect.LineTo( float2(0,rs.Y));
+					rect.MoveTo(float2(0));
+					rect.LineTo(float2(rs.X,0));
+					rect.LineTo(float2(rs.X,rs.Y));
+					rect.LineTo(float2(0,rs.Y));
 					rect.ClosePath();
 					_surface.BackgroundPath = surface.CreatePath(rect.Segments);
 					_surface.BackgroundPathSize = ActualSize;

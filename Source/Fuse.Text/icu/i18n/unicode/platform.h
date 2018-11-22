@@ -487,7 +487,7 @@
  *
  * <p>The list of "invariant characters" is:<br>
  * \code
- *    A-Z  a-z  0-9  SPACE  "  %  &amp;  '  (  )  *  +  ,  -  .  /  :  ;  <  =  >  ?  _
+ *    A-Z  a-z  0-9  SPACE  "  %  &amp;  '  ()  *  +  ,  -  .  /  :  ;  <  =  >  ?  _
  * \endcode
  * <br>
  * (52 letters + 10 numbers + 20 punc/sym/space = 82 total)</p>

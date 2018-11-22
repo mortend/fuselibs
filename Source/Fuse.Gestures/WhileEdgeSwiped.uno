@@ -46,7 +46,7 @@ namespace Fuse.Gestures
 			base.OnRooted();
 			var element = Parent as Element;
 			if (element == null)
-				throw new Exception( "EdgeSwipeAnimation must be attached to an Element" );
+				throw new Exception("EdgeSwipeAnimation must be attached to an Element");
 
 			_swiper.Rooted(element);
 			_swiper.Seek(0);
@@ -62,7 +62,7 @@ namespace Fuse.Gestures
 
 		void OnProgressChanged(object s, double progress)
 		{
-			Seek( progress );
+			Seek(progress);
 		}
 
 		public void Enable()

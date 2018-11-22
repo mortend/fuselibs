@@ -22,7 +22,7 @@ namespace Fuse.Navigation
 
 		internal NavigationStructure Mode { get; set; }
 
-		internal StructuredNavigation( NavigationStructure mode )
+		internal StructuredNavigation(NavigationStructure mode)
 		{
 			Mode = mode;
 		}
@@ -41,7 +41,7 @@ namespace Fuse.Navigation
 			{
 				_motion = value;
 				if (IsRootingCompleted)
-					Fuse.Diagnostics.UserError( "Motion should not be changed post-rooting", this );
+					Fuse.Diagnostics.UserError("Motion should not be changed post-rooting", this);
 			}
 		}
 		
@@ -114,7 +114,7 @@ namespace Fuse.Navigation
 			//https://github.com/fusetools/fuselibs-private/issues/1701
 			if (element.Parent != null && element.Parent != Parent)
 			{
-				Fuse.Diagnostics.UserError( "Attempting to navigate to element with different parent", element );
+				Fuse.Diagnostics.UserError("Attempting to navigate to element with different parent", element);
 				SetActive(null);
 				return;
 			}
@@ -143,7 +143,7 @@ namespace Fuse.Navigation
 				}
 			}
 
-			TransitionToChild(element, mode.HasFlag(NavigationGotoMode.Bypass) );
+			TransitionToChild(element, mode.HasFlag(NavigationGotoMode.Bypass));
 			OnHistoryChanged();
 		}
 		
@@ -170,13 +170,13 @@ namespace Fuse.Navigation
 			//shortcut if nothing changes
 			if (Progress == targetProgress)
 			{
-				OnStateChanged( NavigationState.Stable);
+				OnStateChanged(NavigationState.Stable);
 				return false;
 			}
 
-			OnStateChanged( NavigationState.Transition );
+			OnStateChanged(NavigationState.Transition);
 
-			_region.MoveTo( float2((float)targetProgress,0) );
+			_region.MoveTo(float2((float)targetProgress,0));
 			CheckNeedUpdate();
 			return true;
 		}
@@ -205,12 +205,12 @@ namespace Fuse.Navigation
 		{
 			if (_region == null)
 			{
-				Fuse.Diagnostics.InternalError( "Updated called without a region", this );
+				Fuse.Diagnostics.InternalError("Updated called without a region", this);
 				return;
 			}
 				
 			var prev = _region.Position.X;
-			_region.Update( Time.FrameInterval );
+			_region.Update(Time.FrameInterval);
 			ChangeProgress(prev, _region.Position.X, NavigationMode.Seek);
 
 			//allow turning off update now, this ensures we always get one update when _region changed
@@ -298,7 +298,7 @@ namespace Fuse.Navigation
 			set
 			{
 				Motion.GotoEasing = value;
-				Fuse.Diagnostics.Deprecated( "Use a `NavigationMotion` and the `GotoEasing` property instead of `Navigation.Easing`", this );
+				Fuse.Diagnostics.Deprecated("Use a `NavigationMotion` and the `GotoEasing` property instead of `Navigation.Easing`", this);
 			}
 		}
 		public double Duration  
@@ -307,7 +307,7 @@ namespace Fuse.Navigation
 			set
 			{
 				Motion.GotoDuration = (float)value;
-				Fuse.Diagnostics.Deprecated( "Use a `NavigationMotion` and the `GotoDuration` property instead of `Navigation.Duration`", this );
+				Fuse.Diagnostics.Deprecated("Use a `NavigationMotion` and the `GotoDuration` property instead of `Navigation.Duration`", this);
 			}
 		}
 
@@ -358,7 +358,7 @@ namespace Fuse.Navigation
 
 			OnNavigated(_active);
 			OnHistoryChanged();
-			OnStateChanged( NavigationState.Stable );
+			OnStateChanged(NavigationState.Stable);
 		}
 
 		Visual _active;
@@ -390,7 +390,7 @@ namespace Fuse.Navigation
 				_region.StartUser();
 			}
 				
-			OnStateChanged( NavigationState.Seek );
+			OnStateChanged(NavigationState.Seek);
 		}
 
 		/**
@@ -398,14 +398,14 @@ namespace Fuse.Navigation
 		*/
 		public float2 SeekRange
 		{
-			get { return float2( (float)(-_seekBase), (float)(MaxIndex - _seekBase) ); }
+			get { return float2((float)(-_seekBase), (float)(MaxIndex - _seekBase)); }
 		}
 
 		void ISeekableNavigation.Seek(UpdateSeekArgs args)
 		{
 			if (_region == null)
 			{
-				Fuse.Diagnostics.InternalError( "Seek being called on an unrooted navigation", this );
+				Fuse.Diagnostics.InternalError("Seek being called on an unrooted navigation", this);
 				return;
 			}
 			
@@ -508,14 +508,14 @@ namespace Fuse.Navigation
 	public class LinearNavigation : StructuredNavigation
 	{
 		public LinearNavigation()
-			: base( NavigationStructure.Linear )
+			: base(NavigationStructure.Linear)
 		{ }
 	}
 
 	public class HierarchicalNavigation : StructuredNavigation
 	{
 		public HierarchicalNavigation()
-			: base( NavigationStructure.Hierarchical )
+			: base(NavigationStructure.Hierarchical)
 		{ }
 
 		public bool ReuseExistingVisual

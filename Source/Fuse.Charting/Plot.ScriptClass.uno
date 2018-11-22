@@ -19,7 +19,7 @@ namespace Fuse.Charting
 		{
 			if (args.Length != 1)
 			{
-				Diagnostics.UserError( "stepOffset requires 1 step argument", p );
+				Diagnostics.UserError("stepOffset requires 1 step argument", p);
 				return;
 			}
 			

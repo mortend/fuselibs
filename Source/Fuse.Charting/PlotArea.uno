@@ -32,7 +32,7 @@ namespace Fuse.Charting
 			set { SetStepSize(1, value); }
 		}
 		
-		void SetStepSize( int axis, float value )
+		void SetStepSize(int axis, float value)
 		{
 			if (_stepSize[axis] == value && _hasStepSize[axis])
 				return;
@@ -50,11 +50,11 @@ namespace Fuse.Charting
 			base.OnRooted();
 			_parentElement = Parent as Element;
 			if (_parentElement == null)
-				Fuse.Diagnostics.UserError( "Parent must be an Element", this );
+				Fuse.Diagnostics.UserError("Parent must be an Element", this);
 			
 			_plot = PlotBehavior.FindPlot(this);
 			if (_plot == null)
-				Fuse.Diagnostics.UserError( "Could not find PlotBehavior", this );
+				Fuse.Diagnostics.UserError("Could not find PlotBehavior", this);
 			ListenPlaced(true);
 			Update();
 		}
@@ -96,14 +96,14 @@ namespace Fuse.Charting
 			Placed(args.NewSize);
 		}
 		
-		void Placed( float2 size )
+		void Placed(float2 size)
 		{
 			for (int i=0; i < 2; ++i)
 			{
 				if (!_hasStepSize[i])
 					continue;
 					
-				var isX = _plot.GetAxisOrientation( i ) == PlotOrientation.Horizontal;
+				var isX = _plot.GetAxisOrientation(i) == PlotOrientation.Horizontal;
 				var axisSize = isX ? size.X : size.Y;
 				
 				var count = (int)(axisSize / _stepSize[i]);
@@ -112,7 +112,7 @@ namespace Fuse.Charting
 				if (_plot.IsCountAxis(i))	
 					_plot.Limit = count;
 				else
-					_plot.DataSpec.SetAxisSteps( i, count );
+					_plot.DataSpec.SetAxisSteps(i, count);
 			}
 		}
 	}

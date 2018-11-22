@@ -5,13 +5,13 @@
 		var source = Observable("a")
 		exports.source = source
 		
-		function mapIn( value ) {
+		function mapIn(value) {
 			return "$" + value
 		}
-		function mapOut( value ) {
+		function mapOut(value) {
 			return value.substring(1)
 		}
-		exports.item = source.mapTwoWay( mapIn, mapOut )
+		exports.item = source.mapTwoWay(mapIn, mapOut)
 		
 		exports.step1 = function() {
 			source.value = "b"

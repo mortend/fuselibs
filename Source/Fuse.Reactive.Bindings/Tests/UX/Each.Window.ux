@@ -4,7 +4,7 @@
 		
 		exports.items = Observable()
 		for (var i=0; i < 100; ++i) {
-			exports.items.add( { id: "" + i } )
+			exports.items.add({ id: "" + i })
 		}
 	</JavaScript>
 	<Each Items="{items}" Limit="5" ux:Name="E">

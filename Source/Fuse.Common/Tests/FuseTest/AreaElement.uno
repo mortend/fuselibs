@@ -12,15 +12,15 @@ namespace FuseTest
 	{
 		public float Area { get; set; }
 		
-		protected override float2 GetContentSize( LayoutParams lp )
+		protected override float2 GetContentSize(LayoutParams lp)
 		{
 			if (lp.HasX)
-				return float2( lp.X, Area/lp.X );
+				return float2(lp.X, Area/lp.X);
 			else if (lp.HasY)
-				return float2( Area/lp.Y, lp.Y );
+				return float2(Area/lp.Y, lp.Y);
 				
-			var maxX = float2( lp.MaxX, Area/lp.MaxX);
-			var maxY = float2( Area/lp.MaxY, lp.MaxY);
+			var maxX = float2(lp.MaxX, Area/lp.MaxX);
+			var maxY = float2(Area/lp.MaxY, lp.MaxY);
 			if (lp.HasMaxX && lp.HasMaxY)
 				return lp.MaxX < lp.MaxY ? maxX : maxY;
 			else if (lp.HasMaxX)

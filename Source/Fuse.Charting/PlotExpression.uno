@@ -39,7 +39,7 @@ namespace Fuse.Charting
 		public PlotExpression([UXParameter("Identifier")] string identifier)
 		{
 			Identifier = identifier;
-			var parts = Identifier.Split( _tokenSplit );
+			var parts = Identifier.Split(_tokenSplit);
 			_idObject = parts.Length > 0 ? parts[0] : null;
 			_idProperty = parts.Length > 1 ? parts[1] : null;
 			var field = parts.Length > 2 ? parts[2] : null;
@@ -65,7 +65,7 @@ namespace Fuse.Charting
 			else
 			{
 				_field = Field.None;
-				Fuse.Diagnostics.UserError( "Unrecognized field: " + field, this );
+				Fuse.Diagnostics.UserError("Unrecognized field: " + field, this);
 			}
 				
 		}
@@ -86,14 +86,14 @@ namespace Fuse.Charting
 			var plot = PlotBehavior.FindPlot(context.Node);
 			if (plot == null)
 			{
-				Fuse.Diagnostics.UserError( "Could not find a Plot", this );
+				Fuse.Diagnostics.UserError("Could not find a Plot", this);
 				return null;
 			}
 
 			return new PlotSubscription(this, plot, _idProperty, _field, listener);
 		}
 		
-		static object AccessField( Field f, object value )
+		static object AccessField(Field f, object value)
 		{
 			try
 			{
@@ -108,7 +108,7 @@ namespace Fuse.Charting
 			}
 			catch (MarshalException e)
 			{
-				Fuse.Diagnostics.UserError( "Invalid field and/or conversion: " + f, value );
+				Fuse.Diagnostics.UserError("Invalid field and/or conversion: " + f, value);
 			}
 			
 			return null;
@@ -200,7 +200,7 @@ namespace Fuse.Charting
 				else if (q != null)
 					_listener.OnNewData(_expr, AccessField(_field, q));
 				else
-					Fuse.Diagnostics.UserError( "Unrecognizied Plot Identifier: " + _key, this );
+					Fuse.Diagnostics.UserError("Unrecognizied Plot Identifier: " + _key, this);
 			}
 			
 			class UndefinedObject { }
@@ -228,17 +228,17 @@ namespace Fuse.Charting
 					
 				//these items are undefined if there is no data (important for animation)
 				if (_plot.PlotStats.Count == 0 && (_key == BaselineName || _key == DataMaxlineName ||
-					_key == DataMinlineName || _key == StepsName ))
+					_key == DataMinlineName || _key == StepsName))
 					return _undefined;
 					
-				if (_key == BaselineName )
+				if (_key == BaselineName)
 					return _plot.PlotStats.Baseline;
 					
-				if (_key == DataMaxlineName )
-					return _plot.ScreenValue(_plot.PlotStats.GetRelativeValue( _plot.DataStats.Maximum ));
+				if (_key == DataMaxlineName)
+					return _plot.ScreenValue(_plot.PlotStats.GetRelativeValue(_plot.DataStats.Maximum));
 						
-				if (_key == DataMinlineName )
-					return _plot.ScreenValue(_plot.PlotStats.GetRelativeValue( _plot.DataStats.Minimum ));
+				if (_key == DataMinlineName)
+					return _plot.ScreenValue(_plot.PlotStats.GetRelativeValue(_plot.DataStats.Minimum));
 			
 				if (_key == StepsName)
 					return _plot.ScreenSteps(_plot.PlotStats.Steps);

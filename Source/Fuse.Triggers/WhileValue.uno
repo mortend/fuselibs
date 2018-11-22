@@ -44,7 +44,7 @@ namespace Fuse.Triggers
 		{
 			if (!WhileValueStatic._deprecatedNote)
 			{
-				Fuse.Diagnostics.Deprecated( 
+				Fuse.Diagnostics.Deprecated(
 					"`Pulse` on a `WhileValue` will be removed, create a `Timeline` instead.",
 					this);
 				WhileValueStatic._deprecatedNote = true;

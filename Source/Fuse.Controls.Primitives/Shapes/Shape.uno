@@ -128,7 +128,7 @@ namespace Fuse.Controls
 			// When style is reset f is null (this should never happen anymore)
 			if (f == null)
 			{
-				Fuse.Diagnostics.InternalError( "Unexpected null brush", this );
+				Fuse.Diagnostics.InternalError("Unexpected null brush", this);
 				return;
 			}
 			
@@ -140,7 +140,7 @@ namespace Fuse.Controls
 				((DynamicBrush)f).AddPropertyListener(this);
 			}
 			
-			AddLoadingResource( f );
+			AddLoadingResource(f);
 			
 			InvalidateRenderBounds();
 			UpdateNativeShape();
@@ -151,7 +151,7 @@ namespace Fuse.Controls
 			// When style is reset f is null (this should never happen anymore)
 			if (f == null)
 			{
-				Fuse.Diagnostics.InternalError( "Unexpected null brush", this );
+				Fuse.Diagnostics.InternalError("Unexpected null brush", this);
 				return;
 			}
 			
@@ -163,7 +163,7 @@ namespace Fuse.Controls
 				((DynamicBrush)f).RemovePropertyListener(this);
 			}
 			
-			RemoveLoadingResource( f );
+			RemoveLoadingResource(f);
 
 			InvalidateRenderBounds();
 			UpdateNativeShape();
@@ -243,8 +243,8 @@ namespace Fuse.Controls
 				if (strokes.Count == 0 || !(strokes[0].Brush is SolidColor))
 				{
 					strokes.Clear();
-					strokes.Add( new Stroke{ Alignment= StrokeAlignment.Center,
-						Width = 1, Brush = new SolidColor{ Color = float4(0,0,0,1) } } );
+					strokes.Add(new Stroke{ Alignment= StrokeAlignment.Center,
+						Width = 1, Brush = new SolidColor{ Color = float4(0,0,0,1) } });
 				}
 				return strokes[0];
 			}
@@ -292,7 +292,7 @@ namespace Fuse.Controls
 			// When style is reset s is null (this should never happen anymore)
 			if (s == null)
 			{
-				Fuse.Diagnostics.InternalError( "Unexpected null stroke", this );
+				Fuse.Diagnostics.InternalError("Unexpected null stroke", this);
 				return;
 			}
 			
@@ -308,7 +308,7 @@ namespace Fuse.Controls
 		{
 			if (s == null)
 			{
-				Fuse.Diagnostics.InternalError( "Unexpected null stroke", this );
+				Fuse.Diagnostics.InternalError("Unexpected null stroke", this);
 				return;
 			}
 			

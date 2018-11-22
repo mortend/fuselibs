@@ -480,7 +480,7 @@ namespace Fuse.Controls
 					break;
 			}
 			
-			return Math.Clamp( a, 0, _points.Count-1 );
+			return Math.Clamp(a, 0, _points.Count-1);
 		}
 		
 		internal IList<LineSegment> TestLineSegments { get { return GetSegments(); } }
@@ -504,7 +504,7 @@ namespace Fuse.Controls
 				
 				if (Style == CurveStyle.Straight)
 				{
-					line.LineTo( _points[WrapPointsIndex(i)].At * rs );
+					line.LineTo(_points[WrapPointsIndex(i)].At * rs);
 					continue;
 				}
 				
@@ -514,7 +514,7 @@ namespace Fuse.Controls
 				var next2 = _points[WrapPointsIndex(i+1)];
 
 				float4 ta, tb;
-				Curves.KochanekBartelTangent( float4(prev.At,0,0), float4(cur.At,0,0), 
+				Curves.KochanekBartelTangent(float4(prev.At,0,0), float4(cur.At,0,0), 
 					float4(next.At,0,0), float4(next2.At,0,0),
 					_tension, _bias, _continuity, out ta, out tb); 				
 				
@@ -523,19 +523,19 @@ namespace Fuse.Controls
 				if (next.HasTangentIn)
 					tb = float4(next.TangentIn,0,0);
 					
-				Curves.CubicHermiteToBezier( float4(cur.At,0,0), float4(next.At,0,0), ref ta, ref tb );
+				Curves.CubicHermiteToBezier(float4(cur.At,0,0), float4(next.At,0,0), ref ta, ref tb);
 				
 				if (cur.HasControlOut)
 					ta = float4(cur.ControlOut,0,0);
 				if (next.HasControlIn)
 					tb = float4(next.ControlIn,0,0);
-				line.BezierCurveTo( next.At.XY * rs, ta.XY * rs, tb.XY * rs );
+				line.BezierCurveTo(next.At.XY * rs, ta.XY * rs, tb.XY * rs);
 			}
 			
 			if (Extrude != CurveExtrude.None)
 			{
-				line.LineTo( ExtrudePoint(_points[_points.Count-1].At) * rs );
-				line.LineTo( ExtrudePoint(_points[0].At) * rs);
+				line.LineTo(ExtrudePoint(_points[_points.Count-1].At) * rs);
+				line.LineTo(ExtrudePoint(_points[0].At) * rs);
 				line.ClosePath();
 			}
 			else if (Close != CurveClose.None)
@@ -548,7 +548,7 @@ namespace Fuse.Controls
 		
 		override protected Rect CalcShapeExtents()
 		{
-			return LineMetrics.GetBounds( GetSegments() );
+			return LineMetrics.GetBounds(GetSegments());
 		}
 	}
 }

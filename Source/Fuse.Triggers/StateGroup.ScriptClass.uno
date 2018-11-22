@@ -25,7 +25,7 @@ namespace Fuse.Triggers
 			var state = n.FindObjectByName(name, StateAcceptor) as State;
 			if (state == null)
 			{
-				Fuse.Diagnostics.UserError( "Unable to find State with Name: " + name, n);
+				Fuse.Diagnostics.UserError("Unable to find State with Name: " + name, n);
 				return;
 			}
 			n.Goto(state);
@@ -34,10 +34,10 @@ namespace Fuse.Triggers
 		/**
 			Transition to a target state.
 			
-			@scriptmethod goto( name )
+			@scriptmethod goto(name)
 			@param name The name of the target state.
 			
-			@scriptmethod goto( state )
+			@scriptmethod goto(state)
 			@param state The state object for the target state. This must be a @State that already 
 				exists in this @StateGroup.
 		*/
@@ -45,7 +45,7 @@ namespace Fuse.Triggers
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "StateGroup.goto requires 1 argument", n );
+				Fuse.Diagnostics.UserError("StateGroup.goto requires 1 argument", n);
 				return;
 			}
 			

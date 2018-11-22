@@ -37,7 +37,7 @@ namespace Fuse.Triggers
 				if (!_warning) 
 				{
 					//DEPRECATED: 2017-01-09
-					Fuse.Diagnostics.Deprecated( "Use the `Busy` behavior instead of FuseJS/BusyTask", this );
+					Fuse.Diagnostics.Deprecated("Use the `Busy` behavior instead of FuseJS/BusyTask", this);
 					_warning = true;
 				}
 				

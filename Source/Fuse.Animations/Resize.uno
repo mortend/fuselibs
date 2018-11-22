@@ -95,7 +95,7 @@ namespace Fuse.Animations
 			_target = Visual as IResize;
 			if (_target == null)
 			{
-				Fuse.Diagnostics.InternalError( "Resize started without a Target node", r );
+				Fuse.Diagnostics.InternalError("Resize started without a Target node", r);
 				_valid = false;
 				return;
 			}
@@ -103,7 +103,7 @@ namespace Fuse.Animations
 			_relativeTo = r.RelativeTo;
 			if (_relativeTo == null)
 			{
-				Fuse.Diagnostics.InternalError( "Resize started without as RelativeTo", r );
+				Fuse.Diagnostics.InternalError("Resize started without as RelativeTo", r);
 				_valid = false;
 				return;
 			}

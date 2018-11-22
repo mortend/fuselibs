@@ -34,7 +34,7 @@ namespace Fuse.Motion.Simulation
 			return s;
 		}
 		
-		static public SmoothSnap<T> CreateUnit( MotionUnit unit )
+		static public SmoothSnap<T> CreateUnit(MotionUnit unit)
 		{
 			switch(unit)
 			{
@@ -42,11 +42,11 @@ namespace Fuse.Motion.Simulation
 				case MotionUnit.Normalized: return CreateNormalized();
 				case MotionUnit.Radians: return CreateRadians();
 			}
-			throw new Exception( "Unsupported unit type: " +unit );
+			throw new Exception("Unsupported unit type: " +unit);
 		}
 		
 		float _scale = 1;
-		public SmoothSnap( float scale = _zeroTolerance )
+		public SmoothSnap(float scale = _zeroTolerance)
 		{
 			_scale = scale;
 		}
@@ -55,7 +55,7 @@ namespace Fuse.Motion.Simulation
 		public T Velocity { get; set; }
 		public T Destination { get; set; }
 		
-		public void Reset( T destination )
+		public void Reset(T destination)
 		{
 			Destination = destination;
 			Velocity = _blender.Zero;
@@ -93,7 +93,7 @@ namespace Fuse.Motion.Simulation
 				
 			This is not a stable value, and this must be called after other items are configured (Distance)
 		*/
-		public void SetDuration( float t )
+		public void SetDuration(float t)
 		{
 			var s = - (t * _speedMin - 2 * _speedDropoutDistance) / t;
 			//too low usually implies a unit mismatch, but be safe here
@@ -104,15 +104,15 @@ namespace Fuse.Motion.Simulation
 		{
 			get
 			{		
-				return _blender.Length( _blender.Sub( Destination, Position ) ) < _scale;
+				return _blender.Length(_blender.Sub(Destination, Position)) < _scale;
 			}
 		}
 		
-		public void Update( double elapsed )
+		public void Update(double elapsed)
 		{
-			var off = _blender.Sub( Destination, Position);
+			var off = _blender.Sub(Destination, Position);
 			double offLen;
-			var offUnit = _blender.ToUnit( off, out offLen );
+			var offUnit = _blender.ToUnit(off, out offLen);
 			
 			var useSpeed = Speed;
 			if (offLen < _speedDropoutDistance)
@@ -127,8 +127,8 @@ namespace Fuse.Motion.Simulation
 			
 			//TODO: acceleration to be friendly with current velocity (huge jerk now on non-stopped snap)
 			
-			Velocity = _blender.Weight( offUnit, useSpeed );
-			Position = _blender.Add( Position, _blender.Weight( Velocity, (float)elapsed ) );
+			Velocity = _blender.Weight(offUnit, useSpeed);
+			Position = _blender.Add(Position, _blender.Weight(Velocity, (float)elapsed));
 		}
 	}
 }

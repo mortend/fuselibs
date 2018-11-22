@@ -21,7 +21,7 @@ namespace Fuse.Reactive.Test
 			{
 				object data;
 				if (!Node.TryGetPrimeDataContext(out data))
-					throw new Exception( "Missing data" );
+					throw new Exception("Missing data");
 				s.AddObject("dataContext", data);
 			}
 		}
@@ -35,7 +35,7 @@ namespace Fuse.Reactive.Test
 			public void Perform()
 			{
 				if (Handler != null)
-					Handler(this, new DummyEventArgs(this) );
+					Handler(this, new DummyEventArgs(this));
 			}
 		}
 
@@ -67,7 +67,7 @@ namespace Fuse.Reactive.Test
 					c.FirstChild<FuseTest.Invoke>().Perform();
 				root.StepFrameJS();
 				
-				Assert.AreEqual( "si-la-one-two-", e.r.StringValue );
+				Assert.AreEqual("si-la-one-two-", e.r.StringValue);
 			}
 		}
 	}

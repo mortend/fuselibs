@@ -22,7 +22,7 @@ namespace Fuse
 			Min,
 			Max,
 		}
-		public abstract bool TryOp( TypeOp op, object a, object b, out object result );
+		public abstract bool TryOp(TypeOp op, object a, object b, out object result);
 		
 		public enum BoolOp
 		{
@@ -32,12 +32,12 @@ namespace Fuse
 			GreaterOrEqual,
 			EqualTo,
 		}
-		public abstract bool TryOp( BoolOp op, object a, object b, out bool result );
+		public abstract bool TryOp(BoolOp op, object a, object b, out bool result);
 	}
 
 	abstract class Computer<T>: Computer
 	{
-		public override bool TryOp( TypeOp op, object a, object b, out object result )
+		public override bool TryOp(TypeOp op, object a, object b, out object result)
 		{
 			T ma = default(T);
 			T mb = default(T);
@@ -53,14 +53,14 @@ namespace Fuse
 			return true;
 		}
 		
-		protected abstract bool TryOpImpl( TypeOp op, T a, T b, out T result );
+		protected abstract bool TryOpImpl(TypeOp op, T a, T b, out T result);
 		
 		public bool TryConvert(object o, out T result)
 		{
 			return Marshal.TryToType<T>(o, out result);
 		}
 
-		public override bool TryOp( BoolOp op, object a, object b, out bool result)
+		public override bool TryOp(BoolOp op, object a, object b, out bool result)
 		{ 
 			T ma = default(T);
 			T mb = default(T);
@@ -71,12 +71,12 @@ namespace Fuse
 			return TryOpImpl(op, ma,mb, out result);
 		}
 		
-		protected abstract bool TryOpImpl( BoolOp op, T a, T b, out bool result );
+		protected abstract bool TryOpImpl(BoolOp op, T a, T b, out bool result);
 	}
 
 	class StringComputer: Computer<string>
 	{
-		protected override bool TryOpImpl( TypeOp op, string a, string b, out string result )
+		protected override bool TryOpImpl(TypeOp op, string a, string b, out string result)
 		{
 			switch(op)
 			{
@@ -87,7 +87,7 @@ namespace Fuse
 			return false;
 		}
 		
-		protected override bool TryOpImpl( BoolOp op, string a, string b, out bool result )
+		protected override bool TryOpImpl(BoolOp op, string a, string b, out bool result)
 		{
 			switch(op)
 			{
@@ -101,7 +101,7 @@ namespace Fuse
 
 	class NumberComputer: Computer<double>
 	{
-		protected override bool TryOpImpl( TypeOp op, double a, double b, out double result )
+		protected override bool TryOpImpl(TypeOp op, double a, double b, out double result)
 		{
 			switch(op)
 			{
@@ -117,7 +117,7 @@ namespace Fuse
 			return false;
 		}
 		
-		protected override bool TryOpImpl( BoolOp op, double a, double b, out bool result )
+		protected override bool TryOpImpl(BoolOp op, double a, double b, out bool result)
 		{
 			switch(op)
 			{
@@ -135,13 +135,13 @@ namespace Fuse
 
 	class BoolComputer: Computer<bool>
 	{
-		protected override bool TryOpImpl( TypeOp op, bool a, bool b, out bool result )
+		protected override bool TryOpImpl(TypeOp op, bool a, bool b, out bool result)
 		{
 			result = false;
 			return false;
 		}
 
-		protected override bool TryOpImpl( BoolOp op, bool a, bool b, out bool result )
+		protected override bool TryOpImpl(BoolOp op, bool a, bool b, out bool result)
 		{
 			switch(op)
 			{
@@ -157,7 +157,7 @@ namespace Fuse
 
 	class SizeComputer: Computer<Size>
 	{
-		protected override bool TryOpImpl( TypeOp op, Size a, Size b, out Size result )
+		protected override bool TryOpImpl(TypeOp op, Size a, Size b, out Size result)
 		{
 			switch(op)
 			{
@@ -177,7 +177,7 @@ namespace Fuse
 			return false;
 		}
 	
-		protected override bool TryOpImpl( BoolOp op, Size a, Size b, out bool result )
+		protected override bool TryOpImpl(BoolOp op, Size a, Size b, out bool result)
 		{
 			switch(op)
 			{
@@ -195,7 +195,7 @@ namespace Fuse
 
 	class Size2Computer: Computer<Size2>
 	{
-		protected override bool TryOpImpl( TypeOp op, Size2 a, Size2 b, out Size2 result )
+		protected override bool TryOpImpl(TypeOp op, Size2 a, Size2 b, out Size2 result)
 		{
 			switch(op)
 			{
@@ -209,7 +209,7 @@ namespace Fuse
 			return false;
 		}
 		
-		protected override bool TryOpImpl( BoolOp op, Size2 a, Size2 b, out bool result )
+		protected override bool TryOpImpl(BoolOp op, Size2 a, Size2 b, out bool result)
 		{
 			switch(op)
 			{
@@ -223,7 +223,7 @@ namespace Fuse
 
 	class Float2Computer: Computer<float2>
 	{
-		protected override bool TryOpImpl( TypeOp op, float2 a, float2 b, out float2 result )
+		protected override bool TryOpImpl(TypeOp op, float2 a, float2 b, out float2 result)
 		{
 			switch(op)
 			{
@@ -237,7 +237,7 @@ namespace Fuse
 			return false;
 		}
 		
-		protected override bool TryOpImpl( BoolOp op, float2 a, float2 b, out bool result )
+		protected override bool TryOpImpl(BoolOp op, float2 a, float2 b, out bool result)
 		{
 			switch(op)
 			{
@@ -251,7 +251,7 @@ namespace Fuse
 
 	class Float3Computer: Computer<float3>
 	{
-		protected override bool TryOpImpl( TypeOp op, float3 a, float3 b, out float3 result )
+		protected override bool TryOpImpl(TypeOp op, float3 a, float3 b, out float3 result)
 		{
 			switch(op)
 			{
@@ -265,7 +265,7 @@ namespace Fuse
 			return false;
 		}
 		
-		protected override bool TryOpImpl( BoolOp op, float3 a, float3 b, out bool result )
+		protected override bool TryOpImpl(BoolOp op, float3 a, float3 b, out bool result)
 		{
 			switch(op)
 			{
@@ -279,7 +279,7 @@ namespace Fuse
 
 	class Float4Computer: Computer<float4>
 	{
-		protected override bool TryOpImpl( TypeOp op, float4 a, float4 b, out float4 result )
+		protected override bool TryOpImpl(TypeOp op, float4 a, float4 b, out float4 result)
 		{
 			switch(op)
 			{
@@ -293,7 +293,7 @@ namespace Fuse
 			return false;
 		}
 		
-		protected override bool TryOpImpl( BoolOp op, float4 a, float4 b, out bool result )
+		protected override bool TryOpImpl(BoolOp op, float4 a, float4 b, out bool result)
 		{
 			switch(op)
 			{

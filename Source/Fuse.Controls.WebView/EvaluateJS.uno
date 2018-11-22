@@ -57,7 +57,7 @@ namespace Fuse.Triggers.Actions
 		What this means is that any return value passed from the evaluated script must by necessity be returned as JSON and parsed back from it on the Fuse end. Even if all you want is the result of some arithmetic, you'd still receive it as a string and require a cast. Instead of forcing you to routinely `return JSON.stringify(foo)` from your own JS we handle this by *always* wrapping your JS in JSON.stringify before evaluation:
 
 		```JavaScript
-		JSON.stringify( (function() { USER_JS })() );
+		JSON.stringify((function() { USER_JS })());
 		```
 
 		The returned JSON string here is then put into a result object with the `json` key. This is for clarity, so you never forget that the data you are receiving is a JSON string that you will need to parse.
@@ -154,7 +154,7 @@ namespace Fuse.Triggers.Actions
 		void ResultHandler(string result)
 		{
 			if (Handler != null)
-				Handler(this, new JSEventArgs(result) );
+				Handler(this, new JSEventArgs(result));
 		}
 	}
 }

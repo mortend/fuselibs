@@ -54,7 +54,7 @@ namespace Fuse.Controls
 		{
 			if (_surface == null)
 			{
-				Fuse.Diagnostics.InternalError( "Prepare without surface", this );
+				Fuse.Diagnostics.InternalError("Prepare without surface", this);
 				return;
 			}
 			
@@ -67,7 +67,7 @@ namespace Fuse.Controls
 		{
 			if (_surface == null)
 			{
-				Fuse.Diagnostics.InternalError( "Prepare without surface", this );
+				Fuse.Diagnostics.InternalError("Prepare without surface", this);
 				return;
 			}
 			

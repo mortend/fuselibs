@@ -181,8 +181,8 @@ namespace Fuse
 			This does not directly change any sizes or invalidate any cached values. The actual changes done
 			during a call to `ArrangeMarginBox` must invalidate those as appropriate.
 		*/
-		public void InvalidateLayout( InvalidateLayoutReason reason = 
-			InvalidateLayoutReason.MarginBoxChanged )
+		public void InvalidateLayout(InvalidateLayoutReason reason = 
+			InvalidateLayoutReason.MarginBoxChanged)
 		{
 			if (_performingLayout) 
 				throw new Exception("Layout was invalidated while performing layout");
@@ -433,16 +433,16 @@ namespace Fuse
 				
 			_hasMarginBox = true;
 			if (LostMarginBox != null)
-				LostMarginBox( this, new LostMarginBoxArgs(this) );
+				LostMarginBox(this, new LostMarginBoxArgs(this));
 		}
 		
 		void RearrangeMarginBox()
 		{
 			if (!HasMarginBox)
 			{
-				throw new Exception( "Invalid call to RearrangeMarginBox" );
+				throw new Exception("Invalid call to RearrangeMarginBox");
 			}
-			ArrangeMarginBox( _ambPosition, _ambLayoutParams );
+			ArrangeMarginBox(_ambPosition, _ambLayoutParams);
 		}
 		
 		protected virtual float2 OnArrangeMarginBox(float2 position, LayoutParams lp)
@@ -491,13 +491,13 @@ namespace Fuse
 		
 		internal float2 MarginBoxPosition { get { return _ambPosition; } }
 		
-		internal void AdjustMarginBoxPosition( float2 position )
+		internal void AdjustMarginBoxPosition(float2 position)
 		{
 			ArrangeMarginBox(position, _ambLayoutParams);
 		}
 		
 		internal virtual bool CanAdjustMarginBox { get { return false; } }
-		internal virtual void OnAdjustMarginBoxPosition( float2 position ) { }
+		internal virtual void OnAdjustMarginBoxPosition(float2 position) { }
 
 		/**
 			Returns the origin of this Visual in the viewport (world) space.

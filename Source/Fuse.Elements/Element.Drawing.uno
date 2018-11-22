@@ -41,7 +41,7 @@ namespace Fuse.Elements
 					fsz + ", max-size: " + texture2D.MaxSize;
 				return null;
 			}
-			var fb = FramebufferPool.Lock( fsz, Uno.Graphics.Format.RGBA8888, false);
+			var fb = FramebufferPool.Lock(fsz, Uno.Graphics.Format.RGBA8888, false);
 			var cc = new OrthographicFrustum{
 				Origin = float2(region.Left - padding.X, region.Top - padding.Y),
 				Size = sz,
@@ -49,7 +49,7 @@ namespace Fuse.Elements
 
 			dc.PushRenderTargetFrustum(fb,cc);
 			dc.Clear(float4(0), 1);
-			//dc.PushScissor( new Recti(0, 0, fsz.X, fsz.Y));
+			//dc.PushScissor(new Recti(0, 0, fsz.X, fsz.Y));
 
 			DrawWithChildren(dc);
 
@@ -64,7 +64,7 @@ namespace Fuse.Elements
 		public override void Draw(DrawContext dc)
 		{
 			if (!IsRootingCompleted)
-				Fuse.Diagnostics.InternalError( "Draw called on a non-rooted node", this );
+				Fuse.Diagnostics.InternalError("Draw called on a non-rooted node", this);
 				
 			if (Visibility != Visibility.Visible)
 				return;

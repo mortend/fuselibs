@@ -36,13 +36,13 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				var a = e.a.ArrayValue;
-				Assert.AreEqual( 1, a.Length );
-				Assert.AreEqual( "one", a[0] );
+				Assert.AreEqual(1, a.Length);
+				Assert.AreEqual("one", a[0]);
 				
 				var b = e.b.ArrayValue;
-				Assert.AreEqual( 2, b.Length );
-				Assert.AreEqual( "one", b[0] );
-				Assert.AreEqual( "two", b[1] );
+				Assert.AreEqual(2, b.Length);
+				Assert.AreEqual("one", b[0]);
+				Assert.AreEqual("two", b[1]);
 			}
 		}
 		
@@ -52,13 +52,13 @@ namespace Fuse.Reactive.Test
 			var e = new UX.ExpressionFormat.JoinList();
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
-				Assert.AreEqual( "#2=one,two", e.a.ObjectValue );
-				Assert.AreEqual( "#2=one,two", e.b.StringValue );
+				Assert.AreEqual("#2=one,two", e.a.ObjectValue);
+				Assert.AreEqual("#2=one,two", e.b.StringValue);
 				
 				var a = e.c.ArrayValue;
-				Assert.AreEqual( 2, a.Length );
-				Assert.AreEqual( "#0=", a[0] );
-				Assert.AreEqual( "#2=a,b", a[1] );
+				Assert.AreEqual(2, a.Length);
+				Assert.AreEqual("#0=", a[0]);
+				Assert.AreEqual("#2=a,b", a[1]);
 			}
 		}
 		
@@ -69,8 +69,8 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				var a = e.d.ArrayValue;
-				Assert.AreEqual( 1, a.Length );
-				Assert.AreEqual( "#2=a,b", a[0] );
+				Assert.AreEqual(1, a.Length);
+				Assert.AreEqual("#2=a,b", a[0]);
 			}
 		}
 		
@@ -82,7 +82,7 @@ namespace Fuse.Reactive.Test
 			{
 				var x = e.a.Expression;
 				//The format is not guaranteed by Expression.ToString
-				Assert.AreEqual( "('a','b')", x.ToString() );
+				Assert.AreEqual("('a','b')", x.ToString());
 			}
 		}
 		
@@ -93,14 +93,14 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				var x = e.a.ArrayValue;
-				Assert.AreEqual( 2, x.Length );
-				Assert.AreEqual( "pine", (x[0] as Fuse.NameValuePair).Name );
+				Assert.AreEqual(2, x.Length);
+				Assert.AreEqual("pine", (x[0] as Fuse.NameValuePair).Name);
 				//format is not guaranteed, it could be an object here as well
-				Assert.AreEqual( "((pine: cone), (key: door))", x.ToString() );
+				Assert.AreEqual("((pine: cone), (key: door))", x.ToString());
 				
 				var y = e.b.IObjectValue;
-				Assert.AreEqual( "cone", y["pine"] );
-				Assert.AreEqual( "door", y["key"] );
+				Assert.AreEqual("cone", y["pine"]);
+				Assert.AreEqual("door", y["key"]);
 			}
 		}
 		
@@ -110,16 +110,16 @@ namespace Fuse.Reactive.Test
 			var e = new UX.ExpressionFormat.Array();
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
-				Assert.AreEqual( 1, e.b.ArrayValue.Length );
-				Assert.AreEqual( "one", e.b.ArrayValue[0] );
+				Assert.AreEqual(1, e.b.ArrayValue.Length);
+				Assert.AreEqual("one", e.b.ArrayValue[0]);
 				
-				Assert.AreEqual( 1, e.c.ArrayValue.Length );
+				Assert.AreEqual(1, e.c.ArrayValue.Length);
 				var nvp =  e.c.ArrayValue[0] as Fuse.NameValuePair;
-				Assert.AreEqual( "pine", nvp.Name );
-				Assert.AreEqual( "cone", nvp.Value );
+				Assert.AreEqual("pine", nvp.Name);
+				Assert.AreEqual("cone", nvp.Value);
 				
-				Assert.AreEqual( 1, e.d.ArrayValue.Length );
-				Assert.AreEqual( 7, e.d.ArrayValue[0] );
+				Assert.AreEqual(1, e.d.ArrayValue.Length);
+				Assert.AreEqual(7, e.d.ArrayValue[0]);
 			}
 		}
 	}
@@ -130,7 +130,7 @@ namespace FuseTest
 	[UXFunction("testJoin")]
 	public class TestJoin : SimpleVarArgFunction
 	{
-		protected override void OnNewArguments( Argument[] args, IListener listener )
+		protected override void OnNewArguments(Argument[] args, IListener listener)
 		{
 			var q = "#" + args.Length + "=";
 			for (int i=0; i < args.Length; ++i)

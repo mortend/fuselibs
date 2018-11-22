@@ -54,9 +54,9 @@ namespace Fuse.Test
 				p.P1.InvalidateLayout();
 				r.IncrementFrame();
 
-				Assert.AreEqual(0, p.P2.OnArrangeMarginBoxCount );
-				Assert.AreEqual(1, p.P1.OnArrangeMarginBoxCount );
-				Assert.AreEqual(0, p.D2.OnArrangeMarginBoxCount );
+				Assert.AreEqual(0, p.P2.OnArrangeMarginBoxCount);
+				Assert.AreEqual(1, p.P1.OnArrangeMarginBoxCount);
+				Assert.AreEqual(0, p.D2.OnArrangeMarginBoxCount);
 				
 				p.P2.OnArrangeMarginBoxCount = 0;
 				p.P1.OnArrangeMarginBoxCount = 0;
@@ -64,9 +64,9 @@ namespace Fuse.Test
 
 				p.P2.InvalidateLayout();
 				r.IncrementFrame();
-				Assert.AreEqual(1, p.P2.OnArrangeMarginBoxCount );
-				Assert.AreEqual(0, p.P1.OnArrangeMarginBoxCount );
-				//TODO: Assert.AreEqual(0, p.D1.OnArrangeMarginBoxCount );
+				Assert.AreEqual(1, p.P2.OnArrangeMarginBoxCount);
+				Assert.AreEqual(0, p.P1.OnArrangeMarginBoxCount);
+				//TODO: Assert.AreEqual(0, p.D1.OnArrangeMarginBoxCount);
 				
 				p.P4.OnArrangeMarginBoxCount = 0;
 				p.P3.OnArrangeMarginBoxCount = 0;
@@ -78,14 +78,14 @@ namespace Fuse.Test
 
 				p.P3.Width = Size.Points(60);
 				r.IncrementFrame();
-				Assert.AreEqual(0, p.P4.OnArrangeMarginBoxCount );
-				Assert.AreEqual(1, p.P3.OnArrangeMarginBoxCount );
-				Assert.AreEqual(1, p.D2.OnArrangeMarginBoxCount );
-				Assert.AreEqual(0, p.P6.OnArrangeMarginBoxCount );
-				Assert.AreEqual(1, p.P5.OnArrangeMarginBoxCount );
+				Assert.AreEqual(0, p.P4.OnArrangeMarginBoxCount);
+				Assert.AreEqual(1, p.P3.OnArrangeMarginBoxCount);
+				Assert.AreEqual(1, p.D2.OnArrangeMarginBoxCount);
+				Assert.AreEqual(0, p.P6.OnArrangeMarginBoxCount);
+				Assert.AreEqual(1, p.P5.OnArrangeMarginBoxCount);
 				
-				Assert.AreEqual(0, p.P7.OnArrangeMarginBoxCount );
-				Assert.AreEqual(1, p.P7.OnAdjustMarginBoxPositionCount );
+				Assert.AreEqual(0, p.P7.OnArrangeMarginBoxCount);
+				Assert.AreEqual(1, p.P7.OnAdjustMarginBoxPositionCount);
 				Assert.AreEqual(float2(60,0), p.P7.ActualPosition);
 			}
 		}

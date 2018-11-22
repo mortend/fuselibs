@@ -101,7 +101,7 @@ namespace Fuse.Drawing
 		float2 GetSize()
 		{
 			if (Source != null) 
-				return _container.Sizing.CalcContentSize( Source.Size, Source.PixelSize );
+				return _container.Sizing.CalcContentSize(Source.Size, Source.PixelSize);
 			return float2(0);
 		}
 
@@ -134,13 +134,13 @@ namespace Fuse.Drawing
 			_container.Sizing.absoluteZoom = dc == null ? 1f : dc.ViewportPixelsPerPoint;
 
 			var contentDesiredSize = GetSize();
-			var scale = _container.Sizing.CalcScale( canvasSize, contentDesiredSize );
-			var origin = _container.Sizing.CalcOrigin( canvasSize, contentDesiredSize * scale );
+			var scale = _container.Sizing.CalcScale(canvasSize, contentDesiredSize);
+			var origin = _container.Sizing.CalcOrigin(canvasSize, contentDesiredSize * scale);
 
 			var dp = new DrawParams();
 			dp.Origin = origin;
 			dp.Size = contentDesiredSize * scale;
-			dp.UVClip = _container.Sizing.CalcClip( canvasSize, ref dp.Origin, ref dp.Size );
+			dp.UVClip = _container.Sizing.CalcClip(canvasSize, ref dp.Origin, ref dp.Size);
 			dp.Texture = _container.GetTexture();
 
 			if (dp.Texture != null && !dp.Texture.IsPow2 && WrapMode == WrapMode.Repeat && !Texture2D.HaveNonPow2Support)

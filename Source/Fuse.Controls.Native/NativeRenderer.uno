@@ -214,13 +214,13 @@ namespace Fuse.Controls.Native
 		static IntPtr AllocPixelBuffer(int width, int height)
 		{
 			var size = width * height * 4;
-			return extern<IntPtr>(size)"malloc( $0 )";
+			return extern<IntPtr>(size)"malloc($0)";
 		}
 
 		extern(iOS)
 		static void FreePixelBuffer(IntPtr buffer)
 		{
-			extern(buffer)"free( $0 )";
+			extern(buffer)"free($0)";
 		}
 
 		[Foreign(Language.Java)]

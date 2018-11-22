@@ -2,7 +2,7 @@
 	<JavaScript>
 		var Observable = require("FuseJS/Observable")
 		
-		exports.items = Observable( Observable(), Observable() )
+		exports.items = Observable(Observable(), Observable())
 		
 		exports.second = function() {
 			exports.items.getAt(1).value = { tpl: "one", value: 2 }

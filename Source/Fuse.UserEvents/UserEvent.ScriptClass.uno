@@ -18,7 +18,7 @@ namespace Fuse
 		/**
 			Raises a UserEvent with an optional set of arguments.
 			
-			@scriptmethod raise( args )
+			@scriptmethod raise(args)
 			
 			@param args (Object) _(optional)_ A plain JavaScript object
 				representing name-value pairs of arguments to be passed with the
@@ -73,15 +73,15 @@ namespace Fuse
 			
 			if (args.Length > 1)
 			{
-				Fuse.Diagnostics.UserError( "Raise must be called with zero arguments, or one argument defining the arguments to the event", n );
+				Fuse.Diagnostics.UserError("Raise must be called with zero arguments, or one argument defining the arguments to the event", n);
 				return;
 			}
 			
 			var so = args[0] as IObject;
 			if (so == null)
 			{
-				Fuse.Diagnostics.UserError( "Raise must be called with a JavaScript object to define name/value pairs", 
-					args[0] );
+				Fuse.Diagnostics.UserError("Raise must be called with a JavaScript object to define name/value pairs", 
+					args[0]);
 				return;
 			}
 			

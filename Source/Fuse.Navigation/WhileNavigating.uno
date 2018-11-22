@@ -38,12 +38,12 @@ namespace Fuse.Navigation
 			_context = Navigation.TryFind(Parent);
 			if (_context == null)
 			{
-				Diagnostics.UserError( "WhileNavigating requires a Navigation context", this );
+				Diagnostics.UserError("WhileNavigating requires a Navigation context", this);
 				return;
 			}
 			
 			_context.StateChanged += OnStateChanged;
-			SetActive( _context.State != NavigationState.Stable );
+			SetActive(_context.State != NavigationState.Stable);
 		}
 
 		protected override void OnUnrooted()

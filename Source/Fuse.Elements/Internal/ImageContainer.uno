@@ -88,7 +88,7 @@ namespace Fuse.Internal
 			}
 		}
 
-		void ReapplyOptions( ImageSource src )
+		void ReapplyOptions(ImageSource src)
 		{
 			var f = src as FileImageSource;
 			if (f != null && MemoryPolicy != null)
@@ -174,7 +174,7 @@ namespace Fuse.Internal
 			//defensive check
 			if (_source == null)
 			{
-				Fuse.Diagnostics.InternalError( "Switching listen state on null Image", this );
+				Fuse.Diagnostics.InternalError("Switching listen state on null Image", this);
 				_isSourceListen = false;
 				return;
 			}
@@ -264,16 +264,16 @@ namespace Fuse.Internal
 		*/
 		void CheckPinning()
 		{
-			if( _source == null )
+			if(_source == null)
 				return;
 
 			bool on = _isRooted;
 			if (MemoryPolicy.UnpinInvisible && !_isVisible)
 				on = false;
 				
-			if( on != _sourcePinned )
+			if(on != _sourcePinned)
 			{
-				if( on )
+				if(on)
 					_source.Pin();
 				else
 					_source.Unpin();
@@ -348,7 +348,7 @@ namespace Fuse.Internal
 			get { return Sizing.align; }
 			set
 			{
-				if (Sizing.SetAlignment(value) )
+				if (Sizing.SetAlignment(value))
 					OnSizingChanged();
 			}
 		}

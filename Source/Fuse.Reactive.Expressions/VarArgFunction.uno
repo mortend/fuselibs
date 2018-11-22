@@ -37,7 +37,7 @@ namespace Fuse.Reactive
 			/** @deprecated Use constructor without context and call Init(context) instead 2017-12-15 */
 			[Obsolete]
 			protected Subscription(VarArgFunction func, IContext context)
-				: base( func.Arguments.ToArray(), Flags.AllOptional )
+				: base(func.Arguments.ToArray(), Flags.AllOptional)
 			{
 				_func = func;
 				_context = context;
@@ -45,7 +45,7 @@ namespace Fuse.Reactive
 			
 			/** Be sure to call "Init" after done initializing */
 			protected Subscription(VarArgFunction func)
-				: base( func.Arguments.ToArray(), Flags.AllOptional )
+				: base(func.Arguments.ToArray(), Flags.AllOptional)
 			{
 				_func = func;
 			}
@@ -67,7 +67,7 @@ namespace Fuse.Reactive
 			protected virtual void ClearData()
 			{
 				//default implementation deprecated 2017-12-15
-				Fuse.Diagnostics.UserError( "VarArgFunction.Subscription.ClearData() should be implemented", this );
+				Fuse.Diagnostics.UserError("VarArgFunction.Subscription.ClearData() should be implemented", this);
 			}
 			
 			protected override sealed void OnArguments(Expression.Argument[] args)

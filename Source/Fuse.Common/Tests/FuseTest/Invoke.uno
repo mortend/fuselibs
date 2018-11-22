@@ -11,7 +11,7 @@ namespace FuseTest
 		public void Perform()
 		{
 			if (Handler != null)
-				Handler(this, new VisualEventArgs(Parent) );
+				Handler(this, new VisualEventArgs(Parent));
 		}
 	}
 }

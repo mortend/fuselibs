@@ -85,7 +85,7 @@ namespace Fuse.Controls
 			InvalidateRenderBounds();
 		}
 
-		protected override float2 GetContentSize( LayoutParams lp )
+		protected override float2 GetContentSize(LayoutParams lp)
 		{
 			var b = base.GetContentSize(lp);
 			if (_textRenderer != null)
@@ -96,7 +96,7 @@ namespace Fuse.Controls
 			return b;
 		}
 		
-		protected override void ArrangePaddingBox( LayoutParams lp )
+		protected override void ArrangePaddingBox(LayoutParams lp)
 		{
 			base.ArrangePaddingBox(lp);
 
@@ -135,7 +135,7 @@ namespace Fuse.Controls
 			get
 			{
 				var b = base.HitTestLocalVisualBounds;
-				b = b.AddRect( float2(0), ActualSize );
+				b = b.AddRect(float2(0), ActualSize);
 				return b;
 			}
 		}

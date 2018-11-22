@@ -8,7 +8,7 @@ namespace Fuse.Reactive
 	class UnmappedView<T> : IArray where T : class
 	{
 		ObserverMap<T> _source;
-		public UnmappedView( ObserverMap<T> source )
+		public UnmappedView(ObserverMap<T> source)
 		{
 			_source = source;
 		}
@@ -55,7 +55,7 @@ namespace Fuse.Reactive
 				copies of the events. This is important especially when this map updates the observable,
 				we don't want the slave getting events for that.
 		*/
-		public void Attach( IArray src, IObserver slave = null ) 
+		public void Attach(IArray src, IObserver slave = null) 
 		{
 			Detach();
 			_source = src;
@@ -69,7 +69,7 @@ namespace Fuse.Reactive
 				_disposable = _observable.Subscribe(this);
 				_subscription = _disposable as ISubscription;
 				if (_subscription == null)
-					Fuse.Diagnostics.InternalError( "An observable with write-back is expected", this );
+					Fuse.Diagnostics.InternalError("An observable with write-back is expected", this);
 			}
 			
 			//treat the bound observable as the source-of-truth
@@ -92,19 +92,19 @@ namespace Fuse.Reactive
 			_slave = null;
 		}
 		
-		public void Add( T value )
+		public void Add(T value)
 		{
 			_list.Add(value);
 			UpdateBacking();
 		}
 		
-		public void RemoveAt( int index )
+		public void RemoveAt(int index)
 		{
 			_list.RemoveAt(index);
 			UpdateBacking();
 		}
 		
-		public void Insert( int index, T value )
+		public void Insert(int index, T value)
 		{
 			_list.Insert(index, value);
 			UpdateBacking();
@@ -122,7 +122,7 @@ namespace Fuse.Reactive
 				return;
 	
 			IArray uv = 	new UnmappedView<T>(this);
-			_subscription.ReplaceAllExclusive( uv );	
+			_subscription.ReplaceAllExclusive(uv);	
 		}
 		
 		void IObserver.OnClear()
@@ -142,7 +142,7 @@ namespace Fuse.Reactive
 			
 			_list.Clear();
 			for (int i=0; i < values.Length;  ++i)
-				_list.Add( Map(values[i]) );
+				_list.Add(Map(values[i]));
 			OnUpdated();
 			
 			if (_slave != null)
@@ -165,7 +165,7 @@ namespace Fuse.Reactive
 			if (_subscription == null) return; //workaround, see Attach
 		
 			_list.Clear();
-			_list.Add( Map(newValue) );
+			_list.Add(Map(newValue));
 			OnUpdated();
 			
 			if (_slave != null)
@@ -176,7 +176,7 @@ namespace Fuse.Reactive
 		{
 			if (_subscription == null) return; //workaround, see Attach
 
-			_list.Add( Map(addedValue) );
+			_list.Add(Map(addedValue));
 			OnUpdated();
 			
 			if (_slave != null)

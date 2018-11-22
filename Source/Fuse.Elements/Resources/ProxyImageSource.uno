@@ -7,7 +7,7 @@ namespace Fuse.Resources
 	sealed class ProxyImageSource
 	{
 		ImageSource _outer;
-		public ProxyImageSource( ImageSource outer ) 
+		public ProxyImageSource(ImageSource outer) 
 		{ 
 			_outer = outer;
 		}
@@ -138,15 +138,15 @@ namespace Fuse.Resources
 		
 		void ProxyOnChanged(object s, EventArgs a) 
 		{
-			_outer.ProxyChanged( this, a );
+			_outer.ProxyChanged(this, a);
 		}
 		
 		void ProxyOnError(object s, ImageSourceErrorArgs a) 
 		{
-			_outer.ProxyError( this, a );
+			_outer.ProxyError(this, a);
 		}
 		
-		public void Attach( ImageSource impl )
+		public void Attach(ImageSource impl)
 		{
 			_impl = impl;
 			_impl.Changed += ProxyOnChanged;
@@ -158,7 +158,7 @@ namespace Fuse.Resources
 			if (loading != null)
 				loading.Policy = _policy;
 					
-			_outer.ProxyChanged( this, new EventArgs() );
+			_outer.ProxyChanged(this, new EventArgs());
 		}
 	}
 	

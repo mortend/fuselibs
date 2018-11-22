@@ -6,7 +6,7 @@ export default class List {
 	}
 	
 	add() {
-		this.items.push( this._count )
+		this.items.push(this._count)
 		this._count++
 	}
 	
@@ -19,7 +19,7 @@ export default class List {
 	}
 	
 	sort() {
-		this.items.sort( function(a,b) { return a - b } )
+		this.items.sort(function(a,b) { return a - b })
 	}
 }
 

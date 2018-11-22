@@ -27,7 +27,7 @@ namespace Fuse.Reactive
 		}
 
 		LetObservable _observable;
-		public void SetObjectValue( object value, IPropertyListener origin)
+		public void SetObjectValue(object value, IPropertyListener origin)
 		{
 			if (_hasValue && Object.Equals(_value, value))
 				return;
@@ -38,21 +38,21 @@ namespace Fuse.Reactive
 		}
 
 		bool _updated;
-		void UpdateValue( IPropertyListener origin )
+		void UpdateValue(IPropertyListener origin)
 		{
 			_updated = true;
-			OnPropertyChanged( ValueName, origin );
+			OnPropertyChanged(ValueName, origin);
 			if (_value is IObservable)
 			{
 				_observable = null;
-				DataChanged( _value );
+				DataChanged(_value);
 			}
 			else
 			{
 				if (_observable == null)
 				{
 					_observable = new LetObservable(this);
-					DataChanged( _observable );
+					DataChanged(_observable);
 				}
 				else if (_hasValue)
 				{
@@ -65,17 +65,17 @@ namespace Fuse.Reactive
 			}
 		}
 		
-		void DataChanged( object newValue )
+		void DataChanged(object newValue)
 		{
 			// it's possible to arrive here prior to `Name` being set since property order is not guaranteed in the UX compiler
 			if (Name == null)
 			{
 				if (IsRootingStarted)
-					Fuse.Diagnostics.UserWarning( "Missing a `Name` for Let", this );
+					Fuse.Diagnostics.UserWarning("Missing a `Name` for Let", this);
 				return;
 			}
 				
-			OnDataChanged( Name, newValue );
+			OnDataChanged(Name, newValue);
 		}
 		
 		internal void ResetObjectValue()
@@ -110,11 +110,11 @@ namespace Fuse.Reactive
 		{
 			_observable = null;
 			//TODO: https://github.com/fuse-open/fuselibs/issues/789
-			DataChanged( null );
+			DataChanged(null);
 			base.OnUnrooted();
 		}		
 		
-		ContextDataResult ISiblingDataProvider.TryGetDataProvider( DataType type, out object provider )
+		ContextDataResult ISiblingDataProvider.TryGetDataProvider(DataType type, out object provider)
 		{
 			provider = type != DataType.Key ? null : this;
 			return ContextDataResult.Continue;
@@ -148,7 +148,7 @@ namespace Fuse.Reactive
 		List<IObserver> _observers;
 		LetBase _let;
 		
-		public LetObservable( LetBase let )
+		public LetObservable(LetBase let)
 		{
 			_let = let;
 		}
@@ -216,16 +216,16 @@ namespace Fuse.Reactive
 				Source.Unsubscribe(Observer);
 			}
 			
-			public void ClearExclusive() { Fuse.Diagnostics.InternalError( "Unsupported", this ); }
+			public void ClearExclusive() { Fuse.Diagnostics.InternalError("Unsupported", this); }
 			public void SetExclusive(object newValue) 
 			{ 
-				Source._let.SetObjectValue( newValue, Source._let);
+				Source._let.SetObjectValue(newValue, Source._let);
 			}
-			public void ReplaceAllExclusive(IArray values)  { Fuse.Diagnostics.InternalError( "Unsupported", this ); }
+			public void ReplaceAllExclusive(IArray values)  { Fuse.Diagnostics.InternalError("Unsupported", this); }
 
-			public void ClearExclusive(Scripting.Context context)  { Fuse.Diagnostics.InternalError( "Unsupported", this ); }
-			public void SetExclusive(Scripting.Context context, object newValue)  { Fuse.Diagnostics.InternalError( "Unsupported", this ); }
-			public void ReplaceAllExclusive(Scripting.Context context, IArray values)  { Fuse.Diagnostics.InternalError( "Unsupported", this ); }
+			public void ClearExclusive(Scripting.Context context)  { Fuse.Diagnostics.InternalError("Unsupported", this); }
+			public void SetExclusive(Scripting.Context context, object newValue)  { Fuse.Diagnostics.InternalError("Unsupported", this); }
+			public void ReplaceAllExclusive(Scripting.Context context, IArray values)  { Fuse.Diagnostics.InternalError("Unsupported", this); }
 		}
 	}
 	
@@ -280,7 +280,7 @@ namespace Fuse.Reactive
 			set { SetValue(value, this); }
 		}
 		
-		public void SetValue( object value, IPropertyListener origin)
+		public void SetValue(object value, IPropertyListener origin)
 		{
 			SetObjectValue(value, origin);
 		}
@@ -316,7 +316,7 @@ namespace Fuse.Reactive
 		
 		void IListener.OnNewData(IExpression source, object value)
 		{
-			SetObjectValue( value, this );
+			SetObjectValue(value, this);
 		}
 		
 		void IListener.OnLostData(IExpression source)
@@ -354,14 +354,14 @@ namespace Fuse.Reactive
 			{ 
 				//need marshalling since two-way bindings might set a non-T, but compatible value
 				T result = default(T);
-				if (HasValue && Marshal.TryToType<T>( ObjectValue, out result))
+				if (HasValue && Marshal.TryToType<T>(ObjectValue, out result))
 					return result;
 				return default(T); 
 			}
 			set { SetValue(value, this); }
 		}
 		
-		public void SetValue( T value, IPropertyListener origin )
+		public void SetValue(T value, IPropertyListener origin)
 		{
 			SetObjectValue(value, origin);
 		}

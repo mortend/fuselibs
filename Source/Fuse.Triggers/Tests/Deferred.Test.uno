@@ -46,7 +46,7 @@ namespace Fuse.Test
 			var p = new UX.DeferredBusy();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "Busy", GetText(p));
+				Assert.AreEqual("Busy", GetText(p));
 				root.StepFrame();
 				Assert.AreEqual("1", GetText(p));
 			}
@@ -84,26 +84,26 @@ namespace Fuse.Test
 			{
 				root.StepFrameJS();
 				root.StepFrameDeferred();
-				Assert.AreEqual( "01", GetText(p));
+				Assert.AreEqual("01", GetText(p));
 
 				p.CallAdd.Perform();
 				root.StepFrameJS();
 				root.StepFrameDeferred();
-				Assert.AreEqual( "012", GetText(p));
+				Assert.AreEqual("012", GetText(p));
 
 				p.CallAdd.Perform();
 				root.StepFrameJS();
 				root.StepFrameDeferred();
-				Assert.AreEqual( "0123", GetText(p));
+				Assert.AreEqual("0123", GetText(p));
 
 				p.CallRemove1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "023", GetText(p));
+				Assert.AreEqual("023", GetText(p));
 
 				p.CallAdd2.Perform();
 				root.StepFrameJS();
 				root.StepFrameDeferred();
-				Assert.AreEqual( "0243", GetText(p));
+				Assert.AreEqual("0243", GetText(p));
 			}
 		}
 		
@@ -114,7 +114,7 @@ namespace Fuse.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameDeferred();
-				Assert.AreEqual( "123", GetText(p) );
+				Assert.AreEqual("123", GetText(p));
 			}
 		}
 	}

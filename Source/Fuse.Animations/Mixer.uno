@@ -21,8 +21,8 @@ namespace Fuse.Animations
 
 	public interface IMixer
 	{
-		IMixerHandle<T> Register<T>( Uno.UX.Property<T> property, MixOp mode );
-		IMixerHandle<Transform> RegisterTransform( Visual element, MixOp mode, int priority = 0 );
+		IMixerHandle<T> Register<T>(Uno.UX.Property<T> property, MixOp mode);
+		IMixerHandle<Transform> RegisterTransform(Visual element, MixOp mode, int priority = 0);
 	}
 	
 	public interface IMixerHandle<T>
@@ -46,7 +46,7 @@ namespace Fuse.Animations
 	{
 		Dictionary<object,object> Masters = new Dictionary<object,object>();
 		
-		public IMixerHandle<T> Register<T>( Uno.UX.Property<T> property, MixOp mode )
+		public IMixerHandle<T> Register<T>(Uno.UX.Property<T> property, MixOp mode)
 		{
 			object master;
 			if (!Masters.TryGetValue(property, out master))
@@ -60,7 +60,7 @@ namespace Fuse.Animations
 		}
 
 		PropertyHandle _propHandle = Fuse.Properties.CreateHandle();
-		public IMixerHandle<Transform> RegisterTransform( Visual element, MixOp mode, int priority = 0 )
+		public IMixerHandle<Transform> RegisterTransform(Visual element, MixOp mode, int priority = 0)
 		{
 			object master;
 			if (!element.Properties.TryGet(_propHandle, out master))
@@ -86,16 +86,16 @@ namespace Fuse.Animations
 				trans.Visual.Properties.Clear(_propHandle);
 		}
 		
-		abstract protected MasterProperty<T> CreateMaster<T>( Uno.UX.Property<T> property,
+		abstract protected MasterProperty<T> CreateMaster<T>(Uno.UX.Property<T> property,
 			MixerBase mixerBase);
-		abstract protected MasterBase<Transform> CreateMasterTransform( Visual element,
+		abstract protected MasterBase<Transform> CreateMasterTransform(Visual element,
 			MixerBase mixerBase);
 	}
 	
 	abstract class MasterBase<T> : IMixerMaster
 	{
 		MixerBase _mixerBase;
-		protected MasterBase( MixerBase mixerBase = null )
+		protected MasterBase(MixerBase mixerBase = null)
 		{
 			_mixerBase = mixerBase;
 		}
@@ -115,7 +115,7 @@ namespace Fuse.Animations
 		{
 			if (_inactive)
 			{
-				Fuse.Diagnostics.InternalError( "Attempt to register in inactive Master", this);
+				Fuse.Diagnostics.InternalError("Attempt to register in inactive Master", this);
 				return;
 			}
 			
@@ -213,7 +213,7 @@ namespace Fuse.Animations
 		internal Uno.UX.Property<T> Property;
 		public object GetPropertyObject() { return Property; }
 		
-		protected MasterProperty( Uno.UX.Property<T> property, MixerBase mixerBase )
+		protected MasterProperty(Uno.UX.Property<T> property, MixerBase mixerBase)
 			: base(mixerBase)
 		{
 			Property = property;
@@ -243,8 +243,8 @@ namespace Fuse.Animations
 		{
 			if (_isListening)
 			{
-				Property.RemoveListener( this );
-				Property.Set( RestValue, this );
+				Property.RemoveListener(this);
+				Property.Set(RestValue, this);
 				_isListening = false;
 			}
 		}
@@ -331,8 +331,8 @@ namespace Fuse.Animations
 		protected override bool PostLayout { get { return true; } }
 		
 		internal Visual Visual;
-		protected MasterTransform( Visual node, MixerBase mixerBase ) :
-			base( mixerBase )
+		protected MasterTransform(Visual node, MixerBase mixerBase) :
+			base(mixerBase)
 		{
 			Visual = node;
 		}
@@ -370,7 +370,7 @@ namespace Fuse.Animations
 		public int Priority { get; private set; }
 		
 		MasterBase<T> Master;
-		public MixerHandle( MasterBase<T> master, MixOp mode, int priority )
+		public MixerHandle(MasterBase<T> master, MixOp mode, int priority)
 		{
 			Priority = priority;
 			Master = master;

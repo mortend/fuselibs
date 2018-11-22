@@ -28,7 +28,7 @@ namespace Fuse.Animations.Test
 					p.T1.Progress = progress;
 					root.IncrementFrame();
 					Assert.AreEqual(50 + (100-50) * e, p.R1.Height.Value, 1e-4);
-					Assert.AreEqual( Math.Lerp(50,100, Math.Clamp(e,0,1)), p.R2.Height.Value, 1e-4);
+					Assert.AreEqual(Math.Lerp(50,100, Math.Clamp(e,0,1)), p.R2.Height.Value, 1e-4);
 					Assert.AreEqual(50 + 100 * e, p.R3.Height.Value, 1e-4);
 				}
 			}

@@ -16,7 +16,7 @@ namespace Fuse.Drawing
 			}
 			catch (Exception ex)
 			{
-				Fuse.Diagnostics.UserError( "Unsupported SVG Path data", data );
+				Fuse.Diagnostics.UserError("Unsupported SVG Path data", data);
 			}
 		}
 	}
@@ -51,7 +51,7 @@ namespace Fuse.Drawing
 						StartNewToken(i-1, i+1); 
 						break;
 					case '-':
-						if( !wasExponent )
+						if(!wasExponent)
 							StartNewToken(i-1, i);
 						break;
 
@@ -84,7 +84,7 @@ namespace Fuse.Drawing
 			_prevToken.Last = _data.Length-1;
 
 			// remove empty tokens from list
-			for (var token = _headToken.Next; token != null; )
+			for (var token = _headToken.Next; token != null;)
 			{
 				var next = token.Next;
 				while (next != null && ((next.Last - next.First) < 0))
@@ -130,8 +130,8 @@ namespace Fuse.Drawing
 			
 			if (!_hasCurrentPoint && c != 'm' && c != 'M')
 			{
-				Fuse.Diagnostics.UserError( "Path data must start with a move 'M' or 'm' operation: " 
-					+ _data, this );
+				Fuse.Diagnostics.UserError("Path data must start with a move 'M' or 'm' operation: " 
+					+ _data, this);
 				//behavior is undefined at this point (nothing will crash, just may not draw anything valid)
 				
 			}
@@ -290,7 +290,7 @@ namespace Fuse.Drawing
 		{
 			var a = ReadFloat();
 			var b = ReadFloat();
-			return float2( a, b );
+			return float2(a, b);
 		}
 	}
 

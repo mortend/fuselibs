@@ -45,7 +45,7 @@ namespace Fuse.Triggers.Actions
 			var t = Target;
 			if (t == null)
 			{
-				Fuse.Diagnostics.UserError( "`TimelineAction` called without a `Timeline` `Target`", this );
+				Fuse.Diagnostics.UserError("`TimelineAction` called without a `Timeline` `Target`", this);
 				return;
 			}
 			

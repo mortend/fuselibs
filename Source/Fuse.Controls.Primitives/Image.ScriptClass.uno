@@ -17,7 +17,7 @@ namespace Fuse.Controls
 		/**
 			Reload the image source.
 			
-			@scriptmethod reload( )
+			@scriptmethod reload()
 		*/
 		static void reload(Image img)
 		{
@@ -29,7 +29,7 @@ namespace Fuse.Controls
 		/**
 			Reload the image source if it is in a failed state.
 			
-			@scriptmethod retry( )
+			@scriptmethod retry()
 		*/
 		static void retry(Image img)
 		{

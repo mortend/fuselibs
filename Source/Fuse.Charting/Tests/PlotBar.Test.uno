@@ -145,14 +145,14 @@ namespace Fuse.Charting.Test
 			}
 		}
 		
-		void Compare( float x, float y, float width, float height, Element e,
+		void Compare(float x, float y, float width, float height, Element e,
 			[CallerFilePath] string filePath = "",
 			[CallerLineNumber] int lineNumber = 0,
 			[CallerMemberName] string memberName = "")
 		{
-			Assert.AreEqual( float2(x,y), e.ActualPosition, Assert.ZeroTolerance, filePath, lineNumber, 
+			Assert.AreEqual(float2(x,y), e.ActualPosition, Assert.ZeroTolerance, filePath, lineNumber, 
 				memberName + "-Position");
-			Assert.AreEqual( float2(width,height), e.ActualSize, Assert.ZeroTolerance, filePath, lineNumber,
+			Assert.AreEqual(float2(width,height), e.ActualSize, Assert.ZeroTolerance, filePath, lineNumber,
 				memberName + "-Size");
 		}
 	}

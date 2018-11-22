@@ -5,9 +5,9 @@ namespace Fuse.Controls
 {
 	public abstract partial class EllipticalShape : Shape
 	{
-		static Selector EndAngleName = new Selector( "EndAngle" );
-		static Selector StartAngleName=  new Selector( "StartAngle" );
-		static Selector LengthAngleName = new Selector( "LengthAngle" );
+		static Selector EndAngleName = new Selector("EndAngle");
+		static Selector StartAngleName=  new Selector("StartAngle");
+		static Selector LengthAngleName = new Selector("LengthAngle");
 		
 		float _startAngle, _endAngle;
 		bool _hasAngle;

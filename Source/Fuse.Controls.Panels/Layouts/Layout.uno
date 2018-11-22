@@ -47,7 +47,7 @@ namespace Fuse.Layouts
 		internal void Rooted(LayoutControl element)
 		{
 			if (Container != null)
-				throw new Exception( "Only a single container is supported for Layout" );
+				throw new Exception("Only a single container is supported for Layout");
 			Container = element;
 			OnRooted();
 		}
@@ -59,7 +59,7 @@ namespace Fuse.Layouts
 		internal void Unrooted(LayoutControl element)
 		{
 			if (element != Container)
-				throw new Exception( "Removing an invalid container from Layout" );
+				throw new Exception("Removing an invalid container from Layout");
 			OnUnrooted();
 			Container = null;
 		}
@@ -110,7 +110,7 @@ namespace Fuse.Layouts
 				var s = b ? lp.Size : lp.Size - padding.XY - padding.ZW;
 				var nlp = lp.CloneAndDerive();
 				nlp.SetSize(s);
-				e.ArrangeMarginBox( p, nlp );
+				e.ArrangeMarginBox(p, nlp);
 				return true;
 			}
 			
@@ -128,7 +128,7 @@ namespace Fuse.Layouts
 				child.Parent.InvalidateLayout();
 		}
 		
-		internal virtual LayoutDependent IsMarginBoxDependent( Visual child )
+		internal virtual LayoutDependent IsMarginBoxDependent(Visual child)
 		{
 			//conservative Yes
 			return LayoutDependent.Yes;
@@ -148,26 +148,26 @@ namespace Fuse.Layouts
 			}
 		}
 		
-		protected float2 SnapUp( float2 p )
+		protected float2 SnapUp(float2 p)
 		{
 			if (SnapToPixels)
 				return Container.InternSnapUp(p);
 			return p;
 		}
 		
-		protected float SnapUp( float p )
+		protected float SnapUp(float p)
 		{
 			return SnapUp(float2(p)).X;
 		}
 		
-		protected float2 Snap( float2 p )
+		protected float2 Snap(float2 p)
 		{
 			if (SnapToPixels)
 				return Container.InternSnap(p);
 			return p;
 		}
 		
-		protected float Snap( float p )
+		protected float Snap(float p)
 		{
 			return Snap(float2(p)).X;
 		}
@@ -204,12 +204,12 @@ namespace Fuse.Layouts
 			var pos = node.MarginBoxPosition;
 			var ha = AlignmentHelpers.GetHorizontalSimpleAlign(align);
 			if (ha != Alignment.Default)
-				pos.X = SimpleOff( sz.X, box.XZ, ha);
+				pos.X = SimpleOff(sz.X, box.XZ, ha);
 			var va = AlignmentHelpers.GetVerticalSimpleAlign(align);
 			if (va != Alignment.Default)
-				pos.Y = SimpleOff( sz.Y, box.YW, va);
+				pos.Y = SimpleOff(sz.Y, box.YW, va);
 				
-			node.AdjustMarginBoxPosition( pos );
+			node.AdjustMarginBoxPosition(pos);
 		}
 		
 		static float SimpleOff(float sz, float2 range, SimpleAlignment align)

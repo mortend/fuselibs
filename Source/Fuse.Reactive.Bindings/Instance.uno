@@ -45,9 +45,9 @@ namespace Fuse.Reactive
 		void UpdateItems()
 		{
 			if (IsEnabled)
-				SetItems( new object[]{ _item } );
+				SetItems(new object[]{ _item });
 			else
-				SetItems( new object[]{} );
+				SetItems(new object[]{});
 		}
 		
 		bool _isEnabled = true;

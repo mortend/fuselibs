@@ -93,7 +93,7 @@ namespace Fuse.Controls
 		*/
 		public float2 Range
 		{
-			get { return float2( (float)Minimum, (float)Maximum ); }
+			get { return float2((float)Minimum, (float)Maximum); }
 			set
 			{
 				Minimum = value[0];
@@ -226,13 +226,13 @@ namespace Fuse.Controls
 			return q;
 		}
 		
-		internal double StepValueToRelative( double value )
+		internal double StepValueToRelative(double value)
 		{
-			return Math.Abs( value / (Maximum - Minimum) );
+			return Math.Abs(value / (Maximum - Minimum));
 		}
-		internal double StepValueFromRelative( double relative )
+		internal double StepValueFromRelative(double relative)
 		{
-			return Math.Abs( relative * (Maximum - Minimum) );
+			return Math.Abs(relative * (Maximum - Minimum));
 		}
 
 		void IRangeViewHost.OnProgressChanged(double newProgress)

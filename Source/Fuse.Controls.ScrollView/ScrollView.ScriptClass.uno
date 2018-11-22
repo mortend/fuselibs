@@ -20,7 +20,7 @@ namespace Fuse.Controls
 		{
 			if (args.Length == 0 || args.Length > 2)
 			{
-				Fuse.Diagnostics.UserError( "ScrollViewBase." + func + " requires 1 or 2 arguments", s );
+				Fuse.Diagnostics.UserError("ScrollViewBase." + func + " requires 1 or 2 arguments", s);
 				pos = float2(0);
 				return false;
 			}

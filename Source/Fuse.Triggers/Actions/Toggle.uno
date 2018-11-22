@@ -38,7 +38,7 @@ namespace Fuse.Triggers.Actions
 			var t = Target ?? target.FindByType<IToggleable>();
 			if (t == null)
 			{
-				Fuse.Diagnostics.UserError( "Could not find `IToggleable` target", this );
+				Fuse.Diagnostics.UserError("Could not find `IToggleable` target", this);
 				return;
 			}
 			

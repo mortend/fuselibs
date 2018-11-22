@@ -89,9 +89,9 @@ namespace Fuse.Navigation
 			base.OnRooted();
 			if (!(Parent is Element))
 			{
-				Fuse.Diagnostics.UserRootError( "Element", Parent, this );
+				Fuse.Diagnostics.UserRootError("Element", Parent, this);
 				//throw here instead of message, due to later assumption in this code (TODO: fix)
-				throw new Exception( "EdgeNavigation must be rooted in an Element" );
+				throw new Exception("EdgeNavigation must be rooted in an Element");
 			}
 				
 			CheckChildren();
@@ -144,7 +144,7 @@ namespace Fuse.Navigation
 				{
 					_mains.Add(nodeChild);
 					if (_mains.Count > 1)
-						Fuse.Diagnostics.UserWarning( "EdgeNavigation may not work as expected with more than one main (non-edge) page." , this );
+						Fuse.Diagnostics.UserWarning("EdgeNavigation may not work as expected with more than one main (non-edge) page." , this);
 				}
 				else
 				{

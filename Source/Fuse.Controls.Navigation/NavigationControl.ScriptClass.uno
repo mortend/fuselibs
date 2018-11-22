@@ -21,7 +21,7 @@ namespace Fuse.Controls
 			
 			This is not a router method. It is a local change to the navigation control. If used in a router it will modify the current path and not alter the history.
 			
-			@scriptmethod gotoPath( path [, parameter] )
+			@scriptmethod gotoPath(path [, parameter])
 			@param path the name of the path to use
 			@param parameter an optional parameter for the page
 		*/
@@ -35,7 +35,7 @@ namespace Fuse.Controls
 			
 			This is not a router method. It is a local change to the navigation control. If used in a router it will modify the current path and not alter the history.
 			
-			@scriptmethod seekToPath( path [, parameter] )
+			@scriptmethod seekToPath(path [, parameter])
 			@param path the name of the path to use
 			@param parameter an optional parameter for the page
 		*/
@@ -49,14 +49,14 @@ namespace Fuse.Controls
 		{
 			if (args.Length < 1 || args.Length > 2)
 			{
-				Fuse.Diagnostics.UserError( "NavigationControl." + opName + " requires 1 or 2 arguments", nav);
+				Fuse.Diagnostics.UserError("NavigationControl." + opName + " requires 1 or 2 arguments", nav);
 				return;
 			}
 			
 			var outlet = nav as IRouterOutlet;
 			if (outlet == null)
 			{
-				Fuse.Diagnostics.InternalError( "Must be an IRouterOutlet", nav );
+				Fuse.Diagnostics.InternalError("Must be an IRouterOutlet", nav);
 				return;
 			}
 			
@@ -64,7 +64,7 @@ namespace Fuse.Controls
 			string param = null;
 			if (args.Length > 1)
 				param = Json.Stringify(args[1], true);
-			var rPage = new RouterPage( path, param );
+			var rPage = new RouterPage(path, param);
 			Visual ignore;
 			outlet.Goto(rPage, gotoMode, RoutingOperation.Goto, "", out ignore);
 		}
@@ -74,7 +74,7 @@ namespace Fuse.Controls
 			
 			The properties here match the same named properties of `router.modify`
 			
-			@scriptmethod modifyPath( navigationSpec )
+			@scriptmethod modifyPath(navigationSpec)
 			
 			The navigationSpec is a JavaScript object that specifies all the properties for the modification, 
 			for example:
@@ -103,14 +103,14 @@ namespace Fuse.Controls
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "`modifyPath` takes on argument", nav );
+				Fuse.Diagnostics.UserError("`modifyPath` takes on argument", nav);
 				return;
 			}
 			
 			var obj = args[0] as IObject;
 			if (obj == null)
 			{
-				Fuse.Diagnostics.UserError( "`modifyPath` should be passed an object", nav );
+				Fuse.Diagnostics.UserError("`modifyPath` should be passed an object", nav);
 				return;
 			}
 
@@ -119,13 +119,13 @@ namespace Fuse.Controls
 			if (!rr.AddArguments(obj, RouterRequest.Fields.How | RouterRequest.Fields.Transition |	
 				RouterRequest.Fields.Style | RouterRequest.Fields.Path))
 			{
-				Fuse.Diagnostics.UserError( "`modifyPath` unrecognized arguments", nav );
+				Fuse.Diagnostics.UserError("`modifyPath` unrecognized arguments", nav);
 				return;
 			}
 			
 			if (rr.Route != null && rr.Route.SubRoute != null)
 			{
-				Fuse.Diagnostics.UserError( "`modifyPath` expects one route component", nav );
+				Fuse.Diagnostics.UserError("`modifyPath` expects one route component", nav);
 				return;
 			}
 			var page = rr.Route != null ? rr.Route.RouterPage : null;
@@ -137,7 +137,7 @@ namespace Fuse.Controls
 			}
 			if (page == null)
 			{
-				Fuse.Diagnostics.UserError( "`modifyPath` unable to find route component", nav );
+				Fuse.Diagnostics.UserError("`modifyPath` unable to find route component", nav);
 				return;
 			}
 			
@@ -146,7 +146,7 @@ namespace Fuse.Controls
 			{
 				case ModifyRouteHow.Push:
 					if (childPages != null)
-						childPages.Add( page );
+						childPages.Add(page);
 					op = RoutingOperation.Push;
 					break;
 					
@@ -154,7 +154,7 @@ namespace Fuse.Controls
 					if (childPages != null)
 					{
 						childPages.Clear();
-						childPages.Add( page );
+						childPages.Add(page);
 					}
 					op = RoutingOperation.Goto;
 					break;
@@ -164,7 +164,7 @@ namespace Fuse.Controls
 					{
 						var count = childPages.Count;
 						if (count == 0)
-							childPages.Add( page );
+							childPages.Add(page);
 						else
 							childPages[count-1] = page;
 					}
@@ -175,23 +175,23 @@ namespace Fuse.Controls
 					if (childPages != null)
 					{
 						if (childPages.Count > 0)
-							childPages.RemoveAt( childPages.Count - 1);
+							childPages.RemoveAt(childPages.Count - 1);
 						if (childPages.Count > 0)
 							childPages[childPages.Count-1] = page;
 						else
-							childPages.Add( page );
+							childPages.Add(page);
 					}
 					op = RoutingOperation.Pop;
 					break;
 					
 				default:
-					Fuse.Diagnostics.UserError( "Unsupported `How`: " + rr.How, nav );
+					Fuse.Diagnostics.UserError("Unsupported `How`: " + rr.How, nav);
 					return;
 			}
 			
 			var outlet = (IRouterOutlet)nav;
 			Visual ignore;
-			outlet.Goto( page, rr.Transition, op, rr.Style, out ignore );
+			outlet.Goto(page, rr.Transition, op, rr.Style, out ignore);
 		}
 	}
 }

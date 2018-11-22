@@ -87,24 +87,24 @@ namespace Fuse.Gestures.Test
 			var p = new UX.Replace();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual("", p.TS.Test_JoinValues() );
+				Assert.AreEqual("", p.TS.Test_JoinValues());
 
 				//Oldest is the default Replace mode
 				p.TS.Add(p.I1.Sel);
 				p.TS.Add(p.I3.Sel);
 				p.TS.Add(p.I2.Sel);
 				//not yet guaranteed, but order should be oldest to newest
-				Assert.AreEqual("three,two", p.TS.Test_JoinValues() );
+				Assert.AreEqual("three,two", p.TS.Test_JoinValues());
 
 				p.TS.Replace = SelectionReplace.Newest;
 				p.TS.Add(p.I4.Sel);
-				Assert.AreEqual("three,four", p.TS.Test_JoinValues() );
+				Assert.AreEqual("three,four", p.TS.Test_JoinValues());
 				p.TS.Add(p.I1.Sel);
-				Assert.AreEqual("three,one", p.TS.Test_JoinValues() );
+				Assert.AreEqual("three,one", p.TS.Test_JoinValues());
 
 				p.TS.Replace = SelectionReplace.None;
 				p.TS.Add(p.I4.Sel);
-				Assert.AreEqual("three,one", p.TS.Test_JoinValues() );
+				Assert.AreEqual("three,one", p.TS.Test_JoinValues());
 			}
 		}
 		
@@ -121,12 +121,12 @@ namespace Fuse.Gestures.Test
 				p.CallAdd.Perform();
 				root.StepFrameJS();
 				Assert.AreEqual("one,two,four", p.C.Value);
-				Assert.AreEqual("one,two,four", p.TS.Test_JoinValues() );
+				Assert.AreEqual("one,two,four", p.TS.Test_JoinValues());
 
 				p.CallReplace.Perform();
 				root.StepFrameJS();
 				Assert.AreEqual("one,five,four", p.C.Value);
-				Assert.AreEqual("one,five,four", p.TS.Test_JoinValues() );
+				Assert.AreEqual("one,five,four", p.TS.Test_JoinValues());
 
 				p.TS.Toggle(p.O5.Sel);
 				root.StepFrameJS();
@@ -135,7 +135,7 @@ namespace Fuse.Gestures.Test
 				p.CallRemove.Perform();
 				root.StepFrameJS();
 				Assert.AreEqual("four", p.C.Value);
-				Assert.AreEqual("four", p.TS.Test_JoinValues() );
+				Assert.AreEqual("four", p.TS.Test_JoinValues());
 
 				p.TS.Remove(p.O4.Sel);
 				root.StepFrameJS();
@@ -323,19 +323,19 @@ namespace Fuse.Gestures.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "", p.r.Value );
+				Assert.AreEqual("", p.r.Value);
 				
 				p.sa.Add();
 				root.StepFrameJS();
-				Assert.AreEqual( "A", p.r.Value );
+				Assert.AreEqual("A", p.r.Value);
 				
 				p.sb.Add();
 				root.StepFrameJS();
-				Assert.AreEqual( "AB", p.r.Value );
+				Assert.AreEqual("AB", p.r.Value);
 				
 				p.sa.Remove();
 				root.StepFrameJS();
-				Assert.AreEqual( "B", p.r.Value );
+				Assert.AreEqual("B", p.r.Value);
 			}
 		}
 	}

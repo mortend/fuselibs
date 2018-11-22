@@ -33,7 +33,7 @@ namespace Fuse
 		float2 _minSize;
 		float2 _relativeSize;
 
-		void SetFlag( Flags g, bool val )
+		void SetFlag(Flags g, bool val)
 		{
 			if (val)
 				_flags |= g;
@@ -95,7 +95,7 @@ namespace Fuse
 			if (!_warnTrueClone)
 			{
 				//deprecated: 2016-09-05
-				Fuse.Diagnostics.Deprecated( "Use Clone instead of TrueClone", this );
+				Fuse.Diagnostics.Deprecated("Use Clone instead of TrueClone", this);
 				_warnTrueClone = true;
 			}
 			return Clone();
@@ -124,7 +124,7 @@ namespace Fuse
 			if (!_warnDeriveClone)
 			{
 				//deprecated: 2016-09-05
-				Fuse.Diagnostics.Deprecated( "Use CloneAndDerive instead of DeriveClone", this );
+				Fuse.Diagnostics.Deprecated("Use CloneAndDerive instead of DeriveClone", this);
 				_warnDeriveClone = true;
 			}
 			return CloneAndDerive();
@@ -145,7 +145,7 @@ namespace Fuse
 			_relativeSize = o._relativeSize;
 		}
 		
-		static public LayoutParams Create( float2 size )
+		static public LayoutParams Create(float2 size)
 		{
 			var lp = new LayoutParams();
 			lp.SetFlag(Flags.X, true);
@@ -154,7 +154,7 @@ namespace Fuse
 			return lp;
 		}
 		
-		static public LayoutParams CreateTemporary( float2 size )
+		static public LayoutParams CreateTemporary(float2 size)
 		{
 			var lp = new LayoutParams();
 			lp.SetFlag(Flags.X,true);
@@ -164,7 +164,7 @@ namespace Fuse
 			return lp;
 		}
 		
-		static public LayoutParams CreateXY( float2 size, bool hasX, bool hasY )
+		static public LayoutParams CreateXY(float2 size, bool hasX, bool hasY)
 		{
 			var lp = new LayoutParams();
 			lp.SetFlag(Flags.X,hasX);
@@ -182,19 +182,19 @@ namespace Fuse
 		/**
 			For removing border areas like Margin and Padding
 		*/
-		public void RemoveSize( float2 size )
+		public void RemoveSize(float2 size)
 		{
 			_size = Math.Max(float2(0), _size - size);
 			_maxSize = Math.Max(float2(0), _maxSize - size);
 			_minSize = Math.Max(float2(0), _minSize - size);
 		}
 		
-		public void RemoveSize( float4 size )
+		public void RemoveSize(float4 size)
 		{
-			RemoveSize( size.XY + size.ZW );
+			RemoveSize(size.XY + size.ZW);
 		}
 		
-		public void RetainAxesXY( bool x, bool y )
+		public void RetainAxesXY(bool x, bool y)
 		{
 			RetainXY(x,y);
 			RetainMaxXY(x,y);
@@ -205,7 +205,7 @@ namespace Fuse
 			
 			Be careful when using this, it is typically used in combination with RetainMaxXY (or RetainAxesXY in combination), or with a ConstrainMax. The layout must consider how it affects not just the X/Y values, but also the Min/Max XY values.
 		*/
-		public void RetainXY( bool x, bool y )
+		public void RetainXY(bool x, bool y)
 		{
 			if (!x)
 			{
@@ -219,7 +219,7 @@ namespace Fuse
 			}
 		}
 		
-		public void RetainMaxXY( bool x, bool y )
+		public void RetainMaxXY(bool x, bool y)
 		{
 			if (!x)
 			{
@@ -233,7 +233,7 @@ namespace Fuse
 			}
 		}
 		
-		public void SetSize( float2 xy, bool hasX = true, bool hasY = true )
+		public void SetSize(float2 xy, bool hasX = true, bool hasY = true)
 		{
 			_size = Math.Max(float2(0),xy);
 			SetFlag(Flags.X,hasX);
@@ -244,13 +244,13 @@ namespace Fuse
 				_size.Y = 0;
 		}
 		
-		public void SetX( float x )
+		public void SetX(float x)
 		{
 			SetFlag(Flags.X,true);
 			_size.X = Math.Max(x,0);
 		}
 
-		public void SetY( float y )
+		public void SetY(float y)
 		{
 			SetFlag(Flags.Y, true);
 			_size.Y = Math.Max(y,0);
@@ -265,7 +265,7 @@ namespace Fuse
 			SetFlag(Flags.NoRelativeY,!hasY);
 		}
 
-		public void ConstrainMaxX( float max )
+		public void ConstrainMaxX(float max)
 		{
 			if (HasMaxX)
 				_maxSize.X = Math.Min(_maxSize.X,max);
@@ -274,7 +274,7 @@ namespace Fuse
 			SetFlag(Flags.MaxX,true);
 		}
 		
-		public void ConstrainMaxY( float max )
+		public void ConstrainMaxY(float max)
 		{
 			if (HasMaxY)
 				_maxSize.Y = Math.Min(_maxSize.Y,max);
@@ -283,7 +283,7 @@ namespace Fuse
 			SetFlag(Flags.MaxY,true);
 		}
 		
-		public void ConstrainMax( float2 max, bool hasMaxX = true, bool hasMaxY = true )
+		public void ConstrainMax(float2 max, bool hasMaxX = true, bool hasMaxY = true)
 		{
 			max = Math.Max(float2(0),max);
 			
@@ -294,7 +294,7 @@ namespace Fuse
 				ConstrainMaxY(max.Y);
 		}
 
-		public void ConstrainMinX( float min )
+		public void ConstrainMinX(float min)
 		{
 			if (HasMinX)
 				_minSize.X = Math.Max(_minSize.X,min);
@@ -303,7 +303,7 @@ namespace Fuse
 			SetFlag(Flags.MinX,true);
 		}
 		
-		public void ConstrainMinY( float min )
+		public void ConstrainMinY(float min)
 		{
 			if (HasMinY)
 				_minSize.Y = Math.Max(_minSize.Y,min);
@@ -312,7 +312,7 @@ namespace Fuse
 			SetFlag(Flags.MinY,true);
 		}
 		
-		public void ConstrainMin( float2 min, bool hasMinX = true, bool hasMinY = true )
+		public void ConstrainMin(float2 min, bool hasMinX = true, bool hasMinY = true)
 		{
 			min = Math.Max(float2(0),min);
 			
@@ -326,7 +326,7 @@ namespace Fuse
 		/**
 			Do box model constraining on this with the provided constraints.
 		*/
-		public void BoxConstrain( LayoutParams o )
+		public void BoxConstrain(LayoutParams o)
 		{
 			SetSize(o.Size, o.HasX, o.HasY);
 			ConstrainMax(o.MaxSize, o.HasMaxX, o.HasMaxY);
@@ -336,14 +336,14 @@ namespace Fuse
 		/**
 			Apply ordered constraints of this LayoutParams to the point.
 		*/
-		public float2 PointConstrain( float2 p )
+		public float2 PointConstrain(float2 p)
 		{
 			var x = true;
 			var y = true;
 			return PointConstrain(p,ref x,ref y);
 		}
 		
-		float2 PointConstrain( float2 p, ref bool knowX, ref bool knowY )
+		float2 PointConstrain(float2 p, ref bool knowX, ref bool knowY)
 		{
 			if (HasX)
 			{
@@ -387,7 +387,7 @@ namespace Fuse
 			return PointConstrain(float2(0), ref x, ref y);
 		}
 		
-		public float2 GetAvailableSize( out bool hasX, out bool hasY )
+		public float2 GetAvailableSize(out bool hasX, out bool hasY)
 		{
 			hasX = false;
 			hasY = false;

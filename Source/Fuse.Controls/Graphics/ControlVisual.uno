@@ -43,7 +43,7 @@ namespace Fuse.Controls.Graphics
 		{
 			get
 			{
-				return VisualBounds.Rect( float2(0), ActualSize );
+				return VisualBounds.Rect(float2(0), ActualSize);
 			}
 		}
 	}

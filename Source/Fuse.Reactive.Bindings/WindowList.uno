@@ -12,7 +12,7 @@ namespace Fuse.Reactive
 		/* Need an abstraction since the owner is a generic type. The relationship between watching and WindowListItem is kept hidden so that users of WindowList don't need to know how the listening is done, and to avoid needing a high-level object (like `Instantiator`) being stored by the users. */
 		public interface IDataWatcher
 		{
-			void OnCurrentDataChanged( WindowListItem item, object oldData );
+			void OnCurrentDataChanged(WindowListItem item, object oldData);
 		}
 		IDataWatcher _owner;
 		
@@ -37,7 +37,7 @@ namespace Fuse.Reactive
 				}
 
 				if (_owner != null)
-					_owner.OnCurrentDataChanged( this, oldData );
+					_owner.OnCurrentDataChanged(this, oldData);
 			}
 		}
 		
@@ -46,7 +46,7 @@ namespace Fuse.Reactive
 			var oldData = CurrentData;
 			_curData = newValue;
 			if (_owner != null)
-				_owner.OnCurrentDataChanged( this, oldData );
+				_owner.OnCurrentDataChanged(this, oldData);
 		}
 		protected override void LostData() 
 		{ 
@@ -58,7 +58,7 @@ namespace Fuse.Reactive
 		
 		protected WindowListItem() { }
 		
-		static public T Create<T>( IDataWatcher owner, object id, object data ) where T : WindowListItem, new()
+		static public T Create<T>(IDataWatcher owner, object id, object data) where T : WindowListItem, new()
 		{
 			var lwi = new T();
 			lwi.Data = data; //set before owner so it doesn't generate callback now
@@ -105,7 +105,7 @@ namespace Fuse.Reactive
 					
 				if (value < 0)
 				{
-					Fuse.Diagnostics.UserError( "Offset cannot be less than 0", this );
+					Fuse.Diagnostics.UserError("Offset cannot be less than 0", this);
 					value = 0;
 				}
 				
@@ -147,7 +147,7 @@ namespace Fuse.Reactive
 					
 				if (value < 0)
 				{
-					Fuse.Diagnostics.UserError( "Limit cannot be less than 0", this );
+					Fuse.Diagnostics.UserError("Limit cannot be less than 0", this);
 					value = 0;
 				}
 				
@@ -159,19 +159,19 @@ namespace Fuse.Reactive
 		
 		internal bool HasLimit { get { return _hasLimit; } }
 		
-		protected int CalcOffsetLimitCountOf( int length )
+		protected int CalcOffsetLimitCountOf(int length)
 		{
-			var q = Math.Max( 0, length - Offset );
-			return HasLimit ? Math.Min( Limit, q ) : q;
+			var q = Math.Max(0, length - Offset);
+			return HasLimit ? Math.Min(Limit, q) : q;
 		}
 		
 		/* The list of items which are within the range of (Offset, Limit) */
 		ObjectList<T> _windowItems = new ObjectList<T>();
 		
 		public int WindowItemCount { get { return _windowItems.Count; } }
-		public T GetWindowItem( int i ) { return _windowItems[i]; }
+		public T GetWindowItem(int i) { return _windowItems[i]; }
 		
-		public int GetWindowItemIndex( T item )
+		public int GetWindowItemIndex(T item)
 		{
 			for (int i=0; i < _windowItems.Count; ++i)
 			{
@@ -200,7 +200,7 @@ namespace Fuse.Reactive
 		protected void RemovedDataAt(int dataIndex)
 		{
 			var windowIndex = DataToWindowIndex(dataIndex);
-			if ( windowIndex >= 0 && windowIndex < WindowItemCount)
+			if (windowIndex >= 0 && windowIndex < WindowItemCount)
 			{
 				OnRemovedWindowItem(GetWindowItem(windowIndex));
 				_windowItems.RemoveAt(windowIndex);
@@ -240,20 +240,20 @@ namespace Fuse.Reactive
 				return;
 				
 			var windowIndex = DataToWindowIndex(dataIndex);
-			if ( windowIndex > _windowItems.Count || windowIndex < 0)
+			if (windowIndex > _windowItems.Count || windowIndex < 0)
 			{
-				Fuse.Diagnostics.InternalError( "Item insertion order invalid", this);
+				Fuse.Diagnostics.InternalError("Item insertion order invalid", this);
 				return;	
 			}
 
-			InsertWindowItem( windowIndex, dataIndex );
+			InsertWindowItem(windowIndex, dataIndex);
 		}
 		
-		protected void InsertWindowItem( int windowIndex, int dataIndex )
+		protected void InsertWindowItem(int windowIndex, int dataIndex)
 		{
-			var wi = CreateWindowItem( dataIndex );
-			_windowItems.Insert( windowIndex, wi );
-			OnAddedWindowItem( windowIndex, wi );
+			var wi = CreateWindowItem(dataIndex);
+			_windowItems.Insert(windowIndex, wi);
+			OnAddedWindowItem(windowIndex, wi);
 		}
 
 		/**
@@ -280,7 +280,7 @@ namespace Fuse.Reactive
 			ClearError();
 		}
 		
-		protected abstract T CreateWindowItem( int dataIndex );
+		protected abstract T CreateWindowItem(int dataIndex);
 		public abstract int GetDataCount();
 		protected abstract void OnRemovedWindowItem(T wi);
 		protected abstract void OnAddedWindowItem(int windowIndex, T wi);

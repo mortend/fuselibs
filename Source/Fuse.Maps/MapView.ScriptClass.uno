@@ -33,7 +33,7 @@ namespace Fuse.Controls
 					view.Longitude = Marshal.ToDouble(args[1]);
 					return;
 				default:
-					Fuse.Diagnostics.UserError( "MapView.setLocation requires 2 number arguments", view );
+					Fuse.Diagnostics.UserError("MapView.setLocation requires 2 number arguments", view);
 					return;
 			}
 		}
@@ -51,7 +51,7 @@ namespace Fuse.Controls
 					view.Bearing = Marshal.ToDouble(args[0]);
 					return;
 				default:
-					Fuse.Diagnostics.UserError( "MapView.setBearing requires 1 number argument", view );
+					Fuse.Diagnostics.UserError("MapView.setBearing requires 1 number argument", view);
 					return;
 			}
 		}
@@ -69,7 +69,7 @@ namespace Fuse.Controls
 					view.Tilt = Marshal.ToDouble(args[0]);
 					return;
 				default:
-					Fuse.Diagnostics.UserError( "MapView.setTilt requires 1 number argument", view );
+					Fuse.Diagnostics.UserError("MapView.setTilt requires 1 number argument", view);
 					return;
 			}
 		}
@@ -87,7 +87,7 @@ namespace Fuse.Controls
 					view.Zoom = Marshal.ToDouble(args[0]);
 					return;
 				default:
-					Fuse.Diagnostics.UserError( "MapView.setZoom requires 1 number argument", view );
+					Fuse.Diagnostics.UserError("MapView.setZoom requires 1 number argument", view);
 					return;
 			}
 		}
@@ -141,7 +141,7 @@ namespace Fuse.Controls
 						if(ob is Fuse.Scripting.Object)
 							view.AddMarker(MarkerFromObject(ob as IObject));
 						else{
-							Fuse.Diagnostics.UserError( "MapView markers should follow the format { latitude:0.0, longitude:0.0, label:\"MyLabel\" }", view );
+							Fuse.Diagnostics.UserError("MapView markers should follow the format { latitude:0.0, longitude:0.0, label:\"MyLabel\" }", view);
 							break;
 						}
 					}

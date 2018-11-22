@@ -55,7 +55,7 @@ namespace Fuse.Selection
 			return null;
 		}
 
-		static internal bool TryFindSelectable( Node n, out Selectable selectable, out Selection selection )
+		static internal bool TryFindSelectable(Node n, out Selectable selectable, out Selection selection)
 		{
 			selectable = null;
 			selection = null;
@@ -135,7 +135,7 @@ namespace Fuse.Selection
 				
 				if (value < 1)
 				{
-					Fuse.Diagnostics.UserError( "MaxCount must >= 1", this );
+					Fuse.Diagnostics.UserError("MaxCount must >= 1", this);
 					return;
 				}
 				
@@ -352,7 +352,7 @@ namespace Fuse.Selection
 			if (how == How.API && _subscription != null)
 			{
 				var sub = _subscription as ISubscription;
-				if (sub != null) sub.ReplaceAllExclusive( new ListWrapper(_values) );
+				if (sub != null) sub.ReplaceAllExclusive(new ListWrapper(_values));
 				else Diagnostics.UserWarning("Selection changed, but the bound collection is not writeable.", this);
 			}
 			
@@ -391,7 +391,7 @@ namespace Fuse.Selection
 				var q = value as Reactive.IObservableArray;
 				if (value != null && q == null)
 				{
-					Fuse.Diagnostics.UserError( "`Values` must be an IObservableArray", this );
+					Fuse.Diagnostics.UserError("`Values` must be an IObservableArray", this);
 					return;
 				}
 				
@@ -439,7 +439,7 @@ namespace Fuse.Selection
 		{
 			_values.Clear();
 			for (int i=0; i < values.Length; ++i)
-				_values.Add( Marshal.ToType<string>( values[i] ) );
+				_values.Add(Marshal.ToType<string>(values[i]));
 			OnSelectionChanged(How.Observable);
 		}
 		
@@ -447,7 +447,7 @@ namespace Fuse.Selection
 		{
 			if (index <0 || index >= _values.Count)
 			{
-				Fuse.Diagnostics.InternalError( "removing invalid observable item", this );
+				Fuse.Diagnostics.InternalError("removing invalid observable item", this);
 				return;
 			}
 			_values[index] = Marshal.ToType<string>(newValue);
@@ -457,13 +457,13 @@ namespace Fuse.Selection
 		void Reactive.IObserver.OnSet(object newValue)
 		{
 			_values.Clear();
-			_values.Add( Marshal.ToType<string>(newValue) );
+			_values.Add(Marshal.ToType<string>(newValue));
 			OnSelectionChanged(How.Observable);
 		}
 		
 		void Reactive.IObserver.OnAdd(object addedValue)
 		{
-			_values.Add( Marshal.ToType<string>(addedValue) );
+			_values.Add(Marshal.ToType<string>(addedValue));
 			OnSelectionChanged(How.Observable);
 		}
 		
@@ -471,7 +471,7 @@ namespace Fuse.Selection
 		{
 			if (index <0 || index >= _values.Count)
 			{
-				Fuse.Diagnostics.InternalError( "removing invalid observable item", this );
+				Fuse.Diagnostics.InternalError("removing invalid observable item", this);
 				return;
 			}
 			_values.RemoveAt(index);
@@ -482,17 +482,17 @@ namespace Fuse.Selection
 		{
 			if (index <0 || index > _values.Count)
 			{
-				Fuse.Diagnostics.InternalError( "removing invalid observable item", this );
+				Fuse.Diagnostics.InternalError("removing invalid observable item", this);
 				return;
 			}
-			_values.Insert(index, Marshal.ToType<string>(value) );
+			_values.Insert(index, Marshal.ToType<string>(value));
 			OnSelectionChanged(How.Observable);
 		}
 		
 		void Reactive.IObserver.OnFailed(string message)
 		{
 			(this as Reactive.IObserver).OnClear();
-			Fuse.Diagnostics.InternalError( message, this );
+			Fuse.Diagnostics.InternalError(message, this);
 		}
 		
 		internal string Test_JoinValues()

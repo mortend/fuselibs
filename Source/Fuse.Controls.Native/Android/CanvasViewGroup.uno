@@ -35,7 +35,7 @@ namespace Fuse.Controls.Native.Android
 		{
 			if (_nativeSurface == null)
 			{
-				Fuse.Diagnostics.InternalError( "Attempt to draw native canvas without surface", this );
+				Fuse.Diagnostics.InternalError("Attempt to draw native canvas without surface", this);
 				return;
 			}
 

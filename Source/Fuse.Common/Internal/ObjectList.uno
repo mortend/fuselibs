@@ -495,7 +495,7 @@ namespace Fuse.Internal
 		sbyte Lock()
 		{
 			if (_lockVersion == 127)
-				throw new Exception("excessive iteration starts" );
+				throw new Exception("excessive iteration starts");
 				
 			_lockCount++;
 			return _lockVersion++;

@@ -87,7 +87,7 @@ namespace Fuse.Controls
 
 			if (Each == null)
 			{
-				Fuse.Diagnostics.UserError( "Require an Each", this );
+				Fuse.Diagnostics.UserError("Require an Each", this);
 				return;
 			}
 			
@@ -97,14 +97,14 @@ namespace Fuse.Controls
 			_scrollable = Parent.FindByType<ScrollViewBase>();
 			if (_scrollable == null)
 			{
-				Fuse.Diagnostics.UserError( "Could not find a Scrollable control.", this );
+				Fuse.Diagnostics.UserError("Could not find a Scrollable control.", this);
 				return;
 			}
 			
 			//this mode won't work correctly, emit a warning with a suitable one
 			if (_scrollable.LayoutMode == ScrollViewLayoutMode.PreserveScrollPosition) 
 			{
-				Fuse.Diagnostics.UserError( "The ScrollView should have `LayoutMode=\"PreserveVisual\"` for paging to work correctly", this );
+				Fuse.Diagnostics.UserError("The ScrollView should have `LayoutMode=\"PreserveVisual\"` for paging to work correctly", this);
 				return;
 			}
 			
@@ -205,9 +205,9 @@ namespace Fuse.Controls
 			_lastActivityPosition = UpdateManager.FrameIndex;
 			
 			_pendingPosition = false;
-			var nearEnd = _scrollable.ToScalarPosition( (_scrollable.MaxScroll - _scrollable.ScrollPosition) /
+			var nearEnd = _scrollable.ToScalarPosition((_scrollable.MaxScroll - _scrollable.ScrollPosition) /
 				_scrollable.ActualSize) < EndRange;
-			var nearStart = _scrollable.ToScalarPosition( (_scrollable.ScrollPosition - _scrollable.MinScroll) /
+			var nearStart = _scrollable.ToScalarPosition((_scrollable.ScrollPosition - _scrollable.MinScroll) /
 				_scrollable.ActualSize) < EndRange;
 
 			var nearTrueEnd = false;
@@ -281,7 +281,7 @@ namespace Fuse.Controls
 				}
 			}
 			else if (scalarPages > Retain &&
-				_scrollable.ToScalarPosition(_scrollable.ActualSize) < _scrollable.ToScalarPosition(_prevActualSize) )
+				_scrollable.ToScalarPosition(_scrollable.ActualSize) < _scrollable.ToScalarPosition(_prevActualSize))
 			{
 				//only reduce when the ScrollView itself is being shrunk in size, otherwise we run the risk
 				//of flickering between to sizes for an element that pushes it back/forth over the limit

@@ -85,7 +85,7 @@ namespace Fuse.Controls
 		{
 			if (LayoutSurface != null)
 			{
-				Fuse.Diagnostics.UserError( "Panel.IsFrozen cannot be used when a Panel is in a Surface", this );
+				Fuse.Diagnostics.UserError("Panel.IsFrozen cannot be used when a Panel is in a Surface", this);
 				return;
 			}
 				
@@ -129,7 +129,7 @@ namespace Fuse.Controls
 			if (DeferFreeze != BusyTaskActivity.None)
 			{
 				var b = BusyTask.GetBusyActivity(this, BusyTaskMatch.OnlyDescendents);
-				if ( (b & DeferFreeze) != BusyTaskActivity.None )
+				if ((b & DeferFreeze) != BusyTaskActivity.None)
 					return;
 			}
 			
@@ -137,14 +137,14 @@ namespace Fuse.Controls
 			_frozenRenderBounds = base.LocalRenderBounds;
 			if (!_frozenRenderBounds.IsFlat || _frozenRenderBounds.IsInfinite)
 			{
-				Fuse.Diagnostics.InternalError( "unable to freeze non-flat or infinite element", this);
+				Fuse.Diagnostics.InternalError("unable to freeze non-flat or infinite element", this);
 				return;
 			}
 			
 			_frozenBuffer = CaptureRegion(dc, _frozenRenderBounds.FlatRect, float2(0));
 			if (_frozenBuffer == null)
 			{
-				Fuse.Diagnostics.InternalError( "unable to freeze element", this);
+				Fuse.Diagnostics.InternalError("unable to freeze element", this);
 				return;
 			}
 			

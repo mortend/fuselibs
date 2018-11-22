@@ -66,7 +66,7 @@ namespace Fuse.Reactive
 			    module.exports.posts = Observable(
 				    {postType: "text", body: "Lorem ipsum", title: "Hello, world"}, 
 				    {postType: "quote", quote: "Stuff", title: "A quote"}
-			    );
+			   );
 			</JavaScript>
 
 			<ScrollView>
@@ -162,7 +162,7 @@ namespace Fuse.Reactive
 			set
 			{
 				if (GetItems() != value)
-					SetItems( value );
+					SetItems(value);
 			}
 		}
 
@@ -183,7 +183,7 @@ namespace Fuse.Reactive
 				var items = new object[_count];
 				for (int i=0; i < _count; ++i)
 					items[i] = new NoContextItem();
-				SetItems( items );
+				SetItems(items);
 			}
 		}
 

@@ -29,16 +29,16 @@ namespace Fuse.Input
 		public Uno.Platform.PointerType PointerType { get { return _data.PointerType; } }
 		public bool IsPrimary { get { return _data.IsPrimary; } }
 
-		public bool TryHardCapture(object identity, Action lostCallback, Visual captureVisual = null )
+		public bool TryHardCapture(object identity, Action lostCallback, Visual captureVisual = null)
 		{
 			return Pointer.ModifyCapture(identity, captureVisual ?? Visual, lostCallback,
-				CaptureType.Hard, PointIndex );
+				CaptureType.Hard, PointIndex);
 		}
 
-		public bool TrySoftCapture(object identity, Action lostCallback, Visual captureVisual = null )
+		public bool TrySoftCapture(object identity, Action lostCallback, Visual captureVisual = null)
 		{
 			return Pointer.ModifyCapture(identity, captureVisual ?? Visual, lostCallback,
-				CaptureType.Soft, PointIndex );
+				CaptureType.Soft, PointIndex);
 		}
 
 		public void ReleaseCapture(object behavior)
@@ -95,7 +95,7 @@ namespace Fuse.Input
 			if (!_drcWarn)
 			{
 				//DEPRECATED: 2017-02-21
-				Fuse.Diagnostics.Deprecated( "The capture system no longer supports distinct captures for Soft and Hard capture, instead treating the same identity/behaviour as a single capture. Old code will only work if it captured just one pointer, and followed the pattern of soft then hard capture on it (or just a hard capture)", this );
+				Fuse.Diagnostics.Deprecated("The capture system no longer supports distinct captures for Soft and Hard capture, instead treating the same identity/behaviour as a single capture. Old code will only work if it captured just one pointer, and followed the pattern of soft then hard capture on it (or just a hard capture)", this);
 				_drcWarn = true;
 			}
 			ReleaseCapture(behavior); 

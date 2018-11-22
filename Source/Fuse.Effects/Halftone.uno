@@ -99,8 +99,8 @@ namespace Fuse.Effects
 			var tSpacing = Spacing;
 			var angle = Math.PIf/4;
 
-			var rot = float2x2( Math.Cos(angle), Math.Sin(angle), -Math.Sin(angle), Math.Cos(angle) );
-			var rotI = float2x2( Math.Cos(-angle), Math.Sin(-angle), -Math.Sin(-angle), Math.Cos(-angle) );
+			var rot = float2x2(Math.Cos(angle), Math.Sin(angle), -Math.Sin(angle), Math.Cos(angle));
+			var rotI = float2x2(Math.Cos(-angle), Math.Sin(-angle), -Math.Sin(-angle), Math.Cos(-angle));
 
 			draw Fuse.Drawing.Planar.Image
 			{

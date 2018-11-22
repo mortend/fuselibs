@@ -59,21 +59,21 @@ namespace Fuse.Internal
 			return result;
 		}
 		
-		public static float4x4 PerspectiveView( float2 viewSize, float distance, float2 relOrigin )
+		public static float4x4 PerspectiveView(float2 viewSize, float distance, float2 relOrigin)
 		{
 			var t = Matrix.Translation(-relOrigin.X*viewSize.X, -relOrigin.Y*viewSize.Y, distance);
 			var s = Matrix.Scaling(1,-1,1);
 			return Matrix.Mul(t,s);
 		}
 
-		public static float4x4 PerspectiveViewInverse( float2 viewSize, float distance, float2 relOrigin )
+		public static float4x4 PerspectiveViewInverse(float2 viewSize, float distance, float2 relOrigin)
 		{
 			var s = Matrix.Scaling(1,-1,1);
 			var t = Matrix.Translation(relOrigin.X*viewSize.X, relOrigin.Y*viewSize.Y, -distance);
 			return Matrix.Mul(s,t);
 		}
 		
-		public static bool TryPerspectiveProjection( float2 viewSize, float znear, float zfar, float distance, out float4x4 result )
+		public static bool TryPerspectiveProjection(float2 viewSize, float znear, float zfar, float distance, out float4x4 result)
 		{
 			var zdiff = znear - zfar;
 			if (Math.Min(Math.Abs(viewSize.X), Math.Abs(viewSize.Y)) < _zeroTolerance ||
@@ -92,7 +92,7 @@ namespace Fuse.Internal
 			return true;
 		}
 		
-		public static bool TryPerspectiveProjectionInverse( float2 viewSize, float znear, float zfar, float distance, out float4x4 result )
+		public static bool TryPerspectiveProjectionInverse(float2 viewSize, float znear, float zfar, float distance, out float4x4 result)
 		{
 			float zdiv = 2*zfar*znear;
 			if (Math.Abs(distance) < _zeroTolerance ||

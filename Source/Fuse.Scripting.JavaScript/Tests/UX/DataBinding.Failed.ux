@@ -4,7 +4,7 @@
 		var Observable = require("FuseJS/Observable")
 		exports.text = Observable("hi")
 		
-		exports.failText = exports.text.failedMap( 	function(err) { 
+		exports.failText = exports.text.failedMap(	function(err) { 
 			return err
 		})
 		

@@ -10,7 +10,7 @@ namespace Fuse.Controls.FallbackTextRenderer
 	sealed class TextRenderer : ITextRenderer
 	{
 		TextControl Control;
-		public TextRenderer( TextControl text ) 
+		public TextRenderer(TextControl text) 
 		{
 			Control = text;
 		}

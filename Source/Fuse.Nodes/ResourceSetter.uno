@@ -42,7 +42,7 @@ namespace Fuse.Resources
 			get { return _value; }
 			set
 			{
-				if ( !object.Equals(_value,value) )
+				if (!object.Equals(_value,value))
 				{
 					_value = value;
 					OnChanged();
@@ -60,7 +60,7 @@ namespace Fuse.Resources
 		{
 			if (Parent != null && _key != null)
 			{
-				Parent.SetResource( _key, _value );
+				Parent.SetResource(_key, _value);
 			}
 		}
 	}

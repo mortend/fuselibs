@@ -57,12 +57,12 @@ namespace Fuse.Navigation.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( null, p.theNav.Active );
-				//Assert.AreEqual( -1, p.theNav.ActiveIndex ); ???
+				Assert.AreEqual(null, p.theNav.Active);
+				//Assert.AreEqual(-1, p.theNav.ActiveIndex); ???
 				
 				p.callAdd.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("2", (p.theNav.Active as Text).Value );
+				Assert.AreEqual("2", (p.theNav.Active as Text).Value);
 			}
 		}
 	}

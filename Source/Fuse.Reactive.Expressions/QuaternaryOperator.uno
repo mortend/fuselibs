@@ -13,8 +13,8 @@ namespace Fuse.Reactive
 		public Expression Fourth { get { return GetArgument(3); } }
 
 		protected QuaternaryOperator(Expression first, Expression second, Expression third, Expression fourth,
-			Flags flags = Flags.DeprecatedVirtualFlags )
-			: base( new Expression[]{ first, second, third, fourth}, flags )
+			Flags flags = Flags.DeprecatedVirtualFlags)
+			: base(new Expression[]{ first, second, third, fourth}, flags)
 		{
 		}
 
@@ -35,7 +35,7 @@ namespace Fuse.Reactive
 
 		protected virtual bool TryCompute(object first, object second, object third, object fourth, out object result)
 		{
-			Fuse.Diagnostics.Deprecated( " No `TryCompute`, or a deprecated form, overriden. Migrate your code to override the one with `bool` return. ", this );
+			Fuse.Diagnostics.Deprecated(" No `TryCompute`, or a deprecated form, overriden. Migrate your code to override the one with `bool` return. ", this);
 			result = Compute(first, second, third, fourth);
 			return true;
 		}

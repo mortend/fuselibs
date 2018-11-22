@@ -28,7 +28,7 @@ namespace Fuse.Navigation
 			{
 				_motion = value;
 				if (IsRootingCompleted)
-					Fuse.Diagnostics.UserError( "Motion should not be changed post-rooting", this );
+					Fuse.Diagnostics.UserError("Motion should not be changed post-rooting", this);
 			}
 		}
 		
@@ -168,11 +168,11 @@ namespace Fuse.Navigation
 		{
 			if (element.Parent != Parent)
 			{
-				Fuse.Diagnostics.UserError( "Attempting to navigate to element with different parent", element );
+				Fuse.Diagnostics.UserError("Attempting to navigate to element with different parent", element);
 				return;
 			}
 			
-			TransitionToChild(element, mode.HasFlag(NavigationGotoMode.Bypass) );
+			TransitionToChild(element, mode.HasFlag(NavigationGotoMode.Bypass));
 		}
 		
 		/**
@@ -193,13 +193,13 @@ namespace Fuse.Navigation
 			//shortcut if nothing changes
 			if (Progress == targetProgress)
 			{
-				OnStateChanged( NavigationState.Stable);
+				OnStateChanged(NavigationState.Stable);
 				return false;
 			}
 
-			OnStateChanged( NavigationState.Transition );
+			OnStateChanged(NavigationState.Transition);
 
-			_region.MoveTo( float2((float)targetProgress,0) );
+			_region.MoveTo(float2((float)targetProgress,0));
 			CheckNeedUpdate();
 			return true;
 		}
@@ -228,12 +228,12 @@ namespace Fuse.Navigation
 		{
 			if (_region == null)
 			{
-				Fuse.Diagnostics.InternalError( "Updated called without a region", this );
+				Fuse.Diagnostics.InternalError("Updated called without a region", this);
 				return;
 			}
 				
 			var prev = _region.Position.X;
-			_region.Update( Time.FrameInterval );
+			_region.Update(Time.FrameInterval);
 			ChangeProgress(prev, _region.Position.X, NavigationMode.Seek);
 
 			//allow turning off update now, this ensures we always get one update when _region changed
@@ -392,7 +392,7 @@ namespace Fuse.Navigation
 
 			OnNavigated(_active);
 			OnHistoryChanged();
-			OnStateChanged( NavigationState.Stable );
+			OnStateChanged(NavigationState.Stable);
 		}
 
 		Visual _active;
@@ -414,18 +414,18 @@ namespace Fuse.Navigation
 			set { SetDesiredActiveIndex(value); }
 		}
 		
-		void SetDesiredActive( Visual page )
+		void SetDesiredActive(Visual page)
 		{
 			UpdateDesired(page, -1);
 			_desired = Desired.Active;
 			GotoInternal(page, NavigationGotoMode.Transition);
 		}
 		
-		void SetDesiredActiveIndex( int index )
+		void SetDesiredActiveIndex(int index)
 		{
-			UpdateDesired( null, index );
+			UpdateDesired(null, index);
 			_desired = Desired.Index;
-			GotoInternal( _desiredActive, NavigationGotoMode.Transition );
+			GotoInternal(_desiredActive, NavigationGotoMode.Transition);
 		}
 		
 		void DirectSetActive(Visual page)
@@ -448,7 +448,7 @@ namespace Fuse.Navigation
 				_region.StartUser();
 			}
 				
-			OnStateChanged( NavigationState.Seek );
+			OnStateChanged(NavigationState.Seek);
 		}
 
 		/**
@@ -456,14 +456,14 @@ namespace Fuse.Navigation
 		*/
 		public float2 SeekRange
 		{
-			get { return float2( (float)(-_seekBase), (float)(MaxIndex - _seekBase) ); }
+			get { return float2((float)(-_seekBase), (float)(MaxIndex - _seekBase)); }
 		}
 
 		void ISeekableNavigation.Seek(UpdateSeekArgs args)
 		{
 			if (_region == null)
 			{
-				Fuse.Diagnostics.InternalError( "Seek being called on an unrooted navigation", this );
+				Fuse.Diagnostics.InternalError("Seek being called on an unrooted navigation", this);
 				return;
 			}
 			
@@ -502,7 +502,7 @@ namespace Fuse.Navigation
 				_region.EndUser(float2(args.Velocity,0));
 			
 			//force stop if we don't otherwise update the region (in cases where the progress doesn't change)
-			UpdateDesired( null, targetIndex );
+			UpdateDesired(null, targetIndex);
 			if (!TransitionToChild(GetPage(targetIndex), false, true))
 				_region.Reset(_region.Position);
 		}

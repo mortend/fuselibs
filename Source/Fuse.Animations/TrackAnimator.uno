@@ -269,8 +269,8 @@ namespace Fuse.Animations
 		ContinuousTrackProvider _continuousProvider;
 		DiscreteTrackProvider _discreteProvider;
 		
-		protected TrackAnimatorState( TrackAnimator animator, CreateStateParams p,
-			Visual useVisual = null )
+		protected TrackAnimatorState(TrackAnimator animator, CreateStateParams p,
+			Visual useVisual = null)
 			: base(p, useVisual)
 		{
 			Animator = animator;
@@ -280,15 +280,15 @@ namespace Fuse.Animations
 		}
 		
 		internal override SeekResult SeekProgress(double progress, double interval, SeekDirection dir, 
-			double strength )
+			double strength)
 		{
 			if (_continuousProvider != null)
 			{
 				double oStrength;
 				float4 oValue;
 				var r = _continuousProvider.GetSeekProgress(this, progress, interval, dir, 
-					out oValue, out oStrength );
-				SeekValue( oValue, (float)(oStrength * strength * Animator.Weight) );
+					out oValue, out oStrength);
+				SeekValue(oValue, (float)(oStrength * strength * Animator.Weight));
 				return r;
 			}
 			
@@ -297,8 +297,8 @@ namespace Fuse.Animations
 				double oStrength;
 				object oValue;
 				var r = _discreteProvider.GetSeekProgress(this, progress, interval, dir, 
-					out oValue, out oStrength );
-				SeekObjectValue( oValue, (float)(oStrength * strength * Animator.Weight) );
+					out oValue, out oStrength);
+				SeekObjectValue(oValue, (float)(oStrength * strength * Animator.Weight));
 				return r;
 			}
 			
@@ -306,7 +306,7 @@ namespace Fuse.Animations
 		}
 		
 		internal override SeekResult SeekTime(double elapsed, double interval, SeekDirection dir,
-			double strength )
+			double strength)
 		{
 			double relTime;
 			
@@ -320,8 +320,8 @@ namespace Fuse.Animations
 				double oStrength;
 				float4 oValue;
 				var r = _continuousProvider.GetSeekTime(this, relTime, interval, dir, 
-					out oValue, out oStrength );
-				SeekValue( oValue, (float)(oStrength * strength * Animator.Weight) );
+					out oValue, out oStrength);
+				SeekValue(oValue, (float)(oStrength * strength * Animator.Weight));
 				return r;
 			}
 			
@@ -330,16 +330,16 @@ namespace Fuse.Animations
 				double oStrength;
 				object oValue;
 				var r = _discreteProvider.GetSeekTime(this, relTime, interval, dir, 
-					out oValue, out oStrength );
-				SeekObjectValue( oValue, (float)(oStrength * strength * Animator.Weight) );
+					out oValue, out oStrength);
+				SeekObjectValue(oValue, (float)(oStrength * strength * Animator.Weight));
 				return r;
 			}
 			
 			return SeekResult.Stable | SeekResult.Complete;
 		}
 		
-		protected virtual void SeekValue( float4 value, float strength ) { }
-		protected virtual void SeekObjectValue( object value, float strength ) { }
+		protected virtual void SeekValue(float4 value, float strength) { }
+		protected virtual void SeekObjectValue(object value, float strength) { }
 		
 		public bool IsBackward
 		{

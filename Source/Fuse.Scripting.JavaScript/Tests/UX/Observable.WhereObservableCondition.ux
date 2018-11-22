@@ -8,16 +8,16 @@
 		}
 		
 		//+0,-1
-		var items = Observable( new Item(0,true), new Item(1,false))
-		exports.items = items.where( function(x) {
+		var items = Observable(new Item(0,true), new Item(1,false))
+		exports.items = items.where(function(x) {
 			return x.enabled
-		}).map( function(x) {
+		}).map(function(x) {
 			return x.id
 		})
 		
-		exports.notItems = items.where( function(x) {
+		exports.notItems = items.where(function(x) {
 			return x.enabled.not()
-		}).map( function(x) {
+		}).map(function(x) {
 			return x.id
 		})
 		
@@ -28,7 +28,7 @@
 		
 		//+0,+1,+2
 		exports.step2 = function() {
-			items.add( new Item(2,true) )
+			items.add(new Item(2,true))
 		}
 		
 		//-3,+0,+1,+2

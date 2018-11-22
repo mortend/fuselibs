@@ -77,7 +77,7 @@ namespace Fuse.Resources
 			set
 			{
 				_proxy.Release();
-				if( value == null )
+				if(value == null)
 					return;
 
 				var bf = FileImageSourceCache.GetFileSource(value);

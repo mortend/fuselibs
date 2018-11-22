@@ -114,7 +114,7 @@ namespace Fuse.Controls
 
 			var nav = new DynamicLinearNavigation();
 			nav.AddPropertyListener(this);
-			SetNavigation( nav );
+			SetNavigation(nav);
 		}
 
 		protected override void OnRooted()
@@ -166,7 +166,7 @@ namespace Fuse.Controls
 		{
 			pageVisual = Active;
 			if (Active == null)
-				return new RouterPage( "" );
+				return new RouterPage("");
 			else
 				return PageData.GetOrCreate(Active).RouterPage;
 		}

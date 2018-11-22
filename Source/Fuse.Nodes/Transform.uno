@@ -185,13 +185,13 @@ namespace Fuse
 		public override void AppendTo(FastMatrix m, float weight)
 		{
 			if (HasRotation)
-				m.AppendRotationQuaternion( Quaternion.FromEulerAngle(_euler*weight) );
+				m.AppendRotationQuaternion(Quaternion.FromEulerAngle(_euler*weight));
 		}
 
 		public override void PrependTo(FastMatrix m)
 		{
 			if (HasRotation)
-				m.PrependRotationQuaternion( Quaternion.FromEulerAngle(_euler) );
+				m.PrependRotationQuaternion(Quaternion.FromEulerAngle(_euler));
 		}
 		
 		public override bool IsFlat 

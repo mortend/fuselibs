@@ -47,11 +47,11 @@ namespace Fuse.Controls
 			var obs = _pageHistory as IObservableArray;
 			if (obs != null)
 			{
-				AncestorRouterPage.ChildRouterPages.Attach( obs, this );
+				AncestorRouterPage.ChildRouterPages.Attach(obs, this);
 			}
 			else
 			{
-				Fuse.Diagnostics.UserError( "PageHistory expects an observable array. It will not work correctly otherwise", this );
+				Fuse.Diagnostics.UserError("PageHistory expects an observable array. It will not work correctly otherwise", this);
 			}
 				
 			_curPageIndex = -1;
@@ -98,7 +98,7 @@ namespace Fuse.Controls
 			if (pageNdx >= AncestorRouterPage.ChildRouterPages.Count)
 			{
 				rPage = RouterPage.CreateDefault();
-				Fuse.Diagnostics.InternalError( "Inconsistent navigation history", this );
+				Fuse.Diagnostics.InternalError("Inconsistent navigation history", this);
 			}
 			else if (pageNdx >= 0)
 			{
@@ -112,19 +112,19 @@ namespace Fuse.Controls
 			}
 			
 			//adapt request
-			IObject navRequest = RouterPage.GetNavigationRequest( rPage.Context );
+			IObject navRequest = RouterPage.GetNavigationRequest(rPage.Context);
 			if (navRequest != null)
 			{
 				if (!rr.AddArguments(navRequest, RouterRequest.Fields.Transition | 	
 					RouterRequest.Fields.Style | RouterRequest.Fields.Operation))
 				{
-					Fuse.Diagnostics.UserError( "Invalid $navigationRequest, visual result may not match expectation", this );
+					Fuse.Diagnostics.UserError("Invalid $navigationRequest, visual result may not match expectation", this);
 					//continue anyway since the resulting state is still valid
 				}
 			}
 			
 			Visual ignore;
-			((IRouterOutlet)this).Goto( rPage, rr.Transition, rr.Operation, rr.Style, out ignore );
+			((IRouterOutlet)this).Goto(rPage, rr.Transition, rr.Operation, rr.Style, out ignore);
 			
 			_curPageIndex = pageNdx;
 		}
@@ -148,7 +148,7 @@ namespace Fuse.Controls
 		{
 			if (index == _curPageIndex)
 				FullUpdatePages();
-			else if( index < _curPageIndex)
+			else if(index < _curPageIndex)
 				_curPageIndex--;
 		}
 		
@@ -176,7 +176,7 @@ namespace Fuse.Controls
 			FullUpdatePages();
 		}
 		
-		ContextDataResult ISubtreeDataProvider.TryGetDataProvider( Node n, DataType type, out object provider )
+		ContextDataResult ISubtreeDataProvider.TryGetDataProvider(Node n, DataType type, out object provider)
 		{
 			provider = null;
 			var v = n as Visual;

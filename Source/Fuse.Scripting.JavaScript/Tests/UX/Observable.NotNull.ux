@@ -5,7 +5,7 @@
 		exports.count = Observable(0)
 		var items = Observable()
 		var notNull = items.notNull()
-		notNull.onValueChanged( module, function(v) {
+		notNull.onValueChanged(module, function(v) {
 			exports.count.value++
 		})
 		

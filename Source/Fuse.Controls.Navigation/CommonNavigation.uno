@@ -59,7 +59,7 @@ namespace Fuse.Controls
 			return a == null || a == "" || a == "\"\"" || a == "{}" || a == "null";
 		}
 		
-		public static bool CompatibleParameter( string a, string b )
+		public static bool CompatibleParameter(string a, string b)
 		{
 			if (a == b)
 				return true;

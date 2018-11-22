@@ -193,7 +193,7 @@ namespace Fuse.Layouts
 			}
 		}
 		
-		int LeastAt( float[] c )
+		int LeastAt(float[] c)
 		{
 			float sz = c[0];
 			int i = 0;
@@ -229,7 +229,7 @@ namespace Fuse.Layouts
 		}
 		
 		float2 Arrange(Visual container, LayoutParams lp, 
-			bool doArrange = false, float4 padding=float4(0) )
+			bool doArrange = false, float4 padding=float4(0))
 		{
 			bool vert = Orientation == Orientation.Vertical;
 			
@@ -250,7 +250,7 @@ namespace Fuse.Layouts
 					if (!AffectsLayout(v))
 						continue;
 					var c = v.GetMarginSize(LayoutParams.CreateEmpty());
-					mx = Math.Max( mx, c);
+					mx = Math.Max(mx, c);
 				}
 				
 				//fall-through to normal sizing
@@ -264,9 +264,9 @@ namespace Fuse.Layouts
 				if (!_hasColumnCount)
 				{
 					if (vert)
-						columnCount = (int)Math.Floor( (avail.X + ColumnSpacing) / columnSpace);
+						columnCount = (int)Math.Floor((avail.X + ColumnSpacing) / columnSpace);
 					else
-						columnCount = (int)Math.Floor( (avail.Y + ColumnSpacing) / columnSpace);
+						columnCount = (int)Math.Floor((avail.Y + ColumnSpacing) / columnSpace);
 					columnCount = Math.Max(1,columnCount);
 				}
 					
@@ -298,8 +298,8 @@ namespace Fuse.Layouts
 					if (ArrangeMarginBoxSpecial(v, padding, lp))
 						continue;
 					var pos = vert ?
-						float2( padding.X + col*columnSpace, padding.Y + at[col] ) :
-						float2( padding.X + at[col], padding.Y + col*columnSpace );
+						float2(padding.X + col*columnSpace, padding.Y + at[col]) :
+						float2(padding.X + at[col], padding.Y + col*columnSpace);
 						
 					nsz = v.ArrangeMarginBox(pos, LayoutParams.CreateXY(avs,vert, !vert));
 				}

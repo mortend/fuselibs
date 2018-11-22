@@ -34,7 +34,7 @@ namespace Fuse.Controls
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "EdgeNaviagator.open requires 1 parameter (edge)", e );
+				Fuse.Diagnostics.UserError("EdgeNaviagator.open requires 1 parameter (edge)", e);
 				return;
 			}
 			

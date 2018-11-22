@@ -48,7 +48,7 @@ namespace Fuse.Animations
 			return Delay + Duration;
 		}
 		
-		internal double GetDelay(AnimationVariant dir, double totalDuration )
+		internal double GetDelay(AnimationVariant dir, double totalDuration)
 		{
 			return Delay;
 		}
@@ -59,8 +59,8 @@ namespace Fuse.Animations
 		OpenAnimator Animator;
 		bool _seekDone = true;
 		
-		protected OpenAnimatorState( OpenAnimator animator, CreateStateParams p, 
-			Visual useVisual = null )
+		protected OpenAnimatorState(OpenAnimator animator, CreateStateParams p, 
+			Visual useVisual = null)
 			: base(p, useVisual) 
 		{ 
 			Animator = animator;
@@ -71,11 +71,11 @@ namespace Fuse.Animations
 		internal override SeekResult SeekProgress(double progress, double interval, SeekDirection dir, 
 			double strength)
 		{
-			return SeekTime( progress * TotalDuration, interval, dir, strength );
+			return SeekTime(progress * TotalDuration, interval, dir, strength);
 		}
 		
 		internal override SeekResult SeekTime(double nominal, double interval, SeekDirection dir,
-			double strength )
+			double strength)
 		{
 			var delay = Animator.GetDelay(Variant, TotalDuration);
 			const float zeroTolerance = 1e-05f;
@@ -91,12 +91,12 @@ namespace Fuse.Animations
 			
 			//this would require knowing that we actually seeked "interval" length, which isn't always
 			//true during progress seeking
-			//if ( (nominal - interval) < delay && dir == SeekDirection.Forward)
+			//if ((nominal - interval) < delay && dir == SeekDirection.Forward)
 			//	interval = nominal - delay;
 			
 			//shortcut if nothing is to be done
 			if (on || !_seekDone)
-				_seekDone = Seek( on, (float)interval, (float)strength, dir );
+				_seekDone = Seek(on, (float)interval, (float)strength, dir);
 				
 			return (_seekDone ? SeekResult.Stable : SeekResult.None) |
 				(mayEnd && _seekDone ? SeekResult.Complete : SeekResult.None);

@@ -259,7 +259,7 @@ namespace Fuse.Gestures
 			var element = Parent as Element;
 			if (element == null)
 			{
-				Fuse.Diagnostics.UserRootError( "Element", Parent, this );
+				Fuse.Diagnostics.UserRootError("Element", Parent, this);
 				return;
 			}
 				
@@ -355,7 +355,7 @@ namespace Fuse.Gestures
 		SwipeRegion _region;
 		
 		[UXConstructor]
-		public SwipingAnimation( [UXParameter("Source")] SwipeGesture source)
+		public SwipingAnimation([UXParameter("Source")] SwipeGesture source)
 		{
 			Source = source;
 		}
@@ -486,7 +486,7 @@ namespace Fuse.Gestures
 		}
 		
 		[UXConstructor]
-		public WhileSwipeActive( [UXParameter("Source")] SwipeGesture source)
+		public WhileSwipeActive([UXParameter("Source")] SwipeGesture source)
 		{
 			Source = source;
 		}
@@ -513,7 +513,7 @@ namespace Fuse.Gestures
 
 		void OnProgressChanged(double progress)
 		{
-			SetActive( progress >= Threshold);
+			SetActive(progress >= Threshold);
 		}
 	}
 
@@ -563,7 +563,7 @@ namespace Fuse.Gestures
 		public SwipeGesture Source { get; private set; }
 		
 		[UXConstructor]
-		public Swiped( [UXParameter("Source")] SwipeGesture source)
+		public Swiped([UXParameter("Source")] SwipeGesture source)
 		{
 			Source = source;
 		}
@@ -623,7 +623,7 @@ namespace Fuse.Gestures
 		SwipeRegion _region;
 
 		[UXConstructor]
-		public WhileSwiping( [UXParameter("Source")] SwipeGesture source)
+		public WhileSwiping([UXParameter("Source")] SwipeGesture source)
 		{
 			Source = source;
 		}

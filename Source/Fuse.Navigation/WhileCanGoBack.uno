@@ -20,7 +20,7 @@ namespace Fuse.Navigation
 
 			if (_context == null)
 			{
-				Diagnostics.UserError( "WhileHistoryTrigger requires a Navigation context", this );
+				Diagnostics.UserError("WhileHistoryTrigger requires a Navigation context", this);
 				return;
 			}
 			SetActive(IsOn);

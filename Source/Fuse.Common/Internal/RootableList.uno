@@ -18,7 +18,7 @@ namespace Uno.Collections
 		public void Subscribe(Action<T> added, Action<T> removed)
 		{
 			if (this._added != null)
-				throw new Exception( "Supports only one subscription" );
+				throw new Exception("Supports only one subscription");
 				
 			if (added == null)
 				throw new ArgumentNullException(nameof(added));

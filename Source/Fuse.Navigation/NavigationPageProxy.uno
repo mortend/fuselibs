@@ -31,26 +31,26 @@ namespace Fuse.Navigation
 		/** Internal since class was meant to be internal, not public */
 		internal NavigationPageProxy() { }
 		/** Split from ctor since callers need the address prior to setup completing */
-		internal void Init( StatusChangedHandler ready, StatusChangedHandler unready, Visual source )
+		internal void Init(StatusChangedHandler ready, StatusChangedHandler unready, Visual source)
 		{
 			_ready = ready;
 			_unready = unready;
 			RootImpl(source);
 		}
 
-		void RootImpl( Visual source)
+		void RootImpl(Visual source)
 		{
 			_source = source;
 			if (_source == null)
 			{
-				Fuse.Diagnostics.InternalError( "Attempting rooting to null source", this );
+				Fuse.Diagnostics.InternalError("Attempting rooting to null source", this);
 				return;
 			}
 			
 			Page = Fuse.Navigation.Navigation.TryFindPage(_source, out _navigation, out _pageBind);
 			if (Page == null)
 			{
-				Fuse.Diagnostics.UserError( "Unable to locate Page", this );
+				Fuse.Diagnostics.UserError("Unable to locate Page", this);
 				return;
 			}
 
@@ -67,7 +67,7 @@ namespace Fuse.Navigation
 
 			if (_navigation == null)
 			{
-				Fuse.Diagnostics.InternalError( "Something went wrong locating a Navigator", this );
+				Fuse.Diagnostics.InternalError("Something went wrong locating a Navigator", this);
 				return;
 			}
 			
@@ -87,7 +87,7 @@ namespace Fuse.Navigation
 		{
 			if (!_waitRootingCompleted || Page == null || _source == null)
 			{
-				Fuse.Diagnostics.InternalError( "Got an undesired ready event", this );
+				Fuse.Diagnostics.InternalError("Got an undesired ready event", this);
 				return;
 			}
 			
@@ -140,9 +140,9 @@ namespace Fuse.Navigation
 		
 		//Obsolete stuff
 		[Obsolete] //2017-04-06
-		public NavigationPageProxy( Action ready, Action unready )
+		public NavigationPageProxy(Action ready, Action unready)
 		{
-			Fuse.Diagnostics.Deprecated( "NavigationPageProxy is not meant to be used directly, use specific navigation triggers", this );
+			Fuse.Diagnostics.Deprecated("NavigationPageProxy is not meant to be used directly, use specific navigation triggers", this);
 			var q = new ObsoleteWrapper{ Ready= ready, Unready = unready };
 			_ready = q.ReadyImpl;
 			_unready = q.UnreadyImpl;
@@ -156,7 +156,7 @@ namespace Fuse.Navigation
 		}
 		
 		[Obsolete] //2017-04-06
-		public void Rooted( Visual source )
+		public void Rooted(Visual source)
 		{
 			RootImpl(source);
 		}

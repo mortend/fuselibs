@@ -4,11 +4,11 @@
 
 		var obsA = Observable("a")
 		var obsB = Observable("b")
-		var obsC = Observable( function() {
+		var obsC = Observable(function() {
 			return obsA.value + obsB.value
 		})
 		var obsD = Observable()
-		var obsE = Observable( function() {
+		var obsE = Observable(function() {
 			return "$" + (obsD.value || "*") + obsC.value
 		})
 		

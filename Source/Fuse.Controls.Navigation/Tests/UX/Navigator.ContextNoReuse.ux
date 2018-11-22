@@ -15,7 +15,7 @@
 		}
 		
 		exports.replaceThree = function() {
-			exports.pages.replaceAt( exports.pages.length - 1, {
+			exports.pages.replaceAt(exports.pages.length - 1, {
 				$path: "MyPage",
 				value: "weasel",
 			})

@@ -84,7 +84,7 @@ namespace Fuse.Charting
 			_plot = PlotBehavior.FindPlot(this);
 			if (_plot == null)
 			{
-				Fuse.Diagnostics.UserError( "Could not find PlotBehavior", this );
+				Fuse.Diagnostics.UserError("Could not find PlotBehavior", this);
 			}
 			else
 			{
@@ -109,7 +109,7 @@ namespace Fuse.Charting
 				_obsFilter.Update();
 				useItems = _obsFilter;
 			}
-			SetItemsDerivedRooting( useItems );
+			SetItemsDerivedRooting(useItems);
 		}
 		
 		protected override void OnUnrooted()
@@ -119,7 +119,7 @@ namespace Fuse.Charting
 				_filter.Plot = null;
 				_plot = null;
 				_obsFilter = null;
-				SetItems( null );
+				SetItems(null);
 			}
 			
 			base.OnUnrooted();

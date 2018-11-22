@@ -21,8 +21,8 @@
 		contacts.add({ name:"Walter"})
 			
 		var deleteContact = function(args,b) {
-			console.log( "Delete: " + args.user)
-			for (var i=0; i < contacts.length; ++i ) {
+			console.log("Delete: " + args.user)
+			for (var i=0; i < contacts.length; ++i) {
 				var q = contacts.getAt(i)
 				if (q.name == args.user) {
 					contacts.remove(q)
@@ -30,7 +30,7 @@
 				}
 			}
 			
-			UserEvents.raise( "Chatty.ContactDeleted", {
+			UserEvents.raise("Chatty.ContactDeleted", {
 				user: args.user
 			})
 		}

@@ -101,7 +101,7 @@ namespace Fuse.Gestures.Internal
 				else if (Math.Abs(_progress-1) < _zeroTolerance)
 					_progress = 1;
 				else
-					Fuse.Diagnostics.InternalError("Unexpected progress in swipe", this );
+					Fuse.Diagnostics.InternalError("Unexpected progress in swipe", this);
 				
 				bool active = _progress == 1;
 				bool cancelled = _stableProgress == _progress;
@@ -111,7 +111,7 @@ namespace Fuse.Gestures.Internal
 						new DoSwiped{
 							Active = active,
 							Region = this,
-							Cancelled = cancelled }.Perform );
+							Cancelled = cancelled }.Perform);
 					TriggerSwipe = false;
 					swiped = true;
 				}
@@ -264,14 +264,14 @@ namespace Fuse.Gestures.Internal
 			{
 				if (LengthElement == null)
 					return Length;
-				return Math.Abs(Vector.Dot( Direction, LengthElement.ActualSize ));
+				return Math.Abs(Vector.Dot(Direction, LengthElement.ActualSize));
 			}
 		}
 		
 		public bool InteractProgress(float2 diff, double startProgress)
 		{
 			var l = ScalarDistance(diff);
-			var p = Math.Clamp( l / EffectiveLength + startProgress, 0.0, 1.0);
+			var p = Math.Clamp(l / EffectiveLength + startProgress, 0.0, 1.0);
 			var flags = ProgressFlags.Interacting;
 			if (AutoTrigger && p == 1)
 				flags |= ProgressFlags.EndProgress;
@@ -354,7 +354,7 @@ namespace Fuse.Gestures.Internal
 			_pointerRegions.Clear();
 			
 			_element = n;
-			_gesture = Input.Gestures.Add( this, _element, GestureType.Primary | GestureType.NodeShare);
+			_gesture = Input.Gestures.Add(this, _element, GestureType.Primary | GestureType.NodeShare);
 		}
 
 		void OnUnrooted()
@@ -377,8 +377,8 @@ namespace Fuse.Gestures.Internal
 				else if (region.InProgress)
 				{
 					//unexpected, but cleanup any items that don't need animation but had pending progress
-					Fuse.Diagnostics.InternalError( "incomplete swipe detected", this );
-					region.SetProgress( region.StableProgress, SwipeRegion.ProgressFlags.EndProgress );
+					Fuse.Diagnostics.InternalError("incomplete swipe detected", this);
+					region.SetProgress(region.StableProgress, SwipeRegion.ProgressFlags.EndProgress);
 				}
 			}
 				
@@ -406,7 +406,7 @@ namespace Fuse.Gestures.Internal
 					continue;
 					
 				if (!region.IsStatic)
-					region.PointBody1D.Update( Time.FrameInterval * region.TimeMultiplier );
+					region.PointBody1D.Update(Time.FrameInterval * region.TimeMultiplier);
 				region.SetProgress(region.PointBody1D.Position, 
 					region.IsStatic ? SwipeRegion.ProgressFlags.EndProgress : SwipeRegion.ProgressFlags.None);
 			}
@@ -442,7 +442,7 @@ namespace Fuse.Gestures.Internal
 					_pointerRegion == null ? GesturePriority.Normal : _pointerRegion.GesturePriority,
 					_significance,
 					//TODO: fixup random number based on priorities in Swipe somehow
-					_pointerRegion == null ? 0 : (_pointerRegion.Priority < 100 ? 1 : 0) );
+					_pointerRegion == null ? 0 : (_pointerRegion.Priority < 100 ? 1 : 0));
 			}
 		}
 		
@@ -469,12 +469,12 @@ namespace Fuse.Gestures.Internal
 		{
 			if (_pointerRegions.Count == 0)
 			{
-				Fuse.Diagnostics.InternalError( "invalid OnCapture" );
+				Fuse.Diagnostics.InternalError("invalid OnCapture");
 				return;
 			}
 			
 			//actual movement is deferred from point of capture
-			RestartMove( FromWindow(args.WindowPoint) );
+			RestartMove(FromWindow(args.WindowPoint));
 		}
 		
 		float2 FromWindow(float2 p)
@@ -487,15 +487,15 @@ namespace Fuse.Gestures.Internal
 
 		void MoveUser(float2 coord, double elapsed, bool release = false)
 		{
-			_velocity.AddSample( coord, (float)elapsed, 
+			_velocity.AddSample(coord, (float)elapsed, 
 				(!_gesture.IsHardCapture ? SampleFlags.Tentative : SampleFlags.None) |
-				(release ? SampleFlags.Release : SampleFlags.None) );
+				(release ? SampleFlags.Release : SampleFlags.None));
 		}
 		
 		void RestartMove(float2 currentCoord)
 		{
 			_startCoord = currentCoord;
-			_velocity.Reset( _startCoord);
+			_velocity.Reset(_startCoord);
 		}
 		
 		bool _allowNewRegion;
@@ -507,7 +507,7 @@ namespace Fuse.Gestures.Internal
 			_prevTime = args.Timestamp;
 			
 			//to allow a new region to start immediately
-			for( int i=0; i<2;++i)
+			for(int i=0; i<2;++i)
 			{
 				var diff = currentCoord - _startCoord;
 				if (!_gesture.IsHardCapture || _allowNewRegion)
@@ -573,7 +573,7 @@ namespace Fuse.Gestures.Internal
 					continue;
 				
 				if (sel == null ||
-					sel.Progress < region.Progress )
+					sel.Progress < region.Progress)
 				{
 					sel = region;
 				}

@@ -18,7 +18,7 @@ namespace Fuse.Charting
 	
 	static class TypeUtils
 	{
-		public static PlotOrientation Opposite( PlotOrientation a )
+		public static PlotOrientation Opposite(PlotOrientation a)
 		{
 			switch (a)
 			{
@@ -35,7 +35,7 @@ namespace Fuse.Charting
 		public DataChangedArgs() { }
 	}
 	
-	delegate void DataChangedHandler( object sender, DataChangedArgs args );
+	delegate void DataChangedHandler(object sender, DataChangedArgs args);
 
 	//pseudo - typedefs (would prefer `using` syntax from C#)
 	class ObservableAxisItems : ReadOnlyObservableList<AxisEntry> { }
@@ -193,7 +193,7 @@ namespace Fuse.Charting
 		
 		protected override void OnUnrooted()
 		{
-			for (int i=0; i < _series.Count; ++i )
+			for (int i=0; i < _series.Count; ++i)
 				_series[i].Unroot();
 			
 			for (int i=0; i < Data.NumAxes; ++i)
@@ -247,13 +247,13 @@ namespace Fuse.Charting
 			if (!IsRootingCompleted || _series.Count == 0)
 				return;
 
-			_dataStats = DataStats.CalculateAll( _series, _spec );
+			_dataStats = DataStats.CalculateAll(_series, _spec);
 			if (_dataStats.Count == 0)
 				return;
 			
 			_plotStats = _dataStats.Clone();
 			_plotStats.Extend(Extend);
-			_plotStats.ApplyLimits( _spec, Offset, Limit, _hasLimit );
+			_plotStats.ApplyLimits(_spec, Offset, Limit, _hasLimit);
 			
 			for (int s=0; s < _series.Count; ++s)
 			{
@@ -274,14 +274,14 @@ namespace Fuse.Charting
 						dataItems.RemoveAt(diAt);
 						
 					if (diAt < dataItems.Count && dataItems[diAt].Index == ndx)
-						dataItems[diAt++].Update( data[ndx], ndx );
+						dataItems[diAt++].Update(data[ndx], ndx);
 					else
-						dataItems.Insert( diAt++, new PlotDataPoint{ Data = data[ndx], 
-							SeriesIndex = s, Plot = this, Index = ndx } );
+						dataItems.Insert(diAt++, new PlotDataPoint{ Data = data[ndx], 
+							SeriesIndex = s, Plot = this, Index = ndx });
 				}
 				
-				while( dataItems.Count > diAt )
-					dataItems.RemoveAt( dataItems.Count - 1 );
+				while(dataItems.Count > diAt)
+					dataItems.RemoveAt(dataItems.Count - 1);
 			}
 			//clear other watched series (don't remove them since they could appear again)
 			for (int i=_series.Count; i < _dataItems.Count; ++i)
@@ -292,7 +292,7 @@ namespace Fuse.Charting
 				
 			//already at the end of a dispatched message so no need to dispacth again
 			if (DataChanged != null)
-				DataChanged( this, new DataChangedArgs() );
+				DataChanged(this, new DataChangedArgs());
 		}
 
 		List<ObservableDataItems> _dataItems = new List<ObservableDataItems>();
@@ -309,7 +309,7 @@ namespace Fuse.Charting
 					return GetDataItems(i);
 			}
 
-			Fuse.Diagnostics.UserError( "DataSeries is not part of this plot", this );
+			Fuse.Diagnostics.UserError("DataSeries is not part of this plot", this);
 			return GetDataItems(0);
 		}
 		
@@ -317,11 +317,11 @@ namespace Fuse.Charting
 		{
 			if (series < 0 || series > 128) //reasonable limit to prevent nonsense
 			{
-				Fuse.Diagnostics.UserError( "Out-of-range series index", this );
+				Fuse.Diagnostics.UserError("Out-of-range series index", this);
 				series = 0;
 			}
 			while (series >= _dataItems.Count)
-				_dataItems.Add( new ObservableDataItems() );
+				_dataItems.Add(new ObservableDataItems());
 			return _dataItems[series];
 		}
 		
@@ -355,7 +355,7 @@ namespace Fuse.Charting
 			return _axisItems[axis];
 		}
 		
-		void UpdateAxisItems( List<Data> data, int axis )
+		void UpdateAxisItems(List<Data> data, int axis)
 		{
 			//create a temp list to ensure we add new items in order, and don't double-initialize,
 			//both of which is inefficient for Each as it observes the items
@@ -418,9 +418,9 @@ namespace Fuse.Charting
 					items.RemoveAt(iAt);
 					
 				if (iAt < items.Count && items[iAt].Data.Index == labels[i].Index)
-					items[iAt++].Update( labels[i] );
+					items[iAt++].Update(labels[i]);
 				else
-					items.Insert( iAt++, new AxisEntry{ Plot = this, Data = labels[i], Axis = axis } );
+					items.Insert(iAt++, new AxisEntry{ Plot = this, Data = labels[i], Axis = axis });
 			}
 			
 			//remove excessive
@@ -435,7 +435,7 @@ namespace Fuse.Charting
 		{
 			var effLimit = _hasLimit ? Limit : 1;
 			var nextOffset = Offset + step;
-			var cOffset = Math.Clamp( nextOffset, 0, Math.Max(0, DataStats.Count - effLimit) );
+			var cOffset = Math.Clamp(nextOffset, 0, Math.Max(0, DataStats.Count - effLimit));
 			Offset = cOffset;
 		}
 		

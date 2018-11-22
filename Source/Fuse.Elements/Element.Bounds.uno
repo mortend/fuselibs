@@ -50,7 +50,7 @@ namespace Fuse.Elements
 					if (ClipToBounds)
 					{
 						_renderBoundsWithoutEffects = _renderBoundsWithoutEffects.IntersectXY(
-							VisualBounds.Rect(float2(0),ActualSize) );
+							VisualBounds.Rect(float2(0),ActualSize));
 					}
 				}
 				return _renderBoundsWithoutEffects;
@@ -72,14 +72,14 @@ namespace Fuse.Elements
 			var transformMatrix = dc.GetLocalToClipTransform(this);
 			var esr = Rect.Transform(localRegion, transformMatrix);
 			
-			var low = Math.Floor( pixelEpsilon +
-				(Math.Min( esr.Minimum, esr.Maximum )+1f)/2f * dc.GLViewportPixelSize 
+			var low = Math.Floor(pixelEpsilon +
+				(Math.Min(esr.Minimum, esr.Maximum)+1f)/2f * dc.GLViewportPixelSize 
 				);
-			var high = Math.Ceil( (Math.Max( esr.Minimum, esr.Maximum )+1f)/2f * dc.GLViewportPixelSize -
+			var high = Math.Ceil((Math.Max(esr.Minimum, esr.Maximum)+1f)/2f * dc.GLViewportPixelSize -
 				pixelEpsilon
 				);
-			var r  = new Recti( (int)low.X, (int)(dc.GLViewportPixelSize.Y-high.Y), 
-				(int)(high.X), (int)(dc.GLViewportPixelSize.Y - low.Y) );
+			var r  = new Recti((int)low.X, (int)(dc.GLViewportPixelSize.Y-high.Y), 
+				(int)(high.X), (int)(dc.GLViewportPixelSize.Y - low.Y));
 			return r;
 		}
 

@@ -38,7 +38,7 @@ namespace Fuse.Selection
 			
 			_selection = Selection.TryFindSelection(Parent);
 			if (_selection == null)
-				Fuse.Diagnostics.UserError( "Unable to locate `Selection`", this );
+				Fuse.Diagnostics.UserError("Unable to locate `Selection`", this);
 		}
 		
 		protected override void OnUnrooted()
@@ -79,7 +79,7 @@ namespace Fuse.Selection
 		{
 			if (_selection == null)
 			{
-				Fuse.Diagnostics.UserError( "No selection, perhaps not rooted", this);
+				Fuse.Diagnostics.UserError("No selection, perhaps not rooted", this);
 				return;
 			}
 			
@@ -93,7 +93,7 @@ namespace Fuse.Selection
 		{
 			if (_selection == null)
 			{
-				Fuse.Diagnostics.UserError( "No selection, perhaps not rooted", this);
+				Fuse.Diagnostics.UserError("No selection, perhaps not rooted", this);
 				return;
 			}
 			
@@ -107,7 +107,7 @@ namespace Fuse.Selection
 		{
 			if (_selection == null)
 			{
-				Fuse.Diagnostics.UserError( "No selection, perhaps not rooted", this);
+				Fuse.Diagnostics.UserError("No selection, perhaps not rooted", this);
 				return;
 			}
 			

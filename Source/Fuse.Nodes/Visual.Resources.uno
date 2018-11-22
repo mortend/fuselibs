@@ -64,7 +64,7 @@ namespace Fuse
 				}
 			}
 			
-			resources.Add( new Resource(key, value) );
+			resources.Add(new Resource(key, value));
 		}
 		
 		public override bool TryGetResource(string key, Predicate<object> acceptor, out object resource)

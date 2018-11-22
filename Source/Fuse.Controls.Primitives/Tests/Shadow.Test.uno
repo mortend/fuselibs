@@ -18,7 +18,7 @@ namespace Fuse.Controls.Primitives.Test
 			using (var fb = root.CaptureDraw())
 			{
 				// check that the element is on top
-				fb.AssertPixel(float4(1, 0, 0, 1), int2( 50, 150)); // left border
+				fb.AssertPixel(float4(1, 0, 0, 1), int2(50, 150)); // left border
 				fb.AssertPixel(float4(1, 0, 0, 1), int2(249, 150)); // right border
 				fb.AssertPixel(float4(1, 0, 0, 1), int2(150, 249)); // bottom border
 				fb.AssertPixel(float4(1, 0, 0, 1), int2(150,  50)); // top border

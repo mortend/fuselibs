@@ -157,7 +157,7 @@ namespace Fuse
 		protected override void OnRooted()
 		{
 			base.OnRooted();
-			DeferredManager.AddPending(this, float2(Priority,NodeDepth) );
+			DeferredManager.AddPending(this, float2(Priority,NodeDepth));
 			BusyTask.SetBusy(Parent, ref _busyTask, BusyTaskActivity.Deferring);
 		}
 		
@@ -180,7 +180,7 @@ namespace Fuse
 		bool IDeferred.Perform()
 		{
 			if (_added != null)
-				Fuse.Diagnostics.InternalError( "Duplicate call to Deferred.Perform", this );
+				Fuse.Diagnostics.InternalError("Duplicate call to Deferred.Perform", this);
 				
 			_added = new List<Node>();
 			for (int i=0; i < Templates.Count; ++i)

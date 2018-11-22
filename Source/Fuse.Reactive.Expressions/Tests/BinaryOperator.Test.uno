@@ -17,29 +17,29 @@ namespace Fuse.Reactive.Test
 			var p = new UX.BinaryOperator.Basic();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "abcd", p.a.StringValue);
-				Assert.AreEqual( null, p.b.ObjectValue );
-				Assert.AreEqual( null, p.c.ObjectValue );
-				Assert.AreEqual( "*", p.d.StringValue );
-				Assert.AreEqual( "++", p.e.StringValue );
+				Assert.AreEqual("abcd", p.a.StringValue);
+				Assert.AreEqual(null, p.b.ObjectValue);
+				Assert.AreEqual(null, p.c.ObjectValue);
+				Assert.AreEqual("*", p.d.StringValue);
+				Assert.AreEqual("++", p.e.StringValue);
 				
 				p.strct.Value = p.strctData1.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( null, p.c.ObjectValue );
-				Assert.AreEqual( "x+", p.d.StringValue );
-				Assert.AreEqual( "x+", p.e.StringValue );
+				Assert.AreEqual(null, p.c.ObjectValue);
+				Assert.AreEqual("x+", p.d.StringValue);
+				Assert.AreEqual("x+", p.e.StringValue);
 				
 				p.strct.Value = p.strctData2.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( null, p.c.ObjectValue );
-				Assert.AreEqual( "*", p.d.StringValue );
-				Assert.AreEqual( "+y", p.e.StringValue );
+				Assert.AreEqual(null, p.c.ObjectValue);
+				Assert.AreEqual("*", p.d.StringValue);
+				Assert.AreEqual("+y", p.e.StringValue);
 				
 				p.strct.Value = p.strctData3.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "xy", p.c.StringValue );
-				Assert.AreEqual( "xy", p.d.StringValue );
-				Assert.AreEqual( "xy", p.e.StringValue );
+				Assert.AreEqual("xy", p.c.StringValue);
+				Assert.AreEqual("xy", p.d.StringValue);
+				Assert.AreEqual("xy", p.e.StringValue);
 			}
 		}
 		
@@ -50,21 +50,21 @@ namespace Fuse.Reactive.Test
 			using (var dg = new RecordDiagnosticGuard())
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.IsFalse( p.iq.BoolValue );
+				Assert.IsFalse(p.iq.BoolValue);
 				
 				p.b.Value = "triggerBad";
 				root.PumpDeferred();
 				
 				var d = dg.DequeueAll();
-				Assert.IsTrue( d.Count == 1 || d.Count == 2 ); //TODO: there is a double OnNewData somewhere, not relevant to this feature though!
-				Assert.Contains( "Failed to compute", d[0].Message );
+				Assert.IsTrue(d.Count == 1 || d.Count == 2); //TODO: there is a double OnNewData somewhere, not relevant to this feature though!
+				Assert.Contains("Failed to compute", d[0].Message);
 
-				Assert.IsFalse( p.iq.BoolValue );
+				Assert.IsFalse(p.iq.BoolValue);
 				
 				p.b.Value = 2;
 				root.PumpDeferred();
-				Assert.IsTrue( p.iq.BoolValue );
-				Assert.AreEqual( "12", p.q.StringValue );
+				Assert.IsTrue(p.iq.BoolValue);
+				Assert.AreEqual("12", p.q.StringValue);
 			}
 		}
 	}

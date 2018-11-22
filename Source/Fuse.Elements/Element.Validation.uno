@@ -28,7 +28,7 @@ namespace Fuse.Elements
 			GMSReset();
 		}
 
-		protected override LayoutDependent IsMarginBoxDependent( Visual child )
+		protected override LayoutDependent IsMarginBoxDependent(Visual child)
 		{
 			return _boxSizing.IsContentRelativeSize(this);
 		}

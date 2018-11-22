@@ -132,7 +132,7 @@
     @protocol MyClassJavaScriptMethods <JSExport>
     JSExportAs(doFoo,
     - (void)doFoo:(id)foo withBar:(id)bar
-    );
+   );
     @end
 @/textblock
 </pre>

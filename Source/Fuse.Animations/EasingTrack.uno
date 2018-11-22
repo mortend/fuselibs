@@ -21,13 +21,13 @@ namespace Fuse.Animations
 			double interval, SeekDirection dir,
 			out float4 value, out double strength)
 		{
-			progress = Math.Clamp( progress, 0, 1 );
+			progress = Math.Clamp(progress, 0, 1);
 			var ease = tas.Easing.Map((float)progress);
 			
 			strength = ease;
 			value = tas.Animator._vectorValue;
 			
-			return ( (dir == SeekDirection.Forward ? progress >= 1 : progress <= 0) ?
+			return ((dir == SeekDirection.Forward ? progress >= 1 : progress <= 0) ?
 				SeekResult.Complete : SeekResult.None) | SeekResult.Stable;
 		}
 		
@@ -45,7 +45,7 @@ namespace Fuse.Animations
 			else
 				progress = (float)(elapsed / duration);
 				
-			return (this as ContinuousTrackProvider).GetSeekProgress(tas, progress, interval, dir, out value, out strength );
+			return (this as ContinuousTrackProvider).GetSeekProgress(tas, progress, interval, dir, out value, out strength);
 		}
 	}
 }

@@ -37,13 +37,13 @@ namespace Fuse.Reactive.Internal
 	*/
 	class PatchList
 	{
-		static public List<PatchItem> Patch<T>( IList<T> from, IList<T> to, PatchAlgorithm algo,
-			T emptyKey )
+		static public List<PatchItem> Patch<T>(IList<T> from, IList<T> to, PatchAlgorithm algo,
+			T emptyKey)
 		{
-			switch( algo )
+			switch(algo)
 			{
 				case PatchAlgorithm.RemoveAll:
-					return PatchRemoveAll( from, to );
+					return PatchRemoveAll(from, to);
 				case PatchAlgorithm.Simple:
 					return new SimpleAlgorithm<T>(from,to, emptyKey).Calc();
 			}
@@ -54,14 +54,14 @@ namespace Fuse.Reactive.Internal
 		/** 
 			Removes all items then adds in the new ones.
 		*/
-		static List<PatchItem> PatchRemoveAll<T>( IList<T> from, IList<T> to )
+		static List<PatchItem> PatchRemoveAll<T>(IList<T> from, IList<T> to)
 		{
 			var ops = new List<PatchItem>();
 			for (int i=0; i < from.Count; ++i)
-				ops.Add( new PatchItem{ Op = PatchOp.Remove, A = 0 } );
+				ops.Add(new PatchItem{ Op = PatchOp.Remove, A = 0 });
 				
 			for (int i=0; i < to.Count; ++i)
-				ops.Add( new PatchItem{ Op = PatchOp.Insert, A = i, Data = i } );
+				ops.Add(new PatchItem{ Op = PatchOp.Insert, A = i, Data = i });
 				
 			return ops;
 		}
@@ -103,7 +103,7 @@ namespace Fuse.Reactive.Internal
 		List<PatchItem> _ops;
 		T _emptyKey;
 		
-		public SimpleAlgorithm( IList<T> from, IList<T> to, T emptyKey )
+		public SimpleAlgorithm(IList<T> from, IList<T> to, T emptyKey)
 		{
 			_emptyKey = emptyKey;
 			_from = from;
@@ -127,7 +127,7 @@ namespace Fuse.Reactive.Internal
 				return From + "," + To;
 			}
 		}
-		Dictionary<T,int> Index( IList<T> to )
+		Dictionary<T,int> Index(IList<T> to)
 		{
 			var d = new Dictionary<T,int>();
 			for (int i=0; i < to.Count; ++i)
@@ -145,12 +145,12 @@ namespace Fuse.Reactive.Internal
 			int oPos = 0;
 			while (fromAt < _from.Count)
 			{
-				var anchor = FindNextAnchor( fromAt );
+				var anchor = FindNextAnchor(fromAt);
 				if (anchor.From == -1)
 				{
 					while (fromAt < _from.Count)
 					{
-						_ops.Add( new PatchItem{ Op = PatchOp.Remove, A = fromAt + oPos });
+						_ops.Add(new PatchItem{ Op = PatchOp.Remove, A = fromAt + oPos });
 						fromAt++;
 						oPos--;
 					}
@@ -163,17 +163,17 @@ namespace Fuse.Reactive.Internal
 					if (_toUsed[i])
 						continue;
 						
-					_ops.Add( new PatchItem{ Op = PatchOp.Insert, A = oPos + anchor.From, Data = i });
+					_ops.Add(new PatchItem{ Op = PatchOp.Insert, A = oPos + anchor.From, Data = i });
 					oPos++;
 					_toUsed[i] = true;
 				}
 				while (fromAt < anchor.From)
 				{
-					_ops.Add( new PatchItem{ Op = PatchOp.Remove, A = rem });
+					_ops.Add(new PatchItem{ Op = PatchOp.Remove, A = rem });
 					oPos--;
 					fromAt++;
 				}
-				_ops.Add( new PatchItem{ Op = PatchOp.Update, A = fromAt + oPos, Data = anchor.To });
+				_ops.Add(new PatchItem{ Op = PatchOp.Update, A = fromAt + oPos, Data = anchor.To });
 				_toUsed[anchor.To] = true;
 				fromAt++;
 			}
@@ -189,14 +189,14 @@ namespace Fuse.Reactive.Internal
 				if (_toUsed[i])
 					continue;
 					
-				_ops.Add( new PatchItem{ Op = PatchOp.Insert, A = oPos, Data = i });
+				_ops.Add(new PatchItem{ Op = PatchOp.Insert, A = oPos, Data = i });
 				_toUsed[i] = true;
 				oPos++;
 			}
 		}
 		
 		/** Find the next item in the from list that's also still in the to list */
-		Location FindNextAnchor( int fromAt )
+		Location FindNextAnchor(int fromAt)
 		{
 			while (fromAt < _from.Count)
 			{

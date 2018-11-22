@@ -9,8 +9,8 @@
 		function combine(a,b,c) {
 			return (a || "*") + (b || "*") + (c || "*")
 		}
-		exports.itemA = a.combine( b,c, combine )
-		exports.itemB = a.combineLatest( b, c, combine )
+		exports.itemA = a.combine(b,c, combine)
+		exports.itemB = a.combineLatest(b, c, combine)
 		
 		exports.step1 = function() {
 			c.value = "@"

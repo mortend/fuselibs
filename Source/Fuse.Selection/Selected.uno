@@ -19,7 +19,7 @@ namespace Fuse.Selection
 		
 		void IScriptEvent.Serialize(IEventSerializer s)
 		{
-			s.AddString( "value", Value );
+			s.AddString("value", Value);
 		}
 	}
 	
@@ -38,7 +38,7 @@ namespace Fuse.Selection
 			
 			if (!Selection.TryFindSelectable(Parent, out _selectable, out _selection))
 			{
-				Fuse.Diagnostics.UserError( "Unable to locate a `Selectable` and `Selection`", this );
+				Fuse.Diagnostics.UserError("Unable to locate a `Selectable` and `Selection`", this);
 				return;
 			}
 			

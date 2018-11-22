@@ -23,28 +23,28 @@ namespace Fuse.Charting.Test
 
 				//like in PlotData, there's no guarantee of ordering, but it's easier to test assuming there is
 				int b = Util.IndexOf(p.B.Children,p.B.FirstChild<Text>());
-				Assert.AreEqual( "0", (p.B.Children[b+0] as Text).Value);
-				Assert.AreEqual( "25", (p.B.Children[b+25] as Text).Value);
-				Assert.AreEqual( 50, Util.CountChildren<Text>(p.B) );
-				Assert.AreEqual( 0, p.plot.DataOffset );
+				Assert.AreEqual("0", (p.B.Children[b+0] as Text).Value);
+				Assert.AreEqual("25", (p.B.Children[b+25] as Text).Value);
+				Assert.AreEqual(50, Util.CountChildren<Text>(p.B));
+				Assert.AreEqual(0, p.plot.DataOffset);
 				
 				p.CallNext.Perform();
 				root.StepFrameJS();
 				b = Util.IndexOf(p.B.Children,p.B.FirstChild<Text>());
-				Assert.AreEqual( "50", (p.B.Children[b+0] as Text).Value);
-				Assert.AreEqual( "75", (p.B.Children[b+25] as Text).Value);
-				Assert.AreEqual( 50, Util.CountChildren<Text>(p.B) );
-				Assert.AreEqual( 50, p.plot.DataOffset );
+				Assert.AreEqual("50", (p.B.Children[b+0] as Text).Value);
+				Assert.AreEqual("75", (p.B.Children[b+25] as Text).Value);
+				Assert.AreEqual(50, Util.CountChildren<Text>(p.B));
+				Assert.AreEqual(50, p.plot.DataOffset);
 				
 				p.CallNext.Perform(); //-> 100
 				p.CallNext.Perform(); //-> 150
 				p.CallNext.Perform(); //too far, stops and keeps limit in range
 				root.StepFrameJS();
-				Assert.AreEqual( "150", (p.B.Children[b+0] as Text).Value);
-				Assert.AreEqual( "175", (p.B.Children[b+25] as Text).Value);
-				Assert.AreEqual( "199", (p.B.Children[b+49] as Text).Value);
-				Assert.AreEqual( 50, Util.CountChildren<Text>(p.B) );
-				Assert.AreEqual( 150, p.plot.DataOffset );
+				Assert.AreEqual("150", (p.B.Children[b+0] as Text).Value);
+				Assert.AreEqual("175", (p.B.Children[b+25] as Text).Value);
+				Assert.AreEqual("199", (p.B.Children[b+49] as Text).Value);
+				Assert.AreEqual(50, Util.CountChildren<Text>(p.B));
+				Assert.AreEqual(150, p.plot.DataOffset);
 			}
 			
 		}
@@ -70,8 +70,8 @@ namespace Fuse.Charting.Test
 					var c2 = Util.Children<Text>(p.C);
 					for (int i=1; i < 10; ++i)
 					{
-						Assert.AreEqual( b1[i], b2[i-1] );
-						Assert.AreEqual( c1[i], c2[i-1] );
+						Assert.AreEqual(b1[i], b2[i-1]);
+						Assert.AreEqual(c1[i], c2[i-1]);
 					}
 					
 					p.plot.DataOffset = 3;
@@ -80,8 +80,8 @@ namespace Fuse.Charting.Test
 					var c3 = Util.Children<Text>(p.C);
 					for (int i=0; i < 7; ++i)
 					{
-						Assert.AreEqual( b2[i], b3[i+3] );
-						Assert.AreEqual( c2[i], c3[i+3] );
+						Assert.AreEqual(b2[i], b3[i+3]);
+						Assert.AreEqual(c2[i], c3[i+3]);
 					}
 					
 					p.plot.DataOffset = 5;
@@ -152,15 +152,15 @@ namespace Fuse.Charting.Test
 				
 				Assert.AreEqual(5, ps.FullCount);
 				Assert.AreEqual(3, ps.Count);
-				Assert.AreEqual( float4(0,5,4,4), ds.Minimum );
-				Assert.AreEqual( float4(4,25,40,40), ds.Maximum );
-				Assert.AreEqual( float4(10,64,29,119), ds.Total);
+				Assert.AreEqual(float4(0,5,4,4), ds.Minimum);
+				Assert.AreEqual(float4(4,25,40,40), ds.Maximum);
+				Assert.AreEqual(float4(10,64,29,119), ds.Total);
 				
-				Assert.AreEqual( float4(1,10,0,0), ps.Minimum );
-				Assert.AreEqual( float4(3,20,40,40), ps.Maximum );
-				Assert.AreEqual( 7, ps.Steps.Y );
-				Assert.AreEqual( int2(1,4), ps.Range );
-				Assert.AreEqual( 1, ps.Offset );
+				Assert.AreEqual(float4(1,10,0,0), ps.Minimum);
+				Assert.AreEqual(float4(3,20,40,40), ps.Maximum);
+				Assert.AreEqual(7, ps.Steps.Y);
+				Assert.AreEqual(int2(1,4), ps.Range);
+				Assert.AreEqual(1, ps.Offset);
 			}
 		}
 		

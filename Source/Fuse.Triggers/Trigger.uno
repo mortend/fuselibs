@@ -107,7 +107,7 @@ namespace Fuse.Triggers
 				_bypass = value;
 				if (value == TriggerBypassMode.ExceptLayout && !_warnBypass)
 				{
-					Fuse.Diagnostics.Deprecated( "ExceptLayout mode indicates a problem in trigger expecations and should no tbe used", this );
+					Fuse.Diagnostics.Deprecated("ExceptLayout mode indicates a problem in trigger expecations and should no tbe used", this);
 					_warnBypass = true; //once is enough
 				}
 			}
@@ -284,7 +284,7 @@ namespace Fuse.Triggers
 		}
 		void AddDeferredAction(TriggerAction i)
 		{
-			UpdateManager.AddDeferredAction( new DeferredItem{ Action = i, Node = this }.Perform );
+			UpdateManager.AddDeferredAction(new DeferredItem{ Action = i, Node = this }.Perform);
 		}
 		
 		protected virtual void OnPlayStateChanged(TriggerPlayState state)
@@ -300,7 +300,7 @@ namespace Fuse.Triggers
 
 			if (_animState == null)
 			{
-				Fuse.Diagnostics.InternalError( "Trigger.OnPlaybackdone called with _animState == null", this );
+				Fuse.Diagnostics.InternalError("Trigger.OnPlaybackdone called with _animState == null", this);
 				return;
 			}
 
@@ -309,8 +309,8 @@ namespace Fuse.Triggers
 
 			if (_doneAction != null)
 			{
-				if ( (_doneOn && _animState.ProgressFullOn) ||
-					(!_doneOn && _animState.ProgressFullOff) )
+				if ((_doneOn && _animState.ProgressFullOn) ||
+					(!_doneOn && _animState.ProgressFullOff))
 				{
 					perform = _doneAction;
 				}
@@ -342,7 +342,7 @@ namespace Fuse.Triggers
 			if (!_isStarted)
 			{
 				if (!IsRootingStarted)
-					throw new Exception( "Trigger started prior to being rooted: " + this );
+					throw new Exception("Trigger started prior to being rooted: " + this);
 				_isStarted = true;
 				UseContent = true;
 				PlayActions(TriggerWhen.Start);
@@ -537,8 +537,8 @@ namespace Fuse.Triggers
 			// direction must be forced in case something activaties/deactivates without an intervening frame.
 			// OnProgressUpdate will be called, but with 0 progress. Check progress though to avoid double
 			// activation at end while stopped.
-			if ( (on && Progress < 1) || (!on && Progress >0 ) || _lastPlayState != TriggerPlayState.Stopped )
-				SetPlayState( on ? TriggerPlayState.Forward : TriggerPlayState.Backward );
+			if ((on && Progress < 1) || (!on && Progress >0) || _lastPlayState != TriggerPlayState.Stopped)
+				SetPlayState(on ? TriggerPlayState.Forward : TriggerPlayState.Backward);
 
 			//this optimization here is vitally important otherwise you have hundreds of triggers in app
 			//repeatedly creating the _animState just to deactivate it.
@@ -670,7 +670,7 @@ namespace Fuse.Triggers
 				if (!action.IsProgressTriggered)
 					continue;
 
-				var tp = action.ProgressWhen( (float)_animState.CurrentAnimatorsDuration );
+				var tp = action.ProgressWhen((float)_animState.CurrentAnimatorsDuration);
 				var call = dir == TriggerWhen.Forward ?
 					(tp >= prev && tp < cur) || (tp == 1 && cur == 1) :
 					(tp <= prev && tp > cur) || (tp == 0 && cur == 0);
@@ -690,9 +690,9 @@ namespace Fuse.Triggers
 		{
 			//force state change even if it never actually animates
 			if (progress > Progress)
-				SetPlayState( TriggerPlayState.Forward );
+				SetPlayState(TriggerPlayState.Forward);
 			else if (progress < Progress)
-				SetPlayState( TriggerPlayState.Backward );
+				SetPlayState(TriggerPlayState.Backward);
 				
 			if (EnsureState(progress))
 				_animState.PlayToProgress(progress, variant, TriggerAnimationState.SeekFlags.ForcePlayer);
@@ -724,12 +724,12 @@ namespace Fuse.Triggers
 		protected void BypassSeek(double progress, AnimationVariant direction = AnimationVariant.Forward)
 		{
 			SeekImpl(progress, direction,
-					TriggerAnimationState.SeekFlags.ForcePlayer | TriggerAnimationState.SeekFlags.BypassUpdate );
+					TriggerAnimationState.SeekFlags.ForcePlayer | TriggerAnimationState.SeekFlags.BypassUpdate);
 		}
 		
 		void SeekImpl(double progress, AnimationVariant direction, TriggerAnimationState.SeekFlags flags)
 		{
-			if( progress > 0 )
+			if(progress > 0)
 				Start();
 			else
 				Stop();
@@ -750,7 +750,7 @@ namespace Fuse.Triggers
 			{
 				BypassSeek(_rootProgress);
 				if (_rootPlayState != TriggerPlayState.Stopped)
-					PlayEnd(_rootPlayState == TriggerPlayState.Forward ? true : false, _doneAction );
+					PlayEnd(_rootPlayState == TriggerPlayState.Forward ? true : false, _doneAction);
 			}
 			else
 			{

@@ -2,11 +2,11 @@
 	<Router ux:Name="router" IsMasterRouter="false"/>
 	<JavaScript>
 		exports.step1 = function() {
-			router.goto( "B2" )
+			router.goto("B2")
 		}
 		
 		exports.step2 = function() {
-			router.goto( "B1", {} )
+			router.goto("B1", {})
 		}
 	</JavaScript>
 	<Navigator Transition="None" ux:Name="A1" DefaultPath="B1">

@@ -62,8 +62,8 @@ namespace Fuse.Elements.Internal
 					xv.X * margin.X + xv.Y * (scaleTextureSize.X-margin.Z) + xv.Z * scaleTextureSize.X,
 					yv.X * margin.Y + yv.Y * (scaleTextureSize.Y-margin.W) + yv.Z * scaleTextureSize.Y) / scaleTextureSize;
 
-				ClipPosition: Vector.Transform( WorldPosition, dc.Viewport.ViewProjectionTransform );
-				public float4 TextureColor: sample( tex, TexCoord, SamplerState.LinearClamp);
+				ClipPosition: Vector.Transform(WorldPosition, dc.Viewport.ViewProjectionTransform);
+				public float4 TextureColor: sample(tex, TexCoord, SamplerState.LinearClamp);
 				PixelColor: TextureColor * color;
 			};
 

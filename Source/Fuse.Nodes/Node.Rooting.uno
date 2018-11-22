@@ -49,7 +49,7 @@ namespace Fuse
 		*/
 		static int _rootCaptureIndex = 0;
 		static internal int RootCaptureIndex { get { return _rootCaptureIndex; } }
-		static internal bool IsRootCapture( int index )
+		static internal bool IsRootCapture(int index)
 		{
 			return _hasRootCapture && index == _rootCaptureIndex;
 		}
@@ -72,7 +72,7 @@ namespace Fuse
 			if (!captured)
 				return;
 				
-			UpdateManager.AddDeferredAction( _laterReleaseRooting, LayoutPriority.EndGroup );
+			UpdateManager.AddDeferredAction(_laterReleaseRooting, LayoutPriority.EndGroup);
 		}
 		
 		static Action _laterReleaseRooting = LaterReleaseRooting;
@@ -101,7 +101,7 @@ namespace Fuse
 		{
 			//to help detect errors like https://github.com/fusetools/fuselibs-private/issues/2244
 			if (_rootStage != RootStage.Unrooted)
-				throw new Exception( "Incomplete or duplicate rooting: " + this + "/" + Name );
+				throw new Exception("Incomplete or duplicate rooting: " + this + "/" + Name);
 
 			if (_parent != null)
 			{
@@ -128,7 +128,7 @@ namespace Fuse
 
 			//to help detect errors like https://github.com/fusetools/fuselibs-private/issues/2244
 			if (_rootStage != RootStage.Completed)
-				throw new Exception( "Invalid RootStage post rooting: " + this + "/" + Name );
+				throw new Exception("Invalid RootStage post rooting: " + this + "/" + Name);
 		}
 
 		internal event Action RootingCompleted;
@@ -153,7 +153,7 @@ namespace Fuse
 		{
 			if (_rootStage == RootStage.Unrooted) return;
 			if (_rootStage != RootStage.Completed)
-				throw new Exception( "Incomplete or duplicate unrooting: " + this + "/" + Name );
+				throw new Exception("Incomplete or duplicate unrooting: " + this + "/" + Name);
 
 			_rootStage = RootStage.Unrooting;
 

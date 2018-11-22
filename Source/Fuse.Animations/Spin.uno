@@ -50,8 +50,8 @@ namespace Fuse.Animations
 		IMixerHandle<Transform> mixHandle;
 		Rotation transform = new Rotation();
 
-		public SpinState( Spin animator, CreateStateParams p )
-			: base(animator, p, animator.Target )
+		public SpinState(Spin animator, CreateStateParams p)
+			: base(animator, p, animator.Target)
 		{
 			this.Animator = animator;
 			mixHandle = Animator.Mixer.RegisterTransform(Visual, Animator.MixOp, TransformPriority.Rotate);
@@ -84,17 +84,17 @@ namespace Fuse.Animations
 			const float zeroTolerance = 1e-05f;
 			if (on)
 			{
-				degrees = Math.Mod( degrees, 360 );
+				degrees = Math.Mod(degrees, 360);
 			}
 			else if(oldDegrees <= zeroTolerance || degrees <= zeroTolerance ||
-				oldDegrees >= (360-zeroTolerance) || degrees >= (360-zeroTolerance) )
+				oldDegrees >= (360-zeroTolerance) || degrees >= (360-zeroTolerance))
 			{
 				degrees = 0;
 				done = true;
 			}
 
 			transform.Degrees = (float)degrees;
-			mixHandle.Set( transform, strength );
+			mixHandle.Set(transform, strength);
 			return done;
 		}
 	}

@@ -23,12 +23,12 @@ namespace Fuse.Reactive.Test
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "B=2,C=3", p.order.Action );
+				Assert.AreEqual("B=2,C=3", p.order.Action);
 				
 				p.order.ResetAction();
 				p.Step2.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "C=4,A=5,B=6", p.order.Action );
+				Assert.AreEqual("C=4,A=5,B=6", p.order.Action);
 			}
 		}
 		
@@ -43,12 +43,12 @@ namespace Fuse.Reactive.Test
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "B=1,G=2,A=3", p.order.Action );
+				Assert.AreEqual("B=1,G=2,A=3", p.order.Action);
 
 				p.order.ResetAction();
 				p.Step2.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "G=5,A=6,G=7,B=8", p.order.Action );
+				Assert.AreEqual("G=5,A=6,G=7,B=8", p.order.Action);
 			}
 		}
 	}
@@ -66,7 +66,7 @@ namespace FuseTest
 			set
 			{
 				_a = value;
-				AddAction( "A", value );
+				AddAction("A", value);
 			}
 		}
 		
@@ -77,7 +77,7 @@ namespace FuseTest
 			set
 			{
 				_b = value;
-				AddAction( "B", value );
+				AddAction("B", value);
 			}
 		}
 		
@@ -88,7 +88,7 @@ namespace FuseTest
 			set
 			{
 				_c = value;
-				AddAction( "C", value );
+				AddAction("C", value);
 			}
 		}
 
@@ -116,7 +116,7 @@ namespace FuseTest
 		
 		static void go(Ordering o, object[] args)
 		{
-			o.AddAction( "G", Marshal.ToType<string>(args[0]));
+			o.AddAction("G", Marshal.ToType<string>(args[0]));
 		}
 	}
 }

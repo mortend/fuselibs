@@ -72,7 +72,7 @@ namespace Fuse.Controls
 			get { return sizing.stretchDirection; }
 			set
 			{
-				if (sizing.SetStretchDirection(value) )
+				if (sizing.SetStretchDirection(value))
 					OnShapeLayoutChanged();
 			}
 		}
@@ -85,7 +85,7 @@ namespace Fuse.Controls
 			get { return sizing.align; }
 			set
 			{
-				if (sizing.SetAlignment(value) )
+				if (sizing.SetAlignment(value))
 					OnShapeLayoutChanged();
 			}
 		}
@@ -113,7 +113,7 @@ namespace Fuse.Controls
 			get { return _fitMode; }
 			set
 			{
-				if (value != _fitMode )
+				if (value != _fitMode)
 				{
 					_fitMode = value;
 					OnShapeLayoutChanged();
@@ -153,7 +153,7 @@ namespace Fuse.Controls
 			var lo = float2(0);
 			var bounds = CalcNaturalExtents();
 			
-			switch( FitMode )
+			switch(FitMode)
 			{
 				case FitMode.GeometryMaximum:
 					lo = float2(0);
@@ -176,10 +176,10 @@ namespace Fuse.Controls
 		}
 		
 		
-		protected override float2 GetContentSize( LayoutParams lp )
+		protected override float2 GetContentSize(LayoutParams lp)
 		{
 			var natural = GetDesiredContentSize();
-			var r= Sizing.ExpandFillSize( natural, lp );
+			var r= Sizing.ExpandFillSize(natural, lp);
 			return r;
 		}
 
@@ -198,7 +198,7 @@ namespace Fuse.Controls
 			var mn = (pos.NaturalExtents.Minimum - pos.Extents.Minimum) * pos.Scale + pos.Offset + pos.Extents.Minimum;
 			var mx = (pos.NaturalExtents.Maximum - pos.Extents.Minimum) * pos.Scale + pos.Offset + pos.Extents.Minimum;
 			
-			var r = new Rect( mn, mx - mn ); //origin/size form
+			var r = new Rect(mn, mx - mn); //origin/size form
 			return r;
 		}
 		
@@ -220,12 +220,12 @@ namespace Fuse.Controls
 		{
 			var naturalExtents = CalcNaturalExtents();
 			var desiredSize = GetDesiredContentSize();
-			var scale = Sizing.CalcScale( ActualSize, desiredSize );
-			var offset = Sizing.CalcOrigin( ActualSize, desiredSize * scale );
+			var scale = Sizing.CalcScale(ActualSize, desiredSize);
+			var offset = Sizing.CalcOrigin(ActualSize, desiredSize * scale);
 
 			var extents = naturalExtents;
 			
-			switch( FitMode )
+			switch(FitMode)
 			{
 				case FitMode.GeometryMaximum:
 					break;
@@ -236,7 +236,7 @@ namespace Fuse.Controls
 					
 				case FitMode.Extents:
 					offset -= extents.Minimum;
-					extents = new Rect( Extents.XY, Extents.ZW - Extents.XY );
+					extents = new Rect(Extents.XY, Extents.ZW - Extents.XY);
 					break;
 			}
 

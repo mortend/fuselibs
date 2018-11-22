@@ -40,7 +40,7 @@ namespace Fuse.Triggers
 		void IPropertyListener.OnPropertyChanged(PropertyObject sender, Selector name)
 		{
 			if (sender == _caps && (name == WindowCaps.NameSafeMargins || 
-				name == WindowCaps.NameStaticMargins) )
+				name == WindowCaps.NameStaticMargins))
 				CheckActivation();
 		}
 		
@@ -51,7 +51,7 @@ namespace Fuse.Triggers
 			if (!Marshal.TryToType<float4>(_caps[WindowCaps.NameSafeMargins], out safe) ||
 				!Marshal.TryToType<float4>(_caps[WindowCaps.NameStaticMargins], out stat))
 			{
-				Fuse.Diagnostics.InternalError( "Invalid margin values", this );
+				Fuse.Diagnostics.InternalError("Invalid margin values", this);
 				Deactivate();
 				return;
 			}
@@ -67,7 +67,7 @@ namespace Fuse.Triggers
 			{
 				if (!_notice)
 				{
-					Fuse.Diagnostics.Deprecated( "`Keyboard` RelativeTo has been deprecated. Use `window()` margins instead", this );
+					Fuse.Diagnostics.Deprecated("`Keyboard` RelativeTo has been deprecated. Use `window()` margins instead", this);
 					_notice = true;
 				}
 				float height = SystemUI.SafeMargins.W - SystemUI.StaticMargins.W;

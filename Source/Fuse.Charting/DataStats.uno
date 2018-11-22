@@ -51,7 +51,7 @@ namespace Fuse.Charting
 			if (axis == 0 && value == PlotAxisMetric.MergeRange)
 			{
 				value = PlotAxisMetric.Range;
-				Fuse.Diagnostics.UserError( "Cannot user MergeRange on first axis", this );
+				Fuse.Diagnostics.UserError("Cannot user MergeRange on first axis", this);
 			}
 			
 			_axisMetric[axis] = value;
@@ -131,7 +131,7 @@ namespace Fuse.Charting
 		{
 			get 
 			{ 
-				return int2( Math.Max(0, Offset - _extend[0]), 
+				return int2(Math.Max(0, Offset - _extend[0]), 
 					Math.Min(FullCount, Offset + Count + _extend[1])); 
 			}
 		}
@@ -141,7 +141,7 @@ namespace Fuse.Charting
 		{
 			get
 			{
-				return int2( Math.Max(0, Offset),  Math.Min(FullCount, Offset + Count)); 
+				return int2(Math.Max(0, Offset),  Math.Min(FullCount, Offset + Count)); 
 			}
 		}
 
@@ -152,7 +152,7 @@ namespace Fuse.Charting
 			{
 				var range = Range;
 				var window = WindowRange;
-				return int2( window[0] - range[0], range[1] - window[1] ); 
+				return int2(window[0] - range[0], range[1] - window[1]); 
 			}
 		}
 		
@@ -181,7 +181,7 @@ namespace Fuse.Charting
 				Total = Total};
 		}
 		
-		public void Combine( DataStats ds )
+		public void Combine(DataStats ds)
 		{
 			FullCount = Math.Max(FullCount, ds.FullCount);
 			Count = Math.Max(Count, ds.Count);
@@ -192,10 +192,10 @@ namespace Fuse.Charting
 			//total can't be combined
 		}
 		
-		void MergeAxis( int a, int b )
+		void MergeAxis(int a, int b)
 		{
-			var mn = Math.Min( Minimum[a], Minimum[b] );
-			var mx = Math.Max( Maximum[a], Maximum[b] );
+			var mn = Math.Min(Minimum[a], Minimum[b]);
+			var mx = Math.Max(Maximum[a], Maximum[b]);
 			
 			Minimum[a] = Minimum[b] = mn;
 			Maximum[a] = Maximum[b] = mx;
@@ -204,7 +204,7 @@ namespace Fuse.Charting
 		/**
 			Produce the Data.Value field.
 		*/
-		static void CountValueAssign( IList<Data> data, DataSpec spec )
+		static void CountValueAssign(IList<Data> data, DataSpec spec)
 		{
 			for (int i=0; i < data.Count; ++i)
 			{
@@ -221,7 +221,7 @@ namespace Fuse.Charting
 			}
 		}
 		
-		static void AddValueAssign( IList<Data> data, IList<Data> prev )
+		static void AddValueAssign(IList<Data> data, IList<Data> prev)
 		{
 			for (int i=0; i < data.Count; ++i)
 			{
@@ -233,14 +233,14 @@ namespace Fuse.Charting
 			}
 		}
 		
-		static public DataStats CalculateAll( IList<DataSeries> series, DataSpec spec )
+		static public DataStats CalculateAll(IList<DataSeries> series, DataSpec spec)
 		{
 			DataStats dataStats = null;
 			for (int i=0; i < series.Count; ++i)
 			{
-				CountValueAssign( series[i].PlotData, spec );
+				CountValueAssign(series[i].PlotData, spec);
 				if (series[i].Metric == DataSeriesMetric.Add && i > 0)
-					AddValueAssign( series[i].PlotData, series[i-1].PlotData );
+					AddValueAssign(series[i].PlotData, series[i-1].PlotData);
 					
 				series[i].Stats = DataStats.Calculate(series[i].PlotData, spec);
 				if (i == 0)
@@ -255,7 +255,7 @@ namespace Fuse.Charting
 		/**	
 			This returns the calculated stats as well as produced derived data in the Data objects themselves.
 		*/
-		static public DataStats Calculate( IList<Data> data, DataSpec spec )
+		static public DataStats Calculate(IList<Data> data, DataSpec spec)
 		{
 			var ds = new DataStats();
 				
@@ -289,15 +289,15 @@ namespace Fuse.Charting
 			return ds;
 		}
 		
-		public void Extend( int2 Extend )
+		public void Extend(int2 Extend)
 		{
 			_extend = Extend;
 		}
 
-		public void ApplyLimits( DataSpec spec, int offset, int limit, bool hasLimit )
+		public void ApplyLimits(DataSpec spec, int offset, int limit, bool hasLimit)
 		{
-			Offset = Math.Min( offset, FullCount );
-			Count = hasLimit ? Math.Clamp( limit, 0, FullCount - Offset ) : FullCount - Offset;
+			Offset = Math.Min(offset, FullCount);
+			Count = hasLimit ? Math.Clamp(limit, 0, FullCount - Offset) : FullCount - Offset;
 			
 			//extend to 0 if necessary and apply padding
 			Minimum = Math.Min(Minimum, float4(0)) * (1 + spec.RangePadding);
@@ -305,7 +305,7 @@ namespace Fuse.Charting
 			
 			for (int i=0; i < 4; ++i)
 			{
-				if( spec.HasRange(i) )
+				if(spec.HasRange(i))
 				{
 					Steps[i] = spec.GetAxisSteps(i);
 					var r = spec.GetRange(i);
@@ -339,7 +339,7 @@ namespace Fuse.Charting
 						var mn = Minimum[i];
 						var mx = Maximum[i];
 						int s = spec.GetAxisSteps(i);
-						DataUtils.GetStepping( ref s, ref mn, ref mx );
+						DataUtils.GetStepping(ref s, ref mn, ref mx);
 						Minimum[i] = mn;
 						Maximum[i] = mx;
 						Steps[i] = s;
@@ -352,18 +352,18 @@ namespace Fuse.Charting
 			
 		}
 		
-		public float GetRelativeValue( float v, int axis )
+		public float GetRelativeValue(float v, int axis)
 		{
-			return DataUtils.RelDiv( v - Minimum[axis], Maximum[axis] - Minimum[axis] );
+			return DataUtils.RelDiv(v - Minimum[axis], Maximum[axis] - Minimum[axis]);
 		}
 		
-		public float4 GetRelativeValue( float4 v )
+		public float4 GetRelativeValue(float4 v)
 		{
 			return float4(
 				GetRelativeValue(v[0],0),
 				GetRelativeValue(v[1],1),
 				GetRelativeValue(v[2],2),
-				GetRelativeValue(v[3],3) );
+				GetRelativeValue(v[3],3));
 		}
 		
 		public float4 Baseline

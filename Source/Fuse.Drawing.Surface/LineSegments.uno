@@ -52,92 +52,92 @@ namespace Fuse.Drawing
 				_curPos = segments[segments.Count-1].To;
 		}
 		
-		void Add( LineSegment seg )
+		void Add(LineSegment seg)
 		{
 			Segments.Add(seg);
 			if (seg.HasTo)
 				_curPos = seg.To;
 		}
 		
-		public void MoveTo( float2 pt )
+		public void MoveTo(float2 pt)
 		{
-			Add( new LineSegment{ Type = LineSegmentType.Move, To = pt });
+			Add(new LineSegment{ Type = LineSegmentType.Move, To = pt });
 		}
 		
-		public void MoveToRel( float2 pt )
+		public void MoveToRel(float2 pt)
 		{
-			MoveTo( pt + _curPos );
+			MoveTo(pt + _curPos);
 		}
 		
-		public void LineTo( float2 pt )
+		public void LineTo(float2 pt)
 		{
-			Add( new LineSegment{ Type = LineSegmentType.Straight, To = pt });
+			Add(new LineSegment{ Type = LineSegmentType.Straight, To = pt });
 		}
 		
-		public void LineToRel( float2 pt )
+		public void LineToRel(float2 pt)
 		{
-			LineTo( pt + _curPos );
+			LineTo(pt + _curPos);
 		}
 		
-		public void HorizLineTo( float x )
+		public void HorizLineTo(float x)
 		{
-			LineTo( float2(x, _curPos.Y) );
+			LineTo(float2(x, _curPos.Y));
 		}
 		
-		public void HorizLineToRel( float x )
+		public void HorizLineToRel(float x)
 		{
-			LineTo( _curPos + float2(x,0) );
+			LineTo(_curPos + float2(x,0));
 		}
 		
-		public void VertLineTo( float y)
+		public void VertLineTo(float y)
 		{
-			LineTo( float2(_curPos.X, y) );
+			LineTo(float2(_curPos.X, y));
 		}
 		
-		public void VertLineToRel( float y)
+		public void VertLineToRel(float y)
 		{
-			LineTo( _curPos + float2(0,y) );
+			LineTo(_curPos + float2(0,y));
 		}
 		
-		public void BezierCurveTo( float2 pt, float2 controlA, float2 controlB )
+		public void BezierCurveTo(float2 pt, float2 controlA, float2 controlB)
 		{
-			Add( new LineSegment{ Type = LineSegmentType.BezierCurve, To = pt,
+			Add(new LineSegment{ Type = LineSegmentType.BezierCurve, To = pt,
 				A = controlA, B = controlB });
 		}
 		
-		public void BezierCurveToRel( float2 pt, float2 controlA, float2 controlB )
+		public void BezierCurveToRel(float2 pt, float2 controlA, float2 controlB)
 		{
-			BezierCurveTo( pt + _curPos, controlA + _curPos, controlB + _curPos );
+			BezierCurveTo(pt + _curPos, controlA + _curPos, controlB + _curPos);
 		}
 
 		public void ClosePath()
 		{
-			Add( new LineSegment{ Type = LineSegmentType.Close } );
+			Add(new LineSegment{ Type = LineSegmentType.Close });
 		}
 		
-		public void EllipticArcTo( float2 pt, float2 radius, float xAngle, bool large, bool sweep)
+		public void EllipticArcTo(float2 pt, float2 radius, float xAngle, bool large, bool sweep)
 		{
-			Add( new LineSegment{ Type = LineSegmentType.EllipticArc, To = pt,
+			Add(new LineSegment{ Type = LineSegmentType.EllipticArc, To = pt,
 				A = radius, B = float2(xAngle,0), Flags =
 					(large ? LineSegmentFlags.EllipticArcLarge : LineSegmentFlags.None) |
-					(sweep ? LineSegmentFlags.EllipticArcSweep : LineSegmentFlags.None) } );
+					(sweep ? LineSegmentFlags.EllipticArcSweep : LineSegmentFlags.None) });
 		}
 		
-		public void EllipticArcToRel( float2 pt, float2 radius, float xAngle, bool large, bool sweep)
+		public void EllipticArcToRel(float2 pt, float2 radius, float xAngle, bool large, bool sweep)
 		{
-			EllipticArcTo( pt + _curPos, radius, xAngle, large, sweep );
+			EllipticArcTo(pt + _curPos, radius, xAngle, large, sweep);
 		}
 		
-		public void QuadraticCurveTo( float2 pt, float2 control )
+		public void QuadraticCurveTo(float2 pt, float2 control)
 		{
 			var c1 = _curPos + 2.0f/3.0f * (control - _curPos);
 			var c2 = pt + 2.0f/3.0f * (control - pt);
-			BezierCurveTo( pt, c1, c2 );
+			BezierCurveTo(pt, c1, c2);
 		}
 		
-		public void QuadraticCurveToRel( float2 pt, float2 control )
+		public void QuadraticCurveToRel(float2 pt, float2 control)
 		{
-			QuadraticCurveTo( pt + _curPos, control + _curPos );
+			QuadraticCurveTo(pt + _curPos, control + _curPos);
 		}
 	}
 }

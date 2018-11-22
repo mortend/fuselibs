@@ -20,7 +20,7 @@
 					transition: "Bypass",
 				}
 			}
-			exports.pages.add( pageC )
+			exports.pages.add(pageC)
 		}
 	</JavaScript>
 	<Navigator Pages="{pages}" ux:Name="nav" Transition="None">

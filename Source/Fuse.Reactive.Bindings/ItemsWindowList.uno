@@ -26,7 +26,7 @@ namespace Fuse.Reactive
 		[WeakReference]
 		IListener _listener;
 		
-		public ItemsWindowList( IListener listener ) 
+		public ItemsWindowList(IListener listener) 
 		{
 			_listener = listener;
 		}
@@ -47,7 +47,7 @@ namespace Fuse.Reactive
 		object _items;
 		public object GetItems() { return _items; }
 		/** @hide */
-		public void SetItems( object value )
+		public void SetItems(object value)
 		{
 			_items = value;
 			if (!_isRooted) return;
@@ -55,7 +55,7 @@ namespace Fuse.Reactive
 		}
 		/** Call to set the items during the OnRooted override (post base.OnRooted call)
 			@hide */
-		public void SetItemsDerivedRooting( object value )
+		public void SetItemsDerivedRooting(object value)
 		{
 			_items = value;
 			ItemsChanged();
@@ -161,24 +161,24 @@ namespace Fuse.Reactive
 			return null;
 		}
 
-		void WindowListItem.IDataWatcher.OnCurrentDataChanged( WindowListItem item, object oldData )
+		void WindowListItem.IDataWatcher.OnCurrentDataChanged(WindowListItem item, object oldData)
 		{
 			if (!_isRooted)
 				return;
 			var wi = item as T;
 			if (wi == null)
 			{
-				Fuse.Diagnostics.InternalError( "Invalid item in WindowList", this );
+				Fuse.Diagnostics.InternalError("Invalid item in WindowList", this);
 				return;
 			}
 			
-			_listener.OnCurrentDataChanged( wi, oldData );
+			_listener.OnCurrentDataChanged(wi, oldData);
 		}
 		
-		protected override T CreateWindowItem( int dataIndex )
+		protected override T CreateWindowItem(int dataIndex)
 		{
 			var data = GetData(dataIndex);
-			var wi = WindowListItem.Create<T>( this, GetDataId(data), data );
+			var wi = WindowListItem.Create<T>(this, GetDataId(data), data);
 			return wi;
 		}
 
@@ -241,13 +241,13 @@ namespace Fuse.Reactive
 			var newIds = new List<object>();
 			var limit = CalcOffsetLimitCountOf(values.Length);
 			for (int i=0; i < limit; ++i)
-				newIds.Add( GetDataId(values[i+Offset]) );
+				newIds.Add(GetDataId(values[i+Offset]));
 				
 			var curIds = new List<object>();
 			for (int i=0; i < WindowItemCount; ++i)
-				curIds.Add( GetWindowItem(i).Id);
+				curIds.Add(GetWindowItem(i).Id);
 			
-			var ops = PatchList.Patch( curIds, newIds, PatchAlgorithm.Simple, null );
+			var ops = PatchList.Patch(curIds, newIds, PatchAlgorithm.Simple, null);
 			for (int i=0; i < ops.Count; ++i)
 			{
 				var op = ops[i];

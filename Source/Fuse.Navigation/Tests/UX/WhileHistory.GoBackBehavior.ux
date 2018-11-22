@@ -2,7 +2,7 @@
 	<Router ux:Name="router" IsMasterRouter="false"/>
 	<JavaScript>
 		exports.step1 = function() {
-			router.push( "b" )
+			router.push("b")
 		}
 		
 		exports.step2 = function() {

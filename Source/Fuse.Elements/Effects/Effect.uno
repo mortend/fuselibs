@@ -65,7 +65,7 @@ namespace Fuse.Effects
 		public virtual bool Active { get { return true; } }
 
 		//given the input RenderBounds return the new bounds
-		public virtual VisualBounds ModifyRenderBounds( VisualBounds inBounds )
+		public virtual VisualBounds ModifyRenderBounds(VisualBounds inBounds)
 		{ 
 			return inBounds;
 		}

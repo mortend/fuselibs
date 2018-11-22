@@ -8,7 +8,7 @@ namespace Fuse.Navigation
 {
 	internal class ExplicitNavigation : VisualNavigation
 	{
-		public override void Goto( Visual visual, NavigationGotoMode mode )
+		public override void Goto(Visual visual, NavigationGotoMode mode)
 		{
 			if (mode != NavigationGotoMode.Transition &&
 				mode != NavigationGotoMode.Bypass)
@@ -16,7 +16,7 @@ namespace Fuse.Navigation
 				
 			SetPageProgress(visual, 0, false);
 			Active = visual;
-			OnPageProgressChanged( mode == NavigationGotoMode.Bypass ?
+			OnPageProgressChanged(mode == NavigationGotoMode.Bypass ?
 				NavigationMode.Bypass : NavigationMode.Switch);
 		}
 
@@ -53,12 +53,12 @@ namespace Fuse.Navigation
 		
 		public void SetPageProgress(Visual page, float progress, float previous, bool update = true)
 		{
-			SetPageProgress(page, progress, previous, update, true );
+			SetPageProgress(page, progress, previous, update, true);
 		}
 		
 		public void SetPageProgress(Visual page, float progress, bool update = true)
 		{
-			SetPageProgress(page, progress, 0, update, false );
+			SetPageProgress(page, progress, 0, update, false);
 		}
 		
 		public void UpdateProgress(NavigationMode mode)

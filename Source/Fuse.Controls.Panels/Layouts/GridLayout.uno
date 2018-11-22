@@ -31,12 +31,12 @@ namespace Fuse.Layouts
 			_metric = metric;
 		}
 		
-		internal DefinitionBase( DefinitionBase copy, CreationType creation )
+		internal DefinitionBase(DefinitionBase copy, CreationType creation)
 		{
 			Copy(copy, creation);
 		}
 		
-		internal void Copy<T>(T copy, CreationType creation ) where T : DefinitionBase
+		internal void Copy<T>(T copy, CreationType creation) where T : DefinitionBase
 		{
 			Metric = copy.Metric;
 			Extent = copy.Extent;
@@ -116,7 +116,7 @@ namespace Fuse.Layouts
 
 			var s = data.Split(',');
 			for (int i = 0; i < s.Length; i++)
-				output.Add( Parse<T>(s[i]) );
+				output.Add(Parse<T>(s[i]));
 		}
 		static internal protected T Parse<T>(string data) where T : DefinitionBase, new()
 		{
@@ -215,10 +215,10 @@ namespace Fuse.Layouts
 		public Column() { }
 
 		public Column(float width, Metric metric)
-			: base( width, metric ) { }
+			: base(width, metric) { }
 			
 		private Column(Column copy, CreationType creation)
-			: base( copy, creation ) { }
+			: base(copy, creation) { }
 
 		public Metric WidthMetric
 		{
@@ -240,10 +240,10 @@ namespace Fuse.Layouts
 		public Row() { }
 
 		public Row(float height, Metric metric)
-			: base( height, metric ) { }
+			: base(height, metric) { }
 
 		private Row(Row copy, CreationType creation)
-			: base( copy, creation ) { }
+			: base(copy, creation) { }
 			
 		public Metric HeightMetric
 		{
@@ -307,7 +307,7 @@ namespace Fuse.Layouts
 			}
 		}
 		
-		void ModifyDefault<T>(RootableList<T> list, T primordial ) where T : DefinitionBase, new()
+		void ModifyDefault<T>(RootableList<T> list, T primordial) where T : DefinitionBase, new()
 		{
 			for (int i=0; i < list.Count; ++i)
 			{
@@ -328,7 +328,7 @@ namespace Fuse.Layouts
 		}
 		
 		/** The numbers of rows/cols as specified by the user (no implied items) */
-		int UserCount<T>( IList<T> list ) where T : DefinitionBase
+		int UserCount<T>(IList<T> list) where T : DefinitionBase
 		{
 			int c = list.Count;
 			while (c > 0 && list[c-1].IsImplied)
@@ -337,7 +337,7 @@ namespace Fuse.Layouts
 			return c;
 		}
 		
-		void ModifyCount<T>(IList<T> list, int count, T primordial ) where T : DefinitionBase, new()
+		void ModifyCount<T>(IList<T> list, int count, T primordial) where T : DefinitionBase, new()
 		{
 			if (count == list.Count)
 				return;
@@ -347,7 +347,7 @@ namespace Fuse.Layouts
 			//and ColumnSpan properties take precedence
 			if (count < 0)
 			{
-				Fuse.Diagnostics.UserError( "RowCount and ColumnCount must be >= 1", this );
+				Fuse.Diagnostics.UserError("RowCount and ColumnCount must be >= 1", this);
 				return;
 			}
 				
@@ -521,9 +521,9 @@ namespace Fuse.Layouts
 				if (!AffectsLayout(e)) continue;
 
 				if (rowMajor)
-					minorCount = Math.Max( minorCount, GetColumn(e) + GetColumnSpan(e) );
+					minorCount = Math.Max(minorCount, GetColumn(e) + GetColumnSpan(e));
 				else
-					minorCount = Math.Max( minorCount, GetRow(e) + GetRowSpan(e) );
+					minorCount = Math.Max(minorCount, GetRow(e) + GetRowSpan(e));
 			}
 
 			//this is the next available position in the minor-axis, per major-axis. This is used so that
@@ -565,7 +565,7 @@ namespace Fuse.Layouts
 				
 				if (!haveRow && !haveCol)
 				{
-					if ( rowMajor )
+					if (rowMajor)
 					{
 						while (rowAt < majorAvail[colAt])
 						{
@@ -615,11 +615,11 @@ namespace Fuse.Layouts
 			}
 			
 			//trim/expand missing rows/columns
-			TrimPad( _rows, maxRow, _defaultRow );
-			TrimPad( _columns, maxCol, _defaultColumn );
+			TrimPad(_rows, maxRow, _defaultRow);
+			TrimPad(_columns, maxCol, _defaultColumn);
 		}
 
-		void TrimPad<T>( IList<T> list, int count, T primordial ) where T : DefinitionBase, new()
+		void TrimPad<T>(IList<T> list, int count, T primordial) where T : DefinitionBase, new()
 		{
 			while (list.Count < count)
 			{
@@ -694,7 +694,7 @@ namespace Fuse.Layouts
 				Changed();
 		}
 
-		bool AddListener( DefinitionBase item )
+		bool AddListener(DefinitionBase item)
 		{
 			if (item.Creation != DefinitionBase.CreationType.Explicit)
 				return false;
@@ -702,7 +702,7 @@ namespace Fuse.Layouts
 			return true;
 		}
 		
-		bool RemoveListener( DefinitionBase item )
+		bool RemoveListener(DefinitionBase item)
 		{
 			//this may seem wrong since the Creation type can change, except that nothing can ever
 			//lose the Explicit type
@@ -772,7 +772,7 @@ namespace Fuse.Layouts
 				if (EffectiveMetric(c.Metric,expand) != Metric.Proportion)
 					continue;
 				
-				var w = Snap( c.Extent * colWidth + extraWidth );
+				var w = Snap(c.Extent * colWidth + extraWidth);
 				extraWidth += c.Extent * colWidth - w;
 				c.ActualExtent = w;
 				c.HasActualExtent = true;
@@ -780,7 +780,7 @@ namespace Fuse.Layouts
 		}
 		
 		void CalcInitialExtents<T>(IList<T> list, bool expand, 
-			out float used, out bool hasAuto ) where T : DefinitionBase
+			out float used, out bool hasAuto) where T : DefinitionBase
 		{
 			hasAuto = false;
 			used = 0;
@@ -818,7 +818,7 @@ namespace Fuse.Layouts
 			return total;
 		}
 		
-		float2 GetAutoSize( Visual child, int x0, int y0, bool expandX, bool expandY,
+		float2 GetAutoSize(Visual child, int x0, int y0, bool expandX, bool expandY,
 			out bool knowX, out bool knowY,
 			out bool autoX, out bool autoY)
 		{
@@ -831,7 +831,7 @@ namespace Fuse.Layouts
 			//we can't do auto-sizing on things that span in that direction
 			autoX = xs == 1;
 			autoY = ys == 1;
-			for( int x = x0; x < x0 + xs; x++ )
+			for(int x = x0; x < x0 + xs; x++)
 			{
 				var colData = GetColumnData(x);
 				if (colData == null || EffectiveMetric(colData.Metric,expandX) == Metric.Auto)
@@ -847,7 +847,7 @@ namespace Fuse.Layouts
 						sz.X += colData.ActualExtent;
 				}
 					
-				for( int y = y0; y < y0 + ys; y++ )
+				for(int y = y0; y < y0 + ys; y++)
 				{
 					var rowData = GetRowData(y);
 					if (rowData == null || EffectiveMetric(rowData.Metric,expandY) == Metric.Auto)
@@ -899,7 +899,7 @@ namespace Fuse.Layouts
 					out knowX, out knowY, out autoX, out autoY);
 				if (!autoX && !autoY)
 					continue;
-				var clp = LayoutParams.CreateXY( knowSize,
+				var clp = LayoutParams.CreateXY(knowSize,
 					knowX && !autoX,  
 					knowY && !autoY);
 				var cds = child.GetMarginSize(clp);
@@ -1011,11 +1011,11 @@ namespace Fuse.Layouts
 			if (bad && !_checkMeasureWarning)
 			{
 				_checkMeasureWarning = true;
-				Fuse.Diagnostics.UserError( "A grid is using incompatible layout parameters which may result in incorrect layout. A grid using `Default` row or column sizing must have only one row or column, or have a known size. Add a `DefaultRow` or `DefaultColumn` to get the desired sizing.", this );
+				Fuse.Diagnostics.UserError("A grid is using incompatible layout parameters which may result in incorrect layout. A grid using `Default` row or column sizing must have only one row or column, or have a known size. Add a `DefaultRow` or `DefaultColumn` to get the desired sizing.", this);
 			}
 		}
 		
-		bool HasDefaultMetric<T>( IList<T> list ) where T : DefinitionBase
+		bool HasDefaultMetric<T>(IList<T> list) where T : DefinitionBase
 		{
 			for (int i=0; i < list.Count; ++i) {
 				if (list[i].Metric == Metric.Default)
@@ -1044,7 +1044,7 @@ namespace Fuse.Layouts
 			LayoutParams lp)
 		{
 			var remainSize = lp.Size - padding.XY - padding.ZW;
-			var measured = Measure( container, LayoutParams.Create(remainSize) );
+			var measured = Measure(container, LayoutParams.Create(remainSize));
 
 			var off = float2(0);
 			var eca = EffectiveContentAlignment;
@@ -1119,10 +1119,10 @@ namespace Fuse.Layouts
 			}
 		}
 		
-		internal override LayoutDependent IsMarginBoxDependent( Visual child )
+		internal override LayoutDependent IsMarginBoxDependent(Visual child)
 		{
-			var c = GetColumnData( GetActualColumn(child) );
-			var r = GetRowData( GetActualRow(child) );
+			var c = GetColumnData(GetActualColumn(child));
+			var r = GetRowData(GetActualRow(child));
 
 			//either the gridhasn't been arranged or it's not part of the grid proper, either way it doesn't
 			//affect the margin box

@@ -50,7 +50,7 @@ namespace Fuse.Triggers
 			get
 			{
 				for (int i=0; i < States.Count; ++i)
-					if( _active == States[i])
+					if(_active == States[i])
 						return i;
 				return -1;
 			}
@@ -111,7 +111,7 @@ namespace Fuse.Triggers
 			_active = next;
 
 			//this is needed in case a state swtich results in a state switch, see `ChainedSwitch` test case
-			UpdateManager.AddDeferredAction( (new GotoImpl{ Next = next, Group = this }).Go );
+			UpdateManager.AddDeferredAction((new GotoImpl{ Next = next, Group = this }).Go);
 		}
 
 		class GotoImpl
@@ -141,7 +141,7 @@ namespace Fuse.Triggers
 		internal void StateStopped()
 		{
 			if (Transition == StateTransition.Exclusive)
-				UpdateManager.AddDeferredAction( CheckAllDone );
+				UpdateManager.AddDeferredAction(CheckAllDone);
 		}
 
 		void CheckAllDone()

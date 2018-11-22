@@ -49,13 +49,13 @@ namespace Fuse.Test
 		[Test]
 		public void PerspectiveView()
 		{
-			var m = FrustumMatrix.PerspectiveView( float2(1000, 500), 200, float2(0.5f));
-			Assert.AreEqual( float4(1,0,0,0),m[0] );
-			Assert.AreEqual( float4(0,-1,0,0),m[1] );
-			Assert.AreEqual( float4(0,0,1,0),m[2] );
-			Assert.AreEqual( float4(-500,250,200,1),m[3] );
+			var m = FrustumMatrix.PerspectiveView(float2(1000, 500), 200, float2(0.5f));
+			Assert.AreEqual(float4(1,0,0,0),m[0]);
+			Assert.AreEqual(float4(0,-1,0,0),m[1]);
+			Assert.AreEqual(float4(0,0,1,0),m[2]);
+			Assert.AreEqual(float4(-500,250,200,1),m[3]);
 			
-			var mi = FrustumMatrix.PerspectiveViewInverse( float2(1000, 500), 200, float2(0.5f));
+			var mi = FrustumMatrix.PerspectiveViewInverse(float2(1000, 500), 200, float2(0.5f));
 			Assert.IsIdentity(Matrix.Mul(m,mi));
 		}
 		
@@ -70,9 +70,9 @@ namespace Fuse.Test
 		public void Projection()
 		{
 			float4x4 p;
-			Assert.IsTrue(FrustumMatrix.TryPerspectiveProjection( float2(1000, 500), 10, 1000, 200, out p ));
+			Assert.IsTrue(FrustumMatrix.TryPerspectiveProjection(float2(1000, 500), 10, 1000, 200, out p));
 			float4x4 pi;
-			Assert.IsTrue(FrustumMatrix.TryPerspectiveProjectionInverse( float2(1000, 500), 10, 1000, 200, out pi));
+			Assert.IsTrue(FrustumMatrix.TryPerspectiveProjectionInverse(float2(1000, 500), 10, 1000, 200, out pi));
 			Assert.IsIdentity(Matrix.Mul(p,pi));
 
 			Assert.EqualTransformCoordinate(float3(0,0,1000),float3(0,0,1),pi, 0.01f);
@@ -87,8 +87,8 @@ namespace Fuse.Test
 		public void ProjectionView()
 		{
 			float4x4 p;
-			Assert.IsTrue(FrustumMatrix.TryPerspectiveProjection( float2(1624,914), 10, 1000, 200, out p ));
-			var v = FrustumMatrix.PerspectiveView( float2(1624,914), 200, float2(0.5f,0.5f) );
+			Assert.IsTrue(FrustumMatrix.TryPerspectiveProjection(float2(1624,914), 10, 1000, 200, out p));
+			var v = FrustumMatrix.PerspectiveView(float2(1624,914), 200, float2(0.5f,0.5f));
 			var pv = Matrix.Mul(v,p);
 			
 			Assert.EqualTransformCoordinateXY(float2(0,0),float3(1624/2,914/2,0),pv);

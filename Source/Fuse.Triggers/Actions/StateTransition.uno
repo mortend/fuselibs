@@ -21,7 +21,7 @@ namespace Fuse.Triggers.Actions
 			var t = Target;
 			if (t == null)
 			{
-				Fuse.Diagnostics.UserError( "Missing `Target`", this );
+				Fuse.Diagnostics.UserError("Missing `Target`", this);
 				return;
 			}
 			

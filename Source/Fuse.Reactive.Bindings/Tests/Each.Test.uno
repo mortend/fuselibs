@@ -175,15 +175,15 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "G0-0,G0-1,G1-0,G1-1", GetText(e));
+				Assert.AreEqual("G0-0,G0-1,G1-0,G1-1", GetText(e));
 				
 				e.CallAdd.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "G0-0,G0-1,G1-0,G1-1,G2-0,G2-1", GetText(e));
+				Assert.AreEqual("G0-0,G0-1,G1-0,G1-1,G2-0,G2-1", GetText(e));
 				
 				e.CallRemove1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "G0-0,G0-1,G2-0,G2-1", GetText(e));
+				Assert.AreEqual("G0-0,G0-1,G2-0,G2-1", GetText(e));
 			}
 		}
 		
@@ -195,33 +195,33 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( 100, e.E.DataCount );
-				Assert.AreEqual( 5, e.E.WindowItemsCount );
-				Assert.AreEqual( "0,1,2,3,4", GetText(e) );
+				Assert.AreEqual(100, e.E.DataCount);
+				Assert.AreEqual(5, e.E.WindowItemsCount);
+				Assert.AreEqual("0,1,2,3,4", GetText(e));
 
 				var childOffset = 2;
 
 				var three = e.Children[childOffset+3] as Text;
-				Assert.AreEqual( "3", three.Value );
+				Assert.AreEqual("3", three.Value);
 
 				e.E.Offset = 3;
 				root.StepFrameJS();
-				Assert.AreEqual( "3,4,5,6,7", GetText(e) );
-				Assert.AreEqual( 5, e.E.WindowItemsCount );
+				Assert.AreEqual("3,4,5,6,7", GetText(e));
+				Assert.AreEqual(5, e.E.WindowItemsCount);
 
 				//it must use the existing children if possible
-				Assert.AreEqual( three, e.Children[childOffset+0] );
+				Assert.AreEqual(three, e.Children[childOffset+0]);
 
 				e.E.Limit = 6;
 				root.StepFrameJS();
-				Assert.AreEqual( "3,4,5,6,7,8", GetText(e) );
-				Assert.AreEqual( 6, e.E.WindowItemsCount );
-				Assert.AreEqual( three, e.Children[childOffset+0] );
+				Assert.AreEqual("3,4,5,6,7,8", GetText(e));
+				Assert.AreEqual(6, e.E.WindowItemsCount);
+				Assert.AreEqual(three, e.Children[childOffset+0]);
 
 				e.E.Offset = 98;
 				root.StepFrameJS();
-				Assert.AreEqual( "98,99", GetText(e) );
-				Assert.AreEqual( 2, e.E.WindowItemsCount );
+				Assert.AreEqual("98,99", GetText(e));
+				Assert.AreEqual(2, e.E.WindowItemsCount);
 			}
 		}
 		
@@ -233,52 +233,52 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "10,11,12,13,14", GetText(e.C) );
+				Assert.AreEqual("10,11,12,13,14", GetText(e.C));
 
 				e.CallAdd.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "10,11,12,13,14", GetText(e.C) );
+				Assert.AreEqual("10,11,12,13,14", GetText(e.C));
 
 				e.CallRemoveAt.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "10,11,13,14,15", GetText(e.C) );
+				Assert.AreEqual("10,11,13,14,15", GetText(e.C));
 
 				e.CallRemove.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "11,13,14,15,16", GetText(e.C) );
+				Assert.AreEqual("11,13,14,15,16", GetText(e.C));
 
 				e.CallInsert.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "11,13,ins,14,15", GetText(e.C) );
+				Assert.AreEqual("11,13,ins,14,15", GetText(e.C));
 
 				e.CallClear.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "", GetText(e.C) );
+				Assert.AreEqual("", GetText(e.C));
 
 				e.CallAdd.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "", GetText(e.C) );
+				Assert.AreEqual("", GetText(e.C));
 				e.E.Offset = 0;
 				root.PumpDeferred();
-				Assert.AreEqual( "add", GetText(e.C) );
+				Assert.AreEqual("add", GetText(e.C));
 
 				e.CallReplaceAll1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "r0", GetText(e.C) );
+				Assert.AreEqual("r0", GetText(e.C));
 
 				e.CallReplaceAll5.Perform();
 				e.E.Offset = 1;
 				e.E.Limit = 2;
 				root.StepFrameJS();
-				Assert.AreEqual( "r2,r3", GetText(e.C) );
+				Assert.AreEqual("r2,r3", GetText(e.C));
 
 				//try rerooting to ensure sanity
 				root.Children.Remove(e);
-				Assert.AreEqual( 1, e.C.Children.Count ); //Each only
+				Assert.AreEqual(1, e.C.Children.Count); //Each only
 				root.StepFrameJS();
 				root.Children.Add(e);
 				root.StepFrameJS();
-				Assert.AreEqual( "1,2", GetText(e.C) );
+				Assert.AreEqual("1,2", GetText(e.C));
 			}
 		}
 		
@@ -291,17 +291,17 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.PumpDeferred();
-				Assert.AreEqual( "*,*,*,*,*", GetText(e) );
+				Assert.AreEqual("*,*,*,*,*", GetText(e));
 
 				e.E.Offset = 8;
 				root.PumpDeferred();
-				Assert.AreEqual( "*,*", GetText(e) );
+				Assert.AreEqual("*,*", GetText(e));
 
 				root.Children.Remove(e);
 				e.E.Offset = 7;
 				root.Children.Add(e);
 				root.PumpDeferred();
-				Assert.AreEqual( "*,*,*", GetText(e) );
+				Assert.AreEqual("*,*,*", GetText(e));
 			}
 		}
 		
@@ -312,7 +312,7 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "Jane,Alex", GetText(e.P1));
+				Assert.AreEqual("Jane,Alex", GetText(e.P1));
 			}
 		}
 		
@@ -589,7 +589,7 @@ namespace Fuse.Reactive.Test
 				Assert.AreEqual("30,21,10",GetDudZ(e.s));
 				
 				for (int i=0; i < z0.Length; ++i)
-					Assert.AreEqual( z0[i], z1[i] );
+					Assert.AreEqual(z0[i], z1[i]);
 				Assert.IsTrue(e.e.TestIsAvailableClean);
 				
 				e.CallReplaceAll.Perform();
@@ -597,9 +597,9 @@ namespace Fuse.Reactive.Test
 				var z2 = GetZChildren(e.s);
 				Assert.AreEqual("32,12,22",GetDudZ(e.s));
 				
-				Assert.AreEqual( z0[0], z2[0] );
-				Assert.AreEqual( z0[1], z2[2] );
-				Assert.AreEqual( z0[2], z2[1] );
+				Assert.AreEqual(z0[0], z2[0]);
+				Assert.AreEqual(z0[1], z2[2]);
+				Assert.AreEqual(z0[2], z2[1]);
 				Assert.IsTrue(e.e.TestIsAvailableClean);
 				
 				e.CallClear.Perform();
@@ -623,7 +623,7 @@ namespace Fuse.Reactive.Test
 				Assert.AreEqual("three,two,one",GetDudZ(e.s));
 				
 				for (int i=0; i < z0.Length; ++i)
-					Assert.AreEqual( z0[i], z1[i] );
+					Assert.AreEqual(z0[i], z1[i]);
 				Assert.IsTrue(e.e.TestIsAvailableClean);
 				
 				e.CallReplaceAll.Perform();
@@ -631,9 +631,9 @@ namespace Fuse.Reactive.Test
 				var z2 = GetZChildren(e.s);
 				Assert.AreEqual("three,one,two",GetDudZ(e.s));
 				
-				Assert.AreEqual( z0[0], z2[0] );
-				Assert.AreEqual( z0[1], z2[2] );
-				Assert.AreEqual( z0[2], z2[1] );
+				Assert.AreEqual(z0[0], z2[0]);
+				Assert.AreEqual(z0[1], z2[2]);
+				Assert.AreEqual(z0[2], z2[1]);
 				Assert.IsTrue(e.e.TestIsAvailableClean);
 				
 				e.CallClear.Perform();
@@ -661,7 +661,7 @@ namespace Fuse.Reactive.Test
 				
 				//clear up removing ones
 				root.StepFrame(1.1f);
-				Assert.AreEqual( 3, GetZChildren(e.s).Length );
+				Assert.AreEqual(3, GetZChildren(e.s).Length);
 				Assert.AreEqual("51,31,11", GetDudZ(e.s));
 				
 				e.CallReplaceAll2.Perform();
@@ -674,7 +674,7 @@ namespace Fuse.Reactive.Test
 				
 				//clear up removing ones
 				root.StepFrame(1.1f);
-				Assert.AreEqual( 5, GetZChildren(e.s).Length );
+				Assert.AreEqual(5, GetZChildren(e.s).Length);
 				Assert.AreEqual("82,52,72,32,62", GetDudZ(e.s));
 			}
 		}
@@ -735,8 +735,8 @@ namespace Fuse.Reactive.Test
 			{
 				root.StepFrameJS();
 				
-				Assert.AreEqual( 0, GetZChildren(e.a).Length );
-				Assert.AreEqual( 0, GetZChildren(e.b).Length );
+				Assert.AreEqual(0, GetZChildren(e.a).Length);
+				Assert.AreEqual(0, GetZChildren(e.b).Length);
 			}
 		}
 		
@@ -747,11 +747,11 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "Y,X,Y", GetDudZ(e.b) );
-				Assert.AreEqual( "A", GetDudZ(e.c));
-				Assert.AreEqual( "A", GetDudZ(e.d));
-				Assert.AreEqual( "Q", GetDudZ(e.e));
-				Assert.AreEqual( "A,A", GetDudZ(e.f));
+				Assert.AreEqual("Y,X,Y", GetDudZ(e.b));
+				Assert.AreEqual("A", GetDudZ(e.c));
+				Assert.AreEqual("A", GetDudZ(e.d));
+				Assert.AreEqual("Q", GetDudZ(e.e));
+				Assert.AreEqual("A,A", GetDudZ(e.f));
 			}
 		}
 		
@@ -761,7 +761,7 @@ namespace Fuse.Reactive.Test
 			var e = new UX.Each.Multiple();
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
-				Assert.AreEqual( "1,2,1,2", GetText(e));
+				Assert.AreEqual("1,2,1,2", GetText(e));
 			}
 		}
 		
@@ -772,19 +772,19 @@ namespace Fuse.Reactive.Test
 			var e=  new UX.Each.TemplateSource();
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
-				Assert.AreEqual( "A", GetDudZ(e.tb));
+				Assert.AreEqual("A", GetDudZ(e.tb));
 				
 				e.each.TemplateSource = e.tb;
 				root.PumpDeferred();
-				Assert.AreEqual( "B", GetDudZ(e.tb));
+				Assert.AreEqual("B", GetDudZ(e.tb));
 				
 				e.each.TemplateSource = e.tc;
 				root.PumpDeferred();
-				Assert.AreEqual( "C", GetDudZ(e.tb));
+				Assert.AreEqual("C", GetDudZ(e.tb));
 				
 				e.each.TemplateSource = null;
 				root.PumpDeferred();
-				Assert.AreEqual( "A", GetDudZ(e.tb));
+				Assert.AreEqual("A", GetDudZ(e.tb));
 			}
 		}
 		
@@ -824,11 +824,11 @@ namespace Fuse.Reactive.Test
 			{
 				root.StepFrameJS();
 				
-				Assert.AreEqual( "O4,T3,O2,T1,O0", GetDudZ(e.s) );
+				Assert.AreEqual("O4,T3,O2,T1,O0", GetDudZ(e.s));
 				
 				e.each.MatchKey = "alt";
 				root.PumpDeferred();
-				Assert.AreEqual( "B4,A3,B2,A1,B0", GetDudZ(e.s) );
+				Assert.AreEqual("B4,A3,B2,A1,B0", GetDudZ(e.s));
 			}
 		}
 		
@@ -839,11 +839,11 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS(1);
-				Assert.AreEqual( "A3,B2,A1", GetDudZ(e));
+				Assert.AreEqual("A3,B2,A1", GetDudZ(e));
 				
 				e.callUpdate.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "A3,C4,A1", GetDudZ(e));
+				Assert.AreEqual("A3,C4,A1", GetDudZ(e));
 			}
 		}
 		
@@ -854,11 +854,11 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "1-*", GetDudZ(e));
+				Assert.AreEqual("1-*", GetDudZ(e));
 				
 				e.callUpdate.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "*-2", GetDudZ(e));
+				Assert.AreEqual("*-2", GetDudZ(e));
 			}
 		}
 		
@@ -870,23 +870,23 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( null, e.FirstChild<DudElement>() );
+				Assert.AreEqual(null, e.FirstChild<DudElement>());
 				
 				e.callSecond.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "A2", GetDudZ(e) );
+				Assert.AreEqual("A2", GetDudZ(e));
 				
 				e.callClear.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( null, e.FirstChild<DudElement>() );
+				Assert.AreEqual(null, e.FirstChild<DudElement>());
 				
 				e.callBoth.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "A3,B4", GetDudZ(e) );
+				Assert.AreEqual("A3,B4", GetDudZ(e));
 				
 				e.callClear.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( null, e.FirstChild<DudElement>() );
+				Assert.AreEqual(null, e.FirstChild<DudElement>());
 			}
 		}
 	}

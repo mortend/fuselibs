@@ -15,9 +15,9 @@
 		}
 		
 		exports.sel = Observable()
-		exports.sel.add( "two" )
-		exports.sel.add( "four" )
-		exports.sel.onValueChanged( module, updateCurrent)
+		exports.sel.add("two")
+		exports.sel.add("four")
+		exports.sel.onValueChanged(module, updateCurrent)
 	
 		exports.clear = function() {
 			exports.sel.clear()
@@ -28,11 +28,11 @@
 			updateCurrent()
 		}
 		exports.add = function() {
-			exports.sel.insertAt(0, "one" )
+			exports.sel.insertAt(0, "one")
 			updateCurrent()
 		}
 		exports.replace = function() {
-			exports.sel.replaceAt(1, "five" )
+			exports.sel.replaceAt(1, "five")
 			updateCurrent()
 		}
 		exports.set = function() {

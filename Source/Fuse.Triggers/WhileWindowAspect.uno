@@ -99,7 +99,7 @@ namespace Fuse.Triggers
 				if(Viewport==null) return false;
 				var sz = Viewport.Size;
 
-				if(GreaterThan.X > 0 && GreaterThan.Y > 0 )
+				if(GreaterThan.X > 0 && GreaterThan.Y > 0)
 				{
 					if(sz.X < GreaterThan.X || sz.Y < GreaterThan.Y)
 						return false;

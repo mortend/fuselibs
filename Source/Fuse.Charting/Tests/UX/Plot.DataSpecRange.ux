@@ -7,11 +7,11 @@
 		}
 
 		exports.values.replaceAll([
-			Item( 14, 4, 19 ),
-			Item( 15, 5, 20 ),
-			Item( 25, 7, 10 ),
-			Item( 5, 8, 30 ),
-			Item( 5, 5, 40 ),
+			Item(14, 4, 19),
+			Item(15, 5, 20),
+			Item(25, 7, 10),
+			Item(5, 8, 30),
+			Item(5, 5, 40),
 		])
 	</JavaScript>
 	<c:Plot ux:Name="plot" DataOffset="1" DataLimit="3"

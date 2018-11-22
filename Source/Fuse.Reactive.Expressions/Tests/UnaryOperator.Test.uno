@@ -17,17 +17,17 @@ namespace Fuse.Reactive.Test
 				var p = new UX.UnaryOperator.Deprecated();
 				using (var root = TestRootPanel.CreateWithChild(p))
 				{
-					Assert.AreEqual( "abc", p.d1.ObjectValue);
+					Assert.AreEqual("abc", p.d1.ObjectValue);
 					
 					p.a.Value = null;
 					root.PumpDeferred();
-					Assert.AreEqual( "lost", p.d1.ObjectValue);
-					Assert.AreEqual( "null", p.d2.ObjectValue);
+					Assert.AreEqual("lost", p.d1.ObjectValue);
+					Assert.AreEqual("null", p.d2.ObjectValue);
 				
 					var msgs = dg.DequeueAll();
 					Assert.IsTrue(msgs.Count > 0);
 					for (int i=0; i < msgs.Count; ++i)
-						Assert.IsTrue( msgs[i].Message.IndexOf( "deprecated" ) != -1);
+						Assert.IsTrue(msgs[i].Message.IndexOf("deprecated") != -1);
 				}
 			}
 		}
@@ -37,9 +37,9 @@ namespace Fuse.Reactive.Test
 			var p = new UX.UnaryOperator.Basic();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "[ab]", p.a.StringValue);
-				Assert.AreEqual( "x", p.b.StringValue);
-				Assert.AreEqual( "[hi]", p.c.StringValue);
+				Assert.AreEqual("[ab]", p.a.StringValue);
+				Assert.AreEqual("x", p.b.StringValue);
+				Assert.AreEqual("[hi]", p.c.StringValue);
 
 				Assert.AreEqual(true, p.d.BoolValue);
 				Assert.AreEqual(false, p.e.BoolValue);

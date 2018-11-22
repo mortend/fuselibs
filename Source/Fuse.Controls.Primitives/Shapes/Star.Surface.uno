@@ -26,12 +26,12 @@ namespace Fuse.Controls
 				float2 segRadius = i%2==0 ? float2(radius,spokeRadius) : float2(spokeRadius,radius);
 				
 				var pa = float2(center.X + Math.Sin(t*i + rotation) * segRadius[0], 
-					center.Y - Math.Cos(t*i + rotation) * segRadius[0] );
+					center.Y - Math.Cos(t*i + rotation) * segRadius[0]);
 				var pb = float2(center.X + Math.Sin(t*(i+1) + rotation) * segRadius[1], 
-					center.Y - Math.Cos(t*(i+1) + rotation) * segRadius[1] );
+					center.Y - Math.Cos(t*(i+1) + rotation) * segRadius[1]);
 
 				if (i==0)
-					list.Add( new LineSegment{ Type = LineSegmentType.Move, To = pa } );
+					list.Add(new LineSegment{ Type = LineSegmentType.Move, To = pa });
 
 				const float zeroTolerance = 1e-05f;
 				if (cornerRatio > zeroTolerance)
@@ -39,13 +39,13 @@ namespace Fuse.Controls
 					var na = float2(Math.Cos(t*i + rotation), Math.Sin(t*i + rotation));
 					var nb = float2(Math.Cos(t*(i+1) + rotation), Math.Sin(t*(i+1) + rotation));
 				
-					list.Add( new LineSegment{ Type = LineSegmentType.BezierCurve, To = pb,
+					list.Add(new LineSegment{ Type = LineSegmentType.BezierCurve, To = pb,
 						A = pa - na * cornerRatio * segRadius[0],
-						B = pb + nb * cornerRatio * segRadius[1] } );
+						B = pb + nb * cornerRatio * segRadius[1] });
 				}
 				else
 				{
-					list.Add( new LineSegment{ Type = LineSegmentType.Straight, To = pb } );
+					list.Add(new LineSegment{ Type = LineSegmentType.Straight, To = pb });
 				}
 			}
 			list.Add(new LineSegment{ Type = LineSegmentType.Close });

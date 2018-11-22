@@ -215,7 +215,7 @@ namespace Fuse
 			var thisTo = GetTransformToAncestor(c);
 			var otherTo = other.GetTransformToAncestor(c);
 
-			return Matrix.Mul( thisTo, Matrix.Invert(otherTo) );
+			return Matrix.Mul(thisTo, Matrix.Invert(otherTo));
 		}
 
 		float4x4 GetTransformToAncestor(Visual ancestor)
@@ -301,7 +301,7 @@ namespace Fuse
 		//TODO: could be replaced with VisualBounds.MergeChild probably (to centralize this logic)
 		internal VisualBounds CalcRenderBoundsInParentSpace()
 		{
-			return VisualBounds.Empty.MergeChild( this, LocalRenderBounds );
+			return VisualBounds.Empty.MergeChild(this, LocalRenderBounds);
 		}
 	}
 }

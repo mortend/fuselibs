@@ -51,7 +51,7 @@ namespace Fuse.Animations
 		
 		The properties are defined to be a simple interface, but it may be easier to understand see how they all relate in an expression. Given a current time offset the value of the `Target` is defined roughly as:
 		
-			Target.Value = Lerp( Low, High, Easing( Waveform(Time) ) ) * Base + Offset
+			Target.Value = Lerp(Low, High, Easing(Waveform(Time))) * Base + Offset
 			
 		`Low` and `High` can only be scalar values. `Cycle` checks whether these values cross zero, or one. If they do, it will start at that value, and return to that value when done (this is the default value for `ProgressOffset`). This allows a smooth return to rest state in animation.
 		
@@ -85,10 +85,10 @@ namespace Fuse.Animations
 		public T Offset { get; set; }
 		
 		[UXConstructor]
-		public Cycle( Property<T> Target )
+		public Cycle(Property<T> Target)
 		{
 			if (Target == null)
-				throw new ArgumentNullException( "Target" );
+				throw new ArgumentNullException("Target");
 			this.Target = Target;
 			var blender = Internal.BlenderMap.Get<T>();
 			Base = blender.One;
@@ -165,7 +165,7 @@ namespace Fuse.Animations
 				switch (Waveform)
 				{
 					case CycleWaveform.Sine:
-						return Math.Asin( 2*(v-0.5) ) / (Math.PI * 2);
+						return Math.Asin(2*(v-0.5)) / (Math.PI * 2);
 					case CycleWaveform.Triangle:
 						return v * 0.5;
 					case CycleWaveform.Sawtooth:
@@ -209,15 +209,15 @@ namespace Fuse.Animations
 			}
 		}
 		
-		internal double WaveformFunc( double i, double offset )
+		internal double WaveformFunc(double i, double offset)
 		{
-			switch( Waveform )
+			switch(Waveform)
 			{
 				case CycleWaveform.Sine:
 					return Math.Sin((i + offset) * Math.PI * 2) / 2 + 0.5;
 				case CycleWaveform.Triangle:
 				{
-					var a = Math.Mod( i + offset, 1 );
+					var a = Math.Mod(i + offset, 1);
 					if (a < 0.5)
 						return a * 2;
 					return 1 + 2 * (0.5 - a);
@@ -229,7 +229,7 @@ namespace Fuse.Animations
 				}
 				case CycleWaveform.Square:
 				{
-					var a = Math.Mod( i + offset, 1 );
+					var a = Math.Mod(i + offset, 1);
 					return a < 0.5 ? 0 : 1;
 				}
 			}
@@ -244,11 +244,11 @@ namespace Fuse.Animations
 		Cycle<T> Animator;
 		Internal.Blender<T> blender;
 
-		public CycleState( Cycle<T> animator, CreateStateParams p )
+		public CycleState(Cycle<T> animator, CreateStateParams p)
 			: base(animator, p)
 		{
 			this.Animator = animator;
-			mixHandle = Animator.Mixer.Register( Animator.Target, Animator.MixOp );
+			mixHandle = Animator.Mixer.Register(Animator.Target, Animator.MixOp);
 			blender = Internal.BlenderMap.Get<T>();
 		}
 
@@ -262,7 +262,7 @@ namespace Fuse.Animations
 			progress = 0;
 		}
 
-		bool InRange( double low, double high, double value )
+		bool InRange(double low, double high, double value)
 		{
 			if (low < high)
 				return value >= low && value <= high;
@@ -274,7 +274,7 @@ namespace Fuse.Animations
 		{
 			if (mixHandle == null)
 			{
-				Fuse.Diagnostics.InternalError( "invalid seek", this );
+				Fuse.Diagnostics.InternalError("invalid seek", this);
 				return true;
 			}
 
@@ -287,22 +287,22 @@ namespace Fuse.Animations
 			progress = progress + interval * freq;
 			if (on)
 			{
-				progress = Math.Mod( progress, 1 );
+				progress = Math.Mod(progress, 1);
 			}
 			else if (oldProgress <= 0 || progress <= 0 ||
-				progress >= 1 || oldProgress >= 1 )
+				progress >= 1 || oldProgress >= 1)
 			{
 				progress = 0;
 				done = true;
 			}
 
-			var s = Animator.WaveformFunc( progress, Animator.ProgressOffset );
+			var s = Animator.WaveformFunc(progress, Animator.ProgressOffset);
 			if (Animator.Easing != null)
 				s = Animator.Easing.Map((float)s);
 				
-			var value = blender.Add( Animator.Offset,
-				blender.Weight( Animator.Base, Math.Lerp( Animator.Low, Animator.High, (float)s) ) );
-			mixHandle.Set( value, strength );
+			var value = blender.Add(Animator.Offset,
+				blender.Weight(Animator.Base, Math.Lerp(Animator.Low, Animator.High, (float)s)));
+			mixHandle.Set(value, strength);
 			return done;
 		}
 	}

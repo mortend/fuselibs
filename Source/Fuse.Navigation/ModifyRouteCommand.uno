@@ -21,12 +21,12 @@ namespace Fuse.Navigation
 			internal IContext _context;
 			InnerSubscription _innerSub;
 			
-			public OuterSubscription( RouteModificationCommand expr, IContext context, IListener listener )
+			public OuterSubscription(RouteModificationCommand expr, IContext context, IListener listener)
 			{
 				_expr = expr;
 				_context = context;
 				_listener = listener;
-				_listener.OnNewData(_expr, this );
+				_listener.OnNewData(_expr, this);
 			}
 			
 			public override void Dispose()
@@ -85,7 +85,7 @@ namespace Fuse.Navigation
 				HandleRequest(args);
 				
 				//we might be in the Ctor.Init function still (yucky), Dispose in Ctor is apparently not good.
-				UpdateManager.AddDeferredAction( Dispose );
+				UpdateManager.AddDeferredAction(Dispose);
 			}
 			
 			void HandleRequest(Argument[] args)
@@ -97,7 +97,7 @@ namespace Fuse.Navigation
 				var router = Router.TryFindRouter(_outSub._context.Node);
 				if (router == null)
 				{
-					Fuse.Diagnostics.UserError( "could not find router", this );
+					Fuse.Diagnostics.UserError("could not find router", this);
 					return;
 				}
 				
@@ -155,7 +155,7 @@ namespace Fuse.Navigation
 				var nvp = args[i].Value as NameValuePair;
 				if (nvp == null)
 				{
-					Fuse.Diagnostics.UserError( "arguments to modifyRoute must be name-value-pairs", this );
+					Fuse.Diagnostics.UserError("arguments to modifyRoute must be name-value-pairs", this);
 					return false;
 				}
 				
@@ -179,8 +179,8 @@ namespace Fuse.Navigation
 	{
 		internal override bool ProcessArguments(RouterRequest request, Argument[] args)
 		{
-			return request.AddHow( ModifyRouteHow.Goto ) &&
-				request.AddPath( new ArgumentArrayAdapter(args) );
+			return request.AddHow(ModifyRouteHow.Goto) &&
+				request.AddPath(new ArgumentArrayAdapter(args));
 		}
 	}
 
@@ -194,8 +194,8 @@ namespace Fuse.Navigation
 	{
 		internal override bool ProcessArguments(RouterRequest request, Argument[] args)
 		{
-			return request.AddHow( ModifyRouteHow.Push ) &&
-				request.AddPath( new ArgumentArrayAdapter(args) );
+			return request.AddHow(ModifyRouteHow.Push) &&
+				request.AddPath(new ArgumentArrayAdapter(args));
 		}
 	}
 	

@@ -31,10 +31,10 @@ namespace Fuse.Resources
 			set
 			{
 				_proxy.Release();
-				if(value == null || value == "" )
+				if(value == null || value == "")
 					return;
 
-				_proxy.Attach( HttpImageSourceCache.GetUrl( value ) );
+				_proxy.Attach(HttpImageSourceCache.GetUrl(value));
 			}
 		}
 
@@ -73,23 +73,23 @@ namespace Fuse.Resources
 	static class HttpImageSourceCache
 	{
 		static Dictionary<String,WeakReference<HttpImageSourceImpl>> _cache = new Dictionary<String,WeakReference<HttpImageSourceImpl>>();
-		static public HttpImageSourceImpl GetUrl( String url )
+		static public HttpImageSourceImpl GetUrl(String url)
 		{
 			WeakReference<HttpImageSourceImpl> value = null;
-			if( _cache.TryGetValue( url, out value ) )
+			if(_cache.TryGetValue(url, out value))
 			{
 				HttpImageSourceImpl his;
-				if( value.TryGetTarget( out his ) )
+				if(value.TryGetTarget(out his))
 				{
 					if (his.State == ImageSourceState.Failed)
 						his.Reload();
 					return his;
 				}
-				_cache.Remove( url );
+				_cache.Remove(url);
 			}
 
-			var nv = new HttpImageSourceImpl( url );
-			_cache.Add( url, new WeakReference<HttpImageSourceImpl>(nv) );
+			var nv = new HttpImageSourceImpl(url);
+			_cache.Add(url, new WeakReference<HttpImageSourceImpl>(nv));
 			return nv;
 		}
 	}
@@ -100,7 +100,7 @@ namespace Fuse.Resources
 		public String Url { get { return _url; } }
 		String _contentType;
 
-		public HttpImageSourceImpl( String url )
+		public HttpImageSourceImpl(String url)
 		{
 			_url = url;
 		}
@@ -113,7 +113,7 @@ namespace Fuse.Resources
 				_loading = true;
 				OnChanged();
 			}
-			catch( Exception e )
+			catch(Exception e)
 			{
 				Fail("Loading image from '" + Url + "' failed. " + e.Message, e);
 			}
@@ -205,12 +205,12 @@ namespace Fuse.Resources
 			}
 		}
 
-		void LoadFailed( string reason )
+		void LoadFailed(string reason)
 		{
 			Fail("Loading image from '" + Url + "' failed: " + reason);
 		}
 
-		void Fail( string msg, Exception e = null )
+		void Fail(string msg, Exception e = null)
 		{
 			Cleanup(CleanupReason.Failed);
 			OnError(msg, e);

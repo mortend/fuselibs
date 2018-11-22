@@ -146,7 +146,7 @@ namespace Fuse.Elements
 		{
 			Recti cachingRect;
 			if (!TryGetCachingRect(elm, out cachingRect))
-				throw new Exception( "element has no caching rect" );
+				throw new Exception("element has no caching rect");
 
 			return cachingRect;
 		}

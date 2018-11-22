@@ -25,7 +25,7 @@ namespace Fuse.Elements.Test
 				p.a.Data = "M0,0 L100,100";
 				root.StepFrame(); //dispatch is done as part of layout, thus PumpDeferred is not enough
 				
-				Assert.IsTrue( p.RenderBoundsChangedElements.Contains( p.a ) );
+				Assert.IsTrue(p.RenderBoundsChangedElements.Contains(p.a));
 			}
 		}	
 	}
@@ -53,7 +53,7 @@ namespace Fuse.Elements.Test
 		public HashSet<Element> RenderBoundsChangedElements = new HashSet<Element>();
 		void ITreeRenderer.RenderBoundsChanged(Element e) 
 		{ 
-			RenderBoundsChangedElements.Add( e );
+			RenderBoundsChangedElements.Add(e);
 		}
 		
 		bool ITreeRenderer.Measure(Element e, LayoutParams lp, out float2 size) 

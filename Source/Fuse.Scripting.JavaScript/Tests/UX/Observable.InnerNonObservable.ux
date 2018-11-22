@@ -8,7 +8,7 @@
 		exports.items = items
 		
 		exports.step1 = function() {
-			sourceItems.add( "b" )
+			sourceItems.add("b")
 		}
 		
 		exports.step2 = function() {
@@ -20,7 +20,7 @@
 		}
 		
 		exports.step4 = function() {
-			sourceItems.insertAll(1, ["d","e","f","g"] )
+			sourceItems.insertAll(1, ["d","e","f","g"])
 		}
 		
 		exports.step5 = function() {

@@ -54,7 +54,7 @@ namespace Fuse.Reactive
 				_rootViewport = rv;
 				
 				if (rv == null)
-					Fuse.Diagnostics.UserError( "No RootViewport found in this context", this );
+					Fuse.Diagnostics.UserError("No RootViewport found in this context", this);
 			}
 			
 			public void Init()
@@ -63,7 +63,7 @@ namespace Fuse.Reactive
 					return;
 		
 				_windowCaps = WindowCaps.Attach(_rootViewport);
-				_listener.OnNewData(_func, _windowCaps );
+				_listener.OnNewData(_func, _windowCaps);
 			}
 			
 			public void Dispose()
@@ -104,7 +104,7 @@ namespace Fuse.Reactive
 		{
 			var rv = node.GetNearestAncestorOfType<RootViewport>();
 			if (rv == null)
-				throw new Exception( "No RootViewport found" );
+				throw new Exception("No RootViewport found");
 				
 			return Attach(rv);
 		}
@@ -129,7 +129,7 @@ namespace Fuse.Reactive
 		static public Selector NameDeviceMargins = "deviceMargins";
 		static public Selector NameStaticMargins = "staticMargins";
 		
-		WindowCaps( RootViewport rv )
+		WindowCaps(RootViewport rv)
 		{
 			_rootViewport = rv;
 			_rootViewport.Resized += OnResizedRV;
@@ -153,12 +153,12 @@ namespace Fuse.Reactive
 			ChangeProperty(NameWidth, _rootViewport.Size.X);
 			ChangeProperty(NameHeight, _rootViewport.Size.Y);
 			ChangeProperty(NameSize, _rootViewport.Size);
-			UpdateManager.AddDeferredAction( UpdateMargins );
+			UpdateManager.AddDeferredAction(UpdateMargins);
 		}
 		
 		void OnMarginsChanged()
 		{
-			UpdateManager.AddDeferredAction( UpdateMargins );
+			UpdateManager.AddDeferredAction(UpdateMargins);
 		}
 		
 		void UpdateMargins()

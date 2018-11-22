@@ -66,7 +66,7 @@ namespace Fuse.Controls.Native.iOS
 				SetValue(Handle, (float)rel * 100);
 			}
 			
-			_host.OnProgressChanged( rel );
+			_host.OnProgressChanged(rel);
 		}
 
 		float Value

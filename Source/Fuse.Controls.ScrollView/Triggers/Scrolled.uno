@@ -32,7 +32,7 @@ namespace Fuse.Triggers
 			_scrollable = Parent.FindByType<ScrollViewBase>();
 			if (_scrollable == null)
 			{
-				Fuse.Diagnostics.UserError( "Scrolled could not find a Scrollable control.", this );
+				Fuse.Diagnostics.UserError("Scrolled could not find a Scrollable control.", this);
 				return;
 			}
 			
@@ -59,13 +59,13 @@ namespace Fuse.Triggers
 			_inZone = inz;
 
 			if (_inZone)
-				Pulse( new ScrolledArgs() );
+				Pulse(new ScrolledArgs());
 		}
 		
 		void Check()
 		{
 			if (_scrollable != null && _region.IsInZone(_scrollable))
-				Pulse( new ScrolledArgs() );
+				Pulse(new ScrolledArgs());
 		}
 		
 		/* Composition of ScrollRegion (Copies in Scrolled.uno/WhileScrolled.uno)*/

@@ -188,7 +188,7 @@ namespace Fuse.Controls
 			var cpd = GetControlPageData(c);
 			UpdateProgress(c, Navigation.GetPageState(c), cpd);
 			
-			if ( (cpd.Enter == null || cpd.Exit == null || cpd.Inactive == null || cpd.Removing == null) )
+			if ((cpd.Enter == null || cpd.Exit == null || cpd.Inactive == null || cpd.Removing == null))
 			{
 				CleanupTriggers(c, cpd); //in case partially null
 				
@@ -207,7 +207,7 @@ namespace Fuse.Controls
 			//attach a default RouterPage if it doesn't have one
 			var pd = PageData.GetOrCreate(c);
 			if (pd.RouterPage == null)
-				pd.AttachRouterPage( new RouterPage( c.Name, c.Parameter ));
+				pd.AttachRouterPage(new RouterPage(c.Name, c.Parameter));
 		}
 
 		/**
@@ -388,7 +388,7 @@ namespace Fuse.Controls
 		/** See @Navigation.ActivePage */
 		public Visual INavigation.ActivePage { get { return Navigation.ActivePage; } }
 		/** See @INavigation.GetPageState */
-		public NavigationPageState INavigation.GetPageState( Visual page ) { return Navigation.GetPageState(page); }
+		public NavigationPageState INavigation.GetPageState(Visual page) { return Navigation.GetPageState(page); }
 		/** See @INavigation.State */
 		public NavigationState INavigation.State { get { return Navigation.State; } }
 
@@ -449,7 +449,7 @@ namespace Fuse.Controls
 			return a == null || a == "" || a == "\"\"" || a == "{}" || a == "null";
 		}
 		
-		internal bool CompatibleParameter( string a, string b )
+		internal bool CompatibleParameter(string a, string b)
 		{
 			if (a == b)
 				return true;
@@ -478,8 +478,8 @@ namespace Fuse.Controls
 			if (pages != null && pages.Count > 0)
 			{ 
 				Visual ignore;
-				((IRouterOutlet)this).Goto( pages[pages.Count-1], NavigationGotoMode.Bypass, 
-					RoutingOperation.Goto, "", out ignore );
+				((IRouterOutlet)this).Goto(pages[pages.Count-1], NavigationGotoMode.Bypass, 
+					RoutingOperation.Goto, "", out ignore);
 			}
 			else
 			{
@@ -504,7 +504,7 @@ namespace Fuse.Controls
 				var changed = false;
 				if (pages.Count == 0)
 				{
-					pages.Add( current );
+					pages.Add(current);
 					changed = true;
 				}
 				else if (pages[pages.Count -1] != current) 

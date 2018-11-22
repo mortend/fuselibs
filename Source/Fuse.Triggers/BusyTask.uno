@@ -101,7 +101,7 @@ namespace Fuse.Triggers
 			}
 		}
 
-		public static bool IsBusy(Node n, BusyTaskMatch match = BusyTaskMatch.Descendents )
+		public static bool IsBusy(Node n, BusyTaskMatch match = BusyTaskMatch.Descendents)
 		{
 			return GetBusyActivity(n) != BusyTaskActivity.None;
 		}

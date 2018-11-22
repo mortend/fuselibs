@@ -36,7 +36,7 @@ namespace Fuse.Motion.Simulation
 			return n;
 		}
 		
-		static public Friction<T> CreateUnit( MotionUnit unit )
+		static public Friction<T> CreateUnit(MotionUnit unit)
 		{
 			switch(unit)
 			{
@@ -44,7 +44,7 @@ namespace Fuse.Motion.Simulation
 				case MotionUnit.Normalized: return CreateNormalized();
 				case MotionUnit.Radians: return CreateRadians();
 			}
-			throw new Exception( "Unsupported unit type: " +unit );
+			throw new Exception("Unsupported unit type: " +unit);
 		}
 		
 		
@@ -104,8 +104,8 @@ namespace Fuse.Motion.Simulation
 		
 		public void Update(double elapsed)
 		{
-			var step = _blender.Weight( _velocity, (float)elapsed );
-			_position = _blender.Add( _position, step );
+			var step = _blender.Weight(_velocity, (float)elapsed);
+			_position = _blender.Add(_position, step);
 			
 			//calculate fluid deceleration
 			var linear = _blender.Length(_velocity);

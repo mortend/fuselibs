@@ -62,7 +62,7 @@ namespace Fuse.Navigation
 				
 			_navState = newState;
 			if (StateChanged != null)
-				StateChanged( this, new ValueChangedArgs<NavigationState>(newState) );
+				StateChanged(this, new ValueChangedArgs<NavigationState>(newState));
 		}
 
 		protected void OnPageCountChanged()
@@ -81,7 +81,7 @@ namespace Fuse.Navigation
 		protected void OnPageProgressChanged(double current, double prev, NavigationMode mode)
 		{
 			if (PageProgressChanged != null)
-				PageProgressChanged(this, new NavigationArgs(current, prev, mode) );
+				PageProgressChanged(this, new NavigationArgs(current, prev, mode));
 		}
 
 		public event NavigatedHandler Navigated;
@@ -131,7 +131,7 @@ namespace Fuse.Navigation
 		
 		internal protected IList<PageData> Pages { get { return _pages; } }
 		
-		internal PageData GetPageData( Visual page ) 
+		internal PageData GetPageData(Visual page) 
 		{
 			if (page == null)
 				return null;
@@ -157,7 +157,7 @@ namespace Fuse.Navigation
 					
 				var pd = PageData.GetOrCreate(x);
 				pd.Index = c;
-				_pages.Add( pd );
+				_pages.Add(pd);
 				c++;
 			}
 			

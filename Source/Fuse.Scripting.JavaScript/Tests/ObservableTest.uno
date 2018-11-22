@@ -60,15 +60,15 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual("", p.OC.JoinValues() );
+				Assert.AreEqual("", p.OC.JoinValues());
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("a", p.OC.JoinValues() );
+				Assert.AreEqual("a", p.OC.JoinValues());
 				
 				p.Step2.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("", p.OC.JoinValues() );
+				Assert.AreEqual("", p.OC.JoinValues());
 			}
 		}
 		
@@ -79,23 +79,23 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual("1,2,3,4,11,12,13,14", p.OC.JoinValues() );
+				Assert.AreEqual("1,2,3,4,11,12,13,14", p.OC.JoinValues());
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("1,2,5", p.OC.JoinValues() );
+				Assert.AreEqual("1,2,5", p.OC.JoinValues());
 				
 				p.Step2.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("2,5,6,7,8", p.OC.JoinValues() );
+				Assert.AreEqual("2,5,6,7,8", p.OC.JoinValues());
 				
 				p.Step3.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("", p.OC.JoinValues() );
+				Assert.AreEqual("", p.OC.JoinValues());
 				
 				p.Step4.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("9", p.OC.JoinValues() );
+				Assert.AreEqual("9", p.OC.JoinValues());
 			}
 		}
 		
@@ -107,23 +107,23 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual("1,2,3,4,11,12,13,14", p.OC.JoinValues() );
+				Assert.AreEqual("1,2,3,4,11,12,13,14", p.OC.JoinValues());
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("1,2,5", p.OC.JoinValues() );
+				Assert.AreEqual("1,2,5", p.OC.JoinValues());
 				
 				p.Step2.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("2,5,6,7,8", p.OC.JoinValues() );
+				Assert.AreEqual("2,5,6,7,8", p.OC.JoinValues());
 				
 				p.Step3.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("", p.OC.JoinValues() );
+				Assert.AreEqual("", p.OC.JoinValues());
 				
 				p.Step4.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("9", p.OC.JoinValues() );
+				Assert.AreEqual("9", p.OC.JoinValues());
 			}
 		}
 		
@@ -134,15 +134,15 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual("1,2", p.OC.JoinValues() );
+				Assert.AreEqual("1,2", p.OC.JoinValues());
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("1,2,1,2,5", p.OC.JoinValues() );
+				Assert.AreEqual("1,2,1,2,5", p.OC.JoinValues());
 				
 				p.Step2.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("1,2,1,2,5", p.OC.JoinValues() );
+				Assert.AreEqual("1,2,1,2,5", p.OC.JoinValues());
 			}
 		}
 		
@@ -157,7 +157,7 @@ namespace Fuse.Reactive.Test
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("1,2", p.OC.JoinValues() );
+				Assert.AreEqual("1,2", p.OC.JoinValues());
 			}
 		}
 		
@@ -319,17 +319,17 @@ namespace Fuse.Reactive.Test
 			{
 				root.StepFrameJS();
 				Assert.AreEqual("ab", p.C.Value);
-				Assert.AreEqual( "$*ab", p.F.Value );
+				Assert.AreEqual("$*ab", p.F.Value);
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
 				Assert.AreEqual("cb", p.C.Value);
-				Assert.AreEqual( "$*cb", p.F.Value );
+				Assert.AreEqual("$*cb", p.F.Value);
 				
 				p.Step2.Perform();
 				root.StepFrameJS();
 				Assert.AreEqual("cb", p.C.Value);
-				Assert.AreEqual( "$gcb", p.F.Value );
+				Assert.AreEqual("$gcb", p.F.Value);
 			}
 		}
 
@@ -411,16 +411,16 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "$a", p.T.Value );
+				Assert.AreEqual("$a", p.T.Value);
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "$b", p.T.Value );
+				Assert.AreEqual("$b", p.T.Value);
 				
 				p.T.Value = "$c";
 				root.StepFrameJS();
-				Assert.AreEqual( "$c", p.T.Value );
-				Assert.AreEqual( "c", p.S.Value );
+				Assert.AreEqual("$c", p.T.Value);
+				Assert.AreEqual("c", p.S.Value);
 			}
 		}
 		
@@ -432,31 +432,31 @@ namespace Fuse.Reactive.Test
 			{
 				//multi-step an Observable linked between two JavaScript elements involved
 				root.MultiStepFrameJS(2);
-				Assert.AreEqual( "1,2,3", p.S.Value );
-				Assert.AreEqual( "1", p.C.TX.Value );
-				Assert.AreEqual( "2", p.C.TY.Value );
-				Assert.AreEqual( "3", p.C.TZ.Value );
+				Assert.AreEqual("1,2,3", p.S.Value);
+				Assert.AreEqual("1", p.C.TX.Value);
+				Assert.AreEqual("2", p.C.TY.Value);
+				Assert.AreEqual("3", p.C.TZ.Value);
 				
 				p.C.TX.Value = "10";
 				root.MultiStepFrameJS(2);
-				Assert.AreEqual( "10,2,3", p.S.Value );
-				Assert.AreEqual( "10", p.C.TX.Value );
-				Assert.AreEqual( "2", p.C.TY.Value );
-				Assert.AreEqual( "3", p.C.TZ.Value );
+				Assert.AreEqual("10,2,3", p.S.Value);
+				Assert.AreEqual("10", p.C.TX.Value);
+				Assert.AreEqual("2", p.C.TY.Value);
+				Assert.AreEqual("3", p.C.TZ.Value);
 				
 				p.C.TZ.Value = "30";
 				root.MultiStepFrameJS(2);
-				Assert.AreEqual( "10,2,30", p.S.Value );
-				Assert.AreEqual( "10", p.C.TX.Value );
-				Assert.AreEqual( "2", p.C.TY.Value );
-				Assert.AreEqual( "30", p.C.TZ.Value );
+				Assert.AreEqual("10,2,30", p.S.Value);
+				Assert.AreEqual("10", p.C.TX.Value);
+				Assert.AreEqual("2", p.C.TY.Value);
+				Assert.AreEqual("30", p.C.TZ.Value);
 				
 				p.ChangeY.Perform();
 				root.MultiStepFrameJS(2);
-				Assert.AreEqual( "10,20,30", p.S.Value );
-				Assert.AreEqual( "10", p.C.TX.Value );
-				Assert.AreEqual( "20", p.C.TY.Value );
-				Assert.AreEqual( "30", p.C.TZ.Value );
+				Assert.AreEqual("10,20,30", p.S.Value);
+				Assert.AreEqual("10", p.C.TX.Value);
+				Assert.AreEqual("20", p.C.TY.Value);
+				Assert.AreEqual("30", p.C.TZ.Value);
 			}
 		}
 		
@@ -1024,19 +1024,19 @@ namespace Fuse.Reactive.Test
 				root.StepFrameJS();
 				Assert.AreEqual("1", p.C.Value);
 				Assert.AreEqual("0", p.NC.Value);
-				Assert.AreEqual( "", p.NN.Value );
+				Assert.AreEqual("", p.NN.Value);
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("2", p.C.Value );
-				Assert.AreEqual("1", p.NC.Value );
-				Assert.AreEqual( "a", p.NN.Value );
+				Assert.AreEqual("2", p.C.Value);
+				Assert.AreEqual("1", p.NC.Value);
+				Assert.AreEqual("a", p.NN.Value);
 				
 				p.Step2.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual("3", p.C.Value );
-				Assert.AreEqual("0", p.NC.Value );
-				Assert.AreEqual( "", p.NN.Value );
+				Assert.AreEqual("3", p.C.Value);
+				Assert.AreEqual("0", p.NC.Value);
+				Assert.AreEqual("", p.NN.Value);
 			}
 		}
 		
@@ -1101,23 +1101,23 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual("", p.IA.T.Value );
+				Assert.AreEqual("", p.IA.T.Value);
 				Assert.AreEqual("",p.TA.Value);
-				Assert.AreEqual("", p.IB.T.Value );
+				Assert.AreEqual("", p.IB.T.Value);
 				Assert.AreEqual("",p.TB.Value);
 				
 				p.IA.T.Value = "one";
 				p.IB.T.Value = "two";
 				root.StepFrameJS();
-				Assert.AreEqual("one", p.IA.T.Value );
+				Assert.AreEqual("one", p.IA.T.Value);
 				Assert.AreEqual("one",p.TA.Value);
-				Assert.AreEqual("two", p.IB.T.Value );
+				Assert.AreEqual("two", p.IB.T.Value);
 				Assert.AreEqual("two",p.TB.Value);
 
-				Assert.AreEqual( "", p.D.Value );
+				Assert.AreEqual("", p.D.Value);
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "", p.D.Value );
+				Assert.AreEqual("", p.D.Value);
 			}
 		}
 		
@@ -1146,11 +1146,11 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "abc", p.OV.Value );
+				Assert.AreEqual("abc", p.OV.Value);
 				
 				p.Step1.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "q", p.OV.Value );
+				Assert.AreEqual("q", p.OV.Value);
 			}
 		}
 	}

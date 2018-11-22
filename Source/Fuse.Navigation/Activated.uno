@@ -53,13 +53,13 @@ namespace Fuse.Navigation
 		protected override void OnRooted()
 		{
 			base.OnRooted();
-			_proxy = new RoutePageProxy( Parent, ActiveChanged );
+			_proxy = new RoutePageProxy(Parent, ActiveChanged);
 			_proxy.Path = Path;
 			_proxy.TriggerWhen = When;
 			_proxy.Init();
 		}
 
-		protected abstract void ActiveChanged( bool isActive, bool isRoot );
+		protected abstract void ActiveChanged(bool isActive, bool isRoot);
 		
 		protected override void OnUnrooted()
 		{
@@ -110,7 +110,7 @@ namespace Fuse.Navigation
 			RemoveHandlerImpl<Activated>(visual, handler);
 		}
 
-		protected override sealed void ActiveChanged( bool isActive, bool isRoot )
+		protected override sealed void ActiveChanged(bool isActive, bool isRoot)
 		{
 			if (isActive)
 				Pulse(new EventArgs());
@@ -158,7 +158,7 @@ namespace Fuse.Navigation
 			RemoveHandlerImpl<Deactivated>(visual, handler);
 		}
 
-		protected sealed override void ActiveChanged( bool isActive, bool isRoot )
+		protected sealed override void ActiveChanged(bool isActive, bool isRoot)
 		{
 			if (!isRoot && !isActive)
 				Pulse(new EventArgs());

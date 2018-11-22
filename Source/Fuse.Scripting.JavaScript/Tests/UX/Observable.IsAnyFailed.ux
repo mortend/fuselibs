@@ -9,10 +9,10 @@
 		exports.failed = exports.a.isFailed(exports.b, exports.c)
 		
 		exports.failA = function() {
-			exports.a.failed( "NO" )
+			exports.a.failed("NO")
 		}
 		exports.failC = function() {
-			exports.c.failed( "NO" )
+			exports.c.failed("NO")
 		}
 		
 		exports.restoreA = function() {

@@ -32,9 +32,9 @@
 			var b = Observable()
 			var c = b.innerTwoWay()
 			
-			exports.d = c.map( function(v) {
+			exports.d = c.map(function(v) {
 				if (v instanceof Observable) {
-					throw new Exception("That observable should not be seen here" )
+					throw new Exception("That observable should not be seen here")
 				}
 				return v
 			})

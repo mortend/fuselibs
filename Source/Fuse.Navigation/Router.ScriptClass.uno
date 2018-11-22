@@ -20,25 +20,25 @@ namespace Fuse.Navigation
 		/**
 			Goto a new route. This clears the history.
 			
-			@scriptmethod  goto( [path, parameter]+ )
+			@scriptmethod  goto([path, parameter]+)
 			
 			The parameters form a repeating set of pairs. The `path` is the name of the page or template
 			to use. `parameter` is the dynamic property to assign to the path; it may be `null` if not relevant
 			at this level.
 			
-				router.goto( "home", null, "contact", null, "view", { id: "john" } )
+				router.goto("home", null, "contact", null, "view", { id: "john" })
 				
 			This specifies a three-level path. The first two levels, `home` and `contact` do not have any property.
 			The third level `view` specifies the `id` of the user that will be viewed.
 		*/
-		static void Goto( Router r, object[] args)
+		static void Goto(Router r, object[] args)
 		{
 			if (!r.IsRootingCompleted) return;
 
 			var where = RouterRequest.ParseFlatRoute(args);
 			if (where != null)
 			{
-				r.Modify( ModifyRouteHow.Goto, where, NavigationGotoMode.Transition, "" );
+				r.Modify(ModifyRouteHow.Goto, where, NavigationGotoMode.Transition, "");
 			}
 			else
 			{
@@ -49,7 +49,7 @@ namespace Fuse.Navigation
 		/**
 			Goto a new relative route.
 			
-			@scriptmethod gotoRelative( node, [path, parameter]+ )
+			@scriptmethod gotoRelative(node, [path, parameter]+)
 			
 			This specifies a path relative to the `node` outlet: 
 			the @Navigator or @PageControl at, or up from, `node`.
@@ -62,7 +62,7 @@ namespace Fuse.Navigation
 						<Panel ux:Template="a"/>
 						<Panel ux:Template="b"/>
 					
-			If the current route is `one/a` a call to `gotoRelative( inner, "b" )` will go to the route `one/b`.
+			If the current route is `one/a` a call to `gotoRelative(inner, "b")` will go to the route `one/b`.
 			The relative path replaces the path starting at `inner`.
 			
 			@see fuse/navigation/router/goto
@@ -71,13 +71,13 @@ namespace Fuse.Navigation
 		{
 			var route = GetRelative(r, args);
 			if (route != null)
-				r.Modify( ModifyRouteHow.Goto, route, NavigationGotoMode.Transition, "" );
+				r.Modify(ModifyRouteHow.Goto, route, NavigationGotoMode.Transition, "");
 		}
 		
 		/**
 			Pushes a new relative route onto the current route stack.
 			
-			@scriptmethod pushRelative( node, [path, parameter]+ )
+			@scriptmethod pushRelative(node, [path, parameter]+)
 			
 			@see fuse/navigation/router/push
 			@see fuse/navigation/router/gotoRelative
@@ -86,14 +86,14 @@ namespace Fuse.Navigation
 		{
 			var route = GetRelative(r, args);
 			if (route != null)
-				r.Modify( ModifyRouteHow.Push, route, NavigationGotoMode.Transition, "" );
+				r.Modify(ModifyRouteHow.Push, route, NavigationGotoMode.Transition, "");
 		}
 		
 		static RouterPageRoute GetRelative(Router r, object[] args)
 		{
 			if (args.Length < 1)
 			{
-				Diagnostics.UserError( "Router.gotoRelative(): requires 1+ parameters", r );
+				Diagnostics.UserError("Router.gotoRelative(): requires 1+ parameters", r);
 				return null;
 			}
 			
@@ -107,13 +107,13 @@ namespace Fuse.Navigation
 		/**
 			Pushes a new route on the current route stack.
 			
-			@scriptmethod push( [path, parameter]+ )
+			@scriptmethod push([path, parameter]+)
 			
 			The parameters form a repeating set of pairs. The `path` is the name of the page or template
 			to use. `parameter` is the dynamic property to assign to the path; it may be `null` if not relevant
 			at this level.
 			
-				router.push( "home", null, "contact", null, "view", { id: "john" } )
+				router.push("home", null, "contact", null, "view", { id: "john" })
 				
 			This specifies a three-level path. The first two levels, `home` and `contact` do not have any property.
 			The third level `view` specifies the `id` of the user that will be viewed.
@@ -123,7 +123,7 @@ namespace Fuse.Navigation
 			if (!r.IsRootingCompleted) return;
 
 			var where = RouterRequest.ParseFlatRoute(args);
-			r.Modify( ModifyRouteHow.Push, where, NavigationGotoMode.Transition, "" );
+			r.Modify(ModifyRouteHow.Push, where, NavigationGotoMode.Transition, "");
 		}
 		
 		/**
@@ -144,7 +144,7 @@ namespace Fuse.Navigation
 
 			> Note: there is also a UX interface @ModifyRoute, @PushRoute, @GotoRoute
 			
-			@scriptmethod modify( navigationSpec )
+			@scriptmethod modify(navigationSpec)
 			
 			The navigationSpec is a JavaScript object that specifies all the properties for the router operation, 
 			for example:
@@ -176,14 +176,14 @@ namespace Fuse.Navigation
 			
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "`Router.modify` takes one argument", r );
+				Fuse.Diagnostics.UserError("`Router.modify` takes one argument", r);
 				return;
 			}
 			
 			var obj = args[0] as IObject;
 			if (obj == null)
 			{
-				Fuse.Diagnostics.UserError( "`Router.modify` should be passed an object", r );
+				Fuse.Diagnostics.UserError("`Router.modify` should be passed an object", r);
 				return;
 			}
 			
@@ -207,7 +207,7 @@ namespace Fuse.Navigation
 					path: [ "options", { } ]
 				});
 			
-			@scriptmethod bookmark( bookmark )
+			@scriptmethod bookmark(bookmark)
 			
 			
 		*/
@@ -217,14 +217,14 @@ namespace Fuse.Navigation
 			
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "`Router.bookmark` takes one argument", r );
+				Fuse.Diagnostics.UserError("`Router.bookmark` takes one argument", r);
 				return;
 			}
 			
 			var obj = args[0] as IObject;
 			if (obj == null)
 			{
-				Fuse.Diagnostics.UserError( "`Router.bookmark` should be passed an object", r );
+				Fuse.Diagnostics.UserError("`Router.bookmark` should be passed an object", r);
 				return;
 			}
 			
@@ -249,7 +249,7 @@ namespace Fuse.Navigation
 					relative = r.FindOutletUp(node);
 					if (relative == null)
 					{
-						Fuse.Diagnostics.UserError( "Could not find an outlet from the `relative` node", r );
+						Fuse.Diagnostics.UserError("Could not find an outlet from the `relative` node", r);
 						return;
 					}
 				}
@@ -258,7 +258,7 @@ namespace Fuse.Navigation
 					var path = o as IArray;
 					if (path == null)
 					{
-						Fuse.Diagnostics.UserError( "`path` should be an array", r );
+						Fuse.Diagnostics.UserError("`path` should be an array", r);
 						return;
 					}
 					
@@ -266,7 +266,7 @@ namespace Fuse.Navigation
 				}
 				else
 				{
-					Fuse.Diagnostics.UserError( "Unrecognized argument: " + p, r );
+					Fuse.Diagnostics.UserError("Unrecognized argument: " + p, r);
 					return;
 				}
 			}
@@ -279,7 +279,7 @@ namespace Fuse.Navigation
 			
 			if (name == null)
 			{
-				Fuse.Diagnostics.UserError( "A `name` is required for the bookmark", r );
+				Fuse.Diagnostics.UserError("A `name` is required for the bookmark", r);
 				return;
 			}
 			

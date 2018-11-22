@@ -40,11 +40,11 @@ namespace Fuse.Selection
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "add requires 1 argument, the value of the item", s );
+				Fuse.Diagnostics.UserError("add requires 1 argument, the value of the item", s);
 				return;
 			}
 			
-			s.Add( Marshal.ToType<string>(args[0]) );
+			s.Add(Marshal.ToType<string>(args[0]));
 		}
 		
 		/**
@@ -58,11 +58,11 @@ namespace Fuse.Selection
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "remove requires 1 argument, the value of the item", s );
+				Fuse.Diagnostics.UserError("remove requires 1 argument, the value of the item", s);
 				return;
 			}
 
-			s.Remove( Marshal.ToType<string>(args[0]) );
+			s.Remove(Marshal.ToType<string>(args[0]));
 		}
 		
 		/**
@@ -72,11 +72,11 @@ namespace Fuse.Selection
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "forceAdd requires 1 argument, the value of the item", s );
+				Fuse.Diagnostics.UserError("forceAdd requires 1 argument, the value of the item", s);
 				return;
 			}
 			
-			s.ForceAdd( Marshal.ToType<string>(args[0]) );
+			s.ForceAdd(Marshal.ToType<string>(args[0]));
 		}
 		
 		/**
@@ -86,11 +86,11 @@ namespace Fuse.Selection
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "forceRemove requires 1 argument, the value of the item", s );
+				Fuse.Diagnostics.UserError("forceRemove requires 1 argument, the value of the item", s);
 				return;
 			}
 
-			s.ForceRemove( Marshal.ToType<string>(args[0]) );
+			s.ForceRemove(Marshal.ToType<string>(args[0]));
 		}
 		
 		/**
@@ -102,11 +102,11 @@ namespace Fuse.Selection
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "toggle requires 1 argument, the value of them item", s );
+				Fuse.Diagnostics.UserError("toggle requires 1 argument, the value of them item", s);
 				return;
 			}
 			
-			s.Toggle( Marshal.ToType<string>(args[0]) );
+			s.Toggle(Marshal.ToType<string>(args[0]));
 		}
 		
 	}

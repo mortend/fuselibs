@@ -32,7 +32,7 @@ namespace Fuse.Triggers
 				<JavaScript>
 					exports.startLoad = function() {
 						busy.activate()
-						fetch( "http://example.com/some/data" ).then( function(response) {
+						fetch("http://example.com/some/data").then(function(response) {
 							//use the response
 							busy.deactivate()
 						}).catch(function(err) {
@@ -55,7 +55,7 @@ namespace Fuse.Triggers
 				<Busy Activity="Preparing" On="ParameterChanged" ux:Name="busy"/>
 				<JavaScript>
 					exports.name = Observable()
-					this.Parameter.onValueChanged( module, function(v) {
+					this.Parameter.onValueChanged(module, function(v) {
 						exports.name.value = v.name
 						busy.deactivate()
 					})
@@ -129,7 +129,7 @@ namespace Fuse.Triggers
 				if (v == null)
 				{
 					_rootOn &= ~BusyOn.ParameterChanged;
-					Fuse.Diagnostics.UserError( "On='ParameterChanged' requires a Visual parent", this );
+					Fuse.Diagnostics.UserError("On='ParameterChanged' requires a Visual parent", this);
 				}
 				else
 				{
@@ -148,7 +148,7 @@ namespace Fuse.Triggers
 		
 		protected override void OnUnrooted()
 		{
-			BusyTask.SetBusy(Parent, ref _busyTask, BusyTaskActivity.None );
+			BusyTask.SetBusy(Parent, ref _busyTask, BusyTaskActivity.None);
 			base.OnUnrooted();
 		}
 		
