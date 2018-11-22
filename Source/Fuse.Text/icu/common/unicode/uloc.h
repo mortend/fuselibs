@@ -126,11 +126,11 @@
  *     UNumberFormat *nf;
  *     const char* myLocale = "fr_FR";
  * 
- *     nf = unum_open( UNUM_DEFAULT, NULL, success );          
+ *     nf = unum_open(UNUM_DEFAULT, NULL, success);          
  *     unum_close(nf);
- *     nf = unum_open( UNUM_CURRENCY, NULL, success );
+ *     nf = unum_open(UNUM_CURRENCY, NULL, success);
  *     unum_close(nf);
- *     nf = unum_open( UNUM_PERCENT, NULL, success );   
+ *     nf = unum_open(UNUM_PERCENT, NULL, success);   
  *     unum_close(nf);
  * \endcode
  * </pre>
@@ -141,11 +141,11 @@
  * <pre>
  * \code 
  * 
- *     nf = unum_open( UNUM_DEFAULT, myLocale, success );          
+ *     nf = unum_open(UNUM_DEFAULT, myLocale, success);          
  *     unum_close(nf);
- *     nf = unum_open( UNUM_CURRENCY, myLocale, success );
+ *     nf = unum_open(UNUM_CURRENCY, myLocale, success);
  *     unum_close(nf);
- *     nf = unum_open( UNUM_PERCENT, myLocale, success );   
+ *     nf = unum_open(UNUM_PERCENT, myLocale, success);   
  *     unum_close(nf);
  * \endcode
  * </pre>
@@ -700,7 +700,7 @@ uloc_getDisplayKeyword(const char* keyword,
  * @stable ICU 2.8
  */
 U_STABLE int32_t U_EXPORT2
-uloc_getDisplayKeywordValue(   const char* locale,
+uloc_getDisplayKeywordValue(  const char* locale,
                                const char* keyword,
                                const char* displayLocale,
                                UChar* dest,

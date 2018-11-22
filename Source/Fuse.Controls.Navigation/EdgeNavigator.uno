@@ -133,7 +133,7 @@ namespace Fuse.Controls
 		
 		void Dismiss()
 		{
-			if (_edgeNavigation.IsAnyPanelActive() )
+			if (_edgeNavigation.IsAnyPanelActive())
 				_edgeNavigation.Goto(null, NavigationGotoMode.Transition);
 		}
 		
@@ -179,7 +179,7 @@ namespace Fuse.Controls
 		{
 			pageVisual = Active;
 			if (Active == null)
-				return new RouterPage( "" );
+				return new RouterPage("");
 			else
 				return PageData.GetOrCreate(Active).RouterPage;
 		}

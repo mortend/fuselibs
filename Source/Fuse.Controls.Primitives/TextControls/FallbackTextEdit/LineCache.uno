@@ -58,7 +58,7 @@ namespace Fuse.Controls.FallbackTextEdit
 			set
 			{
 				_transform = value;
-				foreach( var line in Lines )
+				foreach(var line in Lines)
 					line.Transform = _transform;
 				InvalidateText(true);
 			}
@@ -410,7 +410,7 @@ namespace Fuse.Controls.FallbackTextEdit
 
 		public void InvalidateVisual()
 		{
-			foreach( var line in Lines )
+			foreach(var line in Lines)
 				line.Invalidate();
 			InvalidateLayout();
 		}

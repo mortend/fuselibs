@@ -7,7 +7,7 @@
 			
 			var day = Observable(0)
 			
-			this.Value.onValueChanged( module, function(newValue) {
+			this.Value.onValueChanged(module, function(newValue) {
 				if (newValue && newValue[0]) {
 					day.value = newValue.value[0] //ERROR .value
 				}

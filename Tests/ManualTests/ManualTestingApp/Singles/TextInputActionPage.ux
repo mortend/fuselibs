@@ -20,7 +20,7 @@
 			
 			var listed = function(a,b) {
 				//should check the action type here, but it's not exported yet
-				items.add( { text: listValue.value } )
+				items.add({ text: listValue.value })
 				listValue.value = ""
 			}
 			

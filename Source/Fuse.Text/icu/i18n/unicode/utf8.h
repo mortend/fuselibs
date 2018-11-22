@@ -192,10 +192,10 @@ utf8_back1SafeBody(const uint8_t *s, int32_t start, int32_t i);
             ((uint32_t)(c)<=0xd7ff ? 3 : \
                 ((uint32_t)(c)<=0xdfff || (uint32_t)(c)>0x10ffff ? 0 : \
                     ((uint32_t)(c)<=0xffff ? 3 : 4)\
-                ) \
-            ) \
-        ) \
-    )
+               ) \
+           ) \
+       ) \
+   )
 
 /**
  * The maximum number of UTF-8 code units (bytes) per Unicode code point (U+0000..U+10ffff).
@@ -343,20 +343,20 @@ utf8_back1SafeBody(const uint8_t *s, int32_t start, int32_t i);
     (c)=(uint8_t)(s)[(i)++]; \
     if((c)>=0x80) { \
         uint8_t __t1, __t2; \
-        if( /* handle U+1000..U+CFFF inline */ \
+        if(/* handle U+1000..U+CFFF inline */ \
             (0xe0<(c) && (c)<=0xec) && \
             (((i)+1)<(length) || (length)<0) && \
             (__t1=(uint8_t)((s)[i]-0x80))<=0x3f && \
             (__t2=(uint8_t)((s)[(i)+1]-0x80))<= 0x3f \
-        ) { \
+       ) { \
             /* no need for (c&0xf) because the upper bits are truncated after <<12 in the cast to (UChar) */ \
             (c)=(UChar)(((c)<<12)|(__t1<<6)|__t2); \
             (i)+=2; \
-        } else if( /* handle U+0080..U+07FF inline */ \
+        } else if(/* handle U+0080..U+07FF inline */ \
             ((c)<0xe0 && (c)>=0xc2) && \
             ((i)!=(length)) && \
             (__t1=(uint8_t)((s)[i]-0x80))<=0x3f \
-        ) { \
+       ) { \
             (c)=(((c)&0x1f)<<6)|__t1; \
             ++(i); \
         } else { \
@@ -394,20 +394,20 @@ utf8_back1SafeBody(const uint8_t *s, int32_t start, int32_t i);
     (c)=(uint8_t)(s)[(i)++]; \
     if((c)>=0x80) { \
         uint8_t __t1, __t2; \
-        if( /* handle U+1000..U+CFFF inline */ \
+        if(/* handle U+1000..U+CFFF inline */ \
             (0xe0<(c) && (c)<=0xec) && \
             (((i)+1)<(length) || (length)<0) && \
             (__t1=(uint8_t)((s)[i]-0x80))<=0x3f && \
             (__t2=(uint8_t)((s)[(i)+1]-0x80))<= 0x3f \
-        ) { \
+       ) { \
             /* no need for (c&0xf) because the upper bits are truncated after <<12 in the cast to (UChar) */ \
             (c)=(UChar)(((c)<<12)|(__t1<<6)|__t2); \
             (i)+=2; \
-        } else if( /* handle U+0080..U+07FF inline */ \
+        } else if(/* handle U+0080..U+07FF inline */ \
             ((c)<0xe0 && (c)>=0xc2) && \
             ((i)!=(length)) && \
             (__t1=(uint8_t)((s)[i]-0x80))<=0x3f \
-        ) { \
+       ) { \
             (c)=(((c)&0x1f)<<6)|__t1; \
             ++(i); \
         } else { \

@@ -26,15 +26,15 @@ namespace Fuse.Controls
 				size = float2(Source.Size.Y, Source.Size.X);
 				pixelSize = int2(Source.PixelSize.Y, Source.PixelSize.X);
 			}
-			return Container.Sizing.CalcContentSize( size, pixelSize );
+			return Container.Sizing.CalcContentSize(size, pixelSize);
 		}
 
-		protected override float2 GetContentSize( LayoutParams lp )
+		protected override float2 GetContentSize(LayoutParams lp)
 		{
 			var b = base.GetContentSize(lp);
 			Container.Sizing.snapToPixels = SnapToPixels;
 			Container.Sizing.absoluteZoom = AbsoluteZoom;
-			var r = Container.Sizing.ExpandFillSize( GetSize(), lp );
+			var r = Container.Sizing.ExpandFillSize(GetSize(), lp);
 			b = Math.Max(r,b);
 			return b;
 		}
@@ -42,7 +42,7 @@ namespace Fuse.Controls
 		internal float2 _origin, _scale;
 		internal float2 _drawOrigin, _drawSize;
 		float4 _uvClip;
-		protected override void ArrangePaddingBox( LayoutParams lp)
+		protected override void ArrangePaddingBox(LayoutParams lp)
 		{
 			base.ArrangePaddingBox(lp);
 				
@@ -52,12 +52,12 @@ namespace Fuse.Controls
 			Container.Sizing.absoluteZoom = AbsoluteZoom;
 
 			var contentDesiredSize = GetSize();
-			_scale = Container.Sizing.CalcScale( size, contentDesiredSize );
-			_origin = Container.Sizing.CalcOrigin( size, contentDesiredSize * _scale );
+			_scale = Container.Sizing.CalcScale(size, contentDesiredSize);
+			_origin = Container.Sizing.CalcOrigin(size, contentDesiredSize * _scale);
 
 			_drawOrigin = _origin;
 			_drawSize = contentDesiredSize * _scale;
-			_uvClip = Container.Sizing.CalcClip( size, ref _drawOrigin, ref _drawSize );
+			_uvClip = Container.Sizing.CalcClip(size, ref _drawOrigin, ref _drawSize);
 			InvalidateRenderBounds();
 			
 			SetContentBox(float4(_drawOrigin,_drawOrigin+_drawSize));
@@ -149,7 +149,7 @@ namespace Fuse.Controls
 			//must be in the actual image part shown
 			var lp = htc.LocalPoint;
 			if (lp.X >= _drawOrigin.X && lp.X <= (_drawOrigin.X + _drawSize.X) &&
-				lp.Y >= _drawOrigin.Y && lp.Y <= (_drawOrigin.Y + _drawSize.Y) )
+				lp.Y >= _drawOrigin.Y && lp.Y <= (_drawOrigin.Y + _drawSize.Y))
 				htc.Hit(this);
 			base.OnHitTestLocalVisual(htc);
 		}
@@ -159,7 +159,7 @@ namespace Fuse.Controls
 			get
 			{
 				var b = base.HitTestLocalVisualBounds;
-				b = b.AddRect( float2(0), ActualSize );
+				b = b.AddRect(float2(0), ActualSize);
 				return b;
 			}
 		}
@@ -192,7 +192,7 @@ namespace Fuse.Controls
 			float2 size, float2 uvPosition, float2 uvSize,
 			float3x3 imageTransform,
 			Texture2D tex, ResampleMode resampleMode,
-			float4 Color )
+			float4 Color)
 		{
 			Blitter.Singleton.Blit(tex, GetSamplerState(resampleMode), false,
 			                       new Rect(uvPosition, uvSize), imageTransform,

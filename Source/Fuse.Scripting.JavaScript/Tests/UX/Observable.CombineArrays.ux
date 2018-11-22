@@ -6,16 +6,16 @@
 		var b = Observable("a","b","c")
 		var c = Observable()
 		
-		exports.items = a.combineArrays( b,c, function(a,b,c) {
+		exports.items = a.combineArrays(b,c, function(a,b,c) {
 			var values = []
-			for (var i=0; i < Math.max(a.length, b.length, c.length); ++i ) {
-				values.push( (a[i] || "*") + (b[i] || "*") + (c[i] || "*") )
+			for (var i=0; i < Math.max(a.length, b.length, c.length); ++i) {
+				values.push((a[i] || "*") + (b[i] || "*") + (c[i] || "*"))
 			}
 			return values
 		})
 		
 		exports.step1 = function() {
-			c.add( "%" )
+			c.add("%")
 		}
 		
 		exports.failed = function() {

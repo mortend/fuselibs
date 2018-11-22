@@ -58,7 +58,7 @@ namespace Fuse.Navigation
 			_navigation = Navigation.TryFind(Parent);
 			if (_navigation == null)
 			{
-				Fuse.Diagnostics.UserError( "Must be used within a navigation context", this );
+				Fuse.Diagnostics.UserError("Must be used within a navigation context", this);
 				return;
 			}
 			
@@ -98,7 +98,7 @@ namespace Fuse.Navigation
 			if (NameEquals != null)
 				set = set && ((string)active.Name == NameEquals);
 				
-			SetActive( set );
+			SetActive(set);
 		}
 	}
 }

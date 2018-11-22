@@ -38,7 +38,7 @@ namespace Fuse.Drawing
 		/** 
 			Calculates end points needed to extend the start/end over the entire cover region. This is a utility function for CreateColorBlend that needs to workaround DotNet not supporting clamped gradients.
 		*/
-		static public float4 AdjustedEndPoints( float4 area, float2 start, float2 end )
+		static public float4 AdjustedEndPoints(float4 area, float2 start, float2 end)
 		{
 			var unit = Vector.Normalize(end - start);
 			var normal = float2(unit.Y,-unit.X);
@@ -70,13 +70,13 @@ namespace Fuse.Drawing
 			var ca = float2(0);
 			var cb = float2(0);
 			if (!Collision.LineLineIntersection(cornerA, normal, start, unit, out ca) ||
-				!Collision.LineLineIntersection(cornerB, normal, start, unit, out cb) )
+				!Collision.LineLineIntersection(cornerB, normal, start, unit, out cb))
 			{
 				//something funny with the input, sane fallback
-				return float4( start.X, start.Y, end.X, end.Y );
+				return float4(start.X, start.Y, end.X, end.Y);
 			}
 			
-			return float4( ca.X, ca.Y, cb.X, cb.Y );
+			return float4(ca.X, ca.Y, cb.X, cb.Y);
 		}
 		
 		/**
@@ -88,7 +88,7 @@ namespace Fuse.Drawing
 			
 				(p * r[0]) + r[1]
 		*/
-		static public float2 AdjustedOffsets( float2 start, float2 end, ref float2 adjStart, ref float2 adjEnd )
+		static public float2 AdjustedOffsets(float2 start, float2 end, ref float2 adjStart, ref float2 adjEnd)
 		{
 			var dir = end - start;
 			//distance along input line
@@ -117,7 +117,7 @@ namespace Fuse.Drawing
 			
 			var tLen = tAE - tAS;
 			
-			return float2( 1f / tLen, -tAS / tLen );
+			return float2(1f / tLen, -tAS / tLen);
 		}
 	}
 	
@@ -183,7 +183,7 @@ namespace Fuse.Drawing
 				[ M31 M32 ]
 			Only 2D translation, rotation, and scaling need should be supported.
 		*/
-		public override void PushTransform( float4x4 t )
+		public override void PushTransform(float4x4 t)
 		{
 			VerifyBegun();
 			var state = _graphics.Transform.Clone();
@@ -208,10 +208,10 @@ namespace Fuse.Drawing
 		/** 
 			Creates a pth from the provided list of segments.
 		*/
-		public override SurfacePath CreatePath( IList<LineSegment> segments, FillRule fillRule = FillRule.NonZero )
+		public override SurfacePath CreatePath(IList<LineSegment> segments, FillRule fillRule = FillRule.NonZero)
 		{
 			var path = new DotNetGraphicsPath();
-			AddSegments( path, segments, float2(0) );
+			AddSegments(path, segments, float2(0));
 
 			return new DotNetCanvasPath{ Path = path, FillRule = fillRule };
 		}
@@ -219,13 +219,13 @@ namespace Fuse.Drawing
 		/**
 			Disposes of a path object created by `CreatePath`.
 		*/
-		public override void DisposePath( SurfacePath path )
+		public override void DisposePath(SurfacePath path)
 		{
 			var cgPath = (DotNetCanvasPath)path;
 
 			if (cgPath.Path == null)
 			{
-				Fuse.Diagnostics.InternalError( "Duplicate dispose of SurfacePath", path );
+				Fuse.Diagnostics.InternalError("Duplicate dispose of SurfacePath", path);
 				return;
 			}
 			
@@ -238,7 +238,7 @@ namespace Fuse.Drawing
 			
 			This brush must have been passed to `Prepare` previously.
 		*/
-		public override void FillPath( SurfacePath path, Brush fill )
+		public override void FillPath(SurfacePath path, Brush fill)
 		{
 			VerifyBegun();
 			var actualPath = (DotNetCanvasPath)path;
@@ -270,9 +270,9 @@ namespace Fuse.Drawing
 			{
 				Tuple<Bitmap, GCHandle> bitPair;
 				Bitmap image;
-				if (!_imageBrushes.TryGetValue( fill, out bitPair ) )
+				if (!_imageBrushes.TryGetValue(fill, out bitPair))
 				{
-					Fuse.Diagnostics.InternalError( "Unprepared ImageFill", fill );
+					Fuse.Diagnostics.InternalError("Unprepared ImageFill", fill);
 					return;
 				}
 				image = bitPair.Item1;
@@ -280,8 +280,8 @@ namespace Fuse.Drawing
 				var sizing = imageFill.SizingContainer;
 				sizing.absoluteZoom = _pixelsPerPoint; 
 				var imageSize = imageFill.Source.Size;
-				var scale = sizing.CalcScale( ElementSize, imageSize );
-				var origin = sizing.CalcOrigin( ElementSize, imageSize * scale );
+				var scale = sizing.CalcScale(ElementSize, imageSize);
+				var origin = sizing.CalcOrigin(ElementSize, imageSize * scale);
 				
 				var tileSize = imageSize * _pixelsPerPoint * scale;
 				var pixelOrigin = origin * _pixelsPerPoint;
@@ -296,7 +296,7 @@ namespace Fuse.Drawing
 				return;
 			}
 
-			Fuse.Diagnostics.UserError( "Unsupported brush", fill );
+			Fuse.Diagnostics.UserError("Unsupported brush", fill);
 		}
 		
 
@@ -307,7 +307,7 @@ namespace Fuse.Drawing
 			
 			This stroke, and it's brush, must have been passed to `Prepare` previously.
 		*/
-		public override void StrokePath( SurfacePath path, Stroke stroke )
+		public override void StrokePath(SurfacePath path, Stroke stroke)
 		{
 			VerifyBegun();
 			var actualPath = (DotNetCanvasPath)path;
@@ -364,8 +364,8 @@ namespace Fuse.Drawing
 				var sizing = imageFill.SizingContainer;
 				sizing.absoluteZoom = _pixelsPerPoint; 
 				var imageSize = imageFill.Source.Size;
-				var scale = sizing.CalcScale( ElementSize, imageSize );
-				var origin = sizing.CalcOrigin( ElementSize, imageSize * scale );
+				var scale = sizing.CalcScale(ElementSize, imageSize);
+				var origin = sizing.CalcOrigin(ElementSize, imageSize * scale);
 				
 				var tileSize = imageSize * _pixelsPerPoint * scale;
 				var pixelOrigin = origin * _pixelsPerPoint;
@@ -380,9 +380,9 @@ namespace Fuse.Drawing
 				{
 					Tuple<Bitmap, GCHandle> bitPair;
 					Bitmap image;
-					if (!_imageBrushes.TryGetValue( fill, out bitPair ) )
+					if (!_imageBrushes.TryGetValue(fill, out bitPair))
 					{
-						Fuse.Diagnostics.InternalError( "Unprepared ImageFill", fill );
+						Fuse.Diagnostics.InternalError("Unprepared ImageFill", fill);
 						return;
 					}
 					image = bitPair.Item1;
@@ -404,7 +404,7 @@ namespace Fuse.Drawing
 				return;
 			}
 
-			Fuse.Diagnostics.UserError( "Unsupported stroke brush", fill );
+			Fuse.Diagnostics.UserError("Unsupported stroke brush", fill);
 		}
 
 		public override void Begin(DrawContext dc, framebuffer fb, float pixelsPerPoint)
@@ -463,7 +463,7 @@ namespace Fuse.Drawing
 		/**
 			Prepares this brush for drawing. If this is called a second time with the same `Brush` it indicates the properties of that brush have changed.
 		*/
-		public override void Prepare( Brush brush )
+		public override void Prepare(Brush brush)
 		{
 			VerifyCreated();
 			Unprepare(brush);
@@ -474,15 +474,15 @@ namespace Fuse.Drawing
 			else if (brush is ImageFill)
 				PrepareImageFill(brush as ImageFill);
 			else
-				Fuse.Diagnostics.UserError( "Unsupported brush", brush );
+				Fuse.Diagnostics.UserError("Unsupported brush", brush);
 		}
 		/**
 			Indicates the brush will no longer be used for drawing. It's resources can be freed.
 		*/
-		public override void Unprepare( Brush brush )
+		public override void Unprepare(Brush brush)
 		{
 			Tuple<Bitmap, GCHandle> image;
-			if (_imageBrushes.TryGetValue( brush, out image ))
+			if (_imageBrushes.TryGetValue(brush, out image))
 			{
 				VerifyCreated();
 				image.Item1.Dispose();
@@ -492,7 +492,7 @@ namespace Fuse.Drawing
 		}
 
 
-		float2 PixelFromPoint( float2 point )
+		float2 PixelFromPoint(float2 point)
 		{
 			return point * _pixelsPerPoint;
 		}
@@ -500,9 +500,9 @@ namespace Fuse.Drawing
 		/* prevPoint _must_ be multipled by `_pixelsPerPoint` before being passed here
 		*/
 		List<LineSegment> _temp = new List<LineSegment>();
-		float2 AddSegments( DotNetGraphicsPath path, IList<LineSegment> segments, float2 prevPoint )
+		float2 AddSegments(DotNetGraphicsPath path, IList<LineSegment> segments, float2 prevPoint)
 		{
-			for (int i=0; i < segments.Count; ++i )
+			for (int i=0; i < segments.Count; ++i)
 			{
 				var seg = segments[i];
 				var to = PixelFromPoint(seg.To);
@@ -532,7 +532,7 @@ namespace Fuse.Drawing
 					{
 						_temp.Clear();
 						SurfaceUtil.EllipticArcToBezierCurve(prevPoint / _pixelsPerPoint, seg, _temp);
-						prevPoint = AddSegments( path, _temp, prevPoint );
+						prevPoint = AddSegments(path, _temp, prevPoint);
 						break;
 					}
 					
@@ -549,7 +549,7 @@ namespace Fuse.Drawing
 		}
 
 		Dictionary<Brush, Tuple<Bitmap, GCHandle>> _imageBrushes = new Dictionary<Brush, Tuple<Bitmap, GCHandle>>();
-		void PrepareImageFill( ImageFill img )
+		void PrepareImageFill(ImageFill img)
 		{
 			var src = img.Source;
 			var tex = src.GetTexture();
@@ -557,13 +557,13 @@ namespace Fuse.Drawing
 			//probably still loading
 			if (tex == null) return;
 
-			var fb = FramebufferPool.Lock( src.PixelSize, Uno.Graphics.Format.RGBA8888, false );
+			var fb = FramebufferPool.Lock(src.PixelSize, Uno.Graphics.Format.RGBA8888, false);
 
 			//TODO: this is not entirely correct since _drawContext could be null now -- but it isn't
 			//in any of our use cases, but the contract certainly allows for it
 			_drawContext.PushRenderTarget(fb);
 			Blitter.Singleton.Blit(tex, new Rect(float2(-1), float2(2)), float4x4.Identity, 1.0f, true);
-			var imageRef = LoadImage(src.PixelSize.X, src.PixelSize.Y );
+			var imageRef = LoadImage(src.PixelSize.X, src.PixelSize.Y);
 			FramebufferPool.Release(fb);
 			_drawContext.PopRenderTarget();
 			
@@ -599,13 +599,13 @@ namespace Fuse.Drawing
 		void VerifyCreated()
 		{
 			if (_graphics == null)
-				throw new Exception( "Object disposed" );
+				throw new Exception("Object disposed");
 		}
 		
 		void VerifyBegun()
 		{
 			if (_buffer == null)
-				throw new Exception( "Surface.Begin was not called" );
+				throw new Exception("Surface.Begin was not called");
 		}
 	}
 
@@ -679,12 +679,12 @@ namespace Fuse.Drawing
 			colors[numberOfColorPoints - 1] = endColor;
 			offsets[numberOfColorPoints - 1] = 1.0f;
 
-			var newEnds = DotNetUtil.AdjustedEndPoints( 
-				float4( bounds.X, bounds.Y, bounds.X + bounds.Width, bounds.Y + bounds.Height ),
-				inStart, inEnd );
+			var newEnds = DotNetUtil.AdjustedEndPoints(
+				float4(bounds.X, bounds.Y, bounds.X + bounds.Width, bounds.Y + bounds.Height),
+				inStart, inEnd);
 			gStart = newEnds.XY;
 			gEnd = newEnds.ZW;
-			var adjust = DotNetUtil.AdjustedOffsets( inStart, inEnd, ref gStart, ref gEnd );
+			var adjust = DotNetUtil.AdjustedOffsets(inStart, inEnd, ref gStart, ref gEnd);
 
 			for (int i=0; i < stops.Length; ++i)
 			{
@@ -703,7 +703,7 @@ namespace Fuse.Drawing
 			return blend;
 		}
 
-		static bool IsStrokeBoundsZero( RectangleF bounds, float width ) 
+		static bool IsStrokeBoundsZero(RectangleF bounds, float width) 
 		{
 			//It's not clear where they come from, but they are valid bounds at a high-level, but DotNet
 			//tends to fault on them.
@@ -724,7 +724,7 @@ namespace Fuse.Drawing
 		)
 		{
 			var bounds = path.GetBounds();
-			if (IsStrokeBoundsZero( bounds, width ))
+			if (IsStrokeBoundsZero(bounds, width))
 				return;
 			bounds.Inflate(width, width);
 
@@ -751,7 +751,7 @@ namespace Fuse.Drawing
 		)
 		{
 			var bounds = path.GetBounds();
-			if (IsStrokeBoundsZero( bounds, width ))
+			if (IsStrokeBoundsZero(bounds, width))
 				return;
 			bounds.Inflate(width, width);
 
@@ -787,7 +787,7 @@ namespace Fuse.Drawing
 		)
 		{
 			var bounds = path.GetBounds();
-			if (IsStrokeBoundsZero( bounds, width ))
+			if (IsStrokeBoundsZero(bounds, width))
 				return;
 			bounds.Inflate(width, width);
 
@@ -1121,7 +1121,7 @@ namespace Fuse.Drawing
 			public extern void Save(Stream stream, ImageFormat format);
 			public extern void Dispose();
 			public extern PixelFormat PixelFormat { get; }
-			public extern BitmapData LockBits( Rectangle rect, ImageLockMode flags, PixelFormat format );
+			public extern BitmapData LockBits(Rectangle rect, ImageLockMode flags, PixelFormat format);
 			public extern void UnlockBits(BitmapData bitmapdata);
 			public extern void SetResolution(float xDpi, float yDpi);
 		}
@@ -1302,7 +1302,7 @@ namespace Fuse.Drawing
 		{
 			// constructors
 			public extern Matrix();
-			public extern Matrix(Rectangle rect , Point[] points );
+			public extern Matrix(Rectangle rect , Point[] points);
 			public extern Matrix(RectangleF rect, PointF[] points);
 			public extern Matrix(float m11, float m12, float m21, float m22, float dx, float dy);
 			public extern String IsIdentity { get; }

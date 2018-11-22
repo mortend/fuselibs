@@ -133,7 +133,7 @@ namespace Fuse.Animations
 			out float4 value, out double strength)
 		{
 			return (this as ContinuousTrackProvider).GetSeekTime(tas, progress * _duration, interval, dir,
-				out value, out strength );
+				out value, out strength);
 		}
 		
 		SeekResult ContinuousTrackProvider.GetSeekTime(TrackAnimatorState tas, double elapsed, double interval, 
@@ -164,15 +164,15 @@ namespace Fuse.Animations
 				
 				const float zeroTolerance = 1e-05f;
 				var segmentProgress = _frames[segment].TimeDelta < zeroTolerance ? 0.0 :
-					Math.Clamp( (elapsed - _frames[previous].Time) /  _frames[segment].TimeDelta, 0, 1);
+					Math.Clamp((elapsed - _frames[previous].Time) /  _frames[segment].TimeDelta, 0, 1);
 			
-				value = _pointInterpolater( _frames[previous].Value, _frames[segment].Value,
-					_frames[previous].TangentOut, _frames[segment].TangentIn, (float)segmentProgress );
+				value = _pointInterpolater(_frames[previous].Value, _frames[segment].Value,
+					_frames[previous].TangentOut, _frames[segment].TangentIn, (float)segmentProgress);
 				strength = 1;
 			}
 
 			//debug_log elapsed + ": " + segment + " => " + value + " / " + strength;
-			return ( (dir == SeekDirection.Forward ? elapsed >= _duration : elapsed <= 0) ?
+			return ((dir == SeekDirection.Forward ? elapsed >= _duration : elapsed <= 0) ?
 				SeekResult.Complete : SeekResult.None) | SeekResult.Stable;
 		}
 	}

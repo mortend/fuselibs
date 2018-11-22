@@ -85,7 +85,7 @@ namespace Fuse.Animations
 				else if (typeof(T) == typeof(Size2))
 					v = ConverterSize2.Singleton;
 				else
-					throw new Exception( "Unsupported change type: " + typeof(T) );
+					throw new Exception("Unsupported change type: " + typeof(T));
 				ContinuousConverter = (Converter<T>)v;
 			}
 			else
@@ -179,11 +179,11 @@ namespace Fuse.Animations
 		IMixerHandle<T> mixHandle;
 		new Change<T> Animator;
 		
-		public DiscreteTrackChangeState( Change<T> animator, CreateStateParams p )
+		public DiscreteTrackChangeState(Change<T> animator, CreateStateParams p)
 			: base(animator, p)
 		{
 			this.Animator = animator;
-			mixHandle = Animator.Mixer.Register( Animator.Target, Animator.MixOp );
+			mixHandle = Animator.Mixer.Register(Animator.Target, Animator.MixOp);
 		}
 		
 		public override void Disable()
@@ -195,7 +195,7 @@ namespace Fuse.Animations
 			mixHandle = null;
 		}
 		
-		protected override void SeekObjectValue( object value, float strength ) 
+		protected override void SeekObjectValue(object value, float strength) 
 		{
 			if (mixHandle == null)
 			{
@@ -203,7 +203,7 @@ namespace Fuse.Animations
 				return;
 			}
 			if (value != null && value is T)
-				mixHandle.Set( (T)value, strength );
+				mixHandle.Set((T)value, strength);
 		}
 	}
 	
@@ -212,11 +212,11 @@ namespace Fuse.Animations
 		IMixerHandle<T> mixHandle;
 		new Change<T> Animator;
 		
-		public ContinuousTrackChangeState( Change<T> animator, CreateStateParams p )
+		public ContinuousTrackChangeState(Change<T> animator, CreateStateParams p)
 			: base(animator, p)
 		{
 			this.Animator = animator;
-			mixHandle = Animator.Mixer.Register( Animator.Target, Animator.MixOp );
+			mixHandle = Animator.Mixer.Register(Animator.Target, Animator.MixOp);
 		}
 		
 		public override void Disable()
@@ -235,7 +235,7 @@ namespace Fuse.Animations
 				debug_log "Invalid Seek";
 				return;
 			}
-			mixHandle.Set( Animator.ContinuousConverter.Out(value), strength );
+			mixHandle.Set(Animator.ContinuousConverter.Out(value), strength);
 		}
 	}
 	

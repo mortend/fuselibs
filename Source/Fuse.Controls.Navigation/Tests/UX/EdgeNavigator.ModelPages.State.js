@@ -40,7 +40,7 @@ export default class State {
 	}
 	
 	show() {
-		console.log( this.pageHistory.length )
-		console.dir( this.pageHistory[0] )
+		console.log(this.pageHistory.length)
+		console.dir(this.pageHistory[0])
 	}
 }

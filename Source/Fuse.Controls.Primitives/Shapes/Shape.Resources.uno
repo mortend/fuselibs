@@ -49,7 +49,7 @@ namespace Fuse.Controls
 			get { return Properties.Has(_loadingResourcesHandle); }
 		}
 		
-		internal void AddLoadingResource( PropertyObject res ) 
+		internal void AddLoadingResource(PropertyObject res) 
 		{
 			if (!(res is ILoading))
 				return;
@@ -69,7 +69,7 @@ namespace Fuse.Controls
 			}
 		}
 		
-		internal void RemoveLoadingResource( PropertyObject res )
+		internal void RemoveLoadingResource(PropertyObject res)
 		{
 			if (!(res is ILoading))
 				return;
@@ -88,7 +88,7 @@ namespace Fuse.Controls
 			all.Remove(res);
 		}
 		
-		internal void OnLoadingResourcePropertyChanged( PropertyObject sender, Selector property )
+		internal void OnLoadingResourcePropertyChanged(PropertyObject sender, Selector property)
 		{
 			var loading = sender as ILoading;
 			if (!HasLoadingResources || loading == null)

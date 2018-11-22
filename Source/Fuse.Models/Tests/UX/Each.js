@@ -1,5 +1,5 @@
 class Item {
-	constructor( name ) {
+	constructor(name) {
 		this.name = name
 	}
 }
@@ -7,6 +7,6 @@ class Item {
 export default class Each {
 	constructor() {
 		this.simple = [ "one", "two", "three" ]
-		this.items = [ "one", "two", "three" ].map( n => new Item(n) )
+		this.items = [ "one", "two", "three" ].map(n => new Item(n))
 	}
 }

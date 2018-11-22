@@ -11,7 +11,7 @@ namespace Fuse.Internal
 		public Alignment align = Alignment.Center;
 		public StretchSizing stretchSizing = StretchSizing.Natural;
 
-		public bool SetStretchMode( StretchMode mode )
+		public bool SetStretchMode(StretchMode mode)
 		{
 			if (mode == stretchMode)
 				return false;
@@ -19,7 +19,7 @@ namespace Fuse.Internal
 			return true;
 		}
 
-		public bool SetStretchDirection( StretchDirection dir )
+		public bool SetStretchDirection(StretchDirection dir)
 		{
 			if (dir == stretchDirection)
 				return false;
@@ -27,7 +27,7 @@ namespace Fuse.Internal
 			return true;
 		}
 
-		public bool SetAlignment( Alignment a )
+		public bool SetAlignment(Alignment a)
 		{
 			if (a == align)
 				return false;
@@ -35,7 +35,7 @@ namespace Fuse.Internal
 			return true;
 		}
 		
-		public bool SetStretchSizing( StretchSizing ss )
+		public bool SetStretchSizing(StretchSizing ss)
 		{
 			if (ss == stretchSizing)
 				return false;
@@ -51,12 +51,12 @@ namespace Fuse.Internal
 		float PaddingWidth { get { return padding[0] + padding[2]; } }
 		float PaddingHeight { get { return padding[1] + padding[3]; } }
 
-		public float2 CalcScale( float2 availableSize, float2 desiredSize )
+		public float2 CalcScale(float2 availableSize, float2 desiredSize)
 		{
-			return CalcScale( availableSize, desiredSize, false, false );
+			return CalcScale(availableSize, desiredSize, false, false);
 		}
 
-		public float2 CalcContentSize( float2 size, int2 pixelSize )
+		public float2 CalcContentSize(float2 size, int2 pixelSize)
 		{
 			switch (stretchMode)
 			{
@@ -82,7 +82,7 @@ namespace Fuse.Internal
 					var iScale = (int)(Math.Floor(scale.X + 0.5f));
 					var near = float2(pixelSize.X,pixelSize.Y) * iScale / absoluteZoom;
 					scale = size/exact - iScale;
-					if ( scale.X  > -0.25f && scale.X < 0.5f)
+					if (scale.X  > -0.25f && scale.X < 0.5f)
 						return near;
 					*/
 					break;
@@ -97,13 +97,13 @@ namespace Fuse.Internal
 			return SnapSize(size);
 		}
 		
-		float2 SnapSize( float2 sz )
+		float2 SnapSize(float2 sz)
 		{
 			return Math.Floor(sz * absoluteZoom + 0.5f) / absoluteZoom;
 		}
 		
-		float2 CalcScale( float2 availableSize, float2 desiredSize,
-			bool autoWidth, bool autoHeight )
+		float2 CalcScale(float2 availableSize, float2 desiredSize,
+			bool autoWidth, bool autoHeight)
 		{
 			var d = availableSize;
 			d.X -= PaddingWidth;
@@ -114,7 +114,7 @@ namespace Fuse.Internal
 
 			if (autoWidth && autoHeight && !(stretchMode == StretchMode.PointPrecise || 
 				stretchMode == StretchMode.PixelPrecise ||
-				stretchMode == StretchMode.PointPrefer) )
+				stretchMode == StretchMode.PointPrefer))
 			{
 				if (stretchSizing == StretchSizing.Zero)
 					scale = float2(0);
@@ -132,7 +132,7 @@ namespace Fuse.Internal
 					zeroX ? 0f : d.X / desiredSize.X,
 					zeroY ? 0f : d.Y / desiredSize.Y
 					);
-				switch( stretchMode )
+				switch(stretchMode)
 				{
 					case StretchMode.PointPrecise:
 					case StretchMode.PixelPrecise:
@@ -156,7 +156,7 @@ namespace Fuse.Internal
 							//as `Min` is used below, and zeroX/Y imply infinite scale, we can special case here to get correct values
 							zeroX ? s.Y : 
 							zeroY ? s.X :
-							Math.Min( s.X, s.Y );
+							Math.Min(s.X, s.Y);
 						scale = float2(sm);
 						break;
 					}
@@ -165,7 +165,7 @@ namespace Fuse.Internal
 					{
 						var sm = autoWidth ? s.Y :
 							autoHeight ? s.X :
-							Math.Max( s.X, s.Y );
+							Math.Max(s.X, s.Y);
 						scale = float2(sm);
 						break;
 					}
@@ -174,31 +174,31 @@ namespace Fuse.Internal
 
 			//limit direction of stretching
 			//TODO: if the stretching mode is uniform then both should be limited the same
-			switch( stretchDirection )
+			switch(stretchDirection)
 			{
 				case StretchDirection.Both:
 					break;
 
 				case StretchDirection.DownOnly:
-					scale.X = Math.Min( scale.X, 1 );
-					scale.Y = Math.Min( scale.Y, 1 );
+					scale.X = Math.Min(scale.X, 1);
+					scale.Y = Math.Min(scale.Y, 1);
 					break;
 
 				case StretchDirection.UpOnly:
-					scale.X = Math.Max( 1, scale.X );
-					scale.Y = Math.Max( 1, scale.Y );
+					scale.X = Math.Max(1, scale.X);
+					scale.Y = Math.Max(1, scale.Y);
 					break;
 			}
 
 			if (snapToPixels && desiredSize.X > zeroTolerance && desiredSize.Y > zeroTolerance)
-				scale = SnapSize( scale * desiredSize ) / desiredSize;
+				scale = SnapSize(scale * desiredSize) / desiredSize;
 			return scale;
 		}
 
-		public float2 CalcOrigin( float2 availableSize, float2 contentActualSize )
+		public float2 CalcOrigin(float2 availableSize, float2 contentActualSize)
 		{
 			var origin = float2(0);
-			switch ( AlignmentHelpers.GetHorizontalAlign(align) )
+			switch (AlignmentHelpers.GetHorizontalAlign(align))
 			{
 				case Alignment.Default: //may be set for clarity if used with Fill modes
 				case Alignment.Left:
@@ -215,7 +215,7 @@ namespace Fuse.Internal
 					break;
 			}
 
-			switch( AlignmentHelpers.GetVerticalAlign(align) )
+			switch(AlignmentHelpers.GetVerticalAlign(align))
 			{
 				case Alignment.Default:
 				case Alignment.Top:
@@ -237,7 +237,7 @@ namespace Fuse.Internal
 			return origin;
 		}
 
-		public float4 CalcClip( float2 availableSize, ref float2 origin, ref float2 contentActualSize )
+		public float4 CalcClip(float2 availableSize, ref float2 origin, ref float2 contentActualSize)
 		{
 			//cases where everything is outside clip region
 			if (origin.X > availableSize.X ||
@@ -250,8 +250,8 @@ namespace Fuse.Internal
 				return float4(0,0,1,1);
 			}
 
-			float2 tl = Math.Max( float2(0), (padding.XY-origin) / contentActualSize );
-			float2 br = Math.Min( float2(1), (availableSize - origin - padding.ZW) / contentActualSize );
+			float2 tl = Math.Max(float2(0), (padding.XY-origin) / contentActualSize);
+			float2 br = Math.Min(float2(1), (availableSize - origin - padding.ZW) / contentActualSize);
 
 			var dx = padding.X - origin.X;
 			if (dx > 0)
@@ -279,14 +279,14 @@ namespace Fuse.Internal
 				contentActualSize.Y -= dy;
 			}
 
-			return float4( tl.X, tl.Y, br.X, br.Y );
+			return float4(tl.X, tl.Y, br.X, br.Y);
 		}
 
-		public float2 ExpandFillSize( float2 size, LayoutParams lp )
+		public float2 ExpandFillSize(float2 size, LayoutParams lp)
 		{
 			bool autoWidth = !lp.HasX;
 			bool autoHeight = !lp.HasY;
-			var scale = CalcScale( lp.Size, size, autoWidth, autoHeight );
+			var scale = CalcScale(lp.Size, size, autoWidth, autoHeight);
 			var res = scale * size;
 			
 			//the order here matches the applicatin order in BoxSizing (explicit -> Max -> Min)
@@ -317,7 +317,7 @@ namespace Fuse.Internal
 			}
 			if (recalc)
 			{
-				scale = CalcScale( res, size, autoWidth, autoHeight);
+				scale = CalcScale(res, size, autoWidth, autoHeight);
 				res = scale * size;
 			}
 			

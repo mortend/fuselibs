@@ -12,7 +12,7 @@ namespace Fuse
 		//UNO: https://github.com/fusetools/uno/issues/1524
 		public interface ISiblingDataProvider
 		{
-			ContextDataResult TryGetDataProvider( DataType type, out object provider );
+			ContextDataResult TryGetDataProvider(DataType type, out object provider);
 		}
 
 		/** When implemented by a `Node`, it indicates that the node provides data for its children. 
@@ -20,7 +20,7 @@ namespace Fuse
 			*/
 		public interface ISubtreeDataProvider
 		{
-			ContextDataResult TryGetDataProvider( Node child, DataType type, out object provider );
+			ContextDataResult TryGetDataProvider(Node child, DataType type, out object provider);
 		}
 		
 		/** @hide */
@@ -46,7 +46,7 @@ namespace Fuse
 		internal bool TryGetPrimeDataContext(out object result)
 		{
 			IObject providerIgnore = null;
-			return TryFindData( DataType.Prime, null, out result, out providerIgnore );
+			return TryFindData(DataType.Prime, null, out result, out providerIgnore);
 		}
 
 		bool AcquireData(DataType type, string key, object data, out object result, out IObject provider)
@@ -55,7 +55,7 @@ namespace Fuse
 			provider = data as IObject;
 			
 			//DEPRECATED: empty keys are deprecated, see `SubscribeData`
-			if ( (key == "" || type == DataType.Prime) && data != null)
+			if ((key == "" || type == DataType.Prime) && data != null)
 			{
 				result = data;
 				return true;
@@ -82,7 +82,7 @@ namespace Fuse
 			{
 				if (key != null)
 				{
-					Fuse.Diagnostics.InternalError( "Invalid key for DataType.Prime", this);
+					Fuse.Diagnostics.InternalError("Invalid key for DataType.Prime", this);
 					return false;
 				}
 			}
@@ -98,7 +98,7 @@ namespace Fuse
 					if (subdp != null) 
 					{
 						object data;
-						var sr = subdp.TryGetDataProvider( n, type, out data );
+						var sr = subdp.TryGetDataProvider(n, type, out data);
 						if (AcquireData(type, key, data, out result, out provider))
 							return true;
 						if (sr == ContextDataResult.NullProvider)
@@ -117,7 +117,7 @@ namespace Fuse
 						if (sdp != null)
 						{
 							object data;
-							var sr = sdp.TryGetDataProvider( type, out data );
+							var sr = sdp.TryGetDataProvider(type, out data);
 							if (AcquireData(type, key, data, out result, out provider))
 								return true;
 							if (sr == ContextDataResult.NullProvider)
@@ -180,11 +180,11 @@ namespace Fuse
 		static Dictionary<string, List<IDataListener>> _dataListeners 
 			= new Dictionary<string, List<IDataListener>>();
 
-		bool CheckDataKey( string key )
+		bool CheckDataKey(string key)
 		{
 			if (key == null)
 			{
-				Fuse.Diagnostics.InternalError( "null provided as DataContext key" );
+				Fuse.Diagnostics.InternalError("null provided as DataContext key");
 				return false;
 			}
 			return true;
@@ -243,14 +243,14 @@ namespace Fuse
 		{
 			if (!IsRootingStarted)
 			{
-				Fuse.Diagnostics.InternalError( "SubscribeData called prior to rooting", this );
+				Fuse.Diagnostics.InternalError("SubscribeData called prior to rooting", this);
 				//potential errors in our old code make this unsafe to throw, in a future version we can
 			}
 			
 			if (key == "")
 			{
 				//DEPRECATED: 2018-01-30
-				Fuse.Diagnostics.UserError( "Binding to an empty key, `{}`, is deprecated due to ambiguity. Use the `data()` expression instead.", this);
+				Fuse.Diagnostics.UserError("Binding to an empty key, `{}`, is deprecated due to ambiguity. Use the `data()` expression instead.", this);
 			}
 				
 			var dw = new NodeDataSubscription(this, DataType.Key, key, listener);
@@ -261,7 +261,7 @@ namespace Fuse
 		{
 			if (!IsRootingStarted)
 			{
-				Fuse.Diagnostics.InternalError( "SubscribeData called prior to rooting", this );
+				Fuse.Diagnostics.InternalError("SubscribeData called prior to rooting", this);
 				//potential errors in our old code make this unsafe to throw, in a future version we can
 			}
 				
@@ -297,11 +297,11 @@ namespace Fuse
 				_type = type;
 				_key = key;
 				_origin = origin;
-				_hasData = _origin.TryFindData( _type, _key, out _data, out _provider );
+				_hasData = _origin.TryFindData(_type, _key, out _data, out _provider);
 				_listener = listener;
 				
 				if (_listener != null)	
-					_origin.AddDataListener( _type, _key, this );
+					_origin.AddDataListener(_type, _key, this);
 			}
 			
 			void IDataListener.OnDataChanged()
@@ -309,7 +309,7 @@ namespace Fuse
 				if (_origin == null)
 					return;
 					
-				_hasData = _origin.TryFindData( _type, _key, out _data, out _provider );
+				_hasData = _origin.TryFindData(_type, _key, out _data, out _provider);
 				if (_listener != null)
 					_listener.OnDataChanged();
 			}
@@ -317,7 +317,7 @@ namespace Fuse
 			public void Dispose()
 			{
 				if (_listener != null)	
-					_origin.RemoveDataListener( _type, _key, this );
+					_origin.RemoveDataListener(_type, _key, this);
 					
 				_origin = null;
 				_listener = null;

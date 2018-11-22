@@ -57,12 +57,12 @@ public partial class FpsMeter
 		var fps = 1 / Time.FrameInterval;
 		
 		var alphaShort = 1 / 20.0f;
-		_fpsShort = _initial ? fps : Math.Lerp( _fpsShort, fps, alphaShort );
+		_fpsShort = _initial ? fps : Math.Lerp(_fpsShort, fps, alphaShort);
 		
 		var alphaLong = 1 / 120.0f;
-		_fpsLong = _initial ? fps : Math.Lerp( _fpsLong, fps, alphaLong );
+		_fpsLong = _initial ? fps : Math.Lerp(_fpsLong, fps, alphaLong);
 		//fast drop, but slow recovery
-		_fpsLong = Math.Min( _fpsLong, fps );
+		_fpsLong = Math.Min(_fpsLong, fps);
 	
 		//only update infrequently to avoid display flickering
 		_updateIn -= Time.FrameInterval;

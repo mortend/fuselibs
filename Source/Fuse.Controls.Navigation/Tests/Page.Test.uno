@@ -29,7 +29,7 @@ namespace Fuse.Controls.Test
 			var p = new UX.Page.FreezeWhileNavigating();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				p.R.Goto( new Route( "one" ) );
+				p.R.Goto(new Route("one"));
 
 				var pg = p.Nav.FirstChild<Page>();
 				var b = pg.FirstChild<FuseTest.BusyControl>();

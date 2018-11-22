@@ -37,13 +37,13 @@ namespace Fuse.Elements.Test
 			{
 				for (int i=0; i<3; ++i)
 				{
-					Assert.AreEqual( -1, p.dw.Value );
-					Assert.AreEqual( -1, p.dh.Value );
+					Assert.AreEqual(-1, p.dw.Value);
+					Assert.AreEqual(-1, p.dh.Value);
 					
 					p.wt.Value = true;
 					root.StepFrame();
-					Assert.AreEqual( 10, p.dw.Value );
-					Assert.AreEqual( 20, p.dh.Value );
+					Assert.AreEqual(10, p.dw.Value);
+					Assert.AreEqual(20, p.dh.Value);
 					
 					p.wt.Value = false;
 					root.StepFrame();

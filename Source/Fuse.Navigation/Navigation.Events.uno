@@ -17,7 +17,7 @@ namespace Fuse.Navigation
 		public double PreviousProgress { get; private set; }
 
 		public NavigationArgs(double progress, double prevProgress,
-			NavigationMode mode = NavigationMode.Switch )
+			NavigationMode mode = NavigationMode.Switch)
 		{
 			Progress = progress;
 			PreviousProgress = prevProgress;

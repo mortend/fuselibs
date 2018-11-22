@@ -38,10 +38,10 @@ namespace Fuse
 		[Obsolete]
 		public static bool ToDouble(object v, out double res)
 		{
-			return TryToDouble( v, out res );
+			return TryToDouble(v, out res);
 		}
 		
-		public static bool TryToDouble( object v, out double res )
+		public static bool TryToDouble(object v, out double res)
 		{
 			if (v is double) { res = (double)v; return true; }
 			else if (v is float) { res = (double)(float)v; return true; }
@@ -68,7 +68,7 @@ namespace Fuse
 			return false;
 		}
 		
-		public static bool TryToFloat( object v, out float res )
+		public static bool TryToFloat(object v, out float res)
 		{
 			double d;
 			if (!TryToDouble(v, out d))
@@ -221,10 +221,10 @@ namespace Fuse
 			{
 				var a = (IArray)o;
 				float x = 0,y = 0,z = 0,w =0;
-				if ( (a.Length > 0 && !TryToFloat( a[0], out x )) ||
-					(a.Length > 1 && !TryToFloat( a[1], out y )) ||
-					(a.Length > 2 && !TryToFloat( a[2], out z )) ||
-					(a.Length > 3 && !TryToFloat( a[3], out w )))
+				if ((a.Length > 0 && !TryToFloat(a[0], out x)) ||
+					(a.Length > 1 && !TryToFloat(a[1], out y)) ||
+					(a.Length > 2 && !TryToFloat(a[2], out z)) ||
+					(a.Length > 3 && !TryToFloat(a[3], out w)))
 					return false;
 					
 				value = float4(x,y,z,w);

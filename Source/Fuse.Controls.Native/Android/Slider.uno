@@ -40,7 +40,7 @@ namespace Fuse.Controls.Native.Android
 		[Foreign(Language.Java)]
 		static void SetProgress(Java.Object handle, double progress)
 		@{
-			((android.widget.SeekBar)handle).setProgress( (int)(progress * 1000.0) );
+			((android.widget.SeekBar)handle).setProgress((int)(progress * 1000.0));
 		@}
 
 		[Foreign(Language.Java)]

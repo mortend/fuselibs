@@ -25,7 +25,7 @@ namespace Fuse.Gestures
 			get { return _on; }
 			set
 			{
-				if ( value == _on)
+				if (value == _on)
 					return;
 					
 				_on = value;
@@ -59,7 +59,7 @@ namespace Fuse.Gestures
 			base.OnRooted();
 			
 			if (On == PointerCaptureOn.Pressed)
-				_gesture = Input.Gestures.Add( this, Parent, GestureType.Primary | GestureType.Children);
+				_gesture = Input.Gestures.Add(this, Parent, GestureType.Primary | GestureType.Children);
 		}
 		
 		protected override void OnUnrooted()
@@ -81,27 +81,27 @@ namespace Fuse.Gestures
 			}
 		}
 		
-		GestureRequest IGesture.OnPointerPressed( PointerPressedArgs args )
+		GestureRequest IGesture.OnPointerPressed(PointerPressedArgs args)
 		{
 			return GestureRequest.Capture;
 		}
 		
-		GestureRequest IGesture.OnPointerMoved( PointerMovedArgs args )
+		GestureRequest IGesture.OnPointerMoved(PointerMovedArgs args)
 		{
 			return GestureRequest.Capture;
 		}
 		
-		GestureRequest IGesture.OnPointerReleased( PointerReleasedArgs args )
+		GestureRequest IGesture.OnPointerReleased(PointerReleasedArgs args)
 		{
 			return GestureRequest.Cancel;
 		}
 		
-		void IGesture.OnCaptureChanged( PointerEventArgs args, CaptureType how, CaptureType prev )
+		void IGesture.OnCaptureChanged(PointerEventArgs args, CaptureType how, CaptureType prev)
 		{
 			SetIsActive(true, _gesture);
 		}
 		
-		void IGesture.OnLostCapture( bool forced )
+		void IGesture.OnLostCapture(bool forced)
 		{
 			SetIsActive(false, _gesture);
 		}

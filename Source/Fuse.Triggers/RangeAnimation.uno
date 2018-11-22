@@ -72,7 +72,7 @@ namespace Fuse.Triggers
 			var diff = p - _prevValue;
 			_prevValue = p;
 
-			var relative = Math.Clamp( (p - Minimum) / (Maximum - Minimum), 0, 1);
+			var relative = Math.Clamp((p - Minimum) / (Maximum - Minimum), 0, 1);
 			Seek(relative, diff >= 0 ? AnimationVariant.Forward : AnimationVariant.Backward);
 		}
 	}

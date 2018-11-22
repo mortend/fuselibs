@@ -5,7 +5,7 @@
 		
 		var count = 0
 		exports.add = function() {
-			exports.items.add( { text: "" + (count++) } )
+			exports.items.add({ text: "" + (count++) })
 		}
 		exports.add()
 		exports.add()
@@ -14,7 +14,7 @@
 			exports.items.removeAt(1)
 		}
 		exports.add2 = function() {
-			exports.items.insertAt( 2, { text: "" + (count++) } )
+			exports.items.insertAt(2, { text: "" + (count++) })
 		}
 	</JavaScript>
 	<Each Items="{items}">

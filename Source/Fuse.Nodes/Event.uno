@@ -33,7 +33,7 @@ namespace Fuse
 			return new List<Visual>();
 		}
 		
-		public static void Release( List<Visual> list )
+		public static void Release(List<Visual> list)
 		{	
 			list.Clear();
 			_visualListCache.Add(list);

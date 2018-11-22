@@ -17,7 +17,7 @@ namespace FuseJS
 			var dispatch = UserEventDispatch.GetByName(Name);
 			if (dispatch == null)
 			{
-				Fuse.Diagnostics.UserError( "Cannot find message with name: " + Name, this);
+				Fuse.Diagnostics.UserError("Cannot find message with name: " + Name, this);
 				return;
 			}
 			

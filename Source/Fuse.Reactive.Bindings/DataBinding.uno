@@ -132,13 +132,13 @@ namespace Fuse.Reactive
 		BusyTask _busyTask;
 		void MarkFailed(string message)
 		{
-			BusyTask.SetBusy( Parent, ref _busyTask, BusyTaskActivity.Failed, message );
+			BusyTask.SetBusy(Parent, ref _busyTask, BusyTaskActivity.Failed, message);
 		}
 		
 		void ClearFailed()
 		{
 			if (Parent != null)
-				BusyTask.SetBusy( Parent, ref _busyTask, BusyTaskActivity.None );
+				BusyTask.SetBusy(Parent, ref _busyTask, BusyTaskActivity.None);
 		}
 		
 		protected override void OnUnrooted()
@@ -158,7 +158,7 @@ namespace Fuse.Reactive
 			base.OnUnrooted();
 		}
 		
-		internal void SetTarget( object value )
+		internal void SetTarget(object value)
 		{
 			ClearFailed();
 			Target.SetAsObject(value, this);
@@ -265,7 +265,7 @@ namespace Fuse.Reactive
 		{
 			if (_registryName != null)
 			{
-				NameRegistry.RemoveListener(_registryName, this );
+				NameRegistry.RemoveListener(_registryName, this);
 				_registryName = null;
 			}
 		}

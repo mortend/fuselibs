@@ -126,7 +126,7 @@ namespace Fuse.Gestures
 			if (elm.Properties.TryGet(_clickerProperty, out v))
 			{
 				var c = v as Clicker;
-				c._priority = (GesturePriority)( Math.Max((int)c._priority, (int)priority));
+				c._priority = (GesturePriority)(Math.Max((int)c._priority, (int)priority));
 				c._attachCount++;
 				return c;
 			}
@@ -151,7 +151,7 @@ namespace Fuse.Gestures
 		Gesture _gesture;
 		void OnRooted()
 		{
-			_gesture = Input.Gestures.Add( this, _visual, GestureType.Any );
+			_gesture = Input.Gestures.Add(this, _visual, GestureType.Any);
 		}
 
 		void OnUnrooted()
@@ -320,7 +320,7 @@ namespace Fuse.Gestures
 				return new GesturePriorityConfig(
 					GesturePriority.Highest,
 					//0 will prevent it from ever getting a hard capture
-					0 );
+					0);
 			}
 		}
 	}

@@ -12,25 +12,25 @@ namespace Fuse.Drawing.Primitives
 		public float StartAngle = 0;
 		public float EndAngle = Math.PIf * 2;
 		
-		float2 StartVec: float2( Math.Sin(StartAngle), -Math.Cos(StartAngle));
-		float2 EndVec: float2( -Math.Sin(EndAngle), Math.Cos(EndAngle));
+		float2 StartVec: float2(Math.Sin(StartAngle), -Math.Cos(StartAngle));
+		float2 EndVec: float2(-Math.Sin(EndAngle), Math.Cos(EndAngle));
 		float2 NormVec: Vector.Normalize(StartVec+EndVec);
 		
 		float2 P: req(VertexPosition as float2)
 			pixel VertexPosition;
 		
-		public float da0: Vector.Dot( P, StartVec );
-		public float da1: Vector.Dot( P, EndVec );
+		public float da0: Vector.Dot(P, StartVec);
+		public float da1: Vector.Dot(P, EndVec);
 		
 		// miter limit of 0.0
 		public float dm: Vector.Dot(P, NormVec);
 		
 		public float LimitCoverage:  req(DrawContext as DrawContext) req(da as float)
 			req(Sharpness as float)
-			Math.Clamp( 0.5f - da * DrawContext.ViewportPixelsPerPoint*Sharpness, 0, 1);
+			Math.Clamp(0.5f - da * DrawContext.ViewportPixelsPerPoint*Sharpness, 0, 1);
 		
 /*		public float Angle : req(OriginPosition as float2)
-			Math.Atan2( pixel OriginPosition.Y, pixel OriginPosition.X );
+			Math.Atan2(pixel OriginPosition.Y, pixel OriginPosition.X);
 		public float AngleDistance: 
 			Math.Abs(StartAngle-Angle) < Math.Abs(Angle-EndAngle) ?
 				(StartAngle-Angle) : (Angle-EndAngle);
@@ -40,12 +40,12 @@ namespace Fuse.Drawing.Primitives
 	
 	class ConvexWedgeCoverage : WedgeCoverage
 	{
-		float da: Math.Max( dm, Math.Max(da0,da1) );
+		float da: Math.Max(dm, Math.Max(da0,da1));
 	}
 	
 	class ConcaveWedgeCoverage : WedgeCoverage
 	{
-		float da: Math.Min( dm, Math.Min(da0,da1) );
+		float da: Math.Min(dm, Math.Min(da0,da1));
 	}
 	
 	public class Wedge
@@ -55,10 +55,10 @@ namespace Fuse.Drawing.Primitives
 		ConvexWedgeCoverage _convexWedgeCoverage = new ConvexWedgeCoverage();
 		ConcaveWedgeCoverage _concaveWedgeCoverage = new ConcaveWedgeCoverage();
 		
-		WedgeCoverage SetupWedgeCoverage( float startAngle, float endAngle )
+		WedgeCoverage SetupWedgeCoverage(float startAngle, float endAngle)
 		{
-			var pStartAngle = Math.Mod( startAngle, 2*Math.PIf );
-			var pEndAngle = Math.Mod( endAngle, 2*Math.PIf );
+			var pStartAngle = Math.Mod(startAngle, 2*Math.PIf);
+			var pEndAngle = Math.Mod(endAngle, 2*Math.PIf);
 			if (pEndAngle < pStartAngle)
 				pEndAngle += 2*Math.PIf;
 			
@@ -85,7 +85,7 @@ namespace Fuse.Drawing.Primitives
 		
 			var wc = SetupWedgeCoverage(startAngle, endAngle);
 			Circle.Singleton.Draw(dc ,node, radius, stroke.Brush, sc, wc,
-				extend, center, smoothness );
+				extend, center, smoothness);
 		}
 		
 		FillCoverage _fillCoverage = new FillCoverage();

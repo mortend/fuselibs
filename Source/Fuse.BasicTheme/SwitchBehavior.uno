@@ -109,7 +109,7 @@ namespace Fuse.BasicTheme
 			{
 				if (!args.IsHardCapturedTo(this))
 				{
-					if (Math.Abs(_originalP.X - _switch.WindowToLocal(args.WindowPoint).X ) > 10)
+					if (Math.Abs(_originalP.X - _switch.WindowToLocal(args.WindowPoint).X) > 10)
 					{
 						if (!args.TryHardCapture(this, OnCaptureLost))
 						{
@@ -124,8 +124,8 @@ namespace Fuse.BasicTheme
 				var delta = _currentCoord - _prevCoord;
 
 				var p = (delta.X / Size.X);
-				Seek( Progress + p, (_switch.Value) ? AnimationVariant.Backward
-						: AnimationVariant.Forward );
+				Seek(Progress + p, (_switch.Value) ? AnimationVariant.Backward
+						: AnimationVariant.Forward);
 			}
 		}
 

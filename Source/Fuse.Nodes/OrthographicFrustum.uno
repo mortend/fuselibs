@@ -68,7 +68,7 @@ namespace Fuse
 		public bool TryGetProjectionTransformInverse(ICommonViewport viewport, out float4x4 result)
 		{
 			var viewSize = _hasSize ? Size : viewport.Size;
-			result = FrustumMatrix.OrthoRHInverse(viewSize.X, viewSize.Y, 1, 1000 );
+			result = FrustumMatrix.OrthoRHInverse(viewSize.X, viewSize.Y, 1, 1000);
 			return true;
 		}
 
@@ -78,7 +78,7 @@ namespace Fuse
 			var viewSize = _hasSize ? Size : viewport.Size;
 
 			var s = Matrix.Scaling(1,-1,1);
-			var t = Matrix.Translation( viewSize.X/2 + origin.X, viewSize.Y/2 + origin.Y, 2 );
+			var t = Matrix.Translation(viewSize.X/2 + origin.X, viewSize.Y/2 + origin.Y, 2);
 			var ts = Matrix.Mul(s,t);
 
 			if (_hasLocalFromWorld)
@@ -86,12 +86,12 @@ namespace Fuse
 			return ts;
 		}
 		
-		public float3 GetWorldPosition( ICommonViewport viewport )
+		public float3 GetWorldPosition(ICommonViewport viewport)
 		{	
-			return float3( (_hasSize ? Size : viewport.Size)/2, 2);
+			return float3((_hasSize ? Size : viewport.Size)/2, 2);
 		}
 		
-		public float2 GetDepthRange( ICommonViewport viewport )
+		public float2 GetDepthRange(ICommonViewport viewport)
 		{
 			return float2(1, 1000);
 		}

@@ -11,8 +11,8 @@ namespace Fuse
 	*/
 	class WrapException : Exception
 	{
-		public WrapException( Exception inner )
-			: base( "Wrapped Exception", inner )
+		public WrapException(Exception inner)
+			: base("Wrapped Exception", inner)
 		{ }
 
 		/**

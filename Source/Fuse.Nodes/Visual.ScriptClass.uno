@@ -62,7 +62,7 @@ namespace Fuse
 						})
 					</JavaScript>
 
-			@scriptmethod onParameterChanged( callback )
+			@scriptmethod onParameterChanged(callback)
 			@param callback The script method to call when the parameter changes. This is guaranted to be
 				called at least once at registration time; you don't need to lookup the parameter another way.
 		*/

@@ -109,7 +109,7 @@ namespace Fuse.Elements
 			local margins. It then specifies the size of the padding box.
 		*/
 
-		float UnitSize( Size s, float fill, bool secondary, out bool known )
+		float UnitSize(Size s, float fill, bool secondary, out bool known)
 		{
 			known = true;
 
@@ -203,7 +203,7 @@ namespace Fuse.Elements
 		//TODO: This should be sealed, looks like an odd compiler error in a particular test breaks it
 		public /*sealed*/ override float2 GetMarginSize(LayoutParams lp)
 		{
-			for (int i=0; i < _gmsCount; ++i )
+			for (int i=0; i < _gmsCount; ++i)
 			{
 				var g = _gmsCache[i];
 				if (g.layoutParams.IsCompatible(lp))
@@ -212,7 +212,7 @@ namespace Fuse.Elements
 			var sz = _boxSizing.CalcMarginSize(this, lp);
 			
 			var n = (_gmsAt++) % _gmsMax;
-			_gmsCount = Math.Min( _gmsMax, _gmsCount+1);
+			_gmsCount = Math.Min(_gmsMax, _gmsCount+1);
 			_gmsCache[n] = new GMSCacheItem
 			{
 				layoutParams = lp.Clone(),
@@ -259,7 +259,7 @@ namespace Fuse.Elements
 			{
 				//just once since the user can't really do anything more than report the error
 				if (!_invalidValuesWarn)
-					Fuse.Diagnostics.InternalError( "Invalid values in ArrangeMarginBox", this );
+					Fuse.Diagnostics.InternalError("Invalid values in ArrangeMarginBox", this);
 				_invalidValuesWarn = true;
 			}
 			
@@ -327,10 +327,10 @@ namespace Fuse.Elements
 		internal bool ignoreTempArrange;
 		
 		internal override bool CanAdjustMarginBox { get { return true; } }
-		internal override void OnAdjustMarginBoxPosition( float2 position )
+		internal override void OnAdjustMarginBoxPosition(float2 position)
 		{
 			//optimization to avoid new ArrangeMarginBox. This assumes a linear 1:1 relationship on the position
-			PerformPlacement( _actualPosition + (position - MarginBoxPosition), 
+			PerformPlacement(_actualPosition + (position - MarginBoxPosition), 
 				_actualSize, false);
 		}
 		
@@ -435,7 +435,7 @@ namespace Fuse.Elements
 		internal bool HasLayoutIn(Visual target)
 		{
 			var e = this;
-			while( e != target )
+			while(e != target)
 			{
 				e = e.Parent as Element;
 				if (e == null)	

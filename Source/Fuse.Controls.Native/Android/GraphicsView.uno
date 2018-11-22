@@ -44,9 +44,9 @@ namespace Fuse.Controls.Native.Android
 				// dispose surfaceHandle
 			}
 			_surfaceHandle = surfaceHandle;
-			_nativeWindow = extern<IntPtr>( ((global::Android.Base.Wrappers.JWrapper)_surfaceHandle)._GetJavaObject() ) "GLHelper::GetANativeWindowFromSurface($0)";
+			_nativeWindow = extern<IntPtr>(((global::Android.Base.Wrappers.JWrapper)_surfaceHandle)._GetJavaObject()) "GLHelper::GetANativeWindowFromSurface($0)";
 			extern "EGLSurface tempSurface";
-			extern (_nativeWindow) "GLHelper::CreateNewSurfaceAndMakeCurrent( (ANativeWindow*)$0, tempSurface)";
+			extern (_nativeWindow) "GLHelper::CreateNewSurfaceAndMakeCurrent((ANativeWindow*)$0, tempSurface)";
 			_eglSurface = extern<IntPtr> "tempSurface";
 		}
 
@@ -54,9 +54,9 @@ namespace Fuse.Controls.Native.Android
 		[Require("Source.Include", "Uno/Graphics/GLHelper.h")]
 		protected void DestroySurface()
 		{
-			extern(_eglSurface) "GLHelper::SwapBackToBackgroundSurface( (EGLSurface)$0 )";
+			extern(_eglSurface) "GLHelper::SwapBackToBackgroundSurface((EGLSurface)$0)";
 			_eglSurface = IntPtr.Zero;
-			extern(_nativeWindow) "ANativeWindow_release( (ANativeWindow*)$0 )";
+			extern(_nativeWindow) "ANativeWindow_release((ANativeWindow*)$0)";
 			_nativeWindow = IntPtr.Zero;
 			//_surface.Dispose(); implement
 			_surfaceHandle = null;
@@ -76,7 +76,7 @@ namespace Fuse.Controls.Native.Android
 				Profiling.BeginRegion("Fuse.Controls.Native.Android.GraphicsView.BeginDraw");
 			}
 
-			extern(_eglSurface) "GLHelper::MakeCurrent( GLHelper::GetSurfaceContext(), (EGLSurface)$0 )";
+			extern(_eglSurface) "GLHelper::MakeCurrent(GLHelper::GetSurfaceContext(), (EGLSurface)$0)";
 			GL.Viewport(0, 0, size.X, size.Y);
 
 			if defined(FUSELIBS_PROFILING)
@@ -96,7 +96,7 @@ namespace Fuse.Controls.Native.Android
 				Profiling.BeginRegion("Fuse.Controls.Native.Android.GraphicsView.EndDraw");
 			}
 
-			extern(_eglSurface) "GLHelper::SwapBuffers( $0 )";
+			extern(_eglSurface) "GLHelper::SwapBuffers($0)";
 
 			if defined(FUSELIBS_PROFILING)
 				Profiling.EndRegion(Uno.Diagnostics.Clock.GetSeconds() - t);

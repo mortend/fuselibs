@@ -1316,7 +1316,7 @@ ubidi_getDirection(const UBiDi *pBiDi);
  * @stable ICU 4.6
  */
 U_STABLE UBiDiDirection U_EXPORT2
-ubidi_getBaseDirection(const UChar *text,  int32_t length );
+ubidi_getBaseDirection(const UChar *text,  int32_t length);
 
 /**
  * Get the pointer to the text.

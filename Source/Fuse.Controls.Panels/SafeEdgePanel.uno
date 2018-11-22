@@ -106,7 +106,7 @@ namespace Fuse.Controls
 		public new float4 Padding
 		{
 			get { return base.Padding; }
-			set { Fuse.Diagnostics.UserError( " `Padding` should not be set explicitly on a `SafeEdgePanel`, use `ExtraPadding` instead.", this ); }
+			set { Fuse.Diagnostics.UserError(" `Padding` should not be set explicitly on a `SafeEdgePanel`, use `ExtraPadding` instead.", this); }
 		}
 		
 		protected override void OnRooted()
@@ -139,11 +139,11 @@ namespace Fuse.Controls
 				m = float4(0);
 
 			var edgePad = float4(
-				PadEdges.HasFlag( SafeEdgePanelEdges.Left ) ? m[0] : 0,
-				PadEdges.HasFlag( SafeEdgePanelEdges.Top ) ? m[1] : 0,
-				PadEdges.HasFlag( SafeEdgePanelEdges.Right ) ? m[2] : 0,
-				PadEdges.HasFlag( SafeEdgePanelEdges.Bottom ) ? m[3] : 0 );
-			base.Padding = ExtraPadding + Math.Max( MinEdgePadding, edgePad );
+				PadEdges.HasFlag(SafeEdgePanelEdges.Left) ? m[0] : 0,
+				PadEdges.HasFlag(SafeEdgePanelEdges.Top) ? m[1] : 0,
+				PadEdges.HasFlag(SafeEdgePanelEdges.Right) ? m[2] : 0,
+				PadEdges.HasFlag(SafeEdgePanelEdges.Bottom) ? m[3] : 0);
+			base.Padding = ExtraPadding + Math.Max(MinEdgePadding, edgePad);
 		}
 	}
 }

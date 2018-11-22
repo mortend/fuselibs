@@ -127,7 +127,7 @@ namespace Fuse.Reactive
 			if (Parent != null) Parent.BroadcastDataChange(oldSiblingData, data);
 		}
 
-		ContextDataResult ISiblingDataProvider.TryGetDataProvider( DataType type, out object provider )
+		ContextDataResult ISiblingDataProvider.TryGetDataProvider(DataType type, out object provider)
 		{
 			provider = type == DataType.Key ? _siblingData : null;
 			return ContextDataResult.Continue;

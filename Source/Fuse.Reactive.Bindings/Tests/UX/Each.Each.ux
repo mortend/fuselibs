@@ -7,8 +7,8 @@
 		function createGroup() {
 			var group = "G" + count++
 			var list = Observable()
-			list.add( { text: group + "-0" } )
-			list.add( { text: group + "-1" } )
+			list.add({ text: group + "-0" })
+			list.add({ text: group + "-1" })
 			return {
 				group: group,
 				items: list,
@@ -16,7 +16,7 @@
 		}
 
 		exports.add = function() {
-			exports.items.add( createGroup() )
+			exports.items.add(createGroup())
 		}
 		exports.add()
 		exports.add()
@@ -25,7 +25,7 @@
 			exports.items.removeAt(1)
 		}
 		exports.add2 = function() {
-			exports.items.insertAt( 2, { text: "" + (count++) } )
+			exports.items.insertAt(2, { text: "" + (count++) })
 		}
 	</JavaScript>
 	<Each Items="{items}">

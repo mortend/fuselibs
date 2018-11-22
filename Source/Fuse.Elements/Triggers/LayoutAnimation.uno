@@ -111,7 +111,7 @@ namespace Fuse.Triggers
 				float2 oldSize, newSize;
 				var b = LayoutTransition.GetSizeChange(v.RelativeNode, out oldSize, out newSize);
 				const float zeroTolerance = 1e-05f;
-				if (!b || newSize.Y < zeroTolerance || newSize.X < zeroTolerance )
+				if (!b || newSize.Y < zeroTolerance || newSize.X < zeroTolerance)
 					return v.Vector;
 
 				var n = oldSize / newSize;
@@ -224,7 +224,7 @@ namespace Fuse.Triggers
 			_element = Parent as Element;
 			if (_element == null)
 			{
-				Fuse.Diagnostics.UserError( "LayoutAnimation can only be used on an Element", this);
+				Fuse.Diagnostics.UserError("LayoutAnimation can only be used on an Element", this);
 				return;
 			}
 
@@ -288,7 +288,7 @@ namespace Fuse.Triggers
 			float2 oldPosition = _oldLocal.M41M42;
 			float2 oldSize = _oldSize;
 
-			var m = Matrix.Mul( _oldWorld, _element.Parent.WorldTransformInverse );
+			var m = Matrix.Mul(_oldWorld, _element.Parent.WorldTransformInverse);
 			float3 worldChange = m.M41M42M43 - float3(_element.IntendedPosition,0);
 
 			LayoutTransition.SetWorldPositionChange(_element, worldChange);
@@ -352,7 +352,7 @@ namespace Fuse.Triggers.Actions
 			_perform = Target ?? (target.FindByType<Visual>() as Element);
 			if (_perform == null || From == null)
 			{
-				Fuse.Diagnostics.UserError( "Missing `From` or cannot find `Element` target", this );
+				Fuse.Diagnostics.UserError("Missing `From` or cannot find `Element` target", this);
 				return;
 			}
 
@@ -366,7 +366,7 @@ namespace Fuse.Triggers.Actions
 			float2 oldPosition = From.LocalTransform.M41M42;
 			float2 oldSize = From.ActualSize;
 			
-			var m = Matrix.Mul( From.WorldTransform, _perform.Parent.WorldTransformInverse );
+			var m = Matrix.Mul(From.WorldTransform, _perform.Parent.WorldTransformInverse);
 			float3 worldChange = m.M41M42M43 - float3(_perform.IntendedPosition,0);
 			
 			LayoutTransition.SetWorldPositionChange(_perform, worldChange);

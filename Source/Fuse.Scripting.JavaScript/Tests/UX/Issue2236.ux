@@ -1,6 +1,6 @@
 <Panel ux:Class="UX.Issue2236">
 	<JavaScript>
-		var Observable = require( "FuseJS/Observable" )
+		var Observable = require("FuseJS/Observable")
 
 		exports.okay = Observable(false)
 		
@@ -13,7 +13,7 @@
 				items.removeAt(3)
 			} catch(err) {
 				//ensure it's the correct error
-				exports.okay.value = err.message.search( "out-of-bounds" ) != -1
+				exports.okay.value = err.message.search("out-of-bounds") != -1
 			}
 		}
 	</JavaScript>

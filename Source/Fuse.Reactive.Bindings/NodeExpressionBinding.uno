@@ -13,16 +13,16 @@ namespace Fuse.Reactive
 		IDisposable _sub;
 		Node _node;
 		
-		public NodeExpressionBinding( IExpression expr, Node node, IListener listener ) 
+		public NodeExpressionBinding(IExpression expr, Node node, IListener listener) 
 		{
 			if (expr == null || node == null || listener == null)
-				throw new Exception( "Invalid params" );
+				throw new Exception("Invalid params");
 				
 			_expr = expr;
 			_listener = listener;
 			_node = node;
 			
-			UpdateManager.AddDeferredAction( CompleteInit );
+			UpdateManager.AddDeferredAction(CompleteInit);
 		}
 		
 		void CompleteInit()

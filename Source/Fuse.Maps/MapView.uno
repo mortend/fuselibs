@@ -290,7 +290,7 @@ namespace Fuse.Controls
 			UpdateMarkers();
 		}
 
-		/* Begin methods that should be internal :( */
+		/* Begin methods that should be internal :(*/
 		public void HandleMarkerTapped(int id, string label)
 		{
 			if (MarkerTapped != null)

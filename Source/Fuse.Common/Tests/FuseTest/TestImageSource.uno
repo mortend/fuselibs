@@ -43,10 +43,10 @@ namespace FuseTest
 			OnChanged();
 		}
 		
-		public void Fail( string message )
+		public void Fail(string message)
 		{
 			_state = ImageSourceState.Failed;
-			OnError( message );
+			OnError(message);
 		}
 
 		int _reloadCount;

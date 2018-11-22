@@ -64,7 +64,7 @@ namespace Fuse.Controls
 			_router = Router.TryFindRouter(this);
 			if (_router == null)
 			{
-				Fuse.Diagnostics.UserError( "Navigator requires a Router for interaction", this );
+				Fuse.Diagnostics.UserError("Navigator requires a Router for interaction", this);
 				return;
 			}
 		

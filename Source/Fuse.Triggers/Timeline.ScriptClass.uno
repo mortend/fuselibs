@@ -56,7 +56,7 @@ namespace Fuse.Triggers
 			Plays to a particular progress in the Timeline. This plays from the current progress to the new
 			target progress.
 			
-			@scriptmethod playTo( progress )
+			@scriptmethod playTo(progress)
 			
 			@param progress The relative position (0..1) to play to.
 		*/
@@ -64,11 +64,11 @@ namespace Fuse.Triggers
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "Timeline.playTo requires 1 argument", n );
+				Fuse.Diagnostics.UserError("Timeline.playTo requires 1 argument", n);
 				return;
 			}
 
-			n.PlayTo( Marshal.ToDouble(args[0]) );
+			n.PlayTo(Marshal.ToDouble(args[0]));
 		}
 		
 		/**
@@ -106,14 +106,14 @@ namespace Fuse.Triggers
 		/**
 			Seeks to a given location (jumps there without playing the intervening animation).
 			
-			@scriptmethod seek( progress )
+			@scriptmethod seek(progress)
 			@param progress The relative position (0..1) to seek to.
 		*/
 		static void seek(Timeline n, object[] args)
 		{
 			if (args.Length != 1)
 			{
-				Fuse.Diagnostics.UserError( "Timeline.seek requires 1 argument", n );
+				Fuse.Diagnostics.UserError("Timeline.seek requires 1 argument", n);
 				return;
 			}
 			n.Progress = Marshal.ToDouble(args[0]);

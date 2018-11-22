@@ -254,7 +254,7 @@ namespace Fuse
 
 			//cleanup all nodes first
 			while (items.MoveNext())
-				InsertCleanup( items.Current );
+				InsertCleanup(items.Current);
 
 			//becomes non-null on the first moved node
 			HashSet<Node> moved = null;

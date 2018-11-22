@@ -6,19 +6,19 @@
 		exports.items = items
 		
 		exports.step1 = function() {
-			items.addAll( [1,2,5] )
+			items.addAll([1,2,5])
 		}
 		
 		exports.step2 = function() {
-			items.addAll( [] )
+			items.addAll([])
 		}
 		
 		exports.step3 = function() {
-			items.refreshAll( [] )
+			items.refreshAll([])
 		}
 		
 		exports.step4 = function() {
-			items.refreshAll( [9] )
+			items.refreshAll([9])
 		}
 	</JavaScript>
 	<FuseTest.ObservableCollector ux:Name="OC" Items="{items}"/>

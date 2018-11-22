@@ -12,7 +12,7 @@ namespace FuseTest
 	public class InterceptPanel : LayoutControl
 	{
 		public int GetContentSizeCount = 0;
-		protected override float2 GetContentSize( LayoutParams lp )
+		protected override float2 GetContentSize(LayoutParams lp)
 		{
 			GetContentSizeCount++;
 			return base.GetContentSize(lp);

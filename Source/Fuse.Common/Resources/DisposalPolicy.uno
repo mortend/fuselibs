@@ -24,10 +24,10 @@ namespace Fuse.Resources
 		
 		public override bool CanDispose(DisposalRequest dr, bool pinned)
 		{
-			if( !pinned && Timeout > 0 ) 
+			if(!pinned && Timeout > 0) 
 			{
 				var elapsed = Time.FrameTime - lastUsedFrameTime;
-				if( elapsed > Timeout )
+				if(elapsed > Timeout)
 					return true;
 			}
 

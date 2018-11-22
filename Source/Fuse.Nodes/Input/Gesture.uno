@@ -31,7 +31,7 @@ namespace Fuse.Input
 		public float Significance;
 		public int Adjustment;
 		
-		public GesturePriorityConfig( GesturePriority priority,
+		public GesturePriorityConfig(GesturePriority priority,
 			float significance = 0, int adjustment = 0)
 		{
 			Priority = priority;
@@ -49,9 +49,9 @@ namespace Fuse.Input
 	*/
 	public interface IGesture
 	{
-		GestureRequest OnPointerPressed( PointerPressedArgs args );
-		GestureRequest OnPointerMoved( PointerMovedArgs args );
-		GestureRequest OnPointerReleased( PointerReleasedArgs args );
+		GestureRequest OnPointerPressed(PointerPressedArgs args);
+		GestureRequest OnPointerMoved(PointerMovedArgs args);
+		GestureRequest OnPointerReleased(PointerReleasedArgs args);
 
 		/**
 			Obtains the priority settings of the gesture.
@@ -83,7 +83,7 @@ namespace Fuse.Input
 			
 			An IGesture implementation should avoid making any visual changes until it obtains a Hard capture. Prior to this point it is uncertain if the gesture will actually be the selected one.  Gestures that only ever need a soft capture can however proceed, but they shouldn't be making any direction visual changes anway.
 		*/
-		void OnCaptureChanged( PointerEventArgs args, CaptureType howNew, CaptureType howPrev );
+		void OnCaptureChanged(PointerEventArgs args, CaptureType howNew, CaptureType howPrev);
 		
 		/**
 			Called whenever a previous capture is lost, soft or hard.
@@ -92,7 +92,7 @@ namespace Fuse.Input
 			
 			@param forced False if the capture is lost due to a cancel request by the gesture. True otherwise, in cases such as it losing priority or the app losing focus.
 		*/
-		void OnLostCapture( bool forced );
+		void OnLostCapture(bool forced);
 	}
 	
 	[Flags]
@@ -148,17 +148,17 @@ namespace Fuse.Input
 		internal Gesture(IGesture handler, GestureType type, Visual target)
 		{
 			if (handler == null)
-				throw new ArgumentNullException( nameof(handler) );
+				throw new ArgumentNullException(nameof(handler));
 
 			if (target == null)
-				throw new ArgumentNullException( nameof(target) );
+				throw new ArgumentNullException(nameof(target));
 
 			Handler = handler;
 			Type = type;
 			Target = target;
 		}
 
-		void HandleRequest( GestureRequest req, PointerEventArgs args )
+		void HandleRequest(GestureRequest req, PointerEventArgs args)
 		{
 			switch (req)
 			{
@@ -170,7 +170,7 @@ namespace Fuse.Input
 		
 		static internal float HardCaptureSignificanceThreshold { get { return 10; } }
 		
-		void Capture( PointerEventArgs args )
+		void Capture(PointerEventArgs args)
 		{
 			var pr = Handler.Priority;
 			var sig = pr.Significance;
@@ -186,15 +186,15 @@ namespace Fuse.Input
 			Gestures.RequestCaptureChange(this, args, captureType);
 		}
 				
-		internal void OnRequestChanged( PointerEventArgs args, CaptureType captureType )
+		internal void OnRequestChanged(PointerEventArgs args, CaptureType captureType)
 		{
 			//keep current state
 			if (_captureType == captureType && _down.Contains(args.PointIndex))
 				return;
 
-			if ( (_captureType == CaptureType.None) ?
+			if ((_captureType == CaptureType.None) ?
 				!Pointer.ModifyCapture(this, Target, OnLostCapture, captureType, args.PointIndex) :
-				!Pointer.ModifyCapture(this, captureType) )
+				!Pointer.ModifyCapture(this, captureType))
 			{
 				OnLostCapture();
 				return;
@@ -219,7 +219,7 @@ namespace Fuse.Input
 			if (captureType.HasFlag(CaptureType.Hard))
 				Target.BeginInteraction(this, OnLostCapture);
 				
-			Handler.OnCaptureChanged( args, captureType, prevCapture );
+			Handler.OnCaptureChanged(args, captureType, prevCapture);
 		}
 		
 		/**
@@ -255,7 +255,7 @@ namespace Fuse.Input
 			LostCapture(false);
 		}
 		
-		internal void OnPointerPressed( object sender, PointerPressedArgs args )
+		internal void OnPointerPressed(object sender, PointerPressedArgs args)
 		{
 			Gestures.PumpEvent(args);
 
@@ -265,10 +265,10 @@ namespace Fuse.Input
 			if (Type.HasFlag(GestureType.Primary) && !args.IsPrimary)
 				return;
 				
-			HandleRequest( Handler.OnPointerPressed( args ), args );
+			HandleRequest(Handler.OnPointerPressed(args), args);
 		}
 		
-		internal void OnPointerMoved( object sender, PointerMovedArgs args )
+		internal void OnPointerMoved(object sender, PointerMovedArgs args)
 		{
 			Gestures.PumpEvent(args);
 
@@ -278,22 +278,22 @@ namespace Fuse.Input
 			//this means Pointer is broken, we should have got a LostCapture callback				
 			if (!Pointer.IsPressed(args.PointIndex))
 			{
-				Fuse.Diagnostics.InternalError( "Missing LostCapture on " + args.PointIndex, this );
+				Fuse.Diagnostics.InternalError("Missing LostCapture on " + args.PointIndex, this);
 				LostCapture(true);
 				return;
 			}
 			
-			HandleRequest(Handler.OnPointerMoved( args ), args);
+			HandleRequest(Handler.OnPointerMoved(args), args);
 		}
 		
-		internal void OnPointerReleased( object sender, PointerReleasedArgs args )
+		internal void OnPointerReleased(object sender, PointerReleasedArgs args)
 		{
 			Gestures.PumpEvent(args);
 
 			if (!_down.Contains(args.PointIndex))
 				return;
 				
-			HandleRequest(Handler.OnPointerReleased( args ), args);
+			HandleRequest(Handler.OnPointerReleased(args), args);
 			//there's no guarantee the capture was cancelled, but the down button is certainly gone
 			_down.Remove(args.PointIndex);
 			//TODO: There's currently no way to remove a PointIndex from the capture (for multi-touch)
@@ -323,11 +323,11 @@ namespace Fuse.Input
 			
 			This will return 0 if the orthogonal distance becomes too large -- indicating it's not movement along the vector anymore.
 		*/
-		static public float VectorSignificance( float2 vector, float2 offset )
+		static public float VectorSignificance(float2 vector, float2 offset)
 		{
-			if (Internal.VectorUtil.NormRejection( offset, vector ) > _vectorOffsetThreshold)
+			if (Internal.VectorUtil.NormRejection(offset, vector) > _vectorOffsetThreshold)
 				return 0;
-			return Math.Abs(Internal.VectorUtil.ScalarProjection( offset, vector ));
+			return Math.Abs(Internal.VectorUtil.ScalarProjection(offset, vector));
 		}
 	}
 	
@@ -352,13 +352,13 @@ namespace Fuse.Input
 			
 			@return The bound gesture. Use `.Dispose` to remove the gesture support.
 		*/
-		static public Gesture Add( IGesture handler, Visual target, GestureType type )
+		static public Gesture Add(IGesture handler, Visual target, GestureType type)
 		{
 			if (handler == null)
-				throw new ArgumentNullException( nameof(handler) );
+				throw new ArgumentNullException(nameof(handler));
 
 			if (_gestures.ContainsKey(handler))
-				throw new ArgumentException( "This gesture handler is already registered" );
+				throw new ArgumentException("This gesture handler is already registered");
 				
 			var g = new Gesture(handler, type, target);
 			_gestures[handler] = g;
@@ -372,11 +372,11 @@ namespace Fuse.Input
 			return g;
 		}
 		
-		static internal void Remove( IGesture handler )
+		static internal void Remove(IGesture handler)
 		{
 			Gesture g;
 			if (!_gestures.TryGetValue(handler, out g))
-				throw new ArgumentException( "Unregistered gesture" );
+				throw new ArgumentException("Unregistered gesture");
 				
 			Pointer.Pressed.RemoveHandler(g.Target, g.OnPointerPressed);
 			Pointer.Released.RemoveHandler(g.Target, g.OnPointerReleased);
@@ -398,12 +398,12 @@ namespace Fuse.Input
 		static List<ActiveGesture> _activeGestures = new List<ActiveGesture>();
 		static bool _changePosted;
 		
-		static internal void RequestCaptureChange( Gesture gesture, PointerEventArgs args, 
-			CaptureType captureType )
+		static internal void RequestCaptureChange(Gesture gesture, PointerEventArgs args, 
+			CaptureType captureType)
 		{
 			var index = GetActiveGestureIndex(gesture);
 			if (index == -1)
-				throw new Exception("RequestCaptureChange on inactive gesture" );
+				throw new Exception("RequestCaptureChange on inactive gesture");
 			
 			var ar = _activeGestures[index];
 			ar.ChangeRequest = true;
@@ -412,7 +412,7 @@ namespace Fuse.Input
 				
 			if (!_changePosted) 
 			{
-				UpdateManager.AddDeferredAction( ProcessCaptureChanges );
+				UpdateManager.AddDeferredAction(ProcessCaptureChanges);
 				_changePosted = true;
 			}
 		}
@@ -423,7 +423,7 @@ namespace Fuse.Input
 
 			It'd likely be cleaner for the Gestures to hook directly into the Pointer.Input system rather than relying on PumpEvent to be called. This was this easier approach for now.
 		*/
-		static internal void PumpEvent( PointerEventArgs args )
+		static internal void PumpEvent(PointerEventArgs args)
 		{
 			if (_pumpArgs == null)
 			{
@@ -442,7 +442,7 @@ namespace Fuse.Input
 			_changePosted = false;
 		}
 		
-		static int PriorityOrder( ActiveGesture a, ActiveGesture b )
+		static int PriorityOrder(ActiveGesture a, ActiveGesture b)
 		{
 			var p = (int)(b.Priority) - (int)(a.Priority);
 			if (p != 0)
@@ -470,7 +470,7 @@ namespace Fuse.Input
 			_changePosted = false;
 
 			UpdateSignificance();
-			_activeGestures.Sort( PriorityOrder );
+			_activeGestures.Sort(PriorityOrder);
 
 			for (int i=0; i < _activeGestures.Count; ++i) 
 			{
@@ -481,19 +481,19 @@ namespace Fuse.Input
 					
 				var prev = i > 0 ? _activeGestures[i-1] : null;
 				var pdiff = prev != null ? prev.Priority - (int)ar.Priority : 0;
-				if (pdiff > 0 && ar.CaptureType.HasFlag(CaptureType.Hard) )
+				if (pdiff > 0 && ar.CaptureType.HasFlag(CaptureType.Hard))
 				{
 					//lower priority must beat out higher by enough to do anything.
-					if (ar.Significance < ( (int)prev.Priority * 2.0f + prev.Significance))
+					if (ar.Significance < ((int)prev.Priority * 2.0f + prev.Significance))
 					{
 						continue;
 					}
 				}
-				ar.Gesture.OnRequestChanged( ar.Args, ar.CaptureType );
+				ar.Gesture.OnRequestChanged(ar.Args, ar.CaptureType);
 			}
 		}
 
-		static int GetActiveGestureIndex( Gesture g )
+		static int GetActiveGestureIndex(Gesture g)
 		{
 			for (int i=0; i < _activeGestures.Count; ++i)
 			{
@@ -504,14 +504,14 @@ namespace Fuse.Input
 			return -1;
 		}
 		
-		internal static void AddActive( Gesture g )
+		internal static void AddActive(Gesture g)
 		{
 			var index = GetActiveGestureIndex(g);
 			if (index == -1)
-				_activeGestures.Add( new ActiveGesture{ Gesture = g });
+				_activeGestures.Add(new ActiveGesture{ Gesture = g });
 		}
 		
-		internal static void RemoveActive( Gesture g )
+		internal static void RemoveActive(Gesture g)
 		{
 			var index = GetActiveGestureIndex(g);
 			if (index != -1)

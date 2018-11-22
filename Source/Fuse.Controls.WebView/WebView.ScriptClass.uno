@@ -105,7 +105,7 @@ namespace Fuse.Controls
 					view.Url = args[0] as string;
 					return;
 				default:
-					Fuse.Diagnostics.UserError( "WebView.setUrl requires 1 string argument", view);
+					Fuse.Diagnostics.UserError("WebView.setUrl requires 1 string argument", view);
 					return;
 			}
 		}
@@ -124,7 +124,7 @@ namespace Fuse.Controls
 					view.BaseUrl = args[0] as string;
 					return;
 				default:
-					Fuse.Diagnostics.UserError( "WebView.setBaseUrl requires 1 string argument", view );
+					Fuse.Diagnostics.UserError("WebView.setBaseUrl requires 1 string argument", view);
 					return;
 			}
 		}

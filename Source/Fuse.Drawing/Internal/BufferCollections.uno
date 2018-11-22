@@ -25,13 +25,13 @@ namespace Fuse.Drawing.Internal {
 		//how many items are in the virtual list
 		protected int size;
 		
-		protected TypedBuffer( int typeSize, int initSize = 32 ) {
+		protected TypedBuffer(int typeSize, int initSize = 32) {
 			this.typeSize = typeSize;
 			this.size = 0;
-			Init( initSize );
+			Init(initSize);
 		}
 		
-		protected void Init( int initSize ) {
+		protected void Init(int initSize) {
 			this.capacity = initSize;
 			back = new byte[typeSize * initSize];
 		}
@@ -47,27 +47,27 @@ namespace Fuse.Drawing.Internal {
 		/**
 			Creates a device index buffer for this buffer.
 		*/
-		public void InitDeviceIndex( BufferUsage bu = BufferUsage.Dynamic ) {
-			deviceIndex = new IndexBuffer( back, bu );
+		public void InitDeviceIndex(BufferUsage bu = BufferUsage.Dynamic) {
+			deviceIndex = new IndexBuffer(back, bu);
 		}
 		public IndexBuffer GetDeviceIndex() {
 			return deviceIndex;
 		}
 		
 		VertexBuffer deviceVertex = null;
-		public void InitDeviceVertex( BufferUsage bu = BufferUsage.Dynamic ) {
-			deviceVertex = new VertexBuffer( back, bu );
+		public void InitDeviceVertex(BufferUsage bu = BufferUsage.Dynamic) {
+			deviceVertex = new VertexBuffer(back, bu);
 		}
 		public VertexBuffer GetDeviceVertex() {
 			return deviceVertex;
 		}
 		
 		public void UpdateDevice() {
-			if( deviceIndex != null ) {
-				deviceIndex.Update( back );
+			if(deviceIndex != null) {
+				deviceIndex.Update(back);
 			} 
-			if( deviceVertex != null ) {
-				deviceVertex.Update( back );
+			if(deviceVertex != null) {
+				deviceVertex.Update(back);
 			}
 		}
 		
@@ -91,18 +91,18 @@ namespace Fuse.Drawing.Internal {
 			
 			UNO: Uncertain how this can be done.
 		*/
-		/*void Set( int offset, T value ) {
-			back.Set( offset * typeSize, value, true );
+		/*void Set(int offset, T value) {
+			back.Set(offset * typeSize, value, true);
 		}*/
 		
 		protected void CheckGrow() {
-			if( size < capacity ) {
+			if(size < capacity) {
 				return;
 			}
 			int newCap = capacity * 2;
 			var newBuf = new byte[typeSize * newCap];
-			for( int i=0; i < back.Length; ++i ) {
-				newBuf.Set( i, back[i] );
+			for(int i=0; i < back.Length; ++i) {
+				newBuf.Set(i, back[i]);
 			}
 			back = newBuf;
 			capacity = newCap;
@@ -115,81 +115,81 @@ namespace Fuse.Drawing.Internal {
 	}
 	
 	public class Float3Buffer : TypedBuffer {
-		public Float3Buffer() : base( 3 * 4 ) {
+		public Float3Buffer() : base(3 * 4) {
 		}
 		
-		public void Set( int offset, float3 value ) {
-			back.Set( offset * typeSize, value, true );
+		public void Set(int offset, float3 value) {
+			back.Set(offset * typeSize, value, true);
 		}
 		
-		public void Append( float3 value ) {
+		public void Append(float3 value) {
 			CheckGrow();
-			Set( size++, value );
+			Set(size++, value);
 		}
 		
-		public void Append( double x, double y, double z ) {
-			Append( float3( (float)x, (float)y, (float)z ) );
+		public void Append(double x, double y, double z) {
+			Append(float3((float)x, (float)y, (float)z));
 		}
 	}
 	
 	public class FloatBuffer : TypedBuffer {
-		public FloatBuffer() : base( 4 ) {
+		public FloatBuffer() : base(4) {
 		}
 		
-		public void Set( int offset, float value ) {
-			back.Set( offset * typeSize, value, true );
+		public void Set(int offset, float value) {
+			back.Set(offset * typeSize, value, true);
 		}
 		
-		public void Append( float value ) {
+		public void Append(float value) {
 			CheckGrow();
-			Set( size++, value );
+			Set(size++, value);
 		}
 		
-		public void Append( double x ) {
-			Append( (float)x );
+		public void Append(double x) {
+			Append((float)x);
 		}
 	}
 	
 	public class Float2Buffer : TypedBuffer {
-		public Float2Buffer() : base( 2 * 4 ) {
+		public Float2Buffer() : base(2 * 4) {
 		}
 		
-		public void Set( int offset, float2 value ) {
-			back.Set( offset * typeSize, value, true );
+		public void Set(int offset, float2 value) {
+			back.Set(offset * typeSize, value, true);
 		}
 		
-		public void Append( float2 value ) {
+		public void Append(float2 value) {
 			CheckGrow();
-			Set( size++, value );
+			Set(size++, value);
 		}
 		
-		public void Append( double x, double y ) {
-			Append( float2( (float)x, (float)y ) );
+		public void Append(double x, double y) {
+			Append(float2((float)x, (float)y));
 		}
 	}
 	
 	public class UShortBuffer : TypedBuffer {
-		public UShortBuffer() : base( 2 ) {
+		public UShortBuffer() : base(2) {
 		}
 		
-		public void Set( int offset, ushort value ) {
-			back.Set( offset * typeSize, value, true );
+		public void Set(int offset, ushort value) {
+			back.Set(offset * typeSize, value, true);
 		}
 		
-		public void Append( ushort value ) {
+		public void Append(ushort value) {
 			CheckGrow();
-			Set( size++, value );
+			Set(size++, value);
 		}
 		
-		public void Append( int value ) {
+		public void Append(int value) {
 			CheckGrow();
-			Set( size++, (ushort)value );
+			Set(size++, (ushort)value);
 		}
 		
-		public void AppendTri( int a, int b, int c ) {
-			Append( (ushort)a );
-			Append( (ushort)b );
-			Append( (ushort)c );
+		public void AppendTri(int a, int b, int c) {
+			Append((ushort)a);
+			Append((ushort)b);
+			Append((ushort)c);
 		}
 	}
 	
@@ -222,39 +222,39 @@ namespace Fuse.Drawing.Internal {
 		}
 	
 		List<Field> fields = new List<Field>();
-		Field Alloc( Uno.Graphics.VertexAttributeType type, int size ) {
+		Field Alloc(Uno.Graphics.VertexAttributeType type, int size) {
 			Field f = new Field{
 				Type = type,
 				Offset = typeSize,
 				_owner = this,
 			};
 			typeSize += size;
-			fields.Add( f );
+			fields.Add(f);
 			return f;
 		}
 		
 		public Field AllocFloat() {
-			return Alloc( Uno.Graphics.VertexAttributeType.Float, 4 );
+			return Alloc(Uno.Graphics.VertexAttributeType.Float, 4);
 		}
 		public Field AllocFloat2() {
-			return Alloc( Uno.Graphics.VertexAttributeType.Float2, 8 );
+			return Alloc(Uno.Graphics.VertexAttributeType.Float2, 8);
 		}
 		public Field AllocFloat3() {
-			return Alloc( Uno.Graphics.VertexAttributeType.Float3, 12 );
+			return Alloc(Uno.Graphics.VertexAttributeType.Float3, 12);
 		}
 		public Field AllocFloat4() {
-			return Alloc( Uno.Graphics.VertexAttributeType.Float4, 16 );
+			return Alloc(Uno.Graphics.VertexAttributeType.Float4, 16);
 		}
 		public Field AllocUShort() {
-			return Alloc( Uno.Graphics.VertexAttributeType.UShort, 2 );
+			return Alloc(Uno.Graphics.VertexAttributeType.UShort, 2);
 		}
 		//UNO: no VertexAttributeType.Byte
 		//public Field AllocByte() {
-		//	return Alloc( Uno.Graphics.VertexAttributeType.Byte, 1 );
+		//	return Alloc(Uno.Graphics.VertexAttributeType.Byte, 1);
 		//}
 		
 		public void EndAlloc() {
-			Init( 32 );
+			Init(32);
 		}
 		
 		int offset;
@@ -267,50 +267,50 @@ namespace Fuse.Drawing.Internal {
 			size++;
 		}
 		
-		public void AppendUShort( ushort value ) {
-			back.Set( size * typeSize + offset, value, true );
+		public void AppendUShort(ushort value) {
+			back.Set(size * typeSize + offset, value, true);
 			offset += 2;
 		}
-		public void AppendUShort( int value ) {
-			AppendUShort( (ushort)value );
+		public void AppendUShort(int value) {
+			AppendUShort((ushort)value);
 		}
-		public void AppendUShortNF( float value ) {
-			AppendUShort( (ushort)( Math.Clamp( value, 0, 1 ) * UShort.MaxValue ) );
+		public void AppendUShortNF(float value) {
+			AppendUShort((ushort)(Math.Clamp(value, 0, 1) * UShort.MaxValue));
 		}
 		
-		public void AppendFloat( double value ) {
-			back.Set( size * typeSize + offset, (float)value, true );
+		public void AppendFloat(double value) {
+			back.Set(size * typeSize + offset, (float)value, true);
 			offset += 4;
 		}
 		
-		public void AppendFloat2( float2 value ) {
-			back.Set( size * typeSize + offset, value, true );
+		public void AppendFloat2(float2 value) {
+			back.Set(size * typeSize + offset, value, true);
 			offset += 8;
 		}
-		public void AppendFloat2( double x, double y ) {
-			AppendFloat2( float2( (float)x, (float)y ) );
+		public void AppendFloat2(double x, double y) {
+			AppendFloat2(float2((float)x, (float)y));
 		}
 		
-		public void AppendFloat3( float3 value ) {
-			back.Set( size * typeSize + offset, value, true );
+		public void AppendFloat3(float3 value) {
+			back.Set(size * typeSize + offset, value, true);
 			offset += 12;
 		}
-		public void AppendFloat3( double x, double y, double z ) {
-			AppendFloat3( float3( (float)x, (float)y, (float)z ) );
+		public void AppendFloat3(double x, double y, double z) {
+			AppendFloat3(float3((float)x, (float)y, (float)z));
 		}
 		
-		public void AppendFloat4( float4 value ) {
-			back.Set( size * typeSize + offset, value, true );
+		public void AppendFloat4(float4 value) {
+			back.Set(size * typeSize + offset, value, true);
 			offset += 16;
 		}
 		
-		public void AppendByte( byte value ) {
-			back.Set( size * typeSize + offset, value, true );
+		public void AppendByte(byte value) {
+			back.Set(size * typeSize + offset, value, true);
 			offset += 1;
 		}
 		//normalized floating point stored in byte
-		public void AppendByteNF( float value ) {
-			AppendByte( (byte)( Math.Clamp( value * 255, 0, 255 ) ) );
+		public void AppendByteNF(float value) {
+			AppendByte((byte)(Math.Clamp(value * 255, 0, 255)));
 		}
 
 		//allows chain setting of the fields (safely, the Append nonsense is deperecated)
@@ -318,28 +318,28 @@ namespace Fuse.Drawing.Internal {
 			MultiBuffer owner;
 			int index, baseP;
 			
-			public Setter( MultiBuffer owner, int index ) {
+			public Setter(MultiBuffer owner, int index) {
 				this.owner = owner;
 				this.index = index;
 				this.baseP = index * owner.typeSize;
 			}
 			
-			public Setter SetFloat3( Field f, float3 v ) {
-				owner.back.Set( baseP + f.Offset, v, true );
+			public Setter SetFloat3(Field f, float3 v) {
+				owner.back.Set(baseP + f.Offset, v, true);
 				return this;
 			}
-			public Setter SetFloat2( Field f, float2 v ) {
-				owner.back.Set( baseP + f.Offset, v, true );
+			public Setter SetFloat2(Field f, float2 v) {
+				owner.back.Set(baseP + f.Offset, v, true);
 				return this;
 			}
-			public Setter SetFloat( Field f, float v ) {
-				owner.back.Set( baseP + f.Offset, v, true );
+			public Setter SetFloat(Field f, float v) {
+				owner.back.Set(baseP + f.Offset, v, true);
 				return this;
 			}
 		}
 		public Setter Add() {
 			CheckGrow();
-			var s = new Setter( this, size );
+			var s = new Setter(this, size);
 			size++;
 			return s;
 		}

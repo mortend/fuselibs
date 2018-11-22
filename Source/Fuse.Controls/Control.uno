@@ -20,7 +20,7 @@ namespace Fuse.Controls
 		* Fully portable custom controls drawn by OpenGL (default, see @GraphicsView)
 		* The real native controls provided from the OS itself (see @NativeViewHost)
 
-		In a native context (inside of a @NativeViewHost ), controls will display a native control, if supported for
+		In a native context (inside of a @NativeViewHost), controls will display a native control, if supported for
 		the given control an platform. In other context, the graphics-based appearance will be used.
 
 		## Available UI controls
@@ -59,7 +59,7 @@ namespace Fuse.Controls
 			{
 				var nb = base.HitTestLocalVisualBounds;
 				if (Background != null)
-					nb = nb.AddRect( float2(0), ActualSize );
+					nb = nb.AddRect(float2(0), ActualSize);
 				return nb;
 			}
 		}
@@ -68,7 +68,7 @@ namespace Fuse.Controls
 		{
 			var b = base.CalcRenderBounds();
 			if (Background != null)
-				b = b.AddRect( float2(0), ActualSize );
+				b = b.AddRect(float2(0), ActualSize);
 			return b;
 		}
 	}

@@ -134,11 +134,11 @@ namespace Fuse.Gestures
 			
 			if (_rangeControl == null && _binaryRangeControl == null)
 			{
-				Fuse.Diagnostics.UserRootError( "RangeControl or BinaryRangeControl", Parent, this );
+				Fuse.Diagnostics.UserRootError("RangeControl or BinaryRangeControl", Parent, this);
 			}
 			else
 			{
-				_gesture = Input.Gestures.Add( this, _control, GestureType.Primary );
+				_gesture = Input.Gestures.Add(this, _control, GestureType.Primary);
 				if (_rangeControl != null)
 					_rangeControl.ValueChanged += OnValueChanged;
 				else
@@ -186,9 +186,9 @@ namespace Fuse.Gestures
 		{
 			get
 			{
-				return new GesturePriorityConfig( _gesturePriority,
+				return new GesturePriorityConfig(_gesturePriority,
 					//don't use angle to calculate a length since movements near the middle would be magnified
-					Vector.Length(_currentCoord - _initialCoord) );
+					Vector.Length(_currentCoord - _initialCoord));
 			}
 		}
 		

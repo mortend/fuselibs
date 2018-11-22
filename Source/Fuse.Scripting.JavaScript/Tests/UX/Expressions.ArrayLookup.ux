@@ -4,7 +4,7 @@
 		var obs = Observable("foo", "bar", "moo");
 		var arr = ["FOO", "BAR", "MOO"];
 
-		var obj = Observable( { col: { foo: "THIS IS FOO", bar: "THIS IS BAR" } });
+		var obj = Observable({ col: { foo: "THIS IS FOO", bar: "THIS IS BAR" } });
 		var bar = Observable("bar");
 
 		var index = Observable(0);

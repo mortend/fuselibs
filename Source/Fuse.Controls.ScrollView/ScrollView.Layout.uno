@@ -82,10 +82,10 @@ namespace Fuse.Controls
 				//gestures need the "diff" to offset their scrolling interaction
 				//don't exceed min/max though as to not trigger any ends animation
 				//https://github.com/fusetools/fuselibs-private/issues/2891
-				//var nsp = Math.Min( MaxScroll, Math.Max( MinScroll, ScrollPosition + diff ) );
+				//var nsp = Math.Min(MaxScroll, Math.Max(MinScroll, ScrollPosition + diff));
 				var nsp = ScrollPosition + diff;
 				var ndiff = nsp - ScrollPosition;
-				SetScrollPosition( nsp, ndiff, this );
+				SetScrollPosition(nsp, ndiff, this);
 			}
 			
 			//constrain to new ends (use scroller if possible to allow for animation and interplay with pointer)
@@ -95,7 +95,7 @@ namespace Fuse.Controls
 			}
 			else
 			{
-				ScrollPosition = Math.Min( MaxScroll, Math.Max( MinScroll, ScrollPosition ) );
+				ScrollPosition = Math.Min(MaxScroll, Math.Max(MinScroll, ScrollPosition));
 				//force messages since relative position always changes
 				OnScrollPositionChanged(float2(0), false, this);
 			}
@@ -168,7 +168,7 @@ namespace Fuse.Controls
 			}
 			else
 			{
-				Fuse.Diagnostics.UserError( "AllowedScrollDirections is not valid: " + AllowedScrollDirections, this );
+				Fuse.Diagnostics.UserError("AllowedScrollDirections is not valid: " + AllowedScrollDirections, this);
 			}
 
 			//set default alignment on content
@@ -198,7 +198,7 @@ namespace Fuse.Controls
 			_contentAlignment = align;
 		}
 		
-		protected override LayoutDependent IsMarginBoxDependent( Visual child )
+		protected override LayoutDependent IsMarginBoxDependent(Visual child)
 		{
 			//require a rearrange if the child margin change since the scroll range must change
 			return LayoutDependent.MaybeArrange;

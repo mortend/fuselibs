@@ -104,7 +104,7 @@ namespace Fuse.Navigation
 		{
 			base.OnRooted();
 
-			_gesture = Input.Gestures.Add( this, Parent, GestureType.Primary );
+			_gesture = Input.Gestures.Add(this, Parent, GestureType.Primary);
 		}
 
 		protected override void OnUnrooted()
@@ -202,7 +202,7 @@ namespace Fuse.Navigation
 		{
 			if (_currentNavigation != null)
 			{
-				if ( (_currentNavigation as Node).IsRootingCompleted && _startedSeek)
+				if ((_currentNavigation as Node).IsRootingCompleted && _startedSeek)
 					_currentNavigation.EndSeek(new EndSeekArgs(SnapTo.Current));
 
 				_currentNavigation = null;
@@ -215,8 +215,8 @@ namespace Fuse.Navigation
 			get
 			{
 				var diff = _currentCoord - _startCoord;
-				return new GesturePriorityConfig( GesturePriority.Low,
-					Gesture.VectorSignificance( Direction, diff ) );
+				return new GesturePriorityConfig(GesturePriority.Low,
+					Gesture.VectorSignificance(Direction, diff));
 			}
 		}
 		
@@ -224,7 +224,7 @@ namespace Fuse.Navigation
 		{
 			_startCoord = _currentCoord = args.WindowPoint;
 			_currentNavigation = Navigation;
-			_velocity.Reset( _startCoord, float2(0), args.Timestamp );
+			_velocity.Reset(_startCoord, float2(0), args.Timestamp);
 			if (_currentNavigation == null)
 			{
 				Fuse.Diagnostics.InternalError("SwipeNavigate: failed to find suitable Navigation object", this);
@@ -254,8 +254,8 @@ namespace Fuse.Navigation
 				return GestureRequest.Cancel;
 
 			_currentCoord = args.WindowPoint;
-			_velocity.AddSampleTime( _currentCoord, args.Timestamp,
-				_gesture.IsHardCapture ? SampleFlags.None : SampleFlags.Tentative );
+			_velocity.AddSampleTime(_currentCoord, args.Timestamp,
+				_gesture.IsHardCapture ? SampleFlags.None : SampleFlags.Tentative);
 
 			if (_gesture.IsHardCapture)
 				_currentNavigation.Seek(GetNavigationArgs());
@@ -266,12 +266,12 @@ namespace Fuse.Navigation
 		GestureRequest IGesture.OnPointerReleased(PointerReleasedArgs args)
 		{
 			_currentCoord = args.WindowPoint;
-			_velocity.AddSampleTime( _currentCoord, args.Timestamp, SampleFlags.Release );
+			_velocity.AddSampleTime(_currentCoord, args.Timestamp, SampleFlags.Release);
 
 			if (_gesture.IsHardCapture && _currentNavigation != null)
 			{
 				_currentNavigation.EndSeek(
-					new EndSeekArgs(DetermineSnap(), ProgressVelocity) );
+					new EndSeekArgs(DetermineSnap(), ProgressVelocity));
 				//clear now to prevent double EndSeek in OnLostCapture
 				_currentNavigation = null;
 			}
@@ -366,7 +366,7 @@ namespace Fuse.Navigation
 		//for providing a rubber-band feel to limited ends
 		static readonly float elasticDecay = 0.015f;
 		static readonly float elasticScale = 0.4f;
-		float ElasticDistance( float v )
+		float ElasticDistance(float v)
 		{
 			bool neg = false;
 			if (v < 0)
@@ -376,7 +376,7 @@ namespace Fuse.Navigation
 			}
 
 			//the intergral of an expontential decay
-			v = (Math.Pow( elasticDecay, v * elasticScale ) -1) / Math.Log(elasticDecay);
+			v = (Math.Pow(elasticDecay, v * elasticScale) -1) / Math.Log(elasticDecay);
 
 			if (neg)
 				v = -v;

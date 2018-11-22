@@ -76,12 +76,12 @@ namespace Fuse.Drawing
 		void VerifyCreated()
 		{
 			if (SurfaceContext == null)
-				throw new Exception( "Object disposed" );
+				throw new Exception("Object disposed");
 		}
 
 		protected abstract void VerifyBegun();
 
-		public override void PushTransform( float4x4 t )
+		public override void PushTransform(float4x4 t)
 		{
 			VerifyBegun();
 			SaveContextState(SurfaceContext);
@@ -94,21 +94,21 @@ namespace Fuse.Drawing
 			RestoreContextState(SurfaceContext);
 		}
 
-		public override SurfacePath CreatePath( IList<LineSegment> segments, FillRule fillRule = FillRule.NonZero)
+		public override SurfacePath CreatePath(IList<LineSegment> segments, FillRule fillRule = FillRule.NonZero)
 		{
 			var path = PathCreateMutable();
-			AddSegments( path, segments, float2(0) );
+			AddSegments(path, segments, float2(0));
 			return new AndroidCanvasPath{ Path = path, FillRule = fillRule };
 		}
 
 		Dictionary<Brush, Java.Object> _imageBrushes = new Dictionary<Brush,Java.Object>();
 
-		void PrepareImageFill( ImageFill fill )
+		void PrepareImageFill(ImageFill fill)
 		{
 			var src = fill.Source;
 			if (src.PixelSize.X == 0 || src.PixelSize.Y == 0)
 			{
-				Fuse.Diagnostics.UserError( "Recieved an image with no width or height", src.PixelSize );
+				Fuse.Diagnostics.UserError("Recieved an image with no width or height", src.PixelSize);
 				return;
 			}
 
@@ -120,9 +120,9 @@ namespace Fuse.Drawing
 			_imageBrushes[fill] = PrepareImageFillImpl(fill);
 		}
 
-		protected abstract Java.Object PrepareImageFillImpl( ImageFill img );
+		protected abstract Java.Object PrepareImageFillImpl(ImageFill img);
 
-		public override void FillPath( SurfacePath path, Brush fill )
+		public override void FillPath(SurfacePath path, Brush fill)
 		{
 			var cgPath = (AndroidCanvasPath)path;
 			Java.Object paint = CreateFillPaint();
@@ -140,7 +140,7 @@ namespace Fuse.Drawing
 			object which then gets used in order to draw. Note that this method is shared between
 			different path types. For example, it gets used both by `Stroke` paths and `Filled` paths.
 		*/
-		void DrawPath( Java.Object path, Brush fill, FillRule fillRule, Java.Object paint)
+		void DrawPath(Java.Object path, Brush fill, FillRule fillRule, Java.Object paint)
 		{
 			bool eoFill = fillRule == FillRule.EvenOdd;
 
@@ -156,9 +156,9 @@ namespace Fuse.Drawing
 			if (linearGradient != null)
 			{
 				Java.Object gradient;
-				if (!_gradientBrushes.TryGetValue( fill, out gradient ))
+				if (!_gradientBrushes.TryGetValue(fill, out gradient))
 				{
-					Fuse.Diagnostics.InternalError( "Unprepared LinearGradient", fill );
+					Fuse.Diagnostics.InternalError("Unprepared LinearGradient", fill);
 					return;
 				}
 
@@ -172,17 +172,17 @@ namespace Fuse.Drawing
 			if (imageFill != null)
 			{
 				Java.Object image;
-				if (!_imageBrushes.TryGetValue( fill, out image ) )
+				if (!_imageBrushes.TryGetValue(fill, out image))
 				{
-					Fuse.Diagnostics.InternalError( "Unprepared ImageFill", fill );
+					Fuse.Diagnostics.InternalError("Unprepared ImageFill", fill);
 					return;
 				}
 
 				var sizing = imageFill.SizingContainer;
 				sizing.absoluteZoom = _pixelsPerPoint; //TODO: probably not good to modify sizing here...?
 				var imageSize = imageFill.Source.Size;
-				var scale = sizing.CalcScale( ElementSize, imageSize );
-				var origin = sizing.CalcOrigin( ElementSize, imageSize * scale );
+				var scale = sizing.CalcScale(ElementSize, imageSize);
+				var origin = sizing.CalcOrigin(ElementSize, imageSize * scale);
 
 				var tileSize = imageSize * _pixelsPerPoint * scale;
 				var pixelOrigin = origin * _pixelsPerPoint;
@@ -195,7 +195,7 @@ namespace Fuse.Drawing
 				return;
 			}
 
-			Fuse.Diagnostics.UserError( "Unsupported brush", fill );
+			Fuse.Diagnostics.UserError("Unsupported brush", fill);
 		}
 
 		[Foreign(Language.Java)]
@@ -315,7 +315,7 @@ namespace Fuse.Drawing
 			return store;
 		@}
 
-		public override void StrokePath( SurfacePath path, Stroke stroke )
+		public override void StrokePath(SurfacePath path, Stroke stroke)
 		{
 			VerifyBegun();
 
@@ -356,7 +356,7 @@ namespace Fuse.Drawing
 		/**
 			Prepares this brush for drawing. If this is called a second time with the same `Brush` it indicates the properties of that brush have changed.
 		*/
-		public override void Prepare( Brush brush )
+		public override void Prepare(Brush brush)
 		{
 			VerifyCreated();
 			Unprepare(brush);
@@ -380,21 +380,21 @@ namespace Fuse.Drawing
 				return;
 			}
 
-			Fuse.Diagnostics.UserError( "Unsupported brush", brush );
+			Fuse.Diagnostics.UserError("Unsupported brush", brush);
 		}
 		/**
 			Indicates the brush will no longer be used for drawing. It's resources can be freed.
 		*/
-		public override void Unprepare( Brush brush )
+		public override void Unprepare(Brush brush)
 		{
 			Java.Object ip;
-			if (_gradientBrushes.TryGetValue( brush, out ip ))
+			if (_gradientBrushes.TryGetValue(brush, out ip))
 			{
 				VerifyCreated();
 
 				_gradientBrushes.Remove(brush);
 			}
-			if (_imageBrushes.TryGetValue( brush, out ip ))
+			if (_imageBrushes.TryGetValue(brush, out ip))
 			{
 				VerifyCreated();
 				recycleBitmap(ip);
@@ -402,33 +402,33 @@ namespace Fuse.Drawing
 			}
 		}
 
-		float2 PixelFromPoint( float2 point )
+		float2 PixelFromPoint(float2 point)
 		{
 			return point * _pixelsPerPoint;
 		}
 
 		List<LineSegment> _temp = new List<LineSegment>();
-		float2 AddSegments( Java.Object path, IList<LineSegment> segments, float2 prevPoint )
+		float2 AddSegments(Java.Object path, IList<LineSegment> segments, float2 prevPoint)
 		{
-			for (int i=0; i < segments.Count; ++i )
+			for (int i=0; i < segments.Count; ++i)
 			{
 				var seg = segments[i];
 				var to = PixelFromPoint(seg.To);
 				switch (seg.Type)
 				{
 					case LineSegmentType.Move:
-						PathMoveTo( path, to.X, to.Y );
+						PathMoveTo(path, to.X, to.Y);
 						break;
 
 					case LineSegmentType.Straight:
-						PathLineTo( path, to.X, to.Y );
+						PathLineTo(path, to.X, to.Y);
 						break;
 
 					case LineSegmentType.BezierCurve:
 					{
 						var a = PixelFromPoint(seg.A);
 						var b = PixelFromPoint(seg.B);
-						PathCurveTo( path, to.X, to.Y, a.X, a.Y, b.X, b.Y );
+						PathCurveTo(path, to.X, to.Y, a.X, a.Y, b.X, b.Y);
 						break;
 					}
 
@@ -436,13 +436,13 @@ namespace Fuse.Drawing
 					{
 						_temp.Clear();
 						SurfaceUtil.EllipticArcToBezierCurve(prevPoint, seg, _temp);
-						prevPoint = AddSegments( path, _temp, prevPoint );
+						prevPoint = AddSegments(path, _temp, prevPoint);
 						break;
 					}
 
 					case LineSegmentType.Close:
 					{
-						PathClose( path );
+						PathClose(path);
 						break;
 					}
 				}
@@ -480,13 +480,13 @@ namespace Fuse.Drawing
 			);
 		}
 
-		public override void DisposePath( SurfacePath path )
+		public override void DisposePath(SurfacePath path)
 		{
 			var cgPath = (AndroidCanvasPath)path;
 
 			if (cgPath.Path == null)
 			{
-				Fuse.Diagnostics.InternalError( "Duplicate dispose of SurfacePath", path );
+				Fuse.Diagnostics.InternalError("Duplicate dispose of SurfacePath", path);
 				return;
 			}
 
@@ -500,28 +500,28 @@ namespace Fuse.Drawing
 		@}
 
 		[Foreign(Language.Java)]
-		static void PathMoveTo( Java.Object pathAsObject, float x, float y )
+		static void PathMoveTo(Java.Object pathAsObject, float x, float y)
 		@{
 			Path path = (Path) pathAsObject;
-			path.moveTo( x, y );
+			path.moveTo(x, y);
 		@}
 
 		[Foreign(Language.Java)]
-		static void PathCurveTo( Java.Object pathAsObject, float x, float y, float ax, float ay, float bx, float by )
+		static void PathCurveTo(Java.Object pathAsObject, float x, float y, float ax, float ay, float bx, float by)
 		@{
 			Path path = (Path) pathAsObject;
 			path.cubicTo(ax, ay, bx, by, x, y);
 		@}
 
 		[Foreign(Language.Java)]
-		static void PathLineTo( Java.Object pathAsObject, float x, float y )
+		static void PathLineTo(Java.Object pathAsObject, float x, float y)
 		@{
 			Path path = (Path) pathAsObject;
 			path.lineTo(x, y);
 		@}
 
 		[Foreign(Language.Java)]
-		static void PathClose( Java.Object pathAsObject)
+		static void PathClose(Java.Object pathAsObject)
 		@{
 			Path path = (Path) pathAsObject;
 			path.close();

@@ -137,8 +137,8 @@ namespace Fuse.Animations
 		internal TransformType transform = new TransformType();
 		Uno.Action<Transform> _matAct;
 		
-		public TransformAnimatorState( TransformAnimator<TransformType> animator, 
-			CreateStateParams p )
+		public TransformAnimatorState(TransformAnimator<TransformType> animator, 
+			CreateStateParams p)
 			: base(animator, p, animator.Target)
 		{ 
 			this.Animator = animator;
@@ -174,9 +174,9 @@ namespace Fuse.Animations
 			
 			//to distinguish our changes from event ones
 			_inSeek = true;
-			Animator.Update( Visual, transform, value );
+			Animator.Update(Visual, transform, value);
 			_lastStrength = strength;
-			mixHandle.Set( transform, _lastStrength );
+			mixHandle.Set(transform, _lastStrength);
 			_inSeek = false;
 		}
 		
@@ -185,7 +185,7 @@ namespace Fuse.Animations
 		internal void OnMatrixChanged(Transform ignore)
 		{
 			if (!_inSeek && mixHandle != null && transform != null)
-				mixHandle.Set( transform, _lastStrength );
+				mixHandle.Set(transform, _lastStrength);
 		}
 	}
 

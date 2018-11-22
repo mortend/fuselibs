@@ -26,7 +26,7 @@ namespace Fuse.Controls
 			{ 
 				DefaultPath = value; 
 				//deprecated: 2016-10-20
-				Fuse.Diagnostics.Deprecated( "Use `DefaultPath` instead of `DefaultTemplate`", this );
+				Fuse.Diagnostics.Deprecated("Use `DefaultPath` instead of `DefaultTemplate`", this);
 			}
 		}
 		
@@ -56,7 +56,7 @@ namespace Fuse.Controls
 			//defaults for NavigationControl
 			_transition = NavigationControlTransition.Standard;
 			
-			SetNavigation( new ExplicitNavigation() );
+			SetNavigation(new ExplicitNavigation());
 		}
 
 		new Fuse.Navigation.ExplicitNavigation Navigation
@@ -81,7 +81,7 @@ namespace Fuse.Controls
 			var hasPrepared = _prepared != null;
 			var isOn = hasTrans || hasDefer;
 			// Preparing is used with PartialPrepareGoto which implies a Seek
-			Navigation.SetState( hasPrepared ? NavigationState.Seek :
+			Navigation.SetState(hasPrepared ? NavigationState.Seek :
 				isOn ? NavigationState.Transition : NavigationState.Stable);
 		}
 		
@@ -100,19 +100,19 @@ namespace Fuse.Controls
 			var pages = AncestorRouterPage != null ? AncestorRouterPage.ChildRouterPages : null;
 			if (pages != null && pages.Count > 0)
 			{
-				((IRouterOutlet)this).Goto( pages[pages.Count-1], NavigationGotoMode.Bypass, 
-					RoutingOperation.Goto, "", out ignore );
+				((IRouterOutlet)this).Goto(pages[pages.Count-1], NavigationGotoMode.Bypass, 
+					RoutingOperation.Goto, "", out ignore);
 			}
 			else
 			{
 				if (DefaultPath != null)
 				{
-					_current = new NavPage{ RouterPage = new RouterPage( DefaultPath ) };
+					_current = new NavPage{ RouterPage = new RouterPage(DefaultPath) };
 					((IRouterOutlet)this).Goto(_current.RouterPage, NavigationGotoMode.Bypass,
 						RoutingOperation.Goto, "", out _current.Visual);
 				}
 				if (pages != null)
-					pages.Add( _current.RouterPage );
+					pages.Add(_current.RouterPage);
 			}
 		}
 		
@@ -144,7 +144,7 @@ namespace Fuse.Controls
 		{
 			if (_prepared == null)
 			{
-				Fuse.Diagnostics.InternalError( "PartialPrepareGoto without Prepare", this );
+				Fuse.Diagnostics.InternalError("PartialPrepareGoto without Prepare", this);
 				return;
 			}
 		
@@ -165,7 +165,7 @@ namespace Fuse.Controls
 		{
 			if (_prepared == null)
 			{
-				Fuse.Diagnostics.InternalError( "PartialPrepareGoto without Prepare", this );
+				Fuse.Diagnostics.InternalError("PartialPrepareGoto without Prepare", this);
 				return;
 			}
 
@@ -190,7 +190,7 @@ namespace Fuse.Controls
 			var current = (this as IRouterOutlet).GetCurrent(out currentVisual);
 			
 			if (DefaultPath != null)
-				routerPage.DefaultPath( DefaultPath );
+				routerPage.DefaultPath(DefaultPath);
 				
 			if (routerPage.Path != current.Path || (currentVisual == null && routerPage.Path != null))
 				return RoutingResult.Change;
@@ -207,7 +207,7 @@ namespace Fuse.Controls
 			RouterPage routerPage, RoutingOperation operation)
 		{
 			if (DefaultPath != null)
-				routerPage.DefaultPath( DefaultPath );
+				routerPage.DefaultPath(DefaultPath);
 				
 			var curPageVisual = curPage.Visual;
 			if (routerPage.Path == curPage.RouterPage.Path && curPageVisual != null)
@@ -332,7 +332,7 @@ namespace Fuse.Controls
 			if (visual != _current.Visual && visual != null && visual != newTarget)
 			{
 				//this can happen if Prepare is called while in the middle of another prepare
-				Navigation.SetPageProgress( visual, _prepareBack ? 1 : -1 );
+				Navigation.SetPageProgress(visual, _prepareBack ? 1 : -1);
 			}
 
 			AddToCache(_prepared, newTarget);
@@ -399,7 +399,7 @@ namespace Fuse.Controls
 				
 			if (result.Page == null)
 			{
-				Fuse.Diagnostics.InternalError( "Unexpected null page", this );
+				Fuse.Diagnostics.InternalError("Unexpected null page", this);
 				return RoutingResult.Invalid;
 			}
 			pageVisual = result.Page.Visual;
@@ -427,7 +427,7 @@ namespace Fuse.Controls
 				
 			//Not UserError since we can't be certain it's trivially the users problem due to static
 			//history in the router
-			Fuse.Diagnostics.InternalError( "Can not navigate to '" + path + "', not found!", this );
+			Fuse.Diagnostics.InternalError("Can not navigate to '" + path + "', not found!", this);
 			return null;
 		}
 		
@@ -436,7 +436,7 @@ namespace Fuse.Controls
 			var useVisual = f.New() as Visual;
 			if (useVisual == null) 
 			{
-				Fuse.Diagnostics.UserError( "Result of '" + path + "' template is not a Visual!", this );
+				Fuse.Diagnostics.UserError("Result of '" + path + "' template is not a Visual!", this);
 				return null;
 			}
 			useVisual.Name = path; //TODO: what is overwritten, maybe a private variable is needed
@@ -523,7 +523,7 @@ namespace Fuse.Controls
 				Operation = operation};
 			CleanupListenBusy();
 			UpdateNavigationState();
-			UpdateManager.AddDeferredAction( SwitchDeferred, LayoutPriority.Later );
+			UpdateManager.AddDeferredAction(SwitchDeferred, LayoutPriority.Later);
 		}
 		
 		void CleanupListenBusy()
@@ -542,7 +542,7 @@ namespace Fuse.Controls
 		bool _listenTimeout = false;
 		void BusyChanged()
 		{
-			UpdateManager.AddDeferredAction( SwitchDeferred, LayoutPriority.Later );
+			UpdateManager.AddDeferredAction(SwitchDeferred, LayoutPriority.Later);
 		}
 		
 		void OnUpdate()
@@ -551,7 +551,7 @@ namespace Fuse.Controls
 			if (elapsed > DeferPageSwitchTimeout)
 			{
 				_listenTimeout = true;
-				UpdateManager.AddDeferredAction( SwitchDeferred, LayoutPriority.Later );
+				UpdateManager.AddDeferredAction(SwitchDeferred, LayoutPriority.Later);
 			}
 		}
 		
@@ -588,7 +588,7 @@ namespace Fuse.Controls
 			if (deferredVisual != null && !_listenTimeout)
 			{
 				var busy = BusyTask.GetBusyActivity(deferredVisual);
-				if ( (busy & DeferPageSwitch) != BusyTaskActivity.None)
+				if ((busy & DeferPageSwitch) != BusyTaskActivity.None)
 				{
 					if (_listenBusy == null)
 					{
@@ -620,7 +620,7 @@ namespace Fuse.Controls
 				deferred.Operation != RoutingOperation.Goto)
 			{
 				Navigation.SetPageProgress(currentVisual, 
-					deferred.Operation == RoutingOperation.Push ? -1 : 1, 0, false );
+					deferred.Operation == RoutingOperation.Push ? -1 : 1, 0, false);
 			}
 
 			AddToCache(_current, deferredVisual);
@@ -792,11 +792,11 @@ namespace Fuse.Controls
 		protected override void OnChildRemoved(Node elm)
 		{
 			if (elm == _current.Visual)
-				Fuse.Diagnostics.InternalError( "Removing child!" );
+				Fuse.Diagnostics.InternalError("Removing child!");
 			if (_deferred != null && _deferred.Page.Visual == elm)
-				Fuse.Diagnostics.InternalError( "removing deferred child" );
+				Fuse.Diagnostics.InternalError("removing deferred child");
 			if (_prepared != null && _prepared.Visual == elm)
-				Fuse.Diagnostics.InternalError( "removing prepared child" );
+				Fuse.Diagnostics.InternalError("removing prepared child");
 			base.OnChildRemoved(elm);
 		}
 

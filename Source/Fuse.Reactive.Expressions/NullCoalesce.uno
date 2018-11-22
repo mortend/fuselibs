@@ -7,7 +7,7 @@ namespace Fuse.Reactive
 	{
 		[UXConstructor]
 		public NullCoalesce([UXParameter("Left")] Expression left, [UXParameter("Right")] Expression right)
-			: base( new Expression[]{left, right}, Flags.OmitComputeWarning | Flags.AllOptional)
+			: base(new Expression[]{left, right}, Flags.OmitComputeWarning | Flags.AllOptional)
 		{}
 
 		protected override bool TryCompute(Expression.Argument[] args, out object result)

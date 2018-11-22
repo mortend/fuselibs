@@ -19,7 +19,7 @@ namespace Fuse.Test
 				Assert.IsTrue(Focus.IsFocusable(dummy));
 				Assert.IsTrue(dummy.IsContextEnabled);
 
-				Focus.GiveTo( dummy );
+				Focus.GiveTo(dummy);
 				Assert.AreEqual(dummy, Focus.FocusedVisual);
 			}
 		}
@@ -32,7 +32,7 @@ namespace Fuse.Test
 			{
 				Assert.IsFalse(Focus.IsFocusable(dummy));
 
-				Focus.GiveTo( dummy );
+				Focus.GiveTo(dummy);
 
 				Assert.AreEqual(null, Focus.FocusedVisual);
 				Assert.AreNotEqual(dummy, Focus.FocusedVisual);
@@ -48,7 +48,7 @@ namespace Fuse.Test
 				Assert.IsTrue(Focus.IsFocusable(dummy));
 				Assert.IsFalse(dummy.IsContextEnabled);
 
-				Focus.GiveTo( dummy );
+				Focus.GiveTo(dummy);
 
 				Assert.AreEqual(null, Focus.FocusedVisual); // No Root
 				Assert.AreNotEqual(dummy, Focus.FocusedVisual);

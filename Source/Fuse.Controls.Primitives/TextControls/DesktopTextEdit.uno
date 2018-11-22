@@ -156,7 +156,7 @@ namespace Fuse.Controls
 				{
 					if (Time.FrameTime > _revealEnd)
 					{
-						if( pt.SetReveal( -1 ) )
+						if(pt.SetReveal(-1))
 							_lineCache.InvalidateVisual();	
 					}
 				}
@@ -273,7 +273,7 @@ namespace Fuse.Controls
 			var caretSize = float2(1.0f, caretRect.Size.Y);
 			_caretBrush.Color = float4(CaretColor.XYZ, CaretColor.W * blink);
 			_caretBrush.Prepare(dc, caretSize);
-			Fuse.Drawing.Primitives.Rectangle.Singleton.Fill(dc,this, caretSize, float4(0), _caretBrush, pos );
+			Fuse.Drawing.Primitives.Rectangle.Singleton.Fill(dc,this, caretSize, float4(0), _caretBrush, pos);
 		}
 
 		// Line cache
@@ -398,9 +398,9 @@ namespace Fuse.Controls
 			new DegreeSpan(-45.0f, -135.0f));	// Left
 
 		static SwipeGestureHelper _verticalGesture = new SwipeGestureHelper(15.0f,
-			new DegreeSpan( -45.0f,   45.0f),
+			new DegreeSpan(-45.0f,   45.0f),
 			new DegreeSpan(-135.0f, -180.0f),
-			new DegreeSpan( 135.0f,  180.0f));
+			new DegreeSpan(135.0f,  180.0f));
 
 		void OnLostCapture()
 		{
@@ -527,9 +527,9 @@ namespace Fuse.Controls
 					continue;
 
 				_caretPosition = _lineCache.InsertChar(_caretPosition, character);
-				if( PasswordTransform != null )
+				if(PasswordTransform != null)
 				{
-					PasswordTransform.SetReveal( _caretPosition.Char - 1 );
+					PasswordTransform.SetReveal(_caretPosition.Char - 1);
 					_revealEnd = Time.FrameTime + RevealTime;
 				}
 
@@ -544,8 +544,8 @@ namespace Fuse.Controls
 
 		void ClearPasswordReveal()
 		{
-			if( PasswordTransform != null )
-				if( PasswordTransform.SetReveal( -1 ) )
+			if(PasswordTransform != null)
+				if(PasswordTransform.SetReveal(-1))
 					_lineCache.InvalidateVisual();
 		}
 

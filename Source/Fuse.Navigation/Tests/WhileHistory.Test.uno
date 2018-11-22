@@ -37,11 +37,11 @@ namespace Fuse.Navigation.Test
 			{
 				Assert.AreEqual(0,p.wcb.Progress);
 
-				p.router.Push( new Route("b") );
+				p.router.Push(new Route("b"));
 				root.StepFrame();
 				Assert.AreEqual(1, p.wcb.Progress);
 				
-				p.router.Push( new Route("c") );
+				p.router.Push(new Route("c"));
 				root.StepFrame();
 				Assert.AreEqual(1, p.wcb.Progress);
 
@@ -53,15 +53,15 @@ namespace Fuse.Navigation.Test
 				root.StepFrame();
 				Assert.AreEqual(0, p.wcb.Progress);
 
-				p.router.Push( new Route("b" ));
+				p.router.Push(new Route("b"));
 				root.StepFrame();
 				Assert.AreEqual(1, p.wcb.Progress);
 
-				p.router.Goto( new Route("c"));
+				p.router.Goto(new Route("c"));
 				root.StepFrame();
 				Assert.AreEqual(0, p.wcb.Progress);
 
-				p.router.Push( new Route("c", null, new Route("i")));
+				p.router.Push(new Route("c", null, new Route("i")));
 				root.StepFrame();
 				Assert.AreEqual(1, p.wcb.Progress);
 			}

@@ -195,7 +195,7 @@ namespace Fuse.iOS.Bindings
 
 		static CGColorSpaceRef CGColorSpaceCreateDeviceRGB() @{ return ::CGColorSpaceCreateDeviceRGB(); @}
 
-		internal static ITextRenderer Create( Fuse.Controls.TextControl control )
+		internal static ITextRenderer Create(Fuse.Controls.TextControl control)
 		{
 			return new TextRenderer(control);
 		}
@@ -204,7 +204,7 @@ namespace Fuse.iOS.Bindings
 		TextLayout _measureLayout;
 		
 		Fuse.Controls.TextControl _control;
-		public TextRenderer( Fuse.Controls.TextControl control )
+		public TextRenderer(Fuse.Controls.TextControl control)
 		{
 			_control = control;
 		}
@@ -334,9 +334,9 @@ namespace Fuse.iOS.Bindings
 		public Uno.Rect GetRenderBounds()
 		{
 			_textLayout.UpdateLayout(_control, _arrangeSize);
-			return Uno.Rect.Translate( new Uno.Rect(
+			return Uno.Rect.Translate(new Uno.Rect(
 				(float2)_textLayout.PixelBounds.Position / _control.Viewport.PixelsPerPoint,
-				(float2)_textLayout.PixelBounds.Size / _control.Viewport.PixelsPerPoint), _arrangePosition );
+				(float2)_textLayout.PixelBounds.Size / _control.Viewport.PixelsPerPoint), _arrangePosition);
 		}
 
 		texture2D _texture;

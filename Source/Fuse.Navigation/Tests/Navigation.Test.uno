@@ -47,7 +47,7 @@ namespace Fuse.Navigation.Test
 		[Test]
 		public void JSGetRoute()
 		{
-			Assert.AreEqual(0, Fuse.Triggers.TransitionGroup.TestMemoryCount );
+			Assert.AreEqual(0, Fuse.Triggers.TransitionGroup.TestMemoryCount);
 
 			var p = new UX.JSGetRoute();
 			using (var root = TestRootPanel.CreateWithChild(p, int2(100)))
@@ -58,10 +58,10 @@ namespace Fuse.Navigation.Test
 				root.MultiStepFrameJS(2);
 
 				// If no exceptions we're good.
-				Assert.AreEqual( "yes", p.done.Value );
+				Assert.AreEqual("yes", p.done.Value);
 			}
 
-			Assert.AreEqual(0, Fuse.Triggers.TransitionGroup.TestMemoryCount );
+			Assert.AreEqual(0, Fuse.Triggers.TransitionGroup.TestMemoryCount);
 		}
 
 		[Test]
@@ -199,15 +199,15 @@ namespace Fuse.Navigation.Test
 				Assert.AreEqual(float4(1,0,0,1), p.ActiveTitle.Color);
 
 				var p1 = p.PI.GetZOrderChild(2) as PBFDot;
-				Assert.AreEqual("one", p1.T.Value );
+				Assert.AreEqual("one", p1.T.Value);
 				Assert.AreEqual(float4(1,0,0,1), p1.T.Color);
 				Assert.AreEqual(1,TriggerProgress(p1.WA));
 				var p2 = p.PI.GetZOrderChild(1) as PBFDot;
-				Assert.AreEqual("two", p2.T.Value );
+				Assert.AreEqual("two", p2.T.Value);
 				Assert.AreEqual(float4(0,1,0,1), p2.T.Color);
 				Assert.AreEqual(0,TriggerProgress(p2.WA));
 				var p3 = p.PI.GetZOrderChild(0) as PBFDot;
-				Assert.AreEqual("three", p3.T.Value );
+				Assert.AreEqual("three", p3.T.Value);
 				Assert.AreEqual(float4(0,0,1,1), p3.T.Color);
 				Assert.AreEqual(0,TriggerProgress(p3.WA));
 

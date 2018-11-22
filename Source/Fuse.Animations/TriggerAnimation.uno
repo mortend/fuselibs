@@ -70,7 +70,7 @@ namespace Fuse.Animations
 				return new AnimatorState[0];
 				
 			var state = new AnimatorState[_animators.Count];
-			for( int i=0; i < _animators.Count; ++i )
+			for(int i=0; i < _animators.Count; ++i)
 				state[i] = _animators[i].CreateState(csp);
 			return state;
 		}
@@ -180,7 +180,7 @@ namespace Fuse.Animations
 			return new TriggerAnimationState(this, elm);
 		}
 
-		internal AnimationVariant RestrictVariant( AnimationVariant variant )
+		internal AnimationVariant RestrictVariant(AnimationVariant variant)
 		{
 			if (!HasDirectionVariant && _backward == null)
 				return AnimationVariant.Forward;
@@ -243,7 +243,7 @@ namespace Fuse.Animations
 		TriggerAnimation Animation { get; private set; }
 		Visual _node;
 		
-		internal TriggerAnimationState( TriggerAnimation animation, Visual node )
+		internal TriggerAnimationState(TriggerAnimation animation, Visual node)
 		{ 
 			Animation = animation;
 			Animation.TimeChanged += OnTimeChanged;
@@ -284,7 +284,7 @@ namespace Fuse.Animations
 		}
 		
 		public IUnwrappedPlayerFeedback Feedback;
-		void TrackProgress( Player player )
+		void TrackProgress(Player player)
 		{
 			player.Feedback = this;
 		}
@@ -392,7 +392,7 @@ namespace Fuse.Animations
 			{
 				var prevProgress = prev.Progress;
 				
-				prev.SeekProgress( prevProgress, false ); //stops progression
+				prev.SeekProgress(prevProgress, false); //stops progression
 				cur.SeekProgress(prevProgress, false);
 
 				if (isNew)
@@ -407,9 +407,9 @@ namespace Fuse.Animations
 				}
 				else
 				{
-					var fadeTime = Math.Min( remainTime, Animation.CrossFadeDuration );
+					var fadeTime = Math.Min(remainTime, Animation.CrossFadeDuration);
 					cur.FadeIn(fadeTime);
-					prev.FadeOut( fadeTime );
+					prev.FadeOut(fadeTime);
 				}
 			}
 			
@@ -428,7 +428,7 @@ namespace Fuse.Animations
 			p.PlayToEnd();
 		}
 		
-		public void PlayEnd( bool on )
+		public void PlayEnd(bool on)
 		{
 			if (on)
 				PlayOn();
@@ -459,7 +459,7 @@ namespace Fuse.Animations
 			get
 			{
 				if (_curPlayer == null)
-					return Animation.GetAnimatorsDuration( AnimationVariant.Forward );
+					return Animation.GetAnimatorsDuration(AnimationVariant.Forward);
 				return _curPlayer.AnimatorsDuration;
 			}
 		}
@@ -467,7 +467,7 @@ namespace Fuse.Animations
 		public bool ProgressFullOn { get { return Progress >= 1; } }
 		public bool ProgressFullOff { get { return Progress <= 0; } }
 		
-		Player GetCurrentPlayer( AnimationVariant tendTo, SeekFlags flags )
+		Player GetCurrentPlayer(AnimationVariant tendTo, SeekFlags flags)
 		{
 			if (!flags.HasFlag(SeekFlags.ForcePlayer))
 			{
@@ -486,8 +486,8 @@ namespace Fuse.Animations
 			/** Prevents the sending of an updated progress as a result of a seek */
 			BypassUpdate = 1<<1,
 		}
-		public void SeekProgress( double newProgress, AnimationVariant tendTo = AnimationVariant.Forward,
-			SeekFlags flags = 0 )
+		public void SeekProgress(double newProgress, AnimationVariant tendTo = AnimationVariant.Forward,
+			SeekFlags flags = 0)
 		{
 			bool bypassUpdate = flags.HasFlag(SeekFlags.BypassUpdate);
 			var player =  GetCurrentPlayer(tendTo, flags);
@@ -496,7 +496,7 @@ namespace Fuse.Animations
 			player.SeekProgress(newProgress, !bypassUpdate);
 		 }
 		
-		public void PlayToProgress( double progress, AnimationVariant tendTo = AnimationVariant.Forward,
+		public void PlayToProgress(double progress, AnimationVariant tendTo = AnimationVariant.Forward,
 			SeekFlags flags = 0)
 		{
 			var player = GetCurrentPlayer(tendTo, flags);

@@ -3,10 +3,10 @@
 		var Observable = require("FuseJS/Observable")
 		
 		var source = Observable(3)
-		var items = source.map( function(count) {
+		var items = source.map(function(count) {
 			var entries = Observable()
 			for (var i=0; i < count; ++i) {
-				entries.add( "" + i )
+				entries.add("" + i)
 			}
 			return entries
 		}).inner()

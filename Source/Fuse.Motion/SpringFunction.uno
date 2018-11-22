@@ -68,7 +68,7 @@ namespace Fuse.Motion
 			{ 
 				StopSimulation();
 				if (_listener != null)
-					_listener.OnLostData( source );
+					_listener.OnLostData(source);
 			}
 
 			void StartSimulation()

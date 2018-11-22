@@ -31,7 +31,7 @@ namespace Experimental.Http
 			var request = LoaderConst.Handler.CreateRequest(Method, Uri, Fuse.UpdateManager.Dispatcher);
 			request.Error += OnError;
 			request.Done += OnLoaded;
-			request.SetResponseType( HttpResponseType.ByteArray );
+			request.SetResponseType(HttpResponseType.ByteArray);
 			request.SendAsync();
 		}
 
@@ -41,7 +41,7 @@ namespace Experimental.Http
 			get { return _header; }
 		}
 
-		public void OnLoaded( HttpMessageHandlerRequest resp )
+		public void OnLoaded(HttpMessageHandlerRequest resp)
 		{
 			_header = new HttpResponseHeader();
 			_header.StatusCode = resp.GetResponseStatus();
@@ -66,7 +66,7 @@ namespace Experimental.Http
 			return res;
 		}
 
-		public void OnError(HttpMessageHandlerRequest msg, string reason )
+		public void OnError(HttpMessageHandlerRequest msg, string reason)
 		{
 			ErrorCallback(reason);
 		}

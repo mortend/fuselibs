@@ -3,12 +3,12 @@
 		var Observable = require("FuseJS/Observable")
 
 		exports.items = Observable()
-		exports.items.add( "one")
-		exports.items.add( "two" )
-		exports.items.add( "three" )
+		exports.items.add("one")
+		exports.items.add("two")
+		exports.items.add("three")
 		
 		exports.replaceAt = function() {
-			exports.items.replaceAt( 1, "two" )
+			exports.items.replaceAt(1, "two")
 		}
 		
 		exports.replaceAll = function() {

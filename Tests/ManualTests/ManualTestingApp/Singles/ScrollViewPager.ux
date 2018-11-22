@@ -25,8 +25,8 @@
 			exports.items.remove(args.data)
 		}
 		exports.add = function(args) {
-			exports.items.insertAt( exports.items.indexOf(args.data) + 1,
-				new Item(args.data.id + "*") )
+			exports.items.insertAt(exports.items.indexOf(args.data) + 1,
+				new Item(args.data.id + "*"))
 		}
 
 		var count = 0
@@ -42,15 +42,15 @@
 				loading.value = false
 				var add = 1 + Math.random() * 10
 				for (var i=0; i < add; ++i) {
-					exports.items.add( new Item(++count) )
+					exports.items.add(new Item(++count))
 				}
 				pager.check()
 			}
 			loading.value = true
-			setTimeout( loadMore, Math.random() * delayMax )
+			setTimeout(loadMore, Math.random() * delayMax)
 		}
 		exports.reachedStart = function(args) {
-			console.log( "Reached the start" )
+			console.log("Reached the start")
 		}
 	</JavaScript>
 	<ScrollView LayoutMode="PreserveVisual">

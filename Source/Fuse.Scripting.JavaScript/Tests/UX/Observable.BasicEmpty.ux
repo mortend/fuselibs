@@ -6,7 +6,7 @@
 		exports.items = items
 		
 		exports.step1 = function() {
-			items.add( "a" )
+			items.add("a")
 		}
 		
 		exports.step2 = function() {

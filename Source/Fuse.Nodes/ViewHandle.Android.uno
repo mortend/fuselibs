@@ -130,7 +130,7 @@ namespace Fuse.Controls.Native
 		public void SetIsVisible(bool isVisible)
 		@{
 			android.view.View handle = (android.view.View)@{Fuse.Controls.Native.ViewHandle:Of(_this).NativeHandle:Get()};
-			handle.setVisibility( (isVisible) ? android.view.View.VISIBLE : android.view.View.INVISIBLE );
+			handle.setVisibility((isVisible) ? android.view.View.VISIBLE : android.view.View.INVISIBLE);
 		@}
 
 		[Foreign(Language.Java)]

@@ -106,7 +106,7 @@ Observable.prototype._watchSource = function(source, callback, suppressCallback)
 		callback.apply(self, arguments)
 	}
 	
-	return this._addSubscriptionWatcher( function() {
+	return this._addSubscriptionWatcher(function() {
 		source.addSubscriber(callbackProxy, suppressCallback)
 	}, function() {
 		source.removeSubscriber(callbackProxy)
@@ -129,7 +129,7 @@ Observable.prototype._proxyFrom = function(source, mapFunc, clearMap, sigType, s
 	var needsIndex = sigType == 2 || sigType == 4
 	
 	if (sigType <1 || sigType >4) {
-		throw new Error( "Invalid sigType to _proxyFrom")
+		throw new Error("Invalid sigType to _proxyFrom")
 	}
 	
 	function mapValue(value, index, replaceValue) {
@@ -237,13 +237,13 @@ Observable.prototype._proxyFrom = function(source, mapFunc, clearMap, sigType, s
 	}, suppressInitial)
 	
 	if (clearMap) {
-		res.watchCleanupId = self._addSubscriptionWatcher( function() {}, clearMapAll );
+		res.watchCleanupId = self._addSubscriptionWatcher(function() {}, clearMapAll);
 	}
 	
 	return res
 }
 
-Observable.prototype._unproxyFrom = function( proxyId ) {
+Observable.prototype._unproxyFrom = function(proxyId) {
 	this._unwatchSource(proxyId.watchSourceId)
 	if (proxyId.watchCleanupId) {
 		this._unwatchSource(proxyId.watchCleanupId)
@@ -258,9 +258,9 @@ function Identity(x)
 /*
 	A wrapper to ProxyObserveList
 	
-		ProxyObseve( sources..., callback )
+		ProxyObseve(sources..., callback)
 		=>
-		ProxyObserveList( sources, callback, undefined )
+		ProxyObserveList(sources, callback, undefined)
 */
 function ProxyObserve()
 {
@@ -295,7 +295,7 @@ function ProxyObserveList(sources, callback, endSubscriptionCallback)
 		res._watchSource(sources[i], callback)
 	}
 	if (endSubscriptionCallback) {
-		res._addSubscriptionWatcher( function() {}, endSubscriptionCallback)
+		res._addSubscriptionWatcher(function() {}, endSubscriptionCallback)
 	}
 
 	return res;
@@ -368,7 +368,7 @@ function FunctionObservable(func) {
 	};
 
 
-	obs._addSubscriptionWatcher( function() {
+	obs._addSubscriptionWatcher(function() {
 		depChanged();
 	}, function() {
 		obs._dependencies.forEach(function (x) {
@@ -406,8 +406,8 @@ Observable.prototype.onValueChanged = function(module, callback) {
 	// Support old syntax where module is not provided (no cleanup can be done!)
 	if (!callback) {
 		//DEPRECATED: 2016-07-20
-		Diagnostics.deprecated( "onValueChanged now expects a `module` as the first parameter. " + 
-			"Without it there will be a leak." )
+		Diagnostics.deprecated("onValueChanged now expects a `module` as the first parameter. " + 
+			"Without it there will be a leak.")
 		callback = module
 		module = null
 	}
@@ -418,14 +418,14 @@ Observable.prototype.onValueChanged = function(module, callback) {
 	};
 	
 	if (!module) {	
-		this.addSubscriber( subscriber );
+		this.addSubscriber(subscriber);
 	} else {
-		this._addDisposableSubscriber( module, subscriber )
+		this._addDisposableSubscriber(module, subscriber)
 	}
 };
 
 Observable.prototype.subscribe = function(module) {
-	this._addDisposableSubscriber( module, function() {} )
+	this._addDisposableSubscriber(module, function() {})
 };
 
 Observable.prototype._addDisposableSubscriber = function(module, subscriber) {
@@ -552,7 +552,7 @@ Subscriber.prototype.post = function(args)
 
 Observable.prototype.addSubscriber = function(s, suppressInitialCallback)
 {
-	this._addSubscriber( new Subscriber(2, s), suppressInitialCallback)
+	this._addSubscriber(new Subscriber(2, s), suppressInitialCallback)
 }
 
 Observable.prototype._addSubscriber = function(sub, suppressInitialCallback)
@@ -621,7 +621,7 @@ Observable.prototype._addSubscriptionWatcher = function(begin, end) {
 	}
 
 	var watcherId = ++_watcherId
-	this._subscriptionWatchers.push( { begin: begin, end: end, watcherId: watcherId } )
+	this._subscriptionWatchers.push({ begin: begin, end: end, watcherId: watcherId })
 	if (this._beganSubscriptions) {
 		begin()
 	}
@@ -634,7 +634,7 @@ Observable.prototype._removeSubscriptionWatcher = function(watcherId) {
 	if (!sw) {
 		return
 	}
-	for (var i=0; i < sw.length; ++i ) {
+	for (var i=0; i < sw.length; ++i) {
 		var tsw = sw[i]
 		if (tsw.watcherId === watcherId) {
 			sw.splice(i,1)
@@ -654,7 +654,7 @@ Observable.prototype._beginSubscriptions = function() {
 	
 	if (this.beginSubscriptions != Observable.prototype.beginSubscriptions) {
 		if (!deprecatedMsg.beginSubscriptions) {
-			Diagnostics.deprecated( "`.beginSubscriptions` is deprecated. There is currently no replacement, please contact Fuse for how to migrate your code.")
+			Diagnostics.deprecated("`.beginSubscriptions` is deprecated. There is currently no replacement, please contact Fuse for how to migrate your code.")
 			deprecatedMsg.beginSubscriptions = true
 		}
 		this.beginSubscriptions()
@@ -663,7 +663,7 @@ Observable.prototype._beginSubscriptions = function() {
 	var sw = this._subscriptionWatchers
 	if (sw) {
 		var copy = sw.slice()
-		for (var i=0; i < copy.length; ++i ) {
+		for (var i=0; i < copy.length; ++i) {
 			copy[i].begin()
 		}
 	}
@@ -674,7 +674,7 @@ Observable.prototype._endSubscriptions = function() {
 	
 	if (this.endSubscriptions != Observable.prototype.endSubscriptions) {
 		if (!deprecatedMsg.endSubscriptions) {
-			Diagnostics.deprecated( "`.endSubscriptions` is deprecated. There is currently no replacement, please contact Fuse for how to migrate your code.")
+			Diagnostics.deprecated("`.endSubscriptions` is deprecated. There is currently no replacement, please contact Fuse for how to migrate your code.")
 			deprecatedMsg.endSubscriptions = true
 		}
 		this.endSubscriptions()
@@ -684,7 +684,7 @@ Observable.prototype._endSubscriptions = function() {
 	if (!sw) {
 		return
 	}
-	for (var i=0; i < sw.length; ++i ) {
+	for (var i=0; i < sw.length; ++i) {
 		sw[i].end()
 	}
 }
@@ -770,8 +770,8 @@ Observable.prototype.getFailure = function() {
 	return this._failed
 }
 
-Observable.prototype.onFailed = function(module, onFailedCallback, onFailedResolvedCallback ) {
-	this._addDisposableSubscriber( module, function(obs, cmd, origin, value) {
+Observable.prototype.onFailed = function(module, onFailedCallback, onFailedResolvedCallback) {
+	this._addDisposableSubscriber(module, function(obs, cmd, origin, value) {
 		if (cmd === "failed") {
 			onFailedCallback(value)
 		} else {
@@ -941,7 +941,7 @@ Observable.prototype.removeRange = function(index, count, _origin)
 	this._queueMessage(this, "removeRange", _origin, index, count, removed);
 };
 
-Observable.prototype.clear = function( _origin)
+Observable.prototype.clear = function(_origin)
 {
 	this._values = [];
 	this._queueMessage(this, "clear", _origin);
@@ -1080,7 +1080,7 @@ function PostMessage(sub, args)
 }
 
 /**
-	_queueMessage( object, op, origin, args... )
+	_queueMessage(object, op, origin, args...)
 */
 Observable.prototype._queueMessage = function() 
 {
@@ -1115,7 +1115,7 @@ Observable.prototype.map = function(mapFunc, clearMap)
 	return this._map(mapFunc, undefined, clearMap)
 }
 
-Observable.prototype.mapTwoWay = function( mapFunc, unmapFunc )
+Observable.prototype.mapTwoWay = function(mapFunc, unmapFunc)
 {	
 	return this._map(mapFunc, unmapFunc, undefined)
 }
@@ -1162,7 +1162,7 @@ Observable.prototype.flatMap = function(mapFunc) {
 }
 
 Observable.prototype.notNull = function() {
-	return this.where(function(x) { return x; } );
+	return this.where(function(x) { return x; });
 };
 
 Observable.prototype.parseJson = function()
@@ -1402,7 +1402,7 @@ Observable.prototype.count = function(criteria)
 };
 
 Observable.prototype.any = function(f) {
-	return this.count(f).map(function(x) { return x > 0; } );
+	return this.count(f).map(function(x) { return x > 0; });
 }
 
 Observable.prototype.first = function(f) {
@@ -1461,13 +1461,13 @@ Observable.prototype._inner = function(enableTwoWay, forceSourceObservable) {
 		}
 		
 		if (toProxy) {
-			targetProxyId = target._proxyFrom(toProxy, function(v) { return v }, undefined, 1, false )
+			targetProxyId = target._proxyFrom(toProxy, function(v) { return v }, undefined, 1, false)
 			if (enableTwoWay) {
-				sourceProxyId = toProxy._proxyFrom(target, function(v) { return v }, undefined, 1, true )
+				sourceProxyId = toProxy._proxyFrom(target, function(v) { return v }, undefined, 1, true)
 			}
 			proxied = toProxy
 		} else if (source instanceof Array) {
-			target.replaceAll( source )
+			target.replaceAll(source)
 		} else if (source === null || source === undefined) {
 			target.clear()
 		} else {
@@ -1475,7 +1475,7 @@ Observable.prototype._inner = function(enableTwoWay, forceSourceObservable) {
 		}
 	}
 	
-	target._addSubscriptionWatcher( function() {
+	target._addSubscriptionWatcher(function() {
 		self.addSubscriber(selfChanged)
 	}, function() {
 		self.removeSubscriber(selfChanged)
@@ -1484,7 +1484,7 @@ Observable.prototype._inner = function(enableTwoWay, forceSourceObservable) {
 	//DEPRECATED: 2016-12-27
 	target.twoWayMap = function(f,g) {
 		if (!deprecatedMsg.twoWayMap) {
-			Diagnostics.deprecated( "`.inner().twoWayMap()` is deprecated. Use `.innerTwoWay()`, possibly combined with `.mapTwoWay()` or another two-way function" );
+			Diagnostics.deprecated("`.inner().twoWayMap()` is deprecated. Use `.innerTwoWay()`, possibly combined with `.mapTwoWay()` or another two-way function");
 			deprecatedMsg.twoWayMap = true
 		}
 		return self._innerDeprecated().twoWayMap(f,g)
@@ -1497,7 +1497,7 @@ Observable.prototype._inner = function(enableTwoWay, forceSourceObservable) {
 Observable.prototype.innerDeprecated = function()
 {
 	if (!deprecatedMsg.innerDeprecated) {
-		Diagnostics.deprecated( "`.innerDeprecated()` is deprecated, being provided only for odd compatibility reasons. Try using `.inner()` instead. " );
+		Diagnostics.deprecated("`.innerDeprecated()` is deprecated, being provided only for odd compatibility reasons. Try using `.inner()` instead. ");
 		deprecatedMsg.innerDeprecated = true
 	}
 	return this._innerDeprecated()
@@ -1557,7 +1557,7 @@ Observable.prototype._innerDeprecated = function()
 			}
 		};
 
-		m._addSubscriptionWatcher( function() {
+		m._addSubscriptionWatcher(function() {
 			m.addSubscriber(mChanged);
 		},  function() {
 			m.removeSubscriber(mChanged);
@@ -1566,7 +1566,7 @@ Observable.prototype._innerDeprecated = function()
 		return m;
 	}
 
-	res._addSubscriptionWatcher( function() {
+	res._addSubscriptionWatcher(function() {
 		self.addSubscriber(selfChanged);
 	}, function() {
 		self.removeSubscriber(selfChanged);
@@ -1600,10 +1600,10 @@ Observable.prototype.slice = function(begin, end)
 	@param failedMapFunc(err) Returns the value to use when there is failure
 	@param notFailedMapFunc()  (OPTIONAL) Returns the value to use when there is no failure
 */
-Observable.prototype.failedMap = function( failedMapFunc, notFailedMapFunc ) {
+Observable.prototype.failedMap = function(failedMapFunc, notFailedMapFunc) {
 	var res = new ProxyObservable()
 	
-	res._watchSource( this, function(src, op, origin, p1, p2) {
+	res._watchSource(this, function(src, op, origin, p1, p2) {
 		var value = undefined
 		
 		if (op === "failed") {
@@ -1613,9 +1613,9 @@ Observable.prototype.failedMap = function( failedMapFunc, notFailedMapFunc ) {
 		}
 		
 		if (value !== undefined) {
-			res.setValueWithOrigin( value, origin )
+			res.setValueWithOrigin(value, origin)
 		} else {
-			res.clear( origin )
+			res.clear(origin)
 		}
 	})
 	

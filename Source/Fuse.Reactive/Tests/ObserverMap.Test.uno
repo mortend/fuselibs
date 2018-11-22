@@ -13,19 +13,19 @@ namespace Fuse.Reactive.Test
 			var tm = new TestMap();
 			tm.Attach(rl, null);
 			
-			rl.Add( new Source(5) );
-			rl.Insert(0, new Source(3) );
-			Assert.AreEqual( 2, tm.Count );
-			Assert.AreEqual( 5, tm[1].InitValue );
-			Assert.AreEqual( 3, tm[0].InitValue );
+			rl.Add(new Source(5));
+			rl.Insert(0, new Source(3));
+			Assert.AreEqual(2, tm.Count);
+			Assert.AreEqual(5, tm[1].InitValue);
+			Assert.AreEqual(3, tm[0].InitValue);
 			
 			rl.Replace(1, new Source(7));
 			rl.RemoveAt(0);
-			Assert.AreEqual( 1, tm.Count );
-			Assert.AreEqual( 7, tm[0].InitValue );
+			Assert.AreEqual(1, tm.Count);
+			Assert.AreEqual(7, tm[0].InitValue);
 			
 			rl.Clear();
-			Assert.AreEqual( 0, tm.Count );
+			Assert.AreEqual(0, tm.Count);
 			
 			tm.Detach();
 		}
@@ -37,19 +37,19 @@ namespace Fuse.Reactive.Test
 			var tm = new TestMap();
 			tm.Attach(rl, null);
 			
-			tm.Add( new Mapped{ InitValue = 4 } );
-			Assert.AreEqual( 1, rl.Count );
-			Assert.AreEqual( 4, rl[0].Value );
+			tm.Add(new Mapped{ InitValue = 4 });
+			Assert.AreEqual(1, rl.Count);
+			Assert.AreEqual(4, rl[0].Value);
 			
-			tm.Insert( 0, new Mapped{ InitValue = 5 } );
-			tm.Insert( 2, new Mapped{ InitValue = 2 } );
-			tm.RemoveAt( 1 );
-			Assert.AreEqual( 2, rl.Count );
-			Assert.AreEqual( 5, rl[0].Value );
-			Assert.AreEqual( 2, rl[1].Value );
+			tm.Insert(0, new Mapped{ InitValue = 5 });
+			tm.Insert(2, new Mapped{ InitValue = 2 });
+			tm.RemoveAt(1);
+			Assert.AreEqual(2, rl.Count);
+			Assert.AreEqual(5, rl[0].Value);
+			Assert.AreEqual(2, rl[1].Value);
 			
 			tm.Clear();
-			Assert.AreEqual( 0, rl.Count );
+			Assert.AreEqual(0, rl.Count);
 			
 			tm.Detach();
 		}
@@ -61,17 +61,17 @@ namespace Fuse.Reactive.Test
 			var tm = new TestMap();
 			tm.Attach(rl, null);
 			
-			rl.Add( new Source(1) ); // 1
-			tm.Add( new Mapped{ InitValue = 2 } ); //1,2
-			rl.Insert( 1, new Source(3) ); //1,3,2
-			tm.Insert( 1, new Mapped { InitValue = 4 } ); //1,4,3,2
-			Assert.AreEqual( 4, rl.Count );
-			Assert.AreEqual( 4, tm.Count );
+			rl.Add(new Source(1)); // 1
+			tm.Add(new Mapped{ InitValue = 2 }); //1,2
+			rl.Insert(1, new Source(3)); //1,3,2
+			tm.Insert(1, new Mapped { InitValue = 4 }); //1,4,3,2
+			Assert.AreEqual(4, rl.Count);
+			Assert.AreEqual(4, tm.Count);
 			var expect = new[]{ 1, 4, 3, 2 };
 			for (int i=0; i < expect.Length; ++i)
 			{
-				Assert.AreEqual( expect[i], tm[i].InitValue );
-				Assert.AreEqual( expect[i], rl[i].Value );
+				Assert.AreEqual(expect[i], tm[i].InitValue);
+				Assert.AreEqual(expect[i], rl[i].Value);
 			}
 			
 			tm.Detach();
@@ -87,13 +87,13 @@ namespace Fuse.Reactive.Test
 			tm.Attach(rl, slave);
 			
 			//Attach should not genereate any callback
-			Assert.AreEqual( "", slave.Trace );
+			Assert.AreEqual("", slave.Trace);
 			
-			rl.Add( new Source(1) );
-			rl.Insert( 1, new Source(2) );
-			rl.RemoveAt( 0 );
+			rl.Add(new Source(1));
+			rl.Insert(1, new Source(2));
+			rl.RemoveAt(0);
 			rl.Clear();
-			Assert.AreEqual( "AI@1R@0C", slave.Trace );
+			Assert.AreEqual("AI@1R@0C", slave.Trace);
 		}
 	}
 	
@@ -162,7 +162,7 @@ namespace Fuse.Reactive.Test
 	{
 		public int Value;
 		
-		public Source( int value )
+		public Source(int value)
 		{
 			Value = value;
 		}

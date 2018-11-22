@@ -73,7 +73,7 @@ namespace Fuse.Views
 			}
 		}
 
-		ContextDataResult ISiblingDataProvider.TryGetDataProvider( DataType type, out object provider )
+		ContextDataResult ISiblingDataProvider.TryGetDataProvider(DataType type, out object provider)
 		{	
 			provider = type == DataType.Key ? Data : null;
 			return ContextDataResult.Continue;

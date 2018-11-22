@@ -215,10 +215,10 @@ namespace Fuse.Controls.Test
 			var p = new UX.DockPanel.MultiFill();
 			using (var root = TestRootPanel.CreateWithChild(p, int2(1000, 1000)))
 			{
-				Assert.AreEqual( float2(50,50), p.TheStar.ActualSize );
-				Assert.AreEqual( float2(10,10), p.TheStar.ActualPosition );
-				Assert.AreEqual( float2(50,50), p.ThePanel.ActualSize );
-				Assert.AreEqual( float2(10,10), p.ThePanel.ActualPosition );
+				Assert.AreEqual(float2(50,50), p.TheStar.ActualSize);
+				Assert.AreEqual(float2(10,10), p.TheStar.ActualPosition);
+				Assert.AreEqual(float2(50,50), p.ThePanel.ActualSize);
+				Assert.AreEqual(float2(10,10), p.ThePanel.ActualPosition);
 			}
 		}
 		
@@ -258,11 +258,11 @@ namespace Fuse.Controls.Test
 			var p = new UX.DockPanel.Max();
 			using (var root = TestRootPanel.CreateWithChild(p,int2(1000)))
 			{
-				Assert.AreEqual( float2(50,100), p.a1.ActualSize );
-				Assert.AreEqual( float2(50,120), p.d1.ActualSize );
+				Assert.AreEqual(float2(50,100), p.a1.ActualSize);
+				Assert.AreEqual(float2(50,120), p.d1.ActualSize);
 				
-				Assert.AreEqual( float2(100,50), p.a2.ActualSize );
-				Assert.AreEqual( float2(120,50), p.d2.ActualSize );
+				Assert.AreEqual(float2(100,50), p.a2.ActualSize);
+				Assert.AreEqual(float2(120,50), p.d2.ActualSize);
 			}
 		}
 		
@@ -300,12 +300,12 @@ namespace Fuse.Controls.Test
 
 		private void TestElementDockLayout(TestRootPanel root, Element element, Fuse.Layouts.Dock dock,
 			int2 rootSize, float2 expectActualSize, float2 expectActualPosition,
-			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "" )
+			[CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
 		{
 			DockPanel.SetDock(element, dock);
 			root.Layout(rootSize);
 			Assert.AreEqual(expectActualSize, element.ActualSize, Assert.ZeroTolerance,
-				filePath, lineNumber, memberName );
+				filePath, lineNumber, memberName);
 			Assert.AreEqual(expectActualPosition, element.ActualPosition, Assert.ZeroTolerance,
 				filePath, lineNumber, memberName);
 		}

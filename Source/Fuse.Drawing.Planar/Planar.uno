@@ -18,17 +18,17 @@ namespace Fuse.Drawing.Planar
 		public float3 VertexPosition: float3(VertexPosition2,0), undefined;
 
 		float4x4 LocalTransform: Matrix.Mul(
-			Matrix.Translation( -Origin.X, -Origin.Y, 0 ),
-			Matrix.Scaling( Size.X, Size.Y, 1 ),
-			Matrix.RotationZ( Rotation ),
-			Matrix.Translation( Position.X, Position.Y, 0 )
+			Matrix.Translation(-Origin.X, -Origin.Y, 0),
+			Matrix.Scaling(Size.X, Size.Y, 1),
+			Matrix.RotationZ(Rotation),
+			Matrix.Translation(Position.X, Position.Y, 0)
 			);
 
 		float4x4 WorldTransform: Visual != null ?
 			Matrix.Mul(LocalTransform,Visual.WorldTransform) : LocalTransform;
-		float4 WorldPos: Vector.Transform( VertexPosition, WorldTransform );
+		float4 WorldPos: Vector.Transform(VertexPosition, WorldTransform);
 
-		ClipPosition: Vector.Transform( WorldPos, DrawContext.Viewport.ViewProjectionTransform );
+		ClipPosition: Vector.Transform(WorldPos, DrawContext.Viewport.ViewProjectionTransform);
 
 		apply AlphaCompositing;
 		CullFace: DrawContext.CullFace;
@@ -47,7 +47,7 @@ namespace Fuse.Drawing.Planar
 		;
 		float2 VertexData: vertex_attrib(Vertices);
 		public bool Invert: false;
-		public float2 TexCoord: Invert ? float2( VertexData.X, 1 - VertexData.Y ): VertexData;
+		public float2 TexCoord: Invert ? float2(VertexData.X, 1 - VertexData.Y): VertexData;
 		VertexPosition2: VertexData;
 		VertexCount: 6;
 	}

@@ -26,7 +26,7 @@ namespace Fuse.Navigation
 		public readonly string Parameter;
 		public readonly object Context;
 		
-		public RouterPage( string path, string parameter = null, object context = null )
+		public RouterPage(string path, string parameter = null, object context = null)
 		{
 			Path = path;
 			Parameter = parameter;
@@ -42,7 +42,7 @@ namespace Fuse.Navigation
 		}
 		
 		/** This may be used to normalize an unspecified path to the default, or undergo other normalization */
-		public void DefaultPath( string defaultPath )
+		public void DefaultPath(string defaultPath)
 		{
 			if (Path == null || Path == "")
 				Path = defaultPath;
@@ -84,7 +84,7 @@ namespace Fuse.Navigation
 			return q;
 		}
 
-		internal static void BubbleHistoryChanged( Node at )
+		internal static void BubbleHistoryChanged(Node at)
 		{
 			//the only thing that needs this now is the Router, so we don't need to actually bubble
 			var router = at.FindBehavior<Router>();
@@ -92,10 +92,10 @@ namespace Fuse.Navigation
 				router.OnHistoryChanged();
 		}
 		
-		static public IObject GetNavigationRequest( object data )
+		static public IObject GetNavigationRequest(object data)
 		{
 			var obj = data as IObject;
-			if (obj == null || !obj.ContainsKey( "$navigationRequest" ) )
+			if (obj == null || !obj.ContainsKey("$navigationRequest"))
 				return null;
 			return obj["$navigationRequest"] as IObject;
 		}
@@ -103,7 +103,7 @@ namespace Fuse.Navigation
 	
 	class PagesMap : ObserverMap<RouterPage>
 	{
-		static public string GetObjectPath( object data )
+		static public string GetObjectPath(object data)
 		{
 			string path = null;
 			var obj = data as IObject;
@@ -115,7 +115,7 @@ namespace Fuse.Navigation
 			return path;
 		}
 		
-		static public bool HasObjectPath( object data )
+		static public bool HasObjectPath(object data)
 		{
 			var obj = data as IObject;
 			if (obj != null && (obj.ContainsKey("$path") || obj.ContainsKey("$__fuse_classname")))
@@ -127,7 +127,7 @@ namespace Fuse.Navigation
 		
 		protected override RouterPage Map(object v)
 		{
-			return new RouterPage( GetObjectPath(v), null, v );
+			return new RouterPage(GetObjectPath(v), null, v);
 		}
 		
 		protected override object Unmap(RouterPage mv)
@@ -147,7 +147,7 @@ namespace Fuse.Navigation
 		public RouterPage RouterPage;
 		public RouterPageRoute SubRoute;
 		
-		public RouterPageRoute( RouterPage routerPage, RouterPageRoute sub )
+		public RouterPageRoute(RouterPage routerPage, RouterPageRoute sub)
 		{
 			RouterPage = routerPage;
 			SubRoute = sub;
@@ -161,8 +161,8 @@ namespace Fuse.Navigation
 			{
 				var nxtrp = r.RouterPage;
 				if (nxtrp == null)
-					nxtrp = new RouterPage( r.Path, r.Parameter );
-				var nxt = new RouterPageRoute( nxtrp, null );
+					nxtrp = new RouterPage(r.Path, r.Parameter);
+				var nxt = new RouterPageRoute(nxtrp, null);
 				
 				if (cur == null)
 				{
@@ -183,8 +183,8 @@ namespace Fuse.Navigation
 		
 		public Route ToRoute()
 		{
-			var r = new Route( RouterPage.Path, RouterPage.Parameter, 
-				SubRoute != null ? SubRoute.ToRoute() : null );
+			var r = new Route(RouterPage.Path, RouterPage.Parameter, 
+				SubRoute != null ? SubRoute.ToRoute() : null);
 			r.RouterPage = RouterPage;
 			return r;
 		}
@@ -193,7 +193,7 @@ namespace Fuse.Navigation
 		{
 			if (SubRoute == null) return this;
 			else if (SubRoute.SubRoute == null) return new RouterPageRoute(RouterPage, null);
-			return new RouterPageRoute( RouterPage, SubRoute.Up());
+			return new RouterPageRoute(RouterPage, SubRoute.Up());
 		}
 		
 		internal string Format()
@@ -208,7 +208,7 @@ namespace Fuse.Navigation
 		{
 			if (count <0)
 			{
-				Fuse.Diagnostics.InternalError( "count can't be < 0", this );
+				Fuse.Diagnostics.InternalError("count can't be < 0", this);
 				return null;
 			}
 			
@@ -221,7 +221,7 @@ namespace Fuse.Navigation
 			return SubRoute.SubDepth(count-1);
 		}
 		
-		public RouterPageRoute Append( RouterPageRoute subRoute )
+		public RouterPageRoute Append(RouterPageRoute subRoute)
 		{
 			var sub = SubRoute == null ? subRoute : SubRoute.Append(subRoute);
 			return new RouterPageRoute(RouterPage, sub);

@@ -191,27 +191,27 @@ namespace Fuse.Models.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "", e.oc.JoinValues() );
+				Assert.AreEqual("", e.oc.JoinValues());
 
 				e.callAdd.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "5", e.oc.JoinValues() );
+				Assert.AreEqual("5", e.oc.JoinValues());
 
 				e.callAdd.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "5,6", e.oc.JoinValues() );
+				Assert.AreEqual("5,6", e.oc.JoinValues());
 
 				e.callShift.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "6", e.oc.JoinValues() );
+				Assert.AreEqual("6", e.oc.JoinValues());
 
 				e.callReplace.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "4,8,2,5,1", e.oc.JoinValues() );
+				Assert.AreEqual("4,8,2,5,1", e.oc.JoinValues());
 
 				e.callSort.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "1,2,4,5,8", e.oc.JoinValues() );
+				Assert.AreEqual("1,2,4,5,8", e.oc.JoinValues());
 			}
 		}
 
@@ -257,12 +257,12 @@ namespace Fuse.Models.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "%", e.a.UseValue );
-				Assert.AreEqual( "%", e.b.UseValue );
-				Assert.AreEqual( "%", e.c.UseValue );
+				Assert.AreEqual("%", e.a.UseValue);
+				Assert.AreEqual("%", e.b.UseValue);
+				Assert.AreEqual("%", e.c.UseValue);
 
-				Assert.AreEqual( "5", e.q.UseValue );
-				Assert.AreEqual( "5", e.r.UseValue );
+				Assert.AreEqual("5", e.q.UseValue);
+				Assert.AreEqual("5", e.r.UseValue);
 			}
 		}
 		
@@ -273,7 +273,7 @@ namespace Fuse.Models.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual("Q5", GetRecursiveText(e) );
+				Assert.AreEqual("Q5", GetRecursiveText(e));
 			}
 		}
 
@@ -332,11 +332,11 @@ namespace Fuse.Models.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "a", e.a.StringValue );
+				Assert.AreEqual("a", e.a.StringValue);
 
 				e.callSetB.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "b", e.a.StringValue );
+				Assert.AreEqual("b", e.a.StringValue);
 			}
 		}
 
@@ -347,9 +347,9 @@ namespace Fuse.Models.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( 1, e.a.Value );
-				Assert.AreEqual( 2, e.b.Value );
-				Assert.AreEqual( 3, e.c.Value );
+				Assert.AreEqual(1, e.a.Value);
+				Assert.AreEqual(2, e.b.Value);
+				Assert.AreEqual(3, e.c.Value);
 			}
 		}
 
@@ -360,19 +360,19 @@ namespace Fuse.Models.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "bop", e.u.v.StringValue );
-				Assert.AreEqual( 0, e.u.id.Value );
-				Assert.AreEqual( 11, e.u.Load );
-				Assert.AreEqual( 10, e.u.DefaultFromJS );
+				Assert.AreEqual("bop", e.u.v.StringValue);
+				Assert.AreEqual(0, e.u.id.Value);
+				Assert.AreEqual(11, e.u.Load);
+				Assert.AreEqual(10, e.u.DefaultFromJS);
 
 				e.u.Value = "loppy";
 				root.StepFrameJS();
-				Assert.AreEqual( "loppy", e.u.v.StringValue );
-				Assert.AreEqual( 0, e.u.id.Value );
+				Assert.AreEqual("loppy", e.u.v.StringValue);
+				Assert.AreEqual(0, e.u.id.Value);
 
 				e.u.callIncrLoad.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( 12, e.u.Load );
+				Assert.AreEqual(12, e.u.Load);
 			}
 		}
 
@@ -383,21 +383,21 @@ namespace Fuse.Models.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( 110, e.v.Value );
-				Assert.AreEqual( 10, e.r.Value );
-				Assert.AreEqual( 220, e.d.Value );
+				Assert.AreEqual(110, e.v.Value);
+				Assert.AreEqual(10, e.r.Value);
+				Assert.AreEqual(220, e.d.Value);
 
 				e.v.Value = 115;
 				root.StepFrameJS();
-				Assert.AreEqual( 115, e.v.Value );
-				Assert.AreEqual( 15, e.r.Value );
-				Assert.AreEqual( 230, e.d.Value );
+				Assert.AreEqual(115, e.v.Value);
+				Assert.AreEqual(15, e.r.Value);
+				Assert.AreEqual(230, e.d.Value);
 
 				e.callIncr.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( 116, e.v.Value );
-				Assert.AreEqual( 16, e.r.Value );
-				Assert.AreEqual( 232, e.d.Value );
+				Assert.AreEqual(116, e.v.Value);
+				Assert.AreEqual(16, e.r.Value);
+				Assert.AreEqual(232, e.d.Value);
 			}
 		}
 
@@ -409,18 +409,18 @@ namespace Fuse.Models.Test
 			{
 				root.StepFrameJS();
 
-				Assert.AreEqual( "one,two,three,four,five", GetRecursiveText(e.a) );
-				Assert.AreEqual( "five", GetText(e.s) );
+				Assert.AreEqual("one,two,three,four,five", GetRecursiveText(e.a));
+				Assert.AreEqual("five", GetText(e.s));
 
-				var two = e.a.FindNodeByName( "two" ) as UMUItem;
+				var two = e.a.FindNodeByName("two") as UMUItem;
 				two.callAdd.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "five,two", GetText(e.s) );
+				Assert.AreEqual("five,two", GetText(e.s));
 
-				var five = e.a.FindNodeByName( "five" ) as UMUItem;
+				var five = e.a.FindNodeByName("five") as UMUItem;
 				five.callRemove.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "two", GetText(e.s) );
+				Assert.AreEqual("two", GetText(e.s));
 			}
 		}
 
@@ -432,8 +432,8 @@ namespace Fuse.Models.Test
 			{
 				root.StepFrameJS();
 
-				Assert.AreEqual( "three,two,one", GetDudZ(e.a));
-				Assert.AreEqual( "three,two,one", GetDudZ(e.b));
+				Assert.AreEqual("three,two,one", GetDudZ(e.a));
+				Assert.AreEqual("three,two,one", GetDudZ(e.b));
 			}
 		}
 
@@ -444,21 +444,21 @@ namespace Fuse.Models.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( 110, e.v.Value );
-				Assert.AreEqual( 10, e.r.Value );
-				Assert.AreEqual( -10, e.d.Value );
+				Assert.AreEqual(110, e.v.Value);
+				Assert.AreEqual(10, e.r.Value);
+				Assert.AreEqual(-10, e.d.Value);
 
 				e.v.Value = 115;
 				root.StepFrameJS();
-				Assert.AreEqual( 115, e.v.Value );
-				Assert.AreEqual( 15, e.r.Value );
-				Assert.AreEqual( -15, e.d.Value );
+				Assert.AreEqual(115, e.v.Value);
+				Assert.AreEqual(15, e.r.Value);
+				Assert.AreEqual(-15, e.d.Value);
 
 				e.callIncr.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( 116, e.v.Value );
-				Assert.AreEqual( 16, e.r.Value );
-				Assert.AreEqual( -16, e.d.Value );
+				Assert.AreEqual(116, e.v.Value);
+				Assert.AreEqual(16, e.r.Value);
+				Assert.AreEqual(-16, e.d.Value);
 			}
 		}
 
@@ -504,32 +504,32 @@ namespace Fuse.Models.Test
 			using (var root = TestRootPanel.CreateWithChild(e))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "2,3", e.oc.JoinValues() );
-				Assert.AreEqual( 0, e.oc.Log.Count);
+				Assert.AreEqual("2,3", e.oc.JoinValues());
+				Assert.AreEqual(0, e.oc.Log.Count);
 
 				e.callAdd.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "2,3,5", e.oc.JoinValues() );
-				Assert.AreEqual( 1, e.oc.Log.Count );
-				Assert.AreEqual( ObservableCollector.LogType.Add, e.oc.Log[0].Type );
-				Assert.AreEqual( 5, e.oc.Log[0].Value );
+				Assert.AreEqual("2,3,5", e.oc.JoinValues());
+				Assert.AreEqual(1, e.oc.Log.Count);
+				Assert.AreEqual(ObservableCollector.LogType.Add, e.oc.Log[0].Type);
+				Assert.AreEqual(5, e.oc.Log[0].Value);
 
 				e.oc.Log.Clear();
 				e.callInsert.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "2,6,3,5", e.oc.JoinValues() );
-				Assert.AreEqual( 1, e.oc.Log.Count );
-				Assert.AreEqual( ObservableCollector.LogType.InsertAt, e.oc.Log[0].Type );
-				Assert.AreEqual( 6, e.oc.Log[0].Value );
-				Assert.AreEqual( 1, e.oc.Log[0].Index );
+				Assert.AreEqual("2,6,3,5", e.oc.JoinValues());
+				Assert.AreEqual(1, e.oc.Log.Count);
+				Assert.AreEqual(ObservableCollector.LogType.InsertAt, e.oc.Log[0].Type);
+				Assert.AreEqual(6, e.oc.Log[0].Value);
+				Assert.AreEqual(1, e.oc.Log[0].Index);
 
 				e.oc.Log.Clear();
 				e.callShift.Perform();
 				root.StepFrameJS();
-				Assert.AreEqual( "6,3,5", e.oc.JoinValues() );
-				Assert.AreEqual( 1, e.oc.Log.Count );
-				Assert.AreEqual( ObservableCollector.LogType.RemoveAt, e.oc.Log[0].Type );
-				Assert.AreEqual( 0, e.oc.Log[0].Index );
+				Assert.AreEqual("6,3,5", e.oc.JoinValues());
+				Assert.AreEqual(1, e.oc.Log.Count);
+				Assert.AreEqual(ObservableCollector.LogType.RemoveAt, e.oc.Log[0].Type);
+				Assert.AreEqual(0, e.oc.Log[0].Index);
 			}
 		}
 

@@ -17,11 +17,11 @@ namespace Fuse.Charting.Test
 			using (var root = TestRootPanel.CreateWithChild(p,int2(500,1000)))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "one,two,three,four,five", Util.GetText(p.XL) );
-				Assert.AreEqual( float2(500,20), p.XL.ActualSize );
+				Assert.AreEqual("one,two,three,four,five", Util.GetText(p.XL));
+				Assert.AreEqual(float2(500,20), p.XL.ActualSize);
 				
-				Assert.AreEqual( "0,10,20,30,40,50,60", Util.GetText(p.YL) );
-				Assert.AreEqual( float2(100,1000), p.YL.ActualSize );
+				Assert.AreEqual("0,10,20,30,40,50,60", Util.GetText(p.YL));
+				Assert.AreEqual(float2(100,1000), p.YL.ActualSize);
 			}
 		}
 		
@@ -32,40 +32,40 @@ namespace Fuse.Charting.Test
 			using (var root = TestRootPanel.CreateWithChild(p,int2(1000)))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "4,6,8,10,12", Util.GetText(p.XL));
+				Assert.AreEqual("4,6,8,10,12", Util.GetText(p.XL));
 				var txts = Util.Children<Text>(p.XL);
 				// ((Index - Offset) + tickOffset) * (stepRange)
-				Assert.AreEqual( ((4-3)+0.5f)*(1000/10), txts[0].ActualPosition.X );
-				Assert.AreEqual( ((6-3)+0.5f)*(1000/10), txts[1].ActualPosition.X );
+				Assert.AreEqual(((4-3)+0.5f)*(1000/10), txts[0].ActualPosition.X);
+				Assert.AreEqual(((6-3)+0.5f)*(1000/10), txts[1].ActualPosition.X);
 
 				p.XL.ExcludeExtend = false;
 				root.StepFrame();
-				Assert.AreEqual( "2,4,6,8,10,12", Util.GetText(p.XL));
+				Assert.AreEqual("2,4,6,8,10,12", Util.GetText(p.XL));
 				txts = Util.Children<Text>(p.XL);
-				Assert.AreEqual( ((2-3)+0.5f)*(1000/10), txts[0].ActualPosition.X );
-				Assert.AreEqual( ((4-3)+0.5f)*(1000/10), txts[1].ActualPosition.X );
+				Assert.AreEqual(((2-3)+0.5f)*(1000/10), txts[0].ActualPosition.X);
+				Assert.AreEqual(((4-3)+0.5f)*(1000/10), txts[1].ActualPosition.X);
 
 				p.XL.ExcludeExtend = true;
 				p.P.DataOffset = 2;
 				root.StepFrame();
-				Assert.AreEqual( "2,4,6,8,10", Util.GetText(p.XL));
+				Assert.AreEqual("2,4,6,8,10", Util.GetText(p.XL));
 				txts = Util.Children<Text>(p.XL);
-				Assert.AreEqual( ((2-2)+0.5f)*(1000/10), txts[0].ActualPosition.X );
-				Assert.AreEqual( ((4-2)+0.5f)*(1000/10), txts[1].ActualPosition.X );
+				Assert.AreEqual(((2-2)+0.5f)*(1000/10), txts[0].ActualPosition.X);
+				Assert.AreEqual(((4-2)+0.5f)*(1000/10), txts[1].ActualPosition.X);
 				
 				p.XL.Group = 3;
 				p.P.DataOffset = 1;
 				root.StepFrame();
-				Assert.AreEqual( "3,6,9", Util.GetText(p.XL));
+				Assert.AreEqual("3,6,9", Util.GetText(p.XL));
 				txts = Util.Children<Text>(p.XL);
-				Assert.AreEqual( ((3-1)+0.5f)*(1000/10), txts[0].ActualPosition.X );
+				Assert.AreEqual(((3-1)+0.5f)*(1000/10), txts[0].ActualPosition.X);
 				
 				//https://github.com/fusetools/premiumlibs/issues/28
 				p.P.DataOffset = 2;
 				root.StepFrame();
-				Assert.AreEqual( "3,6,9", Util.GetText(p.XL));
+				Assert.AreEqual("3,6,9", Util.GetText(p.XL));
 				txts = Util.Children<Text>(p.XL);
-				Assert.AreEqual( ((3-2)+0.5f)*(1000/10), txts[0].ActualPosition.X );
+				Assert.AreEqual(((3-2)+0.5f)*(1000/10), txts[0].ActualPosition.X);
 			}
 		}
 		

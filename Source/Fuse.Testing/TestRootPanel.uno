@@ -26,13 +26,13 @@ namespace Fuse.Testing
 		public TestRootViewport(Uno.Platform.Window window, float pixelsPerPoint = 0)
 			: base(window, pixelsPerPoint)
 		{
-			OverrideSize( float2(100), pixelsPerPoint, pixelsPerPoint );
+			OverrideSize(float2(100), pixelsPerPoint, pixelsPerPoint);
 		}
 
 		extern(Android || iOS)
 		public TestRootViewport(Uno.Platform.Window window, float pixelsPerPoint = 0)
 		{
-			OverrideSize( float2(100), pixelsPerPoint, pixelsPerPoint );
+			OverrideSize(float2(100), pixelsPerPoint, pixelsPerPoint);
 		}
 
 		internal void Resize(float2 size)
@@ -101,8 +101,8 @@ namespace Fuse.Testing
 			{
 				Fuse.Diagnostics.DiagnosticReported += OnDiagnostic;
 
-				_rootViewport.Resize( int2(800, 600) );
-				PerformLayout( int2(800, 600) );
+				_rootViewport.Resize(int2(800, 600));
+				PerformLayout(int2(800, 600));
 
 				try
 				{
@@ -183,7 +183,7 @@ namespace Fuse.Testing
 					w.WaitIdle();
 			}
 				
-			Time.Set( Time.FrameTime + elapsedTime );
+			Time.Set(Time.FrameTime + elapsedTime);
 			UpdateManager.Update();
 			if (flags.HasFlag(StepFlags.IncrementFrame))
 				UpdateManager.IncreaseFrameIndex();
@@ -213,7 +213,7 @@ namespace Fuse.Testing
 			const float zeroTolerance = 1e-05f;
 			while (e < (elapsedTime - zeroTolerance))
 			{
-				var s = Math.Min( _frameIncrement, elapsedTime - e );
+				var s = Math.Min(_frameIncrement, elapsedTime - e);
 				IncrementFrame(s);
 				e += s;
 			}
@@ -273,7 +273,7 @@ namespace Fuse.Testing
 			var unit = Vector.Normalize(to - from);
 			
 			var at = 0f;
-			while( at < len )
+			while(at < len)
 			{
 				PointerMove(from + unit * at);
 				at = Math.Min(len, at + _frameIncrement * speed);
@@ -287,7 +287,7 @@ namespace Fuse.Testing
 			
 			PointerPress(from);
 			var at = _frameIncrement * speed;
-			while( at < len )
+			while(at < len)
 			{
 				PointerMove(from + unit * at);
 				at = Math.Min(len, at + _frameIncrement * speed);
@@ -332,7 +332,7 @@ namespace Fuse.Testing
 					return;
 			}
 			
-			_modules.Add( new T() );
+			_modules.Add(new T());
 		}
 		static List<object> _modules;
 	}
@@ -344,12 +344,12 @@ namespace Fuse.Testing
 	{
 		internal TestRootSingletonsGuard(TestRootPanel trp)
 		{
-			AppBase.TestSetRootViewport( trp.RootViewport );
+			AppBase.TestSetRootViewport(trp.RootViewport);
 		}
 		
 		public void Dispose()
 		{
-			AppBase.TestSetRootViewport( null );
+			AppBase.TestSetRootViewport(null);
 		}
 	}
 }

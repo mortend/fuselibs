@@ -44,7 +44,7 @@ namespace Fuse.Layouts
 			{
 				if (!AffectsLayout(e)) continue;
 
-				ds = Math.Max( ds, e.GetMarginSize(lp) );
+				ds = Math.Max(ds, e.GetMarginSize(lp));
 			}
 			return ds;
 		}
@@ -62,7 +62,7 @@ namespace Fuse.Layouts
 			}
 		}
 		
-		internal override LayoutDependent IsMarginBoxDependent( Visual child )
+		internal override LayoutDependent IsMarginBoxDependent(Visual child)
 		{
 			//only if the element itself is dependent
 			return LayoutDependent.Maybe;

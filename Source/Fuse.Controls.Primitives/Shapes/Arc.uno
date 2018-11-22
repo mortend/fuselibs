@@ -32,7 +32,7 @@ namespace Fuse.Controls
 		
 		protected override SurfacePath CreateSurfacePath(Surface surface)
 		{
-			return CreateEllipticalPath( surface, ActualSize/2, ActualSize/2, true );
+			return CreateEllipticalPath(surface, ActualSize/2, ActualSize/2, true);
 		}
 	}
 }

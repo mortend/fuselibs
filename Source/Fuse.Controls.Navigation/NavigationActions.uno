@@ -23,7 +23,7 @@ namespace Fuse.Triggers.Actions
 			_pendNavigator = _pendVisual == null ? null : _pendVisual.Parent as Navigator;
 			if (_pendVisual == null || _pendNavigator == null)
 			{
-				Fuse.Diagnostics.UserError( "Requires a Visual and Navigator parent", this );
+				Fuse.Diagnostics.UserError("Requires a Visual and Navigator parent", this);
 				return;
 			}
 			

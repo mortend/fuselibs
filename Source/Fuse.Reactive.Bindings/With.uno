@@ -68,7 +68,7 @@ namespace Fuse.Reactive
 		}
 
 		object _subtreeData;
-		ContextDataResult ISubtreeDataProvider.TryGetDataProvider( Node child, DataType type, out object provider )
+		ContextDataResult ISubtreeDataProvider.TryGetDataProvider(Node child, DataType type, out object provider)
 		{
 			provider = _subtreeData;
 			return type == DataType.Prime ? ContextDataResult.NullProvider : ContextDataResult.Continue;
@@ -102,7 +102,7 @@ namespace Fuse.Reactive
 	{
 		public Select()
 		{
-			Fuse.Diagnostics.Deprecated("'Select' is deprecated, use 'With' instead (works the same way). ", this );
+			Fuse.Diagnostics.Deprecated("'Select' is deprecated, use 'With' instead (works the same way). ", this);
 		}
 	}
 }

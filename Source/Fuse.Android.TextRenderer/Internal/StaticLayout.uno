@@ -39,7 +39,7 @@ namespace Fuse.Android
 			float spacingAdd,
 			bool includePad)
 			
-			: this( Create(text, paint.Handle, width, (int)align, spacingMult, spacingAdd, includePad) ) { }
+			: this(Create(text, paint.Handle, width, (int)align, spacingMult, spacingAdd, includePad)) { }
 
 		public StaticLayout(
 			string text,
@@ -54,7 +54,7 @@ namespace Fuse.Android
 			TextUtils.TruncateAt truncateAt,
 			int ellipsizedWith)
 
-			: this( Create(text, bufStart, bufEnd, paint.Handle, outerWidth, (int)align, spacingMult, spacingAdd, includePad, (int)truncateAt, ellipsizedWith) ) { }
+			: this(Create(text, bufStart, bufEnd, paint.Handle, outerWidth, (int)align, spacingMult, spacingAdd, includePad, (int)truncateAt, ellipsizedWith)) { }
 
 		public static float GetDesiredWidth(string text, TextPaint paint)
 		{

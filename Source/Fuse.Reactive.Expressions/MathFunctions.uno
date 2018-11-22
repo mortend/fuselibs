@@ -38,7 +38,7 @@ namespace Fuse.Reactive
 			
 		protected override bool TryCompute(object left, object right, out object result)
 		{
-			result = Math.Mod( Marshal.ToFloat(left), Marshal.ToFloat(right) );
+			result = Math.Mod(Marshal.ToFloat(left), Marshal.ToFloat(right));
 			return true;
 		}
 	}
@@ -85,13 +85,13 @@ namespace Fuse.Reactive
 	/**
 		Alternate between true/false values for ranges of integers.
 		
-			alternate( value, groupSize )
+			alternate(value, groupSize)
 			
 		Input values are rounded to the nearest integer.
 		
 		Example:
 		
-			alternate( value, 3 )
+			alternate(value, 3)
 			
 		This will yield true for values 0,1,2, false for 3,4,5, true for 6,7,8, false for 9,10,11, etc.
 	*/
@@ -113,7 +113,7 @@ namespace Fuse.Reactive
 			var group = (int)Math.Floor(fgroup + 0.5f);
 			var b = value >= 0 ? 
 				(value % (group*2)) < group: 
-				( -(value+1) % (group*2)) >= group;
+				(-(value+1) % (group*2)) >= group;
 			result = b;
 			return true;
 		}
@@ -260,7 +260,7 @@ namespace Fuse.Reactive
 	/**
 		The inverse trigonometric tangent of the input components. Like `atan2` but uses the input vector for the X and Y values.
 		
-			atanVector( v ) == atan2( v.Y, v.X )
+			atanVector(v) == atan2(v.Y, v.X)
 	*/
 	[UXFunction("atanVector")]
 	public sealed class AtanVector : UnaryOperator
@@ -412,7 +412,7 @@ namespace Fuse.Reactive
 	/**
 		Calculates the linear interpolation between two values.
 		
-			lerp( from, to, step )
+			lerp(from, to, step)
 			
 		When step==0 the result is `from`, when step==1 the result is `to`. Partial values are linearly interpolated. Step values <0 and >1 are also supported.
 		
@@ -467,7 +467,7 @@ namespace Fuse.Reactive
 	/**
 		Restricts the range of a value to between two numbers.
 		
-			clamp( value, min, max)
+			clamp(value, min, max)
 			
 		Returns
 		- `min` when `value < min`

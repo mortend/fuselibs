@@ -32,7 +32,7 @@ namespace Fuse.Elements
 		
 		override public float2 CalcArrangePaddingSize(Element element, LayoutParams lp)
 		{	
-			var cs = GetConstraints( element, lp, ConstraintFlags.ImplicitMax );
+			var cs = GetConstraints(element, lp, ConstraintFlags.ImplicitMax);
 			var c = lp.CloneAndDerive();
 			c.BoxConstrain(cs);
 			

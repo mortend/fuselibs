@@ -113,11 +113,11 @@ namespace Fuse.Controls
 			base.OnUnrooted();
 		}
 		
-		void OnContainerParamChanged(object s, object a )
+		void OnContainerParamChanged(object s, object a)
 		{
 			OnParamChanged();
 		}
-		void OnContainerSourceChanged(object s, object a )
+		void OnContainerSourceChanged(object s, object a)
 		{
 			OnSourceChanged();
 		}

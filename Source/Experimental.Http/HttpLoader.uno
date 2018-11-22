@@ -12,9 +12,9 @@ namespace Experimental.Http
 			Action<string> error)
 		{
 			if (callback == null)
-				throw new Exception( "LoadBinary requires callback action" );
+				throw new Exception("LoadBinary requires callback action");
 			if (error == null)
-				throw new Exception( "LoadBinary requires error action" );
+				throw new Exception("LoadBinary requires error action");
 				
 			var bl = new BinaryLoader();
 			bl.Uri = requestUri;

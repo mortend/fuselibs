@@ -73,7 +73,7 @@ namespace FuseTest
 				var parent = new Panel();
 				root.Children.Add(parent);
 
-				FillPanelProperties(panelToTest, float4( 10, 5, 21, 13 ), 200, 50, Alignment.TopRight);
+				FillPanelProperties(panelToTest, float4(10, 5, 21, 13), 200, 50, Alignment.TopRight);
 				parent.Children.Add(panelToTest);
 
 				panelToTest.Alignment = Alignment.TopRight;
@@ -101,8 +101,8 @@ namespace FuseTest
 			using (var root = new TestRootPanel(true))
 			{
 				root.Children.Add(parent);
-				FillPanelProperties(panelToTest, float4( 10.2f, 5.3f, 21.4f, 13.7f ), 100, 71, Alignment.TopRight);
-				parent.Children.Add( panelToTest );
+				FillPanelProperties(panelToTest, float4(10.2f, 5.3f, 21.4f, 13.7f), 100, 71, Alignment.TopRight);
+				parent.Children.Add(panelToTest);
 
 				panelToTest.SnapToPixels = false;
 				LayoutTestHelper.TestElementLayout(root, panelToTest, int2(420,80), float2(100, 71),

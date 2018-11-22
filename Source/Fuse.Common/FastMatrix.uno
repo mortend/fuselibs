@@ -122,7 +122,7 @@ namespace Fuse
 
 		public void AppendShear(float xRadians, float yRadians)
 		{
-			_matrix = Uno.Matrix.Mul(_matrix, Uno.Matrix.Shear(float2(xRadians,yRadians)) );
+			_matrix = Uno.Matrix.Mul(_matrix, Uno.Matrix.Shear(float2(xRadians,yRadians)));
 			_hasNonTranslation = true;
 		}
 		

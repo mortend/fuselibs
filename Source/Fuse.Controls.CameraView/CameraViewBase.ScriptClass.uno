@@ -91,7 +91,7 @@ namespace Fuse.Controls
 		/**
 			Set CaptureMode
 
-			@scriptmethod setCaptureMode( captureMode )
+			@scriptmethod setCaptureMode(captureMode)
 
 			Returns a promise that resolves to the new `CaptureMode`. The values for `CaptureMode` can be found
 			as constants on the `CameraView`. Valid values are `CAPTURE_MODE_PHOTO` and `CAPTURE_MODE_VIDEO`
@@ -118,7 +118,7 @@ namespace Fuse.Controls
 		/**
 			Set CameraFacing
 
-			@scriptmethod setCameraFacing( cameraFacing )
+			@scriptmethod setCameraFacing(cameraFacing)
 
 			Returns a promise that resolves to the new `CameraFacing`. The values for `CameraFacing` can be found
 			as constants on the `CameraView`. Valid values are `CAMERA_FACING_BACK` and `CAMERA_FACING_BACK`
@@ -145,7 +145,7 @@ namespace Fuse.Controls
 		/**
 			Set CameraFocusPoint
 
-			@scriptmethod setCameraFocusPoint( x, y, cameraWidth, cameraHeight, isFocusLocked )
+			@scriptmethod setCameraFocusPoint(x, y, cameraWidth, cameraHeight, isFocusLocked)
 
 			Returns a promise of nothing. Valid values are double x, double y, int cameraWidth, int cameraHeight and int isFocusLocked.
 
@@ -161,7 +161,7 @@ namespace Fuse.Controls
 			if (args.Length != 5)
 				return new Promise<Nothing>().RejectWithMessage("Arguments for CameraFocusPoint must be provided");
 
-			return self.SetCameraFocusPoint( 
+			return self.SetCameraFocusPoint(
 				Marshal.ToDouble(args[0]), Marshal.ToDouble(args[1]), 
 				Marshal.ToInt(args[2]), Marshal.ToInt(args[3]), Marshal.ToInt(args[4]) 
 			);
@@ -170,7 +170,7 @@ namespace Fuse.Controls
 		/**
 			Set FlashMode
 
-			@scriptmethod setFlashMode( flashMode )
+			@scriptmethod setFlashMode(flashMode)
 
 			Returns a promise that resolves to the new `FlashMode`. The values for `FlashMode` can be found
 			as constants on the `CameraView`. Valid values are `FLASH_MODE_AUTO`, `FLASH_MODE_ON` and `FLASH_MODE_OFF`
@@ -262,7 +262,7 @@ namespace Fuse.Controls
 		/**
 			Set PhotoOptions
 
-			@scriptmethod setPhotoOptions( photoOptions )
+			@scriptmethod setPhotoOptions(photoOptions)
 
 			Returns a promise that resolves when the options are successfully set. Due to platform differences some
 			options might not be valid on all platforms.

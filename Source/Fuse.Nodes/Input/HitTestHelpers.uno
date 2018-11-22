@@ -20,7 +20,7 @@ namespace Fuse.Input
         {
 			count++;
 			if (_result == null || 
-				(_result.HasHitDistance && result.HasHitDistance && result.HitDistance < _result.HitDistance) )
+				(_result.HasHitDistance && result.HasHitDistance && result.HitDistance < _result.HitDistance))
 				_result = result;
         }
 	}

@@ -32,9 +32,9 @@ namespace Fuse.Test
 				var p = new UX.RootingParadox();
 				using (var root = TestRootPanel.CreateWithChild(p))
 					Assert.IsTrue(false); // we shouldn't get here
-			} catch( Exception ex ) {
+			} catch(Exception ex) {
 				//just ensure we've detected a rooting problem
-				Assert.IsTrue( ex.Message.IndexOf( "rooting" ) != -1 );
+				Assert.IsTrue(ex.Message.IndexOf("rooting") != -1);
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace Fuse.Test
 			var p = new UX.Rooting.DoubleRooting();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "okay", GetText(p.rov));
+				Assert.AreEqual("okay", GetText(p.rov));
 			}
 		}
 		
@@ -153,14 +153,14 @@ namespace Fuse.Test
 		{
 			base.OnRooted();
 			if (RootCount != 0)
-				Fuse.Diagnostics.InternalError("Invalid rooting" );
+				Fuse.Diagnostics.InternalError("Invalid rooting");
 			RootCount++;
 		}
 		
 		protected override void OnUnrooted()
 		{
 			if (RootCount != 1)
-				Fuse.Diagnostics.InternalError("Invalid unrooting" );
+				Fuse.Diagnostics.InternalError("Invalid unrooting");
 			RootCount--;
 			base.OnUnrooted();
 		}
@@ -174,7 +174,7 @@ namespace Fuse.Test
 		protected override void OnRooted()
 		{
 			base.OnRooted();
-			Children.Add( Tracker );
+			Children.Add(Tracker);
 		}
 		
 		protected override void OnUnrooted()

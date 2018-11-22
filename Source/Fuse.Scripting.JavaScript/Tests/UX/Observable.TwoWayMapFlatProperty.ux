@@ -7,12 +7,12 @@
 			var self = this
 			exports.ivalue = this.Value.innerTwoWay()
 			exports.ovalue = this.Value.innerTwoWay().mapTwoWay(
-				function( dt ) { 
+				function(dt) { 
 					return dt 
 				},
-				function( bit, whole ) { 
+				function(bit, whole) { 
 					return bit 
-				} )
+				})
 			
 			exports.step1 = function() {
 				exports.ivalue.value += "def"

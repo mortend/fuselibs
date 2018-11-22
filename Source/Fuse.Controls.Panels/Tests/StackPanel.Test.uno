@@ -65,22 +65,22 @@ namespace Fuse.Controls.Test
 		public void HorizontalLayoutAlignmentTest()
 		{
 			var parent = new StackPanel();
-			var child1 = GetChildForStackPanel(float4( 10, 5, 20, 15 ), 100, 50);
-			var child2 = GetChildForStackPanel(float4( 10, 5, 0, 15 ), 250, 200);
-			var child3 = GetChildForStackPanelWithoutWidth(float4( 8, 3, 7, 11 ), 77);
-			var child4 = GetChildForStackPanel(float4( 8, 3, 9, 13 ), 277, 51);
+			var child1 = GetChildForStackPanel(float4(10, 5, 20, 15), 100, 50);
+			var child2 = GetChildForStackPanel(float4(10, 5, 0, 15), 250, 200);
+			var child3 = GetChildForStackPanelWithoutWidth(float4(8, 3, 7, 11), 77);
+			var child4 = GetChildForStackPanel(float4(8, 3, 9, 13), 277, 51);
 			parent.Orientation = Orientation.Vertical;
 
 			using (var root = TestRootPanel.CreateWithChild(parent))
 			{
 				child1.Alignment = Alignment.Left;
-				parent.Children.Add( child1 );
+				parent.Children.Add(child1);
 				child2.Alignment = Alignment.HorizontalCenter;
-				parent.Children.Add( child2 );
+				parent.Children.Add(child2);
 				child3.Alignment = Alignment.Default;
-				parent.Children.Add( child3 );
+				parent.Children.Add(child3);
 				child4.Alignment = Alignment.Right;
-				parent.Children.Add( child4 );
+				parent.Children.Add(child4);
 
 				root.Layout(int2(320, 500));
 				LayoutTestHelper.TestElementLayout(child1, float2(100, 50), float2(10, 5));
@@ -98,22 +98,22 @@ namespace Fuse.Controls.Test
 		public void VerticalLayoutAlignmentTest()
 		{
 			var parent = new StackPanel();
-			var child1 = GetChildForStackPanel(float4( 10, 5, 20, 15 ), 100, 50);
-			var child2 = GetChildForStackPanel(float4( 10, 5, 0, 15 ), 300, 200);
-			var child3 = GetChildForStackPanelWithoutHeight(float4( 8, 3, 7, 11 ), 201);
-			var child4 = GetChildForStackPanel(float4( 8, 3, 9, 13 ), 277, 51);
+			var child1 = GetChildForStackPanel(float4(10, 5, 20, 15), 100, 50);
+			var child2 = GetChildForStackPanel(float4(10, 5, 0, 15), 300, 200);
+			var child3 = GetChildForStackPanelWithoutHeight(float4(8, 3, 7, 11), 201);
+			var child4 = GetChildForStackPanel(float4(8, 3, 9, 13), 277, 51);
 			parent.Orientation = Orientation.Horizontal;
 
 			using (var root = TestRootPanel.CreateWithChild(parent))
 			{
 				child1.Alignment = Alignment.Top;
-				parent.Children.Add( child1 );
+				parent.Children.Add(child1);
 				child2.Alignment = Alignment.Bottom;
-				parent.Children.Add( child2 );
+				parent.Children.Add(child2);
 				child3.Alignment = Alignment.Default;
-				parent.Children.Add( child3 );
+				parent.Children.Add(child3);
 				child4.Alignment = Alignment.VerticalCenter;
-				parent.Children.Add( child4 );
+				parent.Children.Add(child4);
 
 				root.Layout(int2(1000, 500));
 				LayoutTestHelper.TestElementLayout(child1, float2(100, 50), float2(10, 5));
@@ -143,9 +143,9 @@ namespace Fuse.Controls.Test
 			var p = new UX.StackPanel.LayoutPercentDependent();
 			using (var root = TestRootPanel.CreateWithChild(p, int2(1000)))
 			{
-				LayoutTestHelper.TestElementLayout(p.c1, float2(200,10), float2(100,0) );
-				LayoutTestHelper.TestElementLayout(p.c2, float2(400,200), float2(0,10) );
-				//LayoutTestHelper.TestElementLayout(c4, float2(440,10), float2(-20,210) );
+				LayoutTestHelper.TestElementLayout(p.c1, float2(200,10), float2(100,0));
+				LayoutTestHelper.TestElementLayout(p.c2, float2(400,200), float2(0,10));
+				//LayoutTestHelper.TestElementLayout(c4, float2(440,10), float2(-20,210));
 				LayoutTestHelper.TestElementLayout(p, float2(400,215), float2((1000-400)/2f,(1000-215)/2f));
 			}
 		}
@@ -156,9 +156,9 @@ namespace Fuse.Controls.Test
 			var p = new UX.StackPanel.LayoutPercentFixed();
 			using (var root = TestRootPanel.CreateWithChild(p, int2(1000)))
 			{
-				LayoutTestHelper.TestElementLayout(p.c1, float2(50,20), float2(0,180) );
-				LayoutTestHelper.TestElementLayout(p.c2, float2(400,200), float2(50,0) );
-				LayoutTestHelper.TestElementLayout(p.c3, float2(10,220), float2(450,-10) );
+				LayoutTestHelper.TestElementLayout(p.c1, float2(50,20), float2(0,180));
+				LayoutTestHelper.TestElementLayout(p.c2, float2(400,200), float2(50,0));
+				LayoutTestHelper.TestElementLayout(p.c3, float2(10,220), float2(450,-10));
 				LayoutTestHelper.TestElementLayout(p, float2(1000,200), float2(0,400));
 			}
 		}
@@ -186,21 +186,21 @@ namespace Fuse.Controls.Test
 				root.Children.Add(p);
 				root.Layout(int2(1000,500));
 
-				Assert.AreEqual( float2(10.666687f,20), p.RA0.ActualPosition);
-				Assert.AreEqual( float2(10.666687f,70.66665f), p.RA1.ActualPosition);
-				Assert.AreEqual( float2(10.666687f,121.33334f), p.RA2.ActualPosition);
+				Assert.AreEqual(float2(10.666687f,20), p.RA0.ActualPosition);
+				Assert.AreEqual(float2(10.666687f,70.66665f), p.RA1.ActualPosition);
+				Assert.AreEqual(float2(10.666687f,121.33334f), p.RA2.ActualPosition);
 
-				Assert.AreEqual( float2(0,0), p.RB0.ActualPosition);
-				Assert.AreEqual( float2(0,50.666668f), p.RB1.ActualPosition);
-				Assert.AreEqual( float2(0,101.33334f), p.RB2.ActualPosition);
+				Assert.AreEqual(float2(0,0), p.RB0.ActualPosition);
+				Assert.AreEqual(float2(0,50.666668f), p.RB1.ActualPosition);
+				Assert.AreEqual(float2(0,101.33334f), p.RB2.ActualPosition);
 
-				Assert.AreEqual( float2(0,174.666672f), p.RC0.ActualPosition);
-				Assert.AreEqual( float2(0,225.3333280f), p.RC1.ActualPosition);
-				Assert.AreEqual( float2(0,276.00000f), p.RC2.ActualPosition);
+				Assert.AreEqual(float2(0,174.666672f), p.RC0.ActualPosition);
+				Assert.AreEqual(float2(0,225.3333280f), p.RC1.ActualPosition);
+				Assert.AreEqual(float2(0,276.00000f), p.RC2.ActualPosition);
 
-				Assert.AreEqual( float2(-121.333313f,0), p.RD0.ActualPosition);
-				Assert.AreEqual( float2(-70.666657f,0), p.RD1.ActualPosition);
-				Assert.AreEqual( float2(-20.000000f,0), p.RD2.ActualPosition);
+				Assert.AreEqual(float2(-121.333313f,0), p.RD0.ActualPosition);
+				Assert.AreEqual(float2(-70.666657f,0), p.RD1.ActualPosition);
+				Assert.AreEqual(float2(-20.000000f,0), p.RD2.ActualPosition);
 			}
 		}
 		

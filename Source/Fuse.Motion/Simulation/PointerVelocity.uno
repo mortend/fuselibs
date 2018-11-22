@@ -43,12 +43,12 @@ namespace Fuse.Motion.Simulation
 		{
 			get
 			{
-				var v = _blender.Sub( _currentLocation, _startLocation );
+				var v = _blender.Sub(_currentLocation, _startLocation);
 				double length;
-				var unit = _blender.ToUnit( v, out length );
+				var unit = _blender.ToUnit(v, out length);
 				var s = _totalTime > _zeroTolerance && length > _zeroTolerance ? 
 					(float)(length / _totalTime) : 0;
-				return _blender.Weight( unit, (float)s );
+				return _blender.Weight(unit, (float)s);
 			}
 		}
 		
@@ -67,12 +67,12 @@ namespace Fuse.Motion.Simulation
 		double _totalTime;
 		double _totalDistance;
 		double _prevTime;
-		public void Reset( T location0 )
+		public void Reset(T location0)
 		{
-			Reset( location0, _blender.Zero, 0 );
+			Reset(location0, _blender.Zero, 0);
 		}
 		
-		public void Reset( T location0, T velocity0, double currentTime = 0 )
+		public void Reset(T location0, T velocity0, double currentTime = 0)
 		{
 			_velocity = velocity0;
 			_totalTime = 0;
@@ -81,17 +81,17 @@ namespace Fuse.Motion.Simulation
 			_prevTime = currentTime;
 		}
 		
-		public void AddSampleTime( T location, double timestamp, SampleFlags flags = SampleFlags.None )
+		public void AddSampleTime(T location, double timestamp, SampleFlags flags = SampleFlags.None)
 		{
-			AddSample( location, timestamp - _prevTime, flags );
+			AddSample(location, timestamp - _prevTime, flags);
 			_prevTime = timestamp;
 		}
 		
-		public void AddSample( T location, double elapsed, SampleFlags flags = SampleFlags.None )
+		public void AddSample(T location, double elapsed, SampleFlags flags = SampleFlags.None)
 		{
-			var diff = _blender.Sub( location, _currentLocation );
+			var diff = _blender.Sub(location, _currentLocation);
 			double length;
-			var unit = _blender.ToUnit( diff, out length );
+			var unit = _blender.ToUnit(diff, out length);
 			if (length < _zeroTolerance)
 				unit = _blender.Zero;
 			_totalDistance += length;
@@ -113,23 +113,23 @@ namespace Fuse.Motion.Simulation
 			}
 		
 			//limit speed based on distance offset to prevent short taps from flying
-			var tdP = Math.Clamp( _totalDistance / _speedDistanceThreshold, 0, 1);
-			speed = Math.Min( (float)(_inSpeedLimit * tdP), speed );
+			var tdP = Math.Clamp(_totalDistance / _speedDistanceThreshold, 0, 1);
+			speed = Math.Min((float)(_inSpeedLimit * tdP), speed);
 			
 			//apply speed acceleration
 			float aSpeed = speed;
 			if (tdP >= 1)
 			{
-				var accelRange = Math.Clamp( speed, _accelThreshold, _accelLimit ) / (_accelLimit - _accelThreshold);
+				var accelRange = Math.Clamp(speed, _accelThreshold, _accelLimit) / (_accelLimit - _accelThreshold);
 				var accel = accelRange * _accelFactor;
 				aSpeed = speed * accel;
 			}
 
-			var sample = _blender.Weight( unit, aSpeed );
-			ApplySample( sample, elapsed );
+			var sample = _blender.Weight(unit, aSpeed);
+			ApplySample(sample, elapsed);
 		}
 		
-		void ApplySample( T sample, double elapsed )
+		void ApplySample(T sample, double elapsed)
 		{
 			//this may cause tap jumpiness, but without it quick swipe response is terrible
 			if (_totalTime < _zeroTolerance)
@@ -138,8 +138,8 @@ namespace Fuse.Motion.Simulation
 			}	
 			else
 			{
-				var alpha = Fuse.Internal.Statistics.ContinuousFilterAlpha( elapsed, _period );
-				_velocity = _blender.Lerp( _velocity, sample, alpha ); //an exponential moving average
+				var alpha = Fuse.Internal.Statistics.ContinuousFilterAlpha(elapsed, _period);
+				_velocity = _blender.Lerp(_velocity, sample, alpha); //an exponential moving average
 			}
 			
 			_totalTime += elapsed;

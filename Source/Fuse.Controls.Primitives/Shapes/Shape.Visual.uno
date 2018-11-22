@@ -45,7 +45,7 @@ namespace Fuse.Controls
 			get
 			{
 				var b = base.HitTestLocalVisualBounds;
-				b = b.AddRect( float2(0), ActualSize );
+				b = b.AddRect(float2(0), ActualSize);
 				return b;
 			}
 		}
@@ -66,11 +66,11 @@ namespace Fuse.Controls
 			{
 				foreach (var stroke in Strokes)
 				{
-					var extent = stroke.GetDeviceAdjusted( Viewport.PixelsPerPoint );
+					var extent = stroke.GetDeviceAdjusted(Viewport.PixelsPerPoint);
 					
 					//extends for worst case Square caps and miter limit/bevels
-					var m = extent[1] + Math.Max( extent[0] * Stroke.LineJoinMiterLimit,
-						Vector.Length(float2(extent[0])) );
+					var m = extent[1] + Math.Max(extent[0] * Stroke.LineJoinMiterLimit,
+						Vector.Length(float2(extent[0])));
 					adjust = Math.Max(adjust, m);
 				}
 			}

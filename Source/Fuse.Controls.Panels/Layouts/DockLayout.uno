@@ -63,7 +63,7 @@ namespace Fuse.Layouts
 					if (GetDock(c) == Dock.Fill)
 					{
 						var sz = c.GetMarginSize(lp);
-						mx = Math.Max( sz, mx );
+						mx = Math.Max(sz, mx);
 					}
 				}
 				return mx;
@@ -78,7 +78,7 @@ namespace Fuse.Layouts
 				{
 					var nlp = lp.Clone();
 					nlp.RetainXY(false, nlp.HasY);
-					var cds = c.GetMarginSize( nlp );
+					var cds = c.GetMarginSize(nlp);
 					
 					lp.RemoveSize(float2(cds.X,0));
 					var subtree = MeasureSubtree(container, child.NextSibling<Node>(), lp);
@@ -91,7 +91,7 @@ namespace Fuse.Layouts
 				{
 					var nlp = lp.Clone();
 					nlp.RetainXY(nlp.HasX, false);
-					var cds = c.GetMarginSize( nlp );
+					var cds = c.GetMarginSize(nlp);
 					
 					lp.RemoveSize(float2(0,cds.Y));
 					var subtree = MeasureSubtree(container, child.NextSibling<Node>(), lp);
@@ -123,7 +123,7 @@ namespace Fuse.Layouts
 				var d = GetDock(c);
 				var horz =  d== Dock.Left || d == Dock.Right;
 				nlp.SetSize(availableSize,!horz,horz);
-				var desiredSize = d != Dock.Fill ? c.GetMarginSize( nlp ) : float2(0);
+				var desiredSize = d != Dock.Fill ? c.GetMarginSize(nlp) : float2(0);
 
 				switch (d)
 				{

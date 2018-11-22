@@ -67,7 +67,7 @@ namespace Fuse.Drawing
 			_canvas = null;
 		}
 
-		protected sealed override Java.Object PrepareImageFillImpl( ImageFill img )
+		protected sealed override Java.Object PrepareImageFillImpl(ImageFill img)
 		{
 			//TODO: must be completed, or least a warning and the empty item cached.
 			return DummyBitmap();
@@ -82,7 +82,7 @@ namespace Fuse.Drawing
 		protected sealed override void VerifyBegun()
 		{
 			if (_canvas == null)
-				throw new Exception( "Canvas.Begin was not called" );
+				throw new Exception("Canvas.Begin was not called");
 		}
 	}
 }

@@ -249,7 +249,7 @@ describe('general observable tests', function() {
         var spaceOnOneScreen = Observable(function() { return members.length <= 5; });
 
         spaceOnOneScreen.addSubscriber(function(){
-            //console.log("There " + (spaceOnOneScreen.value ? "is" : "is not") + " space on one screen for all the members. That is " + (spaceOnOneScreen.value == (members.length <= 5) ? "correct." : "incorrect!") );
+            //console.log("There " + (spaceOnOneScreen.value ? "is" : "is not") + " space on one screen for all the members. That is " + (spaceOnOneScreen.value == (members.length <= 5) ? "correct." : "incorrect!"));
         });
 
         assert.equal(spaceOnOneScreen.value, true);
@@ -282,7 +282,7 @@ describe('general observable tests', function() {
         var sameSize = Observable(function() { return userList1.length == userList2.length; });
 
         sameSize.addSubscriber(function(){
-            //console.log("The two lists " + (sameSize.value ? "are " : "are not ") + "the same size. This is " + ( sameSize.value == (userList1.length == userList2.length) ? "correct." : "incorrect!" ));
+            //console.log("The two lists " + (sameSize.value ? "are " : "are not ") + "the same size. This is " + (sameSize.value == (userList1.length == userList2.length) ? "correct." : "incorrect!"));
         });
 
         assert.equal(sameSize.value, true);
@@ -296,7 +296,7 @@ describe('general observable tests', function() {
         var isThreeFruits = Observable(function() { return fruits.length == 3});
 
         isThreeFruits.addSubscriber(function(){
-            //console.log("There " + (isThreeFruits.value ? "is " : "is not ") + "three fruits in the list. This is " + ( isThreeFruits.value == (fruits.length == 3) ? "correct." : "incorrect!" ));
+            //console.log("There " + (isThreeFruits.value ? "is " : "is not ") + "three fruits in the list. This is " + (isThreeFruits.value == (fruits.length == 3) ? "correct." : "incorrect!"));
         });
 
         assert.equal(isThreeFruits.value, true);
@@ -312,7 +312,7 @@ describe('general observable tests', function() {
         var differentSize = Observable(function() { return userList1.length != userList2.length; });
 
         differentSize.addSubscriber(function(){
-            //console.log("The two lists " + (differentSize.value ? "are " : "are not ") + "the same size. This is " + ( differentSize.value == (userList1.length != userList2.length) ? "correct." : "incorrect!" ));
+            //console.log("The two lists " + (differentSize.value ? "are " : "are not ") + "the same size. This is " + (differentSize.value == (userList1.length != userList2.length) ? "correct." : "incorrect!"));
         });
 
         assert.equal(differentSize.value, false);
@@ -326,7 +326,7 @@ describe('general observable tests', function() {
         var isNotThreeFruits = Observable(function() { return fruits.length != 3; });
 
         isNotThreeFruits.addSubscriber(function(){
-            //console.log("There " + (isNotThreeFruits.value ? "is " : "is not ") + "three fruits in the list. This is " + ( isNotThreeFruits.value == (fruits.length != 3) ? "correct." : "incorrect!" ));
+            //console.log("There " + (isNotThreeFruits.value ? "is " : "is not ") + "three fruits in the list. This is " + (isNotThreeFruits.value == (fruits.length != 3) ? "correct." : "incorrect!"));
         });
 
         assert.equal(isNotThreeFruits.value, false);
@@ -342,7 +342,7 @@ describe('general observable tests', function() {
         var qualifiesForBeta = Observable(function() { return appsMade.value >= 2 || yearsExperience.value >= 1; });
 
         qualifiesForBeta.addSubscriber(function(){
-            //console.log("The user " + ( qualifiesForBeta.value ? "qualifies" : "does not qualify" ) + " for beta. This is " + ( qualifiesForBeta.value == (appsMade.value >=2) || (yearsExperience.value >= 1) ? "correct." : "incorrect!"));
+            //console.log("The user " + (qualifiesForBeta.value ? "qualifies" : "does not qualify") + " for beta. This is " + (qualifiesForBeta.value == (appsMade.value >=2) || (yearsExperience.value >= 1) ? "correct." : "incorrect!"));
         });
 
         assert.equal(qualifiesForBeta.value, true);

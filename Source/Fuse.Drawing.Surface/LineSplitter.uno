@@ -28,14 +28,14 @@ namespace Fuse.Drawing
 				else if (segments[i].Type != LineSegmentType.EllipticArc)
 					_segments.Add(segments[i]);
 				else 
-					SurfaceUtil.EllipticArcToBezierCurve( from, segments[i], _segments);
+					SurfaceUtil.EllipticArcToBezierCurve(from, segments[i], _segments);
 				
 				from = segments[i].To;
 			}
 			
 			//avoid dealing with empty segments in this class
 			if (_segments.Count == 0)
-				_segments.Add( new LineSegment{ Type = LineSegmentType.Close, To = float2(0) });
+				_segments.Add(new LineSegment{ Type = LineSegmentType.Close, To = float2(0) });
 			
 			CalcInfo();
 		}
@@ -80,10 +80,10 @@ namespace Fuse.Drawing
 				- end >= start
 				- (end-start) <= 1
 		*/
-		public void SplitTime( float start, float end, IList<LineSegment> to )
+		public void SplitTime(float start, float end, IList<LineSegment> to)
 		{
 			if (start < 0 || start > 1 || (end < start) || (end-start) > 1)
-				throw new Exception( "Invalid SplitTime arguments" );
+				throw new Exception("Invalid SplitTime arguments");
 			
 			bool hasLocation = false;
 			
@@ -117,7 +117,7 @@ namespace Fuse.Drawing
 					{
 						if (!hasLocation)
 						{
-							to.Add( new LineSegment{ To = lastPos, Type = LineSegmentType.Move } );
+							to.Add(new LineSegment{ To = lastPos, Type = LineSegmentType.Move });
 							hasLocation = true;
 						}
 						to.Add(seg);
@@ -126,7 +126,7 @@ namespace Fuse.Drawing
 					{
 						LineSegment left, right;
 						var t = ((fullStart ? end : start) - lsi.StartT) / (lsi.EndT - lsi.StartT);
-						seg.SplitAtTime( lastPos, t, out left, out right );
+						seg.SplitAtTime(lastPos, t, out left, out right);
 						
 						if (fullStart)
 						{
@@ -135,7 +135,7 @@ namespace Fuse.Drawing
 						else
 						{
 							// move to start of segment
-							to.Add( new LineSegment{ To = left.To, Type = LineSegmentType.Move } );
+							to.Add(new LineSegment{ To = left.To, Type = LineSegmentType.Move });
 							hasLocation = true;
 							
 							if (fullEnd)
@@ -147,7 +147,7 @@ namespace Fuse.Drawing
 								//need to split further as end/start within this segment
 								var nt = (end - start) / (lsi.EndT - start);
 								LineSegment nleft, nright;
-								right.SplitAtTime( left.To, nt, out nleft, out nright );
+								right.SplitAtTime(left.To, nt, out nleft, out nright);
 								to.Add(nleft);
 							}
 						}
@@ -159,7 +159,7 @@ namespace Fuse.Drawing
 			}
 		}
 		
-		public float DistanceToTime( float distance )
+		public float DistanceToTime(float distance)
 		{
 			//express in 0...1 range and adjust output back to source range
 			float adjust = 0;
@@ -200,7 +200,7 @@ namespace Fuse.Drawing
 			public float Relative;
 			public float2 From;
 		}
-		SegmentAt GetSegmentAtTime( float time )
+		SegmentAt GetSegmentAtTime(float time)
 		{
 			time -= Math.Floor(time);
 			
@@ -223,13 +223,13 @@ namespace Fuse.Drawing
 			return new SegmentAt{ Index = 0, Relative = 0, From = from };
 		}
 		
-		public float2 PointAtTime( float time )
+		public float2 PointAtTime(float time)
 		{
 			var sa = GetSegmentAtTime(time);
 			return _segments[sa.Index].PointAtTime(sa.From, sa.Relative);
 		}
 		
-		public float2 DirectionAtTime( float time )
+		public float2 DirectionAtTime(float time)
 		{
 			var sa = GetSegmentAtTime(time);
 			return _segments[sa.Index].DirectionAtTime(sa.From, sa.Relative);

@@ -66,7 +66,7 @@ namespace Fuse.Effects
 			get { return _mode; }
 			set
 			{
-				if( _mode != value )
+				if(_mode != value)
 				{
 					_mode = value;
 					OnRenderingChanged();
@@ -74,7 +74,7 @@ namespace Fuse.Effects
 			}
 		}
 
-		public override VisualBounds ModifyRenderBounds( VisualBounds inBounds )
+		public override VisualBounds ModifyRenderBounds(VisualBounds inBounds)
 		{
 			//Mask is relative to the bounds of the object, thus clips anything outside of that
 			return VisualBounds.Rect(float2(0),Element.ActualSize);
@@ -82,7 +82,7 @@ namespace Fuse.Effects
 
 		protected override void OnRender(DrawContext dc, Rect elementRect)
 		{
-			elementRect = Rect.Intersect( new Rect(float2(0),Element.ActualSize), elementRect );
+			elementRect = Rect.Intersect(new Rect(float2(0),Element.ActualSize), elementRect);
 			var texture = _container.GetTexture();
 			if (texture == null)
 				return;

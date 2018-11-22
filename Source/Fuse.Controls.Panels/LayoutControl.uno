@@ -126,9 +126,9 @@ namespace Fuse.Controls
 			base.OnUnrooted();
 		}
 
-		protected override float2 GetContentSize( LayoutParams lp )
+		protected override float2 GetContentSize(LayoutParams lp)
 		{
-			var b = base.GetContentSize( lp );
+			var b = base.GetContentSize(lp);
 
 			if (HasVisualChildren)
 				return Math.Max(b, Layout.GetContentSize(this, lp));
@@ -165,7 +165,7 @@ namespace Fuse.Controls
 			base.OnChildMoved(elm);
 		}
 
-		protected override LayoutDependent IsMarginBoxDependent( Visual child )
+		protected override LayoutDependent IsMarginBoxDependent(Visual child)
 		{
 			var outer = BoxSizingObject.IsContentRelativeSize(this);
 			var inner = Layout.IsMarginBoxDependent(child);

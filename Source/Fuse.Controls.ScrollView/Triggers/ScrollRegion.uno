@@ -76,7 +76,7 @@ namespace Fuse.Triggers
 	class ScrollRegion
 	{
 		public ScrolledWhere To = ScrolledWhere.None;
-		public bool SetTo( ScrolledWhere value )
+		public bool SetTo(ScrolledWhere value)
 		{
 			if (To == value)
 				return false;
@@ -85,7 +85,7 @@ namespace Fuse.Triggers
 		}
 		
 		public float Within;
-		public bool SetWithin( float value )
+		public bool SetWithin(float value)
 		{
 			if (Within == value)
 				return false;
@@ -94,7 +94,7 @@ namespace Fuse.Triggers
 		}
 		
 		public IScrolledLength RelativeTo = IScrolledLengths.Points;
-		public bool SetRelativeTo( IScrolledLength value )
+		public bool SetRelativeTo(IScrolledLength value)
 		{
 			if (RelativeTo == value)
 				return false;

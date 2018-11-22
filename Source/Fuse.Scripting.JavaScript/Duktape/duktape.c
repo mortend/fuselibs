@@ -5253,21 +5253,21 @@ typedef duk_uint32_t duk_instr_t;
 #define DUK_DEC_ABC(x)              (((x) >> 6) & 0x3ffffffUL)
 
 #define DUK_ENC_OP(op)              ((duk_instr_t) (op))
-#define DUK_ENC_OP_ABC(op,abc)      ((duk_instr_t) ( \
+#define DUK_ENC_OP_ABC(op,abc)      ((duk_instr_t) (\
                                         (((duk_instr_t) (abc)) << 6) | \
                                         ((duk_instr_t) (op)) \
-                                    ))
-#define DUK_ENC_OP_A_BC(op,a,bc)    ((duk_instr_t) ( \
+                                   ))
+#define DUK_ENC_OP_A_BC(op,a,bc)    ((duk_instr_t) (\
                                         (((duk_instr_t) (bc)) << 14) | \
                                         (((duk_instr_t) (a)) << 6) | \
                                         ((duk_instr_t) (op)) \
-                                    ))
-#define DUK_ENC_OP_A_B_C(op,a,b,c)  ((duk_instr_t) ( \
+                                   ))
+#define DUK_ENC_OP_A_B_C(op,a,b,c)  ((duk_instr_t) (\
                                         (((duk_instr_t) (c)) << 23) | \
                                         (((duk_instr_t) (b)) << 14) | \
                                         (((duk_instr_t) (a)) << 6) | \
                                         ((duk_instr_t) (op)) \
-                                    ))
+                                   ))
 #define DUK_ENC_OP_A_B(op,a,b)      DUK_ENC_OP_A_B_C(op,a,b,0)
 #define DUK_ENC_OP_A(op,a)          DUK_ENC_OP_A_B_C(op,a,0,0)
 
@@ -6844,7 +6844,7 @@ struct duk_heaphdr_string {
 		(h)->h_flags = ((h)->h_flags & ~(DUK_HEAPHDR_FLAGS_TYPE_MASK)) | (val); \
 	} while (0)
 
-#define DUK_HEAPHDR_HTYPE_VALID(h)    ( \
+#define DUK_HEAPHDR_HTYPE_VALID(h)    (\
 	DUK_HEAPHDR_GET_TYPE((h)) >= DUK_HTYPE_MIN && \
 	DUK_HEAPHDR_GET_TYPE((h)) <= DUK_HTYPE_MAX \
 	)
@@ -8059,31 +8059,31 @@ DUK_INTERNAL_DECL duk_ucodepoint_t duk_hstring_char_code_at_raw(duk_hthread *thr
 #if defined(DUK_USE_HOBJECT_LAYOUT_1)
 /* LAYOUT 1 */
 #define DUK_HOBJECT_E_GET_KEY_BASE(heap,h) \
-	((duk_hstring **) (void *) ( \
+	((duk_hstring **) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) \
 	))
 #define DUK_HOBJECT_E_GET_VALUE_BASE(heap,h) \
-	((duk_propvalue *) (void *) ( \
+	((duk_propvalue *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * sizeof(duk_hstring *) \
 	))
 #define DUK_HOBJECT_E_GET_FLAGS_BASE(heap,h) \
-	((duk_uint8_t *) (void *) ( \
+	((duk_uint8_t *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + DUK_HOBJECT_GET_ESIZE((h)) * (sizeof(duk_hstring *) + sizeof(duk_propvalue)) \
 	))
 #define DUK_HOBJECT_A_GET_BASE(heap,h) \
-	((duk_tval *) (void *) ( \
+	((duk_tval *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * (sizeof(duk_hstring *) + sizeof(duk_propvalue) + sizeof(duk_uint8_t)) \
 	))
 #define DUK_HOBJECT_H_GET_BASE(heap,h) \
-	((duk_uint32_t *) (void *) ( \
+	((duk_uint32_t *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * (sizeof(duk_hstring *) + sizeof(duk_propvalue) + sizeof(duk_uint8_t)) + \
 			DUK_HOBJECT_GET_ASIZE((h)) * sizeof(duk_tval) \
 	))
 #define DUK_HOBJECT_P_COMPUTE_SIZE(n_ent,n_arr,n_hash) \
-	( \
+	(\
 		(n_ent) * (sizeof(duk_hstring *) + sizeof(duk_propvalue) + sizeof(duk_uint8_t)) + \
 		(n_arr) * sizeof(duk_tval) + \
 		(n_hash) * sizeof(duk_uint32_t) \
@@ -8107,33 +8107,33 @@ DUK_INTERNAL_DECL duk_ucodepoint_t duk_hstring_char_code_at_raw(duk_hthread *thr
 #error invalid DUK_USE_ALIGN_BY
 #endif
 #define DUK_HOBJECT_E_GET_KEY_BASE(heap,h) \
-	((duk_hstring **) (void *) ( \
+	((duk_hstring **) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * sizeof(duk_propvalue) \
 	))
 #define DUK_HOBJECT_E_GET_VALUE_BASE(heap,h) \
-	((duk_propvalue *) (void *) ( \
+	((duk_propvalue *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) \
 	))
 #define DUK_HOBJECT_E_GET_FLAGS_BASE(heap,h) \
-	((duk_uint8_t *) (void *) ( \
+	((duk_uint8_t *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + DUK_HOBJECT_GET_ESIZE((h)) * (sizeof(duk_hstring *) + sizeof(duk_propvalue)) \
 	))
 #define DUK_HOBJECT_A_GET_BASE(heap,h) \
-	((duk_tval *) (void *) ( \
+	((duk_tval *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * (sizeof(duk_hstring *) + sizeof(duk_propvalue) + sizeof(duk_uint8_t)) + \
 			DUK_HOBJECT_E_FLAG_PADDING(DUK_HOBJECT_GET_ESIZE((h))) \
 	))
 #define DUK_HOBJECT_H_GET_BASE(heap,h) \
-	((duk_uint32_t *) (void *) ( \
+	((duk_uint32_t *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * (sizeof(duk_hstring *) + sizeof(duk_propvalue) + sizeof(duk_uint8_t)) + \
 			DUK_HOBJECT_E_FLAG_PADDING(DUK_HOBJECT_GET_ESIZE((h))) + \
 			DUK_HOBJECT_GET_ASIZE((h)) * sizeof(duk_tval) \
 	))
 #define DUK_HOBJECT_P_COMPUTE_SIZE(n_ent,n_arr,n_hash) \
-	( \
+	(\
 		(n_ent) * (sizeof(duk_hstring *) + sizeof(duk_propvalue) + sizeof(duk_uint8_t)) + \
 		DUK_HOBJECT_E_FLAG_PADDING((n_ent)) + \
 		(n_arr) * sizeof(duk_tval) + \
@@ -8151,35 +8151,35 @@ DUK_INTERNAL_DECL duk_ucodepoint_t duk_hstring_char_code_at_raw(duk_hthread *thr
 #elif defined(DUK_USE_HOBJECT_LAYOUT_3)
 /* LAYOUT 3 */
 #define DUK_HOBJECT_E_GET_KEY_BASE(heap,h) \
-	((duk_hstring **) (void *) ( \
+	((duk_hstring **) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * sizeof(duk_propvalue) + \
 			DUK_HOBJECT_GET_ASIZE((h)) * sizeof(duk_tval) \
 	))
 #define DUK_HOBJECT_E_GET_VALUE_BASE(heap,h) \
-	((duk_propvalue *) (void *) ( \
+	((duk_propvalue *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) \
 	))
 #define DUK_HOBJECT_E_GET_FLAGS_BASE(heap,h) \
-	((duk_uint8_t *) (void *) ( \
+	((duk_uint8_t *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * (sizeof(duk_propvalue) + sizeof(duk_hstring *)) + \
 			DUK_HOBJECT_GET_ASIZE((h)) * sizeof(duk_tval) + \
 			DUK_HOBJECT_GET_HSIZE((h)) * sizeof(duk_uint32_t) \
 	))
 #define DUK_HOBJECT_A_GET_BASE(heap,h) \
-	((duk_tval *) (void *) ( \
+	((duk_tval *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * sizeof(duk_propvalue) \
 	))
 #define DUK_HOBJECT_H_GET_BASE(heap,h) \
-	((duk_uint32_t *) (void *) ( \
+	((duk_uint32_t *) (void *) (\
 		DUK_HOBJECT_GET_PROPS((heap), (h)) + \
 			DUK_HOBJECT_GET_ESIZE((h)) * (sizeof(duk_propvalue) + sizeof(duk_hstring *)) + \
 			DUK_HOBJECT_GET_ASIZE((h)) * sizeof(duk_tval) \
 	))
 #define DUK_HOBJECT_P_COMPUTE_SIZE(n_ent,n_arr,n_hash) \
-	( \
+	(\
 		(n_ent) * (sizeof(duk_propvalue) + sizeof(duk_hstring *) + sizeof(duk_uint8_t)) + \
 		(n_arr) * sizeof(duk_tval) + \
 		(n_hash) * sizeof(duk_uint32_t) \
@@ -8329,7 +8329,7 @@ DUK_INTERNAL_DECL duk_ucodepoint_t duk_hstring_char_code_at_raw(duk_hthread *thr
 #define DUK_HOBJECT_CLASS_NUMBER_TO_STRIDX(n)  duk_class_number_to_stridx[(n)]
 
 #define DUK_HOBJECT_GET_CLASS_STRING(heap,h)          \
-	DUK_HEAP_GET_STRING( \
+	DUK_HEAP_GET_STRING(\
 		(heap), \
 		DUK_HOBJECT_CLASS_NUMBER_TO_STRIDX(DUK_HOBJECT_GET_CLASS_NUMBER((h))) \
 	)
@@ -8736,30 +8736,30 @@ DUK_INTERNAL_DECL duk_bool_t duk_hobject_prototype_chain_contains(duk_hthread *t
 	                DUK_HBUFFER_GET_SIZE((duk_hbuffer *) DUK_HCOMPILEDFUNCTION_GET_DATA((heap), h))))
 
 #define DUK_HCOMPILEDFUNCTION_GET_CONSTS_SIZE(heap,h)  \
-	( \
+	(\
 	 (duk_size_t) \
-	 ( \
+	 (\
 	   ((const duk_uint8_t *) DUK_HCOMPILEDFUNCTION_GET_CONSTS_END((heap), (h))) - \
 	   ((const duk_uint8_t *) DUK_HCOMPILEDFUNCTION_GET_CONSTS_BASE((heap), (h))) \
-	 ) \
+	) \
 	)
 
 #define DUK_HCOMPILEDFUNCTION_GET_FUNCS_SIZE(heap,h)  \
-	( \
+	(\
 	 (duk_size_t) \
-	 ( \
+	 (\
 	   ((const duk_uint8_t *) DUK_HCOMPILEDFUNCTION_GET_FUNCS_END((heap), (h))) - \
 	   ((const duk_uint8_t *) DUK_HCOMPILEDFUNCTION_GET_FUNCS_BASE((heap), (h))) \
-	 ) \
+	) \
 	)
 
 #define DUK_HCOMPILEDFUNCTION_GET_CODE_SIZE(heap,h)  \
-	( \
+	(\
 	 (duk_size_t) \
-	 ( \
+	 (\
 	   ((const duk_uint8_t *) DUK_HCOMPILEDFUNCTION_GET_CODE_END((heap),(h))) - \
 	   ((const duk_uint8_t *) DUK_HCOMPILEDFUNCTION_GET_CODE_BASE((heap),(h))) \
-	 ) \
+	) \
 	)
 
 #define DUK_HCOMPILEDFUNCTION_GET_CONSTS_COUNT(heap,h)  \
@@ -9576,9 +9576,9 @@ DUK_INTERNAL_DECL void duk_hthread_sync_and_null_currpc(duk_hthread *thr);
  * size).  May be NULL for zero size dynamic/external buffer.
  */
 #if defined(DUK_USE_HEAPPTR16)
-#define DUK_HBUFFER_GET_DATA_PTR(heap,x)  ( \
+#define DUK_HBUFFER_GET_DATA_PTR(heap,x)  (\
 	DUK_HBUFFER_HAS_DYNAMIC((x)) ? \
-		( \
+		(\
 			DUK_HBUFFER_HAS_EXTERNAL((x)) ? \
 				DUK_HBUFFER_EXTERNAL_GET_DATA_PTR((heap), (duk_hbuffer_external *) (x)) : \
 				DUK_HBUFFER_DYNAMIC_GET_DATA_PTR((heap), (duk_hbuffer_dynamic *) (x)) \
@@ -9589,7 +9589,7 @@ DUK_INTERNAL_DECL void duk_hthread_sync_and_null_currpc(duk_hthread *thr);
 /* Without heap pointer compression duk_hbuffer_dynamic and duk_hbuffer_external
  * have the same layout so checking for fixed vs. dynamic (or external) is enough.
  */
-#define DUK_HBUFFER_GET_DATA_PTR(heap,x)  ( \
+#define DUK_HBUFFER_GET_DATA_PTR(heap,x)  (\
 	DUK_HBUFFER_HAS_DYNAMIC((x)) ? \
 		DUK_HBUFFER_DYNAMIC_GET_DATA_PTR((heap), (duk_hbuffer_dynamic *) (x)) : \
 		DUK_HBUFFER_FIXED_GET_DATA_PTR((heap), (duk_hbuffer_fixed *) (x)) \
@@ -30850,7 +30850,7 @@ DUK_INTERNAL duk_ret_t duk_bi_function_prototype_bind(duk_context *ctx) {
 /* Macros for creating and checking bitmasks for character encoding.
  * Bit number is a bit counterintuitive, but minimizes code size.
  */
-#define DUK__MKBITS(a,b,c,d,e,f,g,h)  ((duk_uint8_t) ( \
+#define DUK__MKBITS(a,b,c,d,e,f,g,h)  ((duk_uint8_t) (\
 	((a) << 0) | ((b) << 1) | ((c) << 2) | ((d) << 3) | \
 	((e) << 4) | ((f) << 5) | ((g) << 6) | ((h) << 7) \
 	))
@@ -49204,8 +49204,8 @@ DUK_INTERNAL void duk_hobject_pc2line_pack(duk_hthread *thr, duk_compiler_instr 
 
 		for (;;) {
 			curr_pc++;
-			if ( ((curr_pc % DUK_PC2LINE_SKIP) == 0) ||  /* end of diff run */
-			     (curr_pc >= length) ) {                 /* end of bytecode */
+			if (((curr_pc % DUK_PC2LINE_SKIP) == 0) ||  /* end of diff run */
+			     (curr_pc >= length)) {                 /* end of bytecode */
 				break;
 			}
 			DUK_ASSERT(curr_pc < length);
@@ -56736,7 +56736,7 @@ DUK_LOCAL void duk__handle_call_error(duk_hthread *thr,
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
                                       , duk_jmpbuf *old_jmpbuf_ptr
 #endif
-                                      );
+                                     );
 DUK_LOCAL void duk__handle_safe_call_inner(duk_hthread *thr,
                                            duk_safe_call_function func,
                                            duk_idx_t idx_retbase,
@@ -56753,7 +56753,7 @@ DUK_LOCAL void duk__handle_safe_call_error(duk_hthread *thr,
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
                                            , duk_jmpbuf *old_jmpbuf_ptr
 #endif
-                                           );
+                                          );
 DUK_LOCAL void duk__handle_safe_call_shared(duk_hthread *thr,
                                             duk_idx_t idx_retbase,
                                             duk_idx_t num_stack_rets,
@@ -57794,7 +57794,7 @@ DUK_INTERNAL duk_int_t duk_handle_call_protected(duk_hthread *thr,
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
 		                       , old_jmpbuf_ptr
 #endif
-                                       );
+                                      );
 
 		/* Longjmp state is cleaned up by error handling */
 		DUK_ASSERT(thr->heap->lj.type == DUK_LJ_TYPE_UNKNOWN);
@@ -58447,7 +58447,7 @@ DUK_LOCAL void duk__handle_call_error(duk_hthread *thr,
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
                                       , duk_jmpbuf *old_jmpbuf_ptr
 #endif
-                                      ) {
+                                     ) {
 	duk_context *ctx;
 	duk_tval *tv_ret;
 
@@ -58693,7 +58693,7 @@ DUK_INTERNAL duk_int_t duk_handle_safe_call(duk_hthread *thr,
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
 		                            , old_jmpbuf_ptr
 #endif
-                                            );
+                                           );
 
 		/* Longjmp state is cleaned up by error handling */
 		DUK_ASSERT(thr->heap->lj.type == DUK_LJ_TYPE_UNKNOWN);
@@ -58872,7 +58872,7 @@ DUK_LOCAL void duk__handle_safe_call_error(duk_hthread *thr,
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
                                            , duk_jmpbuf *old_jmpbuf_ptr
 #endif
-                                           ) {
+                                          ) {
 	duk_context *ctx;
 
 	DUK_ASSERT(thr != NULL);
@@ -62443,7 +62443,7 @@ DUK_LOCAL void duk__nud_object_literal(duk_compiler_ctx *comp_ctx, duk_ivalue *r
 			 *  Three possible element formats:
 			 *    1) PropertyName : AssignmentExpression
 			 *    2) get PropertyName () { FunctionBody }
-			 *    3) set PropertyName ( PropertySetParameterList ) { FunctionBody }
+			 *    3) set PropertyName (PropertySetParameterList) { FunctionBody }
 			 *
 			 *  PropertyName can be IdentifierName (includes reserved words), a string
 			 *  literal, or a number literal.  Note that IdentifierName allows 'get' and
@@ -69221,7 +69221,7 @@ DUK_LOCAL void duk__handle_executor_error(duk_heap *heap,
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
                                           , duk_jmpbuf *entry_jmpbuf_ptr
 #endif
-                                          ) {
+                                         ) {
 	duk_small_uint_t lj_ret;
 
 	/* Longjmp callers are required to sync-and-null thr->ptr_curr_pc
@@ -69337,7 +69337,7 @@ DUK_INTERNAL void duk_js_execute_bytecode(duk_hthread *exec_thr) {
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
 			                           , entry_jmpbuf_ptr
 #endif
-			                           );
+			                          );
 		}
 #if defined(DUK_USE_CPP_EXCEPTIONS)
 		catch (std::exception &exc) {
@@ -69358,7 +69358,7 @@ DUK_INTERNAL void duk_js_execute_bytecode(duk_hthread *exec_thr) {
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
 				                           , entry_jmpbuf_ptr
 #endif
-				                           );
+				                          );
 			}
 		} catch (...) {
 			DUK_D(DUK_DPRINT("unexpected c++ exception (perhaps thrown by user code)"));
@@ -69374,7 +69374,7 @@ DUK_INTERNAL void duk_js_execute_bytecode(duk_hthread *exec_thr) {
 #if !defined(DUK_USE_CPP_EXCEPTIONS)
 				                           , entry_jmpbuf_ptr
 #endif
-				                           );
+				                          );
 			}
 		}
 #endif
@@ -76723,7 +76723,7 @@ DUK_INTERNAL void duk_lexer_parse_re_token(duk_lexer_ctx *lex_ctx, duk_re_token 
 				advtok = DUK__ADVTOK(3, DUK_RETOK_ATOM_START_NONCAPTURE_GROUP);
 			}
 		} else {
-			/* ( */
+			/* (*/
 			advtok = DUK__ADVTOK(1, DUK_RETOK_ATOM_START_CAPTURE_GROUP);
 		}
 		break;
@@ -76946,7 +76946,7 @@ DUK_INTERNAL void duk_lexer_parse_re_ranges(duk_lexer_ctx *lex_ctx, duk_re_range
 #if defined(DUK_USE_NONSTD_REGEXP_DOLLAR_ESCAPE)
 			           || x == '$'
 #endif
-			          ) {
+			         ) {
 				/* IdentityEscape */
 				ch = x;
 			} else {
@@ -77112,8 +77112,8 @@ DUK_LOCAL void duk__bi_print(const char *name, duk__bigint *x) {
 #ifdef DUK_USE_ASSERTIONS
 DUK_LOCAL duk_small_int_t duk__bi_is_valid(duk__bigint *x) {
 	return (duk_small_int_t)
-	       ( ((x->n >= 0) && (x->n <= DUK__BI_MAX_PARTS)) /* is valid size */ &&
-	         ((x->n == 0) || (x->v[x->n - 1] != 0)) /* is normalized */ );
+	       (((x->n >= 0) && (x->n <= DUK__BI_MAX_PARTS)) /* is valid size */ &&
+	         ((x->n == 0) || (x->v[x->n - 1] != 0)) /* is normalized */);
 }
 #endif
 

@@ -92,12 +92,12 @@ namespace Fuse.Charting
 			base.OnUnrooted();
 		}
 		
-		void IPlotDataItemListener<PlotDataPoint>.OnNewData( PlotDataPoint entry )
+		void IPlotDataItemListener<PlotDataPoint>.OnNewData(PlotDataPoint entry)
 		{
-			_animator.SetValue( _calc.PrepareEntry(entry), AnimUpdate );
+			_animator.SetValue(_calc.PrepareEntry(entry), AnimUpdate);
 		}
 		
-		void AnimUpdate( float2 value )
+		void AnimUpdate(float2 value)
 		{
 			var p = _calc.ValueToPos(value);
 			X = p.X;

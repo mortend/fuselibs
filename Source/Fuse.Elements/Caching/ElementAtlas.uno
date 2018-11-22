@@ -196,7 +196,7 @@ namespace Fuse.Elements
 						framebufferPushed = true;
 					}
 
-					dc.PushViewport( new FixedViewport(_rectPacker.Size, density, cc));
+					dc.PushViewport(new FixedViewport(_rectPacker.Size, density, cc));
 
 					var scissor = entry.AtlasRect;
 					if (elm.ClipToBounds)

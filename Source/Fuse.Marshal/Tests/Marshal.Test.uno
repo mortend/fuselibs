@@ -207,12 +207,12 @@ namespace Fuse
 		[Obsolete]
 		public void Deprecated()
 		{
-			Assert.AreEqual( 8.0, Marshal.Add(3.0,5.0));
-			Assert.AreEqual( -2.0, Marshal.Subtract(3.0,5.0));
-			Assert.AreEqual( 15.0, Marshal.Multiply(3.0,5.0));
-			Assert.AreEqual( 0.6, Marshal.Divide(3.0,5.0));
-			Assert.AreEqual( 3.0, Marshal.Min(3.0,5.0));
-			Assert.AreEqual( 5.0, Marshal.Max(3.0,5.0));
+			Assert.AreEqual(8.0, Marshal.Add(3.0,5.0));
+			Assert.AreEqual(-2.0, Marshal.Subtract(3.0,5.0));
+			Assert.AreEqual(15.0, Marshal.Multiply(3.0,5.0));
+			Assert.AreEqual(0.6, Marshal.Divide(3.0,5.0));
+			Assert.AreEqual(3.0, Marshal.Min(3.0,5.0));
+			Assert.AreEqual(5.0, Marshal.Max(3.0,5.0));
 		}
 
 		[Test]
@@ -237,18 +237,18 @@ namespace Fuse
 			//https://github.com/fuse-open/fuselibs/issues/592
 			float4 val;
 			int size;
-			Assert.IsFalse( Marshal.TryToZeroFloat4( "#ch", out val, out size ) );
-			Assert.IsFalse( Marshal.TryToZeroFloat4(  new ListWrapper(
-				new object[]{ 1,2, new Junk()}), out val, out size ) );
-			Assert.IsFalse( Marshal.TryToZeroFloat4(  new ListWrapper(
-				new object[]{ 1, "abc"}), out val, out size ) );
+			Assert.IsFalse(Marshal.TryToZeroFloat4("#ch", out val, out size));
+			Assert.IsFalse(Marshal.TryToZeroFloat4( new ListWrapper(
+				new object[]{ 1,2, new Junk()}), out val, out size));
+			Assert.IsFalse(Marshal.TryToZeroFloat4( new ListWrapper(
+				new object[]{ 1, "abc"}), out val, out size));
 				
-			Assert.IsTrue( Marshal.TryToZeroFloat4(  new ListWrapper(
-				new object[]{ 1, 2, 3}), out val, out size ) );
-			Assert.AreEqual( float4(1,2,3,0), val );
-			Assert.IsTrue( Marshal.TryToZeroFloat4(  new ListWrapper(
-				new object[]{}), out val, out size ) );
-			Assert.AreEqual( float4(0,0,0,0), val );
+			Assert.IsTrue(Marshal.TryToZeroFloat4( new ListWrapper(
+				new object[]{ 1, 2, 3}), out val, out size));
+			Assert.AreEqual(float4(1,2,3,0), val);
+			Assert.IsTrue(Marshal.TryToZeroFloat4( new ListWrapper(
+				new object[]{}), out val, out size));
+			Assert.AreEqual(float4(0,0,0,0), val);
 		}
 	}
 	

@@ -29,7 +29,7 @@ namespace Fuse.Reactive
 		Flags _flags;
 		Expression.Argument[] _args;
 
-		internal ExpressionSubscriber( Expression[] args, Flags flags, object source = null )
+		internal ExpressionSubscriber(Expression[] args, Flags flags, object source = null)
 		{
 			_flags = flags;
 			_source = source ?? this;
@@ -38,7 +38,7 @@ namespace Fuse.Reactive
 			for (int i=0; i < args.Length; ++i)
 			{
 				if (args[i] == null)
-					throw new Exception( "May not contain null: " + nameof(args) );
+					throw new Exception("May not contain null: " + nameof(args));
 				_args[i] = new Expression.Argument{ Source = args[i] };
 			}
 		}
@@ -81,16 +81,16 @@ namespace Fuse.Reactive
 		
 		bool IsOptional(int index)
 		{
-			if (_flags.HasFlag( Flags.AllOptional ) )
+			if (_flags.HasFlag(Flags.AllOptional))
 				return true;
 			if (index == 0)
-				return _flags.HasFlag( Flags.Optional0 );
+				return _flags.HasFlag(Flags.Optional0);
 			if (index == 1)
-				return _flags.HasFlag( Flags.Optional1 );
+				return _flags.HasFlag(Flags.Optional1);
 			if (index == 2)
-				return _flags.HasFlag( Flags.Optional2 );
+				return _flags.HasFlag(Flags.Optional2);
 			if (index == 3)
-				return _flags.HasFlag( Flags.Optional3 );
+				return _flags.HasFlag(Flags.Optional3);
 			return false;
 		}
 		
@@ -159,13 +159,13 @@ namespace Fuse.Reactive
 		//exposed for deprecated code paths
 		internal IListener Listener { get { return _listener; } }
 
-		protected ExpressionListener( Expression source, IListener listener, Expression[] args, Flags flags = Flags.None) :
-			base( args, flags, source )
+		protected ExpressionListener(Expression source, IListener listener, Expression[] args, Flags flags = Flags.None) :
+			base(args, flags, source)
 		{
 			if (listener == null)
-				throw new Exception( "May not be null: "+  nameof(listener) );
+				throw new Exception("May not be null: "+  nameof(listener));
 			if (source == null)
-				throw new Exception( "May not be null: " + nameof(source) );
+				throw new Exception("May not be null: " + nameof(source));
 				
 			_listener = listener;
 			_source = source;
@@ -250,24 +250,24 @@ namespace Fuse.Reactive
 		
 		Flags _flags;
 		String _name;
-		protected ComputeExpression( Expression[] args, Flags flags = Flags.None, string name = null )
+		protected ComputeExpression(Expression[] args, Flags flags = Flags.None, string name = null)
 		{
 			_flags = flags;
 			_args = args;
 			_name = name;
 			
-			if (_flags.HasFlag( Flags.DeprecatedVirtualFlags) )
+			if (_flags.HasFlag(Flags.DeprecatedVirtualFlags))
 			{
 				//DEPRECATED: 2017-12-14
-				Fuse.Diagnostics.Deprecated( "This constructor and use of the Is*Optional virtuals is deprecated. Pass the optionals as flags to the constructor, or specifiy Flags.None to avoid the message", this );
+				Fuse.Diagnostics.Deprecated("This constructor and use of the Is*Optional virtuals is deprecated. Pass the optionals as flags to the constructor, or specifiy Flags.None to avoid the message", this);
 			}
-			if (_flags.HasFlag( Flags.DeprecatedVirtualUnary) )
+			if (_flags.HasFlag(Flags.DeprecatedVirtualUnary))
 			{
 				if (!(this is UnaryOperator) || args.Length != 1)
-					throw new Exception( "DeprecatedVirtualUnary supported only on UnaryOperator with 1 argument" );
+					throw new Exception("DeprecatedVirtualUnary supported only on UnaryOperator with 1 argument");
 					
 				//DEPRECATED: 2017-12-14
-				Fuse.Diagnostics.Deprecated( "Overiding the UnaryOperator.OnNewOperand/OnLostData is deprecated. Implement `Compute` and call the other constructor, or pass Flags.None, or implement an `Expression` and `ExpressionListener` if you need the behavior (rare).", this );
+				Fuse.Diagnostics.Deprecated("Overiding the UnaryOperator.OnNewOperand/OnLostData is deprecated. Implement `Compute` and call the other constructor, or pass Flags.None, or implement an `Expression` and `ExpressionListener` if you need the behavior (rare).", this);
 			}
 		}
 
@@ -330,28 +330,28 @@ namespace Fuse.Reactive
 		{
 			ComputeExpression _expr;
 			
-			public Subscription( ComputeExpression expr, IListener listener )
-				: base( expr, listener, expr._args, expr.EffectiveFlags )
+			public Subscription(ComputeExpression expr, IListener listener)
+				: base(expr, listener, expr._args, expr.EffectiveFlags)
 			{
 				_expr = expr;
 			}
 
 			protected override void OnArguments(Expression.Argument[] args)
 			{
-				if (_expr._flags.HasFlag( ComputeExpression.Flags.DeprecatedVirtualUnary) )
+				if (_expr._flags.HasFlag(ComputeExpression.Flags.DeprecatedVirtualUnary))
 				{
-					((UnaryOperator)_expr).InternalOnNewOperand( Listener, args[0].Value );
+					((UnaryOperator)_expr).InternalOnNewOperand(Listener, args[0].Value);
 					return;
 				}
 				
 				object result;
 				if (_expr.TryCompute(args, out result))
 				{
-					SetData( result );
+					SetData(result);
 				}
 				else
 				{
-					if (!_expr._flags.HasFlag( ComputeExpression.Flags.OmitComputeWarning ) )
+					if (!_expr._flags.HasFlag(ComputeExpression.Flags.OmitComputeWarning))
 					{
 						string msg = "Failed to compute value for (";
 						for (int i=0; i < args.Length; ++i)
@@ -363,7 +363,7 @@ namespace Fuse.Reactive
 							else
 								msg += "undefined";
 						}
-						Fuse.Diagnostics.UserWarning( msg, _expr );
+						Fuse.Diagnostics.UserWarning(msg, _expr);
 					}
 					OnClearData();
 				}
@@ -371,8 +371,8 @@ namespace Fuse.Reactive
 			
 			internal override void OnClearData()
 			{
-				if (_expr._flags.HasFlag( ComputeExpression.Flags.DeprecatedVirtualUnary) )
-					((UnaryOperator)_expr).InternalOnLostOperand( Listener );
+				if (_expr._flags.HasFlag(ComputeExpression.Flags.DeprecatedVirtualUnary))
+					((UnaryOperator)_expr).InternalOnLostOperand(Listener);
 				else
 					base.OnClearData();
 			}

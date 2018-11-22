@@ -113,7 +113,7 @@ namespace Fuse
 			
 			@return true if `r` contains the intersection point, false if the lines are parallel or coincident.
 		*/
-		public static bool LineLineIntersection( float2 p1, float2 v1, float2 p2, float2 v2, out float2 r )
+		public static bool LineLineIntersection(float2 p1, float2 v1, float2 p2, float2 v2, out float2 r)
 		{
 			// Get A,B,C of first line - points : ps1 to pe1
 			float A1 = v1.Y;
@@ -127,7 +127,7 @@ namespace Fuse
 
 			// Get delta and check if the lines are parallel
 			float delta = A1*B2 - A2*B1;
-			if( Math.Abs(delta) < 1e-4 )
+			if(Math.Abs(delta) < 1e-4)
 			{
 				r = float2(0);
 				return false;

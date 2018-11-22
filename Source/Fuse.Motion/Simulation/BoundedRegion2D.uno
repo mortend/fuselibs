@@ -16,7 +16,7 @@ namespace Fuse.Motion.Simulation
 		bool IsUser { get; }
 		bool IsDestination { get; }
 		
-		void MoveTo( float2 position );
+		void MoveTo(float2 position);
 		float2 Destination { get; }
 		
 		void Reset(float2 position);
@@ -90,7 +90,7 @@ namespace Fuse.Motion.Simulation
 				
 				_maxPosition = value; 
 				if (_moveMode == MoveMode.Destination)
-					_destination.Destination = Math.Clamp( _destination.Destination, MinPosition, MaxPosition );
+					_destination.Destination = Math.Clamp(_destination.Destination, MinPosition, MaxPosition);
 			}
 		}
 		
@@ -115,14 +115,14 @@ namespace Fuse.Motion.Simulation
 		
 		public void StepUser(float2 inOffset)
 		{
-			Position = SnapPosition( Position, inOffset + Position );
+			Position = SnapPosition(Position, inOffset + Position);
 		}
 		
 		public void EndUser(float2 velocity = float2(0))
 		{
 			if (!IsUser)
 				return;
-			_velocity = SnapVelocity( Position, velocity );
+			_velocity = SnapVelocity(Position, velocity);
 			_moveMode = MoveMode.Friction;
 		}
 		
@@ -162,16 +162,16 @@ namespace Fuse.Motion.Simulation
 					break;
 					
 				case MoveMode.Destination:
-					MoveTo( Destination + adjust );
+					MoveTo(Destination + adjust);
 					break;
 					
 				//It's unsure what to do in the other modes still...
 			}
 		}
 		
-		public void MoveTo( float2 target )
+		public void MoveTo(float2 target)
 		{	
-			_destination.Destination = Math.Clamp( target, MinPosition, MaxPosition );
+			_destination.Destination = Math.Clamp(target, MinPosition, MaxPosition);
 			_destination.Position = Position;
 			_destination.Velocity = Velocity;
 			_destination.Start();
@@ -234,7 +234,7 @@ namespace Fuse.Motion.Simulation
 			_friction.Velocity = _velocity;
 			_friction.Position = Position;
 			
-			_friction.Update( elapsed );
+			_friction.Update(elapsed);
 			SnapSetPositionVelocity(_friction.Position, _friction.Velocity);
 			
 			if (_friction.IsStatic)
@@ -244,19 +244,19 @@ namespace Fuse.Motion.Simulation
 			}
 			
 			//allow one axis to snap while other is still moving
-			MoveSnap( elapsed, 
+			MoveSnap(elapsed, 
 				Math.Abs(_velocity.X) < _zeroTolerance,
-				Math.Abs(_velocity.Y) < _zeroTolerance );
+				Math.Abs(_velocity.Y) < _zeroTolerance);
 		}
 		
-		void SnapSetPositionVelocity( float2 nextPosition, float2 nextVelocity )
+		void SnapSetPositionVelocity(float2 nextPosition, float2 nextVelocity)
 		{
 			//clamp based on expected position, to ensure it clamps in the end zones
 			Velocity = SnapVelocity(nextPosition, nextVelocity);
 			Position = SnapPosition(Position, nextPosition);
 		}
 		
-		float2 SnapPosition( float2 prev, float2 next )
+		float2 SnapPosition(float2 prev, float2 next)
 		{
 			switch (Overflow)
 			{
@@ -268,14 +268,14 @@ namespace Fuse.Motion.Simulation
 					
 				case OverflowType.Elastic:
 				{
-					var over = CalcOver( next );
+					var over = CalcOver(next);
 					if (Math.Abs(over.X) + Math.Abs(over.Y) < _zeroTolerance)
 						return next;
 					
 					//TODO: this doesn't correctly account for the step when next moves into the
 					//overflow, clipping it prematurely
 					var diff = next - prev;
-					var f = Math.Clamp( float2(1) - Math.Abs(over) / _overflowExtent, float2(0), float2(1) );
+					var f = Math.Clamp(float2(1) - Math.Abs(over) / _overflowExtent, float2(0), float2(1));
 					var mod = prev + diff * f;
 					
 					//in case we're moving out of the snap area don't modify it
@@ -291,9 +291,9 @@ namespace Fuse.Motion.Simulation
 			return next;
 		}
 		
-		float2 SnapVelocity( float2 position, float2 v )
+		float2 SnapVelocity(float2 position, float2 v)
 		{
-			var over = CalcOver( position );
+			var over = CalcOver(position);
 			if (Math.Abs(over.X) + Math.Abs(over.Y) < _zeroTolerance)
 				return v;
 			
@@ -313,7 +313,7 @@ namespace Fuse.Motion.Simulation
 					
 				case OverflowType.Elastic:
 				{
-					var f = Math.Clamp( float2(1) - Math.Abs(over) / _overflowExtent, float2(0), float2(1) );
+					var f = Math.Clamp(float2(1) - Math.Abs(over) / _overflowExtent, float2(0), float2(1));
 					var mod = v * f;
 					if (Math.Sign(v.X) != Math.Sign(over.X))
 						mod.X = v.X;
@@ -336,9 +336,9 @@ namespace Fuse.Motion.Simulation
 			set { _snap = value; }
 		}
 		
-		bool MoveSnap( double elapsed, bool X = true, bool Y = true )
+		bool MoveSnap(double elapsed, bool X = true, bool Y = true)
 		{
-			var over = CalcOver( Position );
+			var over = CalcOver(Position);
 			var off = Vector.Length(over);
 			if (off <= 0)
 				return true;
@@ -383,7 +383,7 @@ namespace Fuse.Motion.Simulation
 				_moveMode = MoveMode.Stop;
 		}
 		
-		float2 CalcOver( float2 sp )
+		float2 CalcOver(float2 sp)
 		{
 			var min = MinPosition;
 			var max = MaxPosition;

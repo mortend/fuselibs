@@ -13,15 +13,15 @@
 	<JavaScript>
 		var Observable = require("FuseJS/Observable")
 		
-		exports.points = Observable( [0,0.4], [0.2,0.8], [0.4,0.7], [0.6,0.2], [0.8,0.5], [1,0.5])
-		exports.locs = exports.points.map( function(v) {
+		exports.points = Observable([0,0.4], [0.2,0.8], [0.4,0.7], [0.6,0.2], [0.8,0.5], [1,0.5])
+		exports.locs = exports.points.map(function(v) {
 			return { x: v[0], y: v[1] }
 		})
 		
 		exports.random = function() {
 			var list = []
-			for (var i=0; i <= 5; ++i ) {
-				list.push( [i/5, Math.random()] )
+			for (var i=0; i <= 5; ++i) {
+				list.push([i/5, Math.random()])
 			}
 			exports.points.replaceAll(list)
 		}

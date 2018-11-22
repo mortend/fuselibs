@@ -47,7 +47,7 @@ namespace Fuse.Navigation
 			parent = null;
 			if (!node.IsRootingStarted)
 			{
-				Fuse.Diagnostics.InternalError( "TryFindBaseNavigation requires rooting to have started", node );
+				Fuse.Diagnostics.InternalError("TryFindBaseNavigation requires rooting to have started", node);
 				return null;
 			}
 			
@@ -108,7 +108,7 @@ namespace Fuse.Navigation
 			
 			if (!node.IsRootingStarted)
 			{
-				Fuse.Diagnostics.InternalError( "TryFindPage requires rooting to have started", node );
+				Fuse.Diagnostics.InternalError("TryFindPage requires rooting to have started", node);
 				return null;
 			}
 			
@@ -129,7 +129,7 @@ namespace Fuse.Navigation
 							nav = TryFind(p);
 							if (nav == null)
 							{
-								Fuse.Diagnostics.UserWarning( "`Page` set to a value that is not within an navigation", p );
+								Fuse.Diagnostics.UserWarning("`Page` set to a value that is not within an navigation", p);
 								return null;
 							}
 						}

@@ -117,13 +117,13 @@ namespace Fuse.Android
 
 	extern (Android) class TextRenderer: ITextRenderer
 	{
-		public static ITextRenderer Create( Fuse.Controls.TextControl control )
+		public static ITextRenderer Create(Fuse.Controls.TextControl control)
 		{
 			return new TextRenderer(control);
 		}
 		
 		Fuse.Controls.TextControl _control;
-		TextRenderer( Fuse.Controls.TextControl Control )
+		TextRenderer(Fuse.Controls.TextControl Control)
 		{
 			_control = Control;
 		}
@@ -197,7 +197,7 @@ namespace Fuse.Android
 		public Uno.Rect GetRenderBounds()
 		{
 			UpdateLayout();
-			return Uno.Rect.Translate( new Uno.Rect(
+			return Uno.Rect.Translate(new Uno.Rect(
 				(float2)_textLayout.PixelBounds.Position / _control.Viewport.PixelsPerPoint,
 				(float2)_textLayout.PixelBounds.Size / _control.Viewport.PixelsPerPoint), 
 				_arrangePosition);

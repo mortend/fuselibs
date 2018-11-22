@@ -83,7 +83,7 @@ namespace Fuse.Triggers.Actions
 			}
 				
 			if (_event == null)
-				Fuse.Diagnostics.UserError( "no UserEvent found: " + EventName, this );
+				Fuse.Diagnostics.UserError("no UserEvent found: " + EventName, this);
 			else
 				_event.Raise(ConvertArgs());
 		}

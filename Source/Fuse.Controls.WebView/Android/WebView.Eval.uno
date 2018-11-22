@@ -60,7 +60,7 @@ namespace Fuse.Android.Controls.WebViewUtils
 		}
 		
 		string CreateExpression(string original){
-			return _interfaceName+".onResult( eval(\'"+original+"\') );";
+			return _interfaceName+".onResult(eval(\'"+original+"\'));";
 		}
 		
 		void OnJsResult(string result)

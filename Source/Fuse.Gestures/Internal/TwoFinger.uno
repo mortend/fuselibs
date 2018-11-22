@@ -60,7 +60,7 @@ namespace Fuse.Gestures.Internal
 		Gesture _gesture;
 		void OnRooted()
 		{
-			_gesture = Input.Gestures.Add( this, _node, GestureType.Multi );
+			_gesture = Input.Gestures.Add(this, _node, GestureType.Multi);
 		}
 		
 		void OnUnrooted()
@@ -110,16 +110,16 @@ namespace Fuse.Gestures.Internal
 			{
 				float sig = 0;
 				if (_trackingKeyboard)
-					sig = Vector.Length( _point[0].Current - _point[0].Start );
+					sig = Vector.Length(_point[0].Current - _point[0].Start);
 				else if (_point[1].Down != -1)
-					sig = Vector.Length( _point[0].Current - _point[0].Start ) +
-					Vector.Length( _point[1].Current - _point[1].Start );
-				return new GesturePriorityConfig( GesturePriority.Normal, sig );
+					sig = Vector.Length(_point[0].Current - _point[0].Start) +
+					Vector.Length(_point[1].Current - _point[1].Start);
+				return new GesturePriorityConfig(GesturePriority.Normal, sig);
 			}
 		}
 		
 		bool _begun;
-		void IGesture.OnCaptureChanged( PointerEventArgs args, CaptureType type, CaptureType prev )
+		void IGesture.OnCaptureChanged(PointerEventArgs args, CaptureType type, CaptureType prev)
 		{
 			var p = PointFromArgs(args);
 			if (p == null)

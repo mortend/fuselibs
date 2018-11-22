@@ -40,9 +40,9 @@ namespace Fuse.Animations
 				return;
 				
 			if (_mixHandle == null)
-				_mixHandle = Mixer.Register( Target );
+				_mixHandle = Mixer.Register(Target);
 			
-			_mixHandle.Set( Value, Strength );
+			_mixHandle.Set(Value, Strength);
 		}
 		
 		void Clear()

@@ -92,7 +92,7 @@ namespace Fuse.Controls
 				var page = _pageProgress.GetPage(VisualChildCount);
 				//prevent dot {Page} bindings from ever binding to the navigation object (Page is always present)
 				NavigationPageProperty.SetNavigationPage(dot, page);
-				Children.Add( dot );
+				Children.Add(dot);
 			}
 
 			var p = 0;

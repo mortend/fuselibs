@@ -28,7 +28,7 @@ namespace Fuse.Controls
 	{
 		protected override SurfacePath CreateSurfacePath(Surface surface)
 		{
-			return CreateEllipticalPath( surface, ActualSize/2, ActualSize/2 );
+			return CreateEllipticalPath(surface, ActualSize/2, ActualSize/2);
 		}
 		
 		protected override void OnHitTestLocalVisual(Fuse.HitTestContext htc)

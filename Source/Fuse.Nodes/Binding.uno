@@ -13,7 +13,7 @@ namespace Fuse
 		internal void Root(Node parent)
 		{
 			if (Parent != null)
-				Fuse.Diagnostics.InternalError( "double Binding rooting detected", this );
+				Fuse.Diagnostics.InternalError("double Binding rooting detected", this);
 
 			Parent = parent;
 			OnRooted();
@@ -22,7 +22,7 @@ namespace Fuse
 		internal void Unroot()
 		{
 			if (Parent == null)
-				Fuse.Diagnostics.InternalError( "double Binding unrooting detected", this );
+				Fuse.Diagnostics.InternalError("double Binding unrooting detected", this);
 
 			OnUnrooted();
 			Parent = null;

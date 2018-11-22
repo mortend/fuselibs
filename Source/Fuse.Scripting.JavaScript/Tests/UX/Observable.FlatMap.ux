@@ -5,7 +5,7 @@
 		var inA = Observable({ name: Observable("inA") })
 		var inB = Observable({ name: Observable("inB") })
 
-		exports.item = this.Parameter.flatMap( function(param) {
+		exports.item = this.Parameter.flatMap(function(param) {
 			if (param == "A") {
 				return inA
 			} else if (param == "B") {

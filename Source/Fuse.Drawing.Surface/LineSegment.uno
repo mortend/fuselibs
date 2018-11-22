@@ -84,7 +84,7 @@ namespace Fuse.Drawing
 			get { return Type != LineSegmentType.Move && Type != LineSegmentType.Close; }
 		}
 		
-		internal void SplitAtTime( float2 from, float t, out LineSegment left, out LineSegment right )
+		internal void SplitAtTime(float2 from, float t, out LineSegment left, out LineSegment right)
 		{
 			switch (Type)
 			{
@@ -92,9 +92,9 @@ namespace Fuse.Drawing
 				{
 					//TODO: provide optimized version
 					var p4 = new float2[]{ from, A, B, To };
-					var p3 = deCasteljau( p4, t );
-					var p2 = deCasteljau( p3, t );
-					var p1 = deCasteljau( p2, t );
+					var p3 = deCasteljau(p4, t);
+					var p2 = deCasteljau(p3, t);
+					var p1 = deCasteljau(p2, t);
 					
 					left = new LineSegment{ Type = LineSegmentType.BezierCurve,
 						A = p3[0], B = p2[0], To = p1[0] };
@@ -105,7 +105,7 @@ namespace Fuse.Drawing
 				
 				case LineSegmentType.Straight:
 				{
-					left = new LineSegment{ Type = LineSegmentType.Straight, To = Math.Lerp( from, To, t ) };
+					left = new LineSegment{ Type = LineSegmentType.Straight, To = Math.Lerp(from, To, t) };
 					right = new LineSegment{ Type = LineSegmentType.Straight, To = To };
 					break;
 				}
@@ -113,11 +113,11 @@ namespace Fuse.Drawing
 				case LineSegmentType.EllipticArc: //expected to be converted to Bezier first (as in LineSplitter)
 				default:
 					//TODO: some innert default is probably better, source data in splitting may be end-user provided
-					throw new Exception( "Unsupported type for splitting: " + Type );
+					throw new Exception("Unsupported type for splitting: " + Type);
 			}
 		}
 		
-		static float2[] deCasteljau( float2[] pts, float t )
+		static float2[] deCasteljau(float2[] pts, float t)
 		{
 			var next = new float2[pts.Length-1];
 			for (int i=0; i <pts.Length - 1; ++i) {
@@ -126,17 +126,17 @@ namespace Fuse.Drawing
 			return next;
 		}
 		
-		internal float EstimateLength( float2 from )
+		internal float EstimateLength(float2 from)
 		{
 			switch (Type)
 			{
 				case LineSegmentType.Straight:
-					return Vector.Length( To - from );
+					return Vector.Length(To - from);
 				
 				case LineSegmentType.BezierCurve:
 				{
-					var a = Vector.Length( To - from );
-					var b = Vector.Length( A - from ) + Vector.Length( B - A ) + Vector.Length( To - B );
+					var a = Vector.Length(To - from);
+					var b = Vector.Length(A - from) + Vector.Length(B - A) + Vector.Length(To - B);
 					return (a+b)/2;
 				}
 				
@@ -145,29 +145,29 @@ namespace Fuse.Drawing
 					return 0;
 					
 				case LineSegmentType.EllipticArc:
-					throw new Exception( "Unsupport type for length: " + Type );
+					throw new Exception("Unsupport type for length: " + Type);
 			}
 			
 			return 0;
 		}
 		
 		//TODO: all these float2 from seem to imply LineSegment's should have be relative to the previous position :(
-		internal float2 PointAtTime( float2 from, float t )
+		internal float2 PointAtTime(float2 from, float t)
 		{
 			switch (Type)
 			{
 				case LineSegmentType.Straight:
-					return Math.Lerp( from, To, t );
+					return Math.Lerp(from, To, t);
 					
 				case LineSegmentType.BezierCurve:
-					return Curves.CalcBezierAt( from, A, B, To, t );
+					return Curves.CalcBezierAt(from, A, B, To, t);
 				
 				default:
 					return from;
 			}
 		}
 		
-		internal float2 DirectionAtTime( float2 from, float t )
+		internal float2 DirectionAtTime(float2 from, float t)
 		{
 			switch (Type)
 			{

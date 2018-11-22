@@ -7,15 +7,15 @@
 		
 		var watch = Observable(1)
 		watch.beginSubscriptions = function() {
-			exports.watchers.add( "W" )
+			exports.watchers.add("W")
 		}
 		watch.endSubscriptions = function() {
-			exports.watchers.remove( "W" )
+			exports.watchers.remove("W")
 		}
 		
 		var noWatch = Observable(2)
 		noWatch.beginSubscriptions = function() {
-			exports.watchers.add( "NW" )
+			exports.watchers.add("NW")
 		}
 		noWatch.endSubscriptions = function() {
 			throw new Exception("Never expected")

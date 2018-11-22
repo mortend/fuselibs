@@ -17,7 +17,7 @@
 		var Observable = require("FuseJS/Observable")
 		
 		exports.position = Observable([1,2,3])
-		exports.showPosition = exports.position.map( function(v) {
+		exports.showPosition = exports.position.map(function(v) {
 			return v[0] + "," + v[1] + "," + v[2]
 		})
 		

@@ -105,7 +105,7 @@ namespace Fuse
 			}
 		}
 
-		static float3 SizeOf( Node node )
+		static float3 SizeOf(Node node)
 		{
 			var isz = node as IActualPlacement;
 			if (isz == null)

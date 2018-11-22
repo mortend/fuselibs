@@ -61,7 +61,7 @@ namespace Fuse
 		
 		static public VisualBounds Rect(float2 a, float2 b)
 		{
-			return Rect( float3(a,0), float3(b,0) );
+			return Rect(float3(a,0), float3(b,0));
 		}
 		
 		static public VisualBounds Box(Box a)
@@ -89,17 +89,17 @@ namespace Fuse
 		
 		public VisualBounds AddPoint(float3 pt)
 		{
-			return Merge( Point(pt) );
+			return Merge(Point(pt));
 		}
 		
 		public VisualBounds AddPoint(float2 pt) 
 		{ 
-			return Merge( Point( float3(pt,0) ) );
+			return Merge(Point(float3(pt,0)));
 		}
 		
 		public VisualBounds AddRect(float2 mn, float2 mx)
 		{
-			return Merge( Rect( float3(mn,0), float3(mx,0) ) );
+			return Merge(Rect(float3(mn,0), float3(mx,0)));
 		}
 		
 		public VisualBounds AddRect(Rect r)
@@ -116,7 +116,7 @@ namespace Fuse
 				return _infinite;
 				
 			if (IsEmpty)
-				return VisualBounds.Rect( float2(-padding), float2(padding) );
+				return VisualBounds.Rect(float2(-padding), float2(padding));
 				
 			var add = _box;
 			add.Minimum -= float3(padding,padding,0);
@@ -182,7 +182,7 @@ namespace Fuse
 			return Box(n);
 		}
 
-		public VisualBounds Merge( VisualBounds nb, FastMatrix trans = null )
+		public VisualBounds Merge(VisualBounds nb, FastMatrix trans = null)
 		{
 			if (nb.IsEmpty)
 				return this;
@@ -206,7 +206,7 @@ namespace Fuse
 			empty an empty space will be returned instead (Z can't be considered since it would
 			always be empty in a 2D layout).
 		*/
-		public VisualBounds IntersectXY( VisualBounds nb )
+		public VisualBounds IntersectXY(VisualBounds nb)
 		{
 			if (nb.IsEmpty || IsEmpty)
 				return _empty;
@@ -225,12 +225,12 @@ namespace Fuse
 			return VisualBounds.Rect(mn, mx);
 		}
 		
-		public VisualBounds MergeChild( Visual child, VisualBounds nb )
+		public VisualBounds MergeChild(Visual child, VisualBounds nb)
 		{
-			return Merge( nb, child.InternLocalTransformInternal );
+			return Merge(nb, child.InternLocalTransformInternal);
 		}
 		
-		public bool ContainsPoint( float2 pt )
+		public bool ContainsPoint(float2 pt)
 		{
 			if (IsEmpty)
 				return false;
@@ -242,7 +242,7 @@ namespace Fuse
 				_box.Minimum.Z <=0 && _box.Maximum.Z >= 0;
 		}
 		
-		public bool IntersectsRay( Ray ray )
+		public bool IntersectsRay(Ray ray)
 		{
 			if (IsEmpty)
 				return false;
@@ -250,7 +250,7 @@ namespace Fuse
 				return true;
 				
 			float distance;
-			return Collision.RayIntersectsBox( ray, _box, out distance );
+			return Collision.RayIntersectsBox(ray, _box, out distance);
 		}
 		
 		internal string Format()

@@ -12,12 +12,12 @@ namespace Fuse.Reactive
 		
 		protected BinaryOperator(Expression left, Expression right, 
 			Flags flags = Flags.DeprecatedVirtualFlags)
-			: base( new Expression[]{ left, right}, flags )
+			: base(new Expression[]{ left, right}, flags)
 		{ }
 
 		protected BinaryOperator(Expression left, Expression right, 
 			string name, Flags flags = Flags.None)
-			: base( new Expression[]{ left, right}, flags, name )
+			: base(new Expression[]{ left, right}, flags, name)
 		{ }
 		
 		internal override Flags GetFlags()
@@ -32,7 +32,7 @@ namespace Fuse.Reactive
 
 		protected virtual bool TryCompute(object left, object right, out object result)
 		{
-			Fuse.Diagnostics.Deprecated( " No `TryCompute`, or a deprecated form, overriden. Migrate your code to override the one with `bool` return. ", this );
+			Fuse.Diagnostics.Deprecated(" No `TryCompute`, or a deprecated form, overriden. Migrate your code to override the one with `bool` return. ", this);
 			result = Compute(left, right);
 			return true;
 		}

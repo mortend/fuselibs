@@ -94,7 +94,7 @@ namespace Fuse.Triggers
 			base.OnRooted();
 			if (EventName == null)
 			{
-				Fuse.Diagnostics.UserError( "OnUserEvent requires a `EventName`", this);
+				Fuse.Diagnostics.UserError("OnUserEvent requires a `EventName`", this);
 			}
 			else
 			{

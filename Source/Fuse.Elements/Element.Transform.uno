@@ -15,7 +15,7 @@ namespace Fuse.Elements
 		/* No change response is needed since this is private to the property on Element, which handles invalidation */
 		public Size2 Origin;
 
-		float SizePart( Size sz, float relative, float pixelsPerPoint )
+		float SizePart(Size sz, float relative, float pixelsPerPoint)
 		{
 			var u = sz.DetermineUnit();
 			
@@ -38,8 +38,8 @@ namespace Fuse.Elements
 		{
 			var pixelsPerPoint = elm.Viewport.PixelsPerPoint;
 			
-			return float3( SizePart(Origin.X, elm.ActualSize.X, pixelsPerPoint),
-				SizePart(Origin.Y, elm.ActualSize.Y, pixelsPerPoint), 0 );
+			return float3(SizePart(Origin.X, elm.ActualSize.X, pixelsPerPoint),
+				SizePart(Origin.Y, elm.ActualSize.Y, pixelsPerPoint), 0);
 		}
 	}
 	

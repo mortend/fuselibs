@@ -86,8 +86,8 @@ namespace Fuse.Elements
 			return LayoutDependent.Yes;
 		}
 		
-		protected float UnitSize( Element element, Size value,
-			float relative, bool hasRelative, out bool known )
+		protected float UnitSize(Element element, Size value,
+			float relative, bool hasRelative, out bool known)
 		{
 			known = true;
 			var u = value.DetermineUnit();
@@ -140,7 +140,7 @@ namespace Fuse.Elements
 			return SimpleAlignment.Center;
 		}
 		
-		protected float SimpleToAnchor( SimpleAlignment align )
+		protected float SimpleToAnchor(SimpleAlignment align)
 		{
 			if (align == SimpleAlignment.Begin)
 				return 0;
@@ -149,7 +149,7 @@ namespace Fuse.Elements
 			return 50;
 		}
 		
-		protected void EffectiveAnchor( Element element, SimpleAlignment halign, SimpleAlignment valign, 
+		protected void EffectiveAnchor(Element element, SimpleAlignment halign, SimpleAlignment valign, 
 			out Size2 anchor)
 		{
 			if (element.HasBit(FastProperty1.Anchor))
@@ -167,7 +167,7 @@ namespace Fuse.Elements
 			None = 0,
 			ImplicitMax = 1<<1,
 		}
-		protected LayoutParams GetConstraints( Element element, LayoutParams lp,
+		protected LayoutParams GetConstraints(Element element, LayoutParams lp,
 			ConstraintFlags flags = ConstraintFlags.None)
 		{
 			var c = LayoutParams.CreateEmpty();
@@ -207,7 +207,7 @@ namespace Fuse.Elements
 				limit = element.MaxWidth;
 				known = true;
 			}
-			else if( flags.HasFlag(ConstraintFlags.ImplicitMax) && element.Width.IsAuto)
+			else if(flags.HasFlag(ConstraintFlags.ImplicitMax) && element.Width.IsAuto)
 			{
 				limit = lp.X;
 				known = lp.HasX;
@@ -225,7 +225,7 @@ namespace Fuse.Elements
 				limit = element.MaxHeight;
 				known = true;
 			}
-			else if ( flags.HasFlag(ConstraintFlags.ImplicitMax) && element.Height.IsAuto)
+			else if (flags.HasFlag(ConstraintFlags.ImplicitMax) && element.Height.IsAuto)
 			{
 				limit = lp.Y;
 				known = lp.HasY;
@@ -241,14 +241,14 @@ namespace Fuse.Elements
 			{
 				var mn = UnitSize(element, element.MinWidth, lp.RelativeX, lp.HasRelativeX, out known);
 				if (known)
-					c.ConstrainMinX( mn );
+					c.ConstrainMinX(mn);
 			}
 			
 			if (element.HasBit(FastProperty1.MinHeight))
 			{
 				var mn = UnitSize(element, element.MinHeight, lp.RelativeY, lp.HasRelativeY, out known);
 				if (known)
-					c.ConstrainMinY( mn );
+					c.ConstrainMinY(mn);
 			}
 			
 			return c;
@@ -265,12 +265,12 @@ namespace Fuse.Elements
 			var margin = element.Margin;
 			var avSize = lp.Size;
 
-			var marginBox = element.GetMarginSize( lp );
+			var marginBox = element.GetMarginSize(lp);
 			var paddingBox = marginBox - margin.XY - margin.ZW;
 			avSize -= margin.XY + margin.ZW;
 			
-			avSize = Math.Max( float2(0), avSize );
-			paddingBox = Math.Max( float2(0), paddingBox );
+			avSize = Math.Max(float2(0), avSize);
+			paddingBox = Math.Max(float2(0), paddingBox);
 
 			var s = float2(0);
 			if (element.Visibility != Visibility.Collapsed)
@@ -309,8 +309,8 @@ namespace Fuse.Elements
 				var offset = element.Offset;
 
 				var o = float2(
-					UnitSize( element, offset.X, avSize.X, lp.HasX, out ignore ),
-					UnitSize( element, offset.Y, avSize.Y, lp.HasY, out ignore )
+					UnitSize(element, offset.X, avSize.X, lp.HasX, out ignore),
+					UnitSize(element, offset.Y, avSize.Y, lp.HasY, out ignore)
 					);
 				p += o;
 			}
@@ -318,20 +318,20 @@ namespace Fuse.Elements
 			if (element.HasBit(FastProperty1.X))
 			{
 				var o = element.X;
-				p.X += UnitSize( element, o, avSize.X, lp.HasX, out ignore );
+				p.X += UnitSize(element, o, avSize.X, lp.HasX, out ignore);
 			}
 			
 			if (element.HasBit(FastProperty1.Y))
 			{
 				var o = element.Y;
-				p.Y += UnitSize( element, o, avSize.Y, lp.HasY, out ignore );
+				p.Y += UnitSize(element, o, avSize.Y, lp.HasY, out ignore);
 			}
 
 			//apply anchoring
 			Size2 anchor;
-			EffectiveAnchor( element, halign, valign, out anchor );
-			element.ActualAnchor = float2( UnitSize( element, anchor.X, s.X, true, out ignore ),
-				UnitSize( element, anchor.Y, s.Y , true, out ignore ) );
+			EffectiveAnchor(element, halign, valign, out anchor);
+			element.ActualAnchor = float2(UnitSize(element, anchor.X, s.X, true, out ignore),
+				UnitSize(element, anchor.Y, s.Y , true, out ignore));
 			p -= element.ActualAnchor;
 
 			BoxPlacement bp;
@@ -378,7 +378,7 @@ namespace Fuse.Elements
 				sz += pad.XY + pad.ZW;
 			}
 			
-			sz = c.PointConstrain( sz );
+			sz = c.PointConstrain(sz);
 			
 			if(element.SnapToPixels)
 				sz = SnapUp(element, sz);

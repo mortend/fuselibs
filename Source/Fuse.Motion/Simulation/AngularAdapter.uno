@@ -9,7 +9,7 @@ namespace Fuse.Motion.Simulation
 	{
 		DestinationSimulation<T> _impl;
 		
-		public AngularAdapter( DestinationSimulation<T> impl )
+		public AngularAdapter(DestinationSimulation<T> impl)
 		{
 			_impl = impl;
 		}
@@ -21,7 +21,7 @@ namespace Fuse.Motion.Simulation
 			get { return _impl.IsStatic; }
 		}
 		
-		public void Update( double elapsed )
+		public void Update(double elapsed)
 		{
 			 _impl.Update(elapsed);
 		}
@@ -55,7 +55,7 @@ namespace Fuse.Motion.Simulation
 			}
 		}
 		
-		public void Reset( T value )
+		public void Reset(T value)
 		{
 			_impl.Reset(value);
 		}
@@ -80,11 +80,11 @@ namespace Fuse.Motion.Simulation
 			
 			if (diff > Math.PI)
 				diff = diff - (Math.PI*2);
-			else if( diff < -Math.PI)
+			else if(diff < -Math.PI)
 				diff = diff + (Math.PI*2);
 				
 			var npos = dst + diff;
-			_impl.Position = _blender.FromDouble( npos );
+			_impl.Position = _blender.FromDouble(npos);
 		}
 		
 	}
@@ -95,7 +95,7 @@ namespace Fuse.Motion.Simulation
 		DestinationSimulation<T> _impl;
 		double _multiplier;
 		
-		public AdapterMultiplier( DestinationSimulation<T> impl, double multiplier )
+		public AdapterMultiplier(DestinationSimulation<T> impl, double multiplier)
 		{
 			_impl = impl;
 			_multiplier = multiplier;
@@ -106,17 +106,17 @@ namespace Fuse.Motion.Simulation
 			get { return _impl.IsStatic; }
 		}
 		
-		public void Update( double elapsed )
+		public void Update(double elapsed)
 		{
 			 _impl.Update(elapsed);
 		}
 		
-		T In( T val )
+		T In(T val)
 		{
 			return _blender.ScalarMult(val, _multiplier);
 		}
 		
-		T Out( T val )
+		T Out(T val)
 		{
 			return _blender.ScalarMult(val, 1/_multiplier);
 		}
@@ -139,7 +139,7 @@ namespace Fuse.Motion.Simulation
 			set { _impl.Destination = In(value); }
 		}
 		
-		public void Reset( T value )
+		public void Reset(T value)
 		{
 			_impl.Reset(value);
 		}

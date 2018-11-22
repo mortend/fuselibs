@@ -119,7 +119,7 @@ namespace Fuse.Layouts
 			nlp.RemoveSize(padding);
 			
 			bool hasX, hasY;
-			var lpav = nlp.GetAvailableSize( out hasX, out hasY );
+			var lpav = nlp.GetAvailableSize(out hasX, out hasY);
 			float majorAvail = IsVert ? (hasY ? lpav.Y : float.PositiveInfinity) : (hasX ? lpav.X : float.PositiveInfinity);
 
 			float minorMaxSize = 0;
@@ -131,7 +131,7 @@ namespace Fuse.Layouts
 			//the current max, or treat current size as max if no max
 			var clp = nlp.Clone();
 			clp.RetainXY(false,false);
-			clp.ConstrainMax( lpav, hasX, hasY );
+			clp.ConstrainMax(lpav, hasX, hasY);
 			if (_hasItemWidth)
 				clp.SetX(ItemWidth);
 			if (_hasItemHeight)
@@ -156,7 +156,7 @@ namespace Fuse.Layouts
 				if (!AffectsLayout(e))
 					continue;
 
-				var eSize = e.GetMarginSize( clp );
+				var eSize = e.GetMarginSize(clp);
 				//force sizes if misbehaved
 				eSize = float2(
 					_hasItemWidth ? ItemWidth : eSize.X,
@@ -168,7 +168,7 @@ namespace Fuse.Layouts
 				placements[i].W = cminorSize;
 				
 				//need next row?
-				if ( (majorUsed + cmajorSize) > majorAvail && majorUsed > 0)
+				if ((majorUsed + cmajorSize) > majorAvail && majorUsed > 0)
 				{
 					for (int j=majorStart; j < i; ++j)
 						minorSizes[j] = minorMaxSize;
@@ -205,7 +205,7 @@ namespace Fuse.Layouts
 				{
 					var element = n as Visual;
 					if (element == null) continue;
-					if (ArrangeMarginBoxSpecial(element, padding, lp ))
+					if (ArrangeMarginBoxSpecial(element, padding, lp))
 						continue;
 
 					var placement = placements[i];
@@ -244,7 +244,7 @@ namespace Fuse.Layouts
 						placement = placement.YXWZ;
 					
 					if (FlowDirection == FlowDirection.RightToLeft)
-						placement = float4( nlp.X - placement.X - placement.Z, placement.YZW );
+						placement = float4(nlp.X - placement.X - placement.Z, placement.YZW);
 					
 					elp.SetSize(float2(placement.Z,placement.W));
 					element.ArrangeMarginBox(

@@ -15,11 +15,11 @@
 		}
 		
 		exports.goBack = function() {
-			exports.pages.removeAt( exports.pages.length - 1)
+			exports.pages.removeAt(exports.pages.length - 1)
 		}
 		
 		exports.replaceThree = function() {
-			exports.pages.replaceAt( exports.pages.length - 1, {
+			exports.pages.replaceAt(exports.pages.length - 1, {
 				$path: "three",
 				value: "weasel",
 			})

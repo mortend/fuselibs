@@ -5,7 +5,7 @@
 	<FuseTest.Data ux:Name="strctData3" Value="(two: 'y', three: 'z')"/>
 	<FuseTest.Data ux:Name="strctData4" Value="(one: 'x', two: 'y', three: 'z')"/>
 	
-	<FuseTest.DudElement StringValue="{= varJoin( {Property strct.Value}.one ) }" ux:Name="a"/>
-	<FuseTest.DudElement StringValue="{= varJoin( {Property strct.Value}.one, {Property strct.Value}.two ) }" ux:Name="b"/>
-	<FuseTest.DudElement StringValue="{= varJoin( {Property strct.Value}.one, {Property strct.Value}.two, {Property strct.Value}.three ) }" ux:Name="c"/>
+	<FuseTest.DudElement StringValue="{= varJoin({Property strct.Value}.one) }" ux:Name="a"/>
+	<FuseTest.DudElement StringValue="{= varJoin({Property strct.Value}.one, {Property strct.Value}.two) }" ux:Name="b"/>
+	<FuseTest.DudElement StringValue="{= varJoin({Property strct.Value}.one, {Property strct.Value}.two, {Property strct.Value}.three) }" ux:Name="c"/>
 </Panel>

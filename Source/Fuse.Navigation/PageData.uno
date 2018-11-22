@@ -30,7 +30,7 @@ namespace Fuse.Navigation
 
 		public object Context { get; private set; }
 		
-		public PageData( Visual visual ) 
+		public PageData(Visual visual) 
 		{
 			Visual = visual;
 		}
@@ -40,19 +40,19 @@ namespace Fuse.Navigation
 			var visual = Visual;
 			if (visual == null)
 			{
-				Fuse.Diagnostics.InternalError( "Attaching to null page", this );
+				Fuse.Diagnostics.InternalError("Attaching to null page", this);
 				return;
 			}
 			
 			this.RouterPage = rp;
-			UpdateContextData( visual, rp.Context );
+			UpdateContextData(visual, rp.Context);
 			visual.Prepare(rp.Parameter);
 			
 			if (RouterPageChanged != null)
-				RouterPageChanged( this, rp );
+				RouterPageChanged(this, rp);
 		}
 		
-		void UpdateContextData( Visual page, object data )
+		void UpdateContextData(Visual page, object data)
 		{
 			var oldData = Context;
 			Context = data;
@@ -60,9 +60,9 @@ namespace Fuse.Navigation
 		}
 		
 		//TODO: temporary  until PageControl is migrated better
-		public void SetContext( object data )
+		public void SetContext(object data)
 		{
-			UpdateContextData( Visual, data );
+			UpdateContextData(Visual, data);
 		}
 		
 		static PropertyHandle _propPageData = Properties.CreateHandle();

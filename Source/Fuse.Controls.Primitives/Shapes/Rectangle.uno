@@ -54,7 +54,7 @@ namespace Fuse.Controls
 		/**
 			Limits the corner radius to half the size provided (usually the ActualSize).
 		*/
-		float4 GetConstrainedCornerRadius( float2 sz )
+		float4 GetConstrainedCornerRadius(float2 sz)
 		{
 			float4 useCornerRadius = CornerRadius;
 			var mn = Math.Min(sz.X/2, sz.Y/2);

@@ -102,7 +102,7 @@ function Model(initialState, stateInitializer)
 
 		var propGetters = {}
 
-		if ( ! (state instanceof Array || state instanceof Function)) {
+		if (! (state instanceof Array || state instanceof Function)) {
 			registerProps(state);
 		}
 

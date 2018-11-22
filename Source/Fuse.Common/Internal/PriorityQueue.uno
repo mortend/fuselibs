@@ -66,9 +66,9 @@ namespace Uno.Collections
 			return _items.Count;
 		}
 		
-		public void Add(T value, float priority) { Add( value, float4(priority,0,0,0) ); }
-		public void Add(T value, float2 priority) { Add( value, float4(priority,0,0) ); }
-		public void Add(T value, float3 priority) { Add( value, float4(priority,0) ); }
+		public void Add(T value, float priority) { Add(value, float4(priority,0,0,0)); }
+		public void Add(T value, float2 priority) { Add(value, float4(priority,0,0)); }
+		public void Add(T value, float3 priority) { Add(value, float4(priority,0)); }
 		
 		public void Add(T value, float4 priority)
 		{
@@ -76,7 +76,7 @@ namespace Uno.Collections
 			_items.Insert(at, new PriorityQueueItem<T> { Value = value, Priority = priority });
 		}
 
-		public void Add(T value) { Add( value, float4(0) ); }
+		public void Add(T value) { Add(value, float4(0)); }
 		
 		public void Remove(T value)
 		{
@@ -93,10 +93,10 @@ namespace Uno.Collections
 		public T PopTop()
 		{
 			float4 ignore;
-			return PopTop( out ignore );
+			return PopTop(out ignore);
 		}
 		
-		public T PopTop( out float4 priority )
+		public T PopTop(out float4 priority)
 		{
 			int i = _items.Count - 1;
 			var v = _items[i].Value;

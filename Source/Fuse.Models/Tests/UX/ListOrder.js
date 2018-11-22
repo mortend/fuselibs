@@ -6,12 +6,12 @@ export default class ListOrder {
 	}
 	
 	add() {
-		this.items.push( this._count )
+		this.items.push(this._count)
 		this._count++
 	}
 
 	insert() {
-		this.items.splice(1, 0, this._count )
+		this.items.splice(1, 0, this._count)
 		this._count++
 	}
 	

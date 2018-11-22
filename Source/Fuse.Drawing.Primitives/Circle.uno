@@ -35,7 +35,7 @@ namespace Fuse.Drawing.Primitives
 			var extend = Math.Max(0,r[0]+r[1]) + smoothness;
 			
 			Draw(dc ,visual, radius, stroke.Brush, sc, _oneLimitCoverage,
-				extend, center, smoothness );
+				extend, center, smoothness);
 		}
 		
 		FillCoverage _fillCoverage = new FillCoverage();
@@ -43,7 +43,7 @@ namespace Fuse.Drawing.Primitives
 			float smoothness)
 		{
 			Draw(dc, visual, radius, brush, _fillCoverage, _oneLimitCoverage, smoothness,
-				center, smoothness );
+				center, smoothness);
 		}
 		
 		Float2Buffer _bufferVertex;
@@ -61,10 +61,10 @@ namespace Fuse.Drawing.Primitives
 			var len = 1 / Math.Sin(theta);
 			
 			_bufferVertex.Append(0,0);
-			for( int i=0; i < numSegments; ++i )
+			for(int i=0; i < numSegments; ++i)
 			{
 				var r = i / (float)numSegments * Math.PIf * 2;
-				_bufferVertex.Append( Math.Cos(r) * len, Math.Sin(r) * len);
+				_bufferVertex.Append(Math.Cos(r) * len, Math.Sin(r) * len);
 				
 				_bufferIndex.Append(0);
 				_bufferIndex.Append(i == (numSegments-1) ? 1 : i+2);
@@ -76,7 +76,7 @@ namespace Fuse.Drawing.Primitives
 		}
 		
 		internal void Draw(DrawContext dc, Element visual, float radius, Brush brush,
-			Coverage cover, LimitCoverage limit, float extend, float2 center, float smoothness )
+			Coverage cover, LimitCoverage limit, float extend, float2 center, float smoothness)
 		{
 			if (radius <= 0)
 				return;
@@ -96,7 +96,7 @@ namespace Fuse.Drawing.Primitives
 				CanvasSize: visual.ActualSize;
 				
 				float2 V0: vertex_attrib<float2>(VertexAttributeType.Float2, _bufferVertex.GetDeviceVertex(),
-					2*4,0, IndexType.UShort, _bufferIndex.GetDeviceIndex() );
+					2*4,0, IndexType.UShort, _bufferIndex.GetDeviceIndex());
 				VertexCount: _bufferIndex.Count();
 				
 				float2 VertexPosition: V0 * (radius + extend*2);

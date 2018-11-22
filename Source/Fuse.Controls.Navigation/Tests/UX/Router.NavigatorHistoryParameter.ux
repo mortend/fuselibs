@@ -3,7 +3,7 @@
 	<JavaScript>
 		var count = 0
 		exports.pushBird = function() {
-			router.push( "one", {}, "bird", { id: ++count } )
+			router.push("one", {}, "bird", { id: ++count })
 		}
 		exports.goBack = function() {
 			router.goBack()

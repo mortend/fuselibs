@@ -341,7 +341,7 @@ public class CameraImpl extends TextureView implements TextureView.SurfaceTextur
                 if (parameters.getMinExposureCompensation() != 0 
                     && parameters.getMaxExposureCompensation() != 0
                     && parameters.isAutoExposureLockSupported()
-                ) {
+               ) {
                     
                     int exposureAmount = (parameters.getMinExposureCompensation() - parameters.getMaxExposureCompensation()) * -1;
                     int designAdjustment = 1; //added 1 to account for a control panel covered area on the bottom of the camera that can't be tapped on for focus
@@ -353,7 +353,7 @@ public class CameraImpl extends TextureView implements TextureView.SurfaceTextur
                     - determine the amount of exposure to apply according to the position of the tap
                     - taps closer to the bottom controls or user are closer so typically require more exposure
                     */
-                    int amountApplied = (int)Math.round( (exposureAmount * (y/cameraHeight)) ) + designAdjustment; 
+                    int amountApplied = (int)Math.round((exposureAmount * (y/cameraHeight))) + designAdjustment; 
                     amountApplied = (amountApplied > exposureAmount) ? exposureAmount : amountApplied;
                     
                     parameters.setExposureCompensation(parameters.getMinExposureCompensation() + amountApplied);

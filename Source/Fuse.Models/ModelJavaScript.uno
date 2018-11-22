@@ -166,7 +166,7 @@ namespace Fuse.Models
 			var previewState = PreviewState.Find(where);
 			if (previewState != null && previewState.Current != null)
 			{
-				var previous = previewState.Current.Consume( previewStateId ) as ModelJavaScript;
+				var previous = previewState.Current.Consume(previewStateId) as ModelJavaScript;
 				if (previous != null)
 				{
 					if (previous._modulePath == modulePath)
@@ -214,7 +214,7 @@ namespace Fuse.Models
 		void IPreviewStateSaver.Save(PreviewStateData data)
 		{
 			_preserveModuleInstance = true;
-			data.Set( _previewStateModelId, this );
+			data.Set(_previewStateModelId, this);
 		}
 
 		void Dispose()

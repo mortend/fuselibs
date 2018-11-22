@@ -9,7 +9,7 @@ namespace Fuse.Selection
 	/**
 		`true` while the @Selectable is currently selected.
 		
-		This expression attaches to the first @Selectable node that is an ancestory of the expression node. Optionally,  you may specify an argument to get a different selectable `isSelected( myPanel )`.
+		This expression attaches to the first @Selectable node that is an ancestory of the expression node. Optionally,  you may specify an argument to get a different selectable `isSelected(myPanel)`.
 	*/
 	public class IsSelectedFunction : VarArgFunction
 	{
@@ -26,11 +26,11 @@ namespace Fuse.Selection
 		{
 			if (Arguments.Count > 1)
 			{
-				Fuse.Diagnostics.UserError( "too many arguments for isSelected", this );
+				Fuse.Diagnostics.UserError("too many arguments for isSelected", this);
 				return null;
 			}
 			
-			var ins = new OuterSubscription(this, listener, context.Node );
+			var ins = new OuterSubscription(this, listener, context.Node);
 			ins.Init(context);
 			return ins;
 		}
@@ -50,8 +50,8 @@ namespace Fuse.Selection
 
 			IDisposable _nodeSub;
 
-			public OuterSubscription( IsSelectedFunction expr, IListener listener, Node from ) : 
-				base( expr )
+			public OuterSubscription(IsSelectedFunction expr, IListener listener, Node from) : 
+				base(expr)
 			{
 				_from = from;
 				_expr = expr;
@@ -61,12 +61,12 @@ namespace Fuse.Selection
 			protected override void OnNewArguments(Argument[] args)
 			{
 				var node = _from;
-				if (args.Length > 0 )
+				if (args.Length > 0)
 				{
 					node = args[0].Value as Node;
 					if (node == null)
 					{
-						Fuse.Diagnostics.UserError( "Argument does not resolve to a Node", _expr );
+						Fuse.Diagnostics.UserError("Argument does not resolve to a Node", _expr);
 					}
 					else if (!node.IsRootingCompleted)
 					{
@@ -76,7 +76,7 @@ namespace Fuse.Selection
 						node = null;
 					}
 				}
-				NewNode( node );
+				NewNode(node);
 			}
 			
 			Node _pendingNode;
@@ -86,7 +86,7 @@ namespace Fuse.Selection
 					return;
 				var p = _pendingNode;
 				CleanPending();
-				NewNode( p );
+				NewNode(p);
 			}
 			
 			void CleanPending()
@@ -97,7 +97,7 @@ namespace Fuse.Selection
 				_pendingNode = null;
 			}
 			
-			void NewNode( Node from )
+			void NewNode(Node from)
 			{
 				if (_curFrom == from)
 					return;
@@ -113,7 +113,7 @@ namespace Fuse.Selection
 				
 				if (!Selection.TryFindSelectable(_curFrom, out _selectable, out _selection))
 				{
-					Fuse.Diagnostics.UserError( "Unable to locate a `Selectable` and `Selection`", _expr );
+					Fuse.Diagnostics.UserError("Unable to locate a `Selectable` and `Selection`", _expr);
 					_listener.OnLostData(_expr);
 					return;
 				}

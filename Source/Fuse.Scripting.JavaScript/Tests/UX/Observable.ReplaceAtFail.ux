@@ -8,7 +8,7 @@
 		exports.step1 = function() {
 			try {
 				items.replaceAt(3,4)
-			} catch( e ) {
+			} catch(e) {
 			}
 		}
 	</JavaScript>

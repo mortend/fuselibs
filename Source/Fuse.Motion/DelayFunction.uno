@@ -26,8 +26,8 @@ namespace Fuse.Motion
 		
 		class Subscription : ExpressionListener
 		{
-			public Subscription( DelayFunction source, IListener listener ) :
-				base( source, listener, new Expression[]{ source._value, source._delay }, Flags.None )
+			public Subscription(DelayFunction source, IListener listener) :
+				base(source, listener, new Expression[]{ source._value, source._delay }, Flags.None)
 			{ }
 			
 			protected override void OnArguments(Argument[] args)

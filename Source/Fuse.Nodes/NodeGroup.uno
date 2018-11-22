@@ -158,7 +158,7 @@ namespace Fuse
 				
 			if (Parent == null)
 			{
-				Fuse.Diagnostics.InternalError( "AddContent called prior to having a Parent", this );
+				Fuse.Diagnostics.InternalError("AddContent called prior to having a Parent", this);
 				return;
 			}
 
@@ -191,7 +191,7 @@ namespace Fuse
 					var n = _templates[i].New() as Node;
 					if (n == null)
 					{
-						Fuse.Diagnostics.InternalError( "Template contains a non-Node", this );
+						Fuse.Diagnostics.InternalError("Template contains a non-Node", this);
 						n = new EmptyNode();
 					}
 					n.OverrideContextParent = n.OverrideContextParent ?? this;
@@ -200,9 +200,9 @@ namespace Fuse
 			}
 			
 			if (addedNodesAt != addedNodesCount)	
-				throw new Exception( "mismatch in added nodes" );
+				throw new Exception("mismatch in added nodes");
 				
-			Parent.InsertNodesAfter( this, ((IEnumerable<Node>)_addedNodes).GetEnumerator() );
+			Parent.InsertNodesAfter(this, ((IEnumerable<Node>)_addedNodes).GetEnumerator());
 		}
 
 		void RemoveContent()

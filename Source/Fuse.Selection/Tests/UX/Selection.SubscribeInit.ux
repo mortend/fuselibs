@@ -1,7 +1,7 @@
 <Panel ux:Class="UX.Selection.SubscribeInit">
 	<JavaScript>
 		var Observable = require("FuseJS/Observable")
-		exports.items = Observable( 1,3 )
+		exports.items = Observable(1,3)
 	</JavaScript>
 	
 	<Panel ux:Class="Item">

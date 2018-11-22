@@ -122,7 +122,7 @@ namespace Fuse.Resources
 				_proxy.Release();
 			_active = use;
 			if (use != null)
-				_proxy.Attach( use );
+				_proxy.Attach(use);
 
 			OnActiveChanged();
 		}

@@ -114,7 +114,7 @@ namespace Fuse.Elements
 			if (!flat && !_warnOpacityFlat)
 			{
 				_warnOpacityFlat = true;
-				Fuse.Diagnostics.UserWarning( "This element has a partial opacity and is not flat."+
+				Fuse.Diagnostics.UserWarning("This element has a partial opacity and is not flat."+
 					" This will not render correctly. Put the opacity on a flat child panel instead.", this);
 			}
 
@@ -122,7 +122,7 @@ namespace Fuse.Elements
 			if (!r && !_warnNoCacheDraw)
 			{
 				_warnNoCacheDraw = true;
-				Fuse.Diagnostics.InternalError( "This element can not be drawn.", this );
+				Fuse.Diagnostics.InternalError("This element can not be drawn.", this);
 			}
 		}
 

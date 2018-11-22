@@ -27,7 +27,7 @@ namespace Fuse.Reactive.FuseJS
 		{
 			if (args.Length != 2)
 			{
-				Fuse.Diagnostics.InternalError( "Report requires 2 arguments", this);
+				Fuse.Diagnostics.InternalError("Report requires 2 arguments", this);
 				return null;
 			}
 			

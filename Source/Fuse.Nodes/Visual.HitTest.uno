@@ -71,8 +71,8 @@ namespace Fuse
 			var htr = new HitTestRecord();
 			var htc = new HitTestContext(windowPoint,htr.HitTestCallback);
 			if (Parent != null)
-				htc.PushLocalPoint( Parent.WindowToLocal(windowPoint) );
-			htc.PushWorldRay( Viewport.PointToWorldRay(windowPoint) );
+				htc.PushLocalPoint(Parent.WindowToLocal(windowPoint));
+			htc.PushWorldRay(Viewport.PointToWorldRay(windowPoint));
 			HitTest(htc);
 			return htr.Visual;
 		}
@@ -111,8 +111,8 @@ namespace Fuse
 				
 				if (IsContextEnabled && IsVisible)
 				{
-					nb = nb.Merge( HitTestLocalBounds );
-					nb = nb.Merge( HitTestChildrenBounds );
+					nb = nb.Merge(HitTestLocalBounds);
+					nb = nb.Merge(HitTestChildrenBounds);
 				}
 				
 				_hitTestBoundsCache = nb;

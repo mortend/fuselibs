@@ -137,7 +137,7 @@ namespace Fuse
 			var lineHeight = _bitmapFont.LineHeight;
 			var lineOffsetY = lineHeight - _bitmapFont.Descent;
 
-			var p = float2(x, y + lineOffsetY );
+			var p = float2(x, y + lineOffsetY);
 
 			if (dc.ViewportPixelsPerPoint != 1)
 			{

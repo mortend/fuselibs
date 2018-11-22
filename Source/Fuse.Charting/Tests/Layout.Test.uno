@@ -12,8 +12,8 @@ namespace Fuse.Test
 		[Test]
 		public void Enums()
 		{
-			Assert.AreEqual( 0, (int)PlotAxisLayoutAxis.X );
-			Assert.AreEqual( 1, (int)PlotAxisLayoutAxis.Y );
+			Assert.AreEqual(0, (int)PlotAxisLayoutAxis.X);
+			Assert.AreEqual(1, (int)PlotAxisLayoutAxis.Y);
 		}
 	}
 }

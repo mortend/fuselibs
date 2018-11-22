@@ -13,7 +13,7 @@ namespace Fuse.Motion.Simulation
 		/**
 			Steps the indicated time.
 		*/
-		void Update( double elapsed );
+		void Update(double elapsed);
 	}
 	
 	interface MotionSimulation<T> : Simulation
@@ -26,7 +26,7 @@ namespace Fuse.Motion.Simulation
 	{
 		T Destination { get; set; }
 		
-		void Reset( T destination );
+		void Reset(T destination);
 		/**
 			Indicates that a new motion sequence is starting. Some simulations may respond
 			differntly to this than just modifying the destination alone.

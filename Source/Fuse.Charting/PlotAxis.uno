@@ -29,12 +29,12 @@ namespace Fuse.Charting
 			base.OnRooted();
 			
 			if (!_hasAxis)
-				Fuse.Diagnostics.UserError( "Requires Axis", this );
+				Fuse.Diagnostics.UserError("Requires Axis", this);
 				
 			_plot = PlotBehavior.FindPlot(this);
 			if (_plot == null)
 			{
-				Fuse.Diagnostics.UserError( "Could not find PlotBehavior", this );
+				Fuse.Diagnostics.UserError("Could not find PlotBehavior", this);
 			}
 			else
 			{
@@ -44,7 +44,7 @@ namespace Fuse.Charting
 				var sourceItems = _plot.GetAxisItems((int)Axis);
 				_obsFilter = new LabelFilterObservable{ Filter = _filter, Source = sourceItems };
 				UpdateFilter();
-				SetItemsDerivedRooting( _obsFilter );
+				SetItemsDerivedRooting(_obsFilter);
 			}
 		}
 		
@@ -53,7 +53,7 @@ namespace Fuse.Charting
 			if (_obsFilter == null || _plot == null)
 				return;
 				
-			_filter.IsCountAxis = _plot.IsCountAxis( AxisIndex );
+			_filter.IsCountAxis = _plot.IsCountAxis(AxisIndex);
 			_obsFilter.Update();
 		}
 		
@@ -62,7 +62,7 @@ namespace Fuse.Charting
 			if (_plot != null)
 			{
 				_plot.DataChanged -= OnDataChanged;
-				SetItems( null );
+				SetItems(null);
 				_obsFilter = null;
 				_plot = null;
 				_filter.Plot = null;
@@ -259,7 +259,7 @@ namespace Fuse.Charting
 			_layout.StepCount = _each.Plot.PlotStats.Steps[_each.AxisIndex];
 			_layout.Orientation = _each.Plot.GetAxisOrientation(Axis);
 			
-			_layout.ContentPositionBase = _each.Plot.AxisMetric( _each.AxisIndex ) == PlotAxisMetric.OffsetCount ? 0.5f : 0;
+			_layout.ContentPositionBase = _each.Plot.AxisMetric(_each.AxisIndex) == PlotAxisMetric.OffsetCount ? 0.5f : 0;
 			InvalidateLayout();
 		}
 	}
@@ -268,7 +268,7 @@ namespace Fuse.Charting
 	{
 		public AxisFilter Filter = new AxisFilter();
 		
-		protected override bool Accept(object value, int axisIndex, int axisCount )
+		protected override bool Accept(object value, int axisIndex, int axisCount)
 		{
 			return Filter.Accept(value, axisIndex, axisCount);
 		}

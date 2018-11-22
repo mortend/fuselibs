@@ -60,7 +60,7 @@ namespace Fuse.Controls
 		protected override float2 GetContentSize(LayoutParams lp)
 		{
 			if (Content != null)
-				return Content.GetMarginSize( lp );
+				return Content.GetMarginSize(lp);
 			return float2(0);
 		}
 

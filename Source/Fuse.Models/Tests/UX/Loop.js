@@ -4,6 +4,6 @@ export default class Loop {
 		this.value = "%"
 		
 		this.array = [ 5 ]
-		this.array.push( this.array )
+		this.array.push(this.array)
 	}
 }

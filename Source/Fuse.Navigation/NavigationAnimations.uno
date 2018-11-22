@@ -137,7 +137,7 @@ namespace Fuse.Navigation
 		{
 			var p = NavContext.GetPageState(PageContext).Progress;
 			if (IsMatch(p))
-				Seek( Scale * Math.Abs(p) );
+				Seek(Scale * Math.Abs(p));
 		}
 
 		bool IsMatch(double progress)
@@ -255,23 +255,23 @@ namespace Fuse.Navigation
 	{
 		protected override void ForceUpdate()
 		{
-			Seek( InvertProgress(Scale * NavContext.GetPageState(PageContext).Progress) );
+			Seek(InvertProgress(Scale * NavContext.GetPageState(PageContext).Progress));
 		}
 
-		double InvertProgress( double p )
+		double InvertProgress(double p)
 		{
-			return 1 - Math.Min( 1, Math.Abs(p) );
+			return 1 - Math.Min(1, Math.Abs(p));
 		}
 
 		internal override void OnNavigationStateChanged(object sender, NavigationArgs state)
 		{
 			var ps = NavContext.GetPageState(PageContext);
-			var d = (Math.Abs(ps.Progress) < Math.Abs(ps.PreviousProgress) ) ?
+			var d = (Math.Abs(ps.Progress) < Math.Abs(ps.PreviousProgress)) ?
 				AnimationVariant.Forward : AnimationVariant.Backward;
 			//can't miss a state change
 			//TODO: Restore this!
 			//if (state.Mode != NavigationMode.Bypass &&
-			//	NavTriggerUtil.CrossesZero(state.Progress, state.PreviousProgress) )
+			//	NavTriggerUtil.CrossesZero(state.Progress, state.PreviousProgress))
 			//	Seek(1, NavTriggerUtil.Opposite(d));
 
 			GoProgress(InvertProgress(Scale * ps.Progress), d, state);
@@ -302,18 +302,18 @@ namespace Fuse.Navigation
 	{
 		protected override void ForceUpdate()
 		{
-			Seek( Math.Abs(Scale * NavContext.GetPageState(PageContext).Progress) );
+			Seek(Math.Abs(Scale * NavContext.GetPageState(PageContext).Progress));
 		}
 
 		internal override void OnNavigationStateChanged(object sender, NavigationArgs state)
 		{
 			var ps = NavContext.GetPageState(PageContext);
-			var d = (Math.Abs(ps.Progress) > Math.Abs(ps.PreviousProgress) ) ?
+			var d = (Math.Abs(ps.Progress) > Math.Abs(ps.PreviousProgress)) ?
 				AnimationVariant.Forward : AnimationVariant.Backward;
 			//can't miss a state change
 			//TODO: restore this!
 			//if (state.Mode != NavigationMode.Bypass &&
-			//	NavTriggerUtil.CrossesZero(state.Progress, state.PreviousProgress) )
+			//	NavTriggerUtil.CrossesZero(state.Progress, state.PreviousProgress))
 			//	Seek(0, NavTriggerUtil.Opposite(d));
 
 			GoProgress(Scale * Math.Abs(ps.Progress), d, state);

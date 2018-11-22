@@ -56,7 +56,7 @@ namespace Fuse.Reactive
 			CapsObject _caps;
 			IPropertyObserver _observer;
 			
-			public PropertySubscription( CapsObject dc, IPropertyObserver observer )
+			public PropertySubscription(CapsObject dc, IPropertyObserver observer)
 			{
 				_caps = dc;
 				_observer = observer;

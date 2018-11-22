@@ -101,7 +101,7 @@ namespace Fuse.Triggers
 				return;
 				
 			var act = BusyTask.GetBusyActivity(Parent, Match);
-			SetActive( (act & Activity) != BusyTaskActivity.None);
+			SetActive((act & Activity) != BusyTaskActivity.None);
 		}
 		
 		BusyTaskActivity IBusyHandler.BusyActivityHandled

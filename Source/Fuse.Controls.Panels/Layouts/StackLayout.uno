@@ -129,7 +129,7 @@ namespace Fuse.Layouts
 			get
 			{
 				//make pixel sized spacing to get consistent element spacing
-				return SnapUp( ItemSpacing );
+				return SnapUp(ItemSpacing);
 			}
 		}
 		
@@ -213,7 +213,7 @@ namespace Fuse.Layouts
 				
 				if (hasItem)
 					d += effectiveSpacing;
-				var cds = c.ArrangeMarginBox( axis*d + paddingOffset, nlp);
+				var cds = c.ArrangeMarginBox(axis*d + paddingOffset, nlp);
 				d += Vector.Dot(cds,axis);
 				hasItem = true;
 			}
@@ -232,7 +232,7 @@ namespace Fuse.Layouts
 					if (AffectsLayout(e))
 					{
 						var old = e.MarginBoxPosition;
-						e.AdjustMarginBoxPosition( old + axis*off );
+						e.AdjustMarginBoxPosition(old + axis*off);
 					}
 				}
 			}

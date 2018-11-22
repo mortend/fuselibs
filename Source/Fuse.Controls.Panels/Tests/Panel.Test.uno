@@ -83,18 +83,18 @@ namespace Fuse.Controls.Test
 			using (var root = TestRootPanel.CreateWithChild(parent))
 			{
 				var child1 = new Panel();
-				child1.Margin = float4( 10, 5, 20, 15 );
+				child1.Margin = float4(10, 5, 20, 15);
 				child1.Width = 100;
 				child1.Height = 50;
 				child1.Alignment = Alignment.Left;
-				parent.Children.Add( child1 );
+				parent.Children.Add(child1);
 
 				var child2 = new Panel();
-				child2.Margin = float4( 10, 5, 0, 15 );
+				child2.Margin = float4(10, 5, 0, 15);
 				child2.Width = 300;
 				child2.Height = 200;
 				child2.Alignment = Alignment.Top;
-				parent.Children.Add( child2 );
+				parent.Children.Add(child2);
 
 				root.Layout(int2(320, 240));
 				LayoutTestHelper.TestElementLayout(child1, float2(100, 50), float2(10, 240/2 - (50-5+15)/2));
@@ -108,7 +108,7 @@ namespace Fuse.Controls.Test
 			var parent = new Panel();
 			using (var root = TestRootPanel.CreateWithChild(parent))
 			{
-				PanelTester.FillPanelProperties(parent, float4( 0, 0, 0, 0 ), 200, 50, Alignment.TopLeft);
+				PanelTester.FillPanelProperties(parent, float4(0, 0, 0, 0), 200, 50, Alignment.TopLeft);
 				parent.Padding = float4(11,12,13,7);
 
 				var child = new Panel();
@@ -129,8 +129,8 @@ namespace Fuse.Controls.Test
 			var p = new UX.Panel.LayoutOffset();
 			using (var root = TestRootPanel.CreateWithChild(p, int2(1000,400)))
 			{
-				LayoutTestHelper.TestElementLayout(p.r1, float2(10,10), float2(2,3) );
-				LayoutTestHelper.TestElementLayout(p.r2, float2(10,10), float2(1000-13,400-14) );
+				LayoutTestHelper.TestElementLayout(p.r1, float2(10,10), float2(2,3));
+				LayoutTestHelper.TestElementLayout(p.r2, float2(10,10), float2(1000-13,400-14));
 				LayoutTestHelper.TestElementLayout(p.r3, float2(10,10), float2(750-5,300-5));
 			}
 		}
@@ -303,14 +303,14 @@ namespace Fuse.Controls.Test
 			var p = new UX.Panel.MinSequence();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
- 				Assert.AreEqual( float2(75,20), p.c1.ActualSize);
- 				Assert.AreEqual( float2(75,20), p.c2.ActualSize);
- 				Assert.AreEqual( float2(75,20), p.c3.ActualSize);
- 				Assert.AreEqual( float2(75,20), p.c4.ActualSize);
- 				Assert.AreEqual( float2(75,20), p.c5.ActualSize);
+ 				Assert.AreEqual(float2(75,20), p.c1.ActualSize);
+ 				Assert.AreEqual(float2(75,20), p.c2.ActualSize);
+ 				Assert.AreEqual(float2(75,20), p.c3.ActualSize);
+ 				Assert.AreEqual(float2(75,20), p.c4.ActualSize);
+ 				Assert.AreEqual(float2(75,20), p.c5.ActualSize);
  				
-				Assert.AreEqual( float2(75,20), p.a.ActualSize );
- 				Assert.AreEqual( float2(75,20), p.d.ActualSize);
+				Assert.AreEqual(float2(75,20), p.a.ActualSize);
+ 				Assert.AreEqual(float2(75,20), p.d.ActualSize);
 			}
 		}
 		
@@ -320,7 +320,7 @@ namespace Fuse.Controls.Test
 			var p = new UX.Panel.MinAspect();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( float2(20,20), p.a.ActualSize );
+				Assert.AreEqual(float2(20,20), p.a.ActualSize);
 			}
 		}
 	}

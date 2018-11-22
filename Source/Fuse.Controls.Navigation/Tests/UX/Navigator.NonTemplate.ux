@@ -2,8 +2,8 @@
 	<Router ux:Name="router" IsMasterRouter="false"/>
 	<JavaScript>
 		var count = 0;
-		exports.pushP1 = function(){ router.push('P1', "" + (++count) );};
-		exports.pushP2 = function(){ router.push('P2', "" + (++count) );};
+		exports.pushP1 = function(){ router.push('P1', "" + (++count));};
+		exports.pushP2 = function(){ router.push('P2', "" + (++count));};
 	</JavaScript>
 	<DockPanel>
 		<FuseTest.Invoke Handler="{pushP1}" ux:Name="PushP1"/>

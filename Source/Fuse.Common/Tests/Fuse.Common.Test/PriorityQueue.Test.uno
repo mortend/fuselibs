@@ -18,7 +18,7 @@ namespace Fuse.Test
 			var c = new PQ();
 			
 			var l = new PriorityQueue<PQ>();
-			Assert.IsTrue( l.Empty );
+			Assert.IsTrue(l.Empty);
 			l.Add(a,10);
 			l.Add(b);
 			l.Add(c,15);
@@ -37,7 +37,7 @@ namespace Fuse.Test
 			l.Remove(b);
 			Assert.AreEqual(1,l.Count);
 			Assert.AreEqual(a, l[0]);
-			Assert.IsFalse( l.Empty );
+			Assert.IsFalse(l.Empty);
 		}
 		
 		[Test]
@@ -69,11 +69,11 @@ namespace Fuse.Test
 			var d = new PQ();
 			
 			var l = new PriorityQueue<PQ>();
-			Assert.IsTrue( l.Empty );
+			Assert.IsTrue(l.Empty);
 			l.Add(a,10);
 			l.Add(b, float2(10,1));
-			l.Add(c, float3(1,0,5) );
-			l.Add(d, float4(1,0,5,-1) );
+			l.Add(c, float3(1,0,5));
+			l.Add(d, float4(1,0,5,-1));
 
 			Assert.AreEqual(4,l.Count);
 			Assert.AreEqual(d, l[0]);

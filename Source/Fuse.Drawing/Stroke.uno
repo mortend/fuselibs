@@ -148,25 +148,25 @@ namespace Fuse.Drawing
 			
 			@return float2(width, center)
 		*/
-		public float2 GetDeviceAdjusted( float pixelsPerPoint )
+		public float2 GetDeviceAdjusted(float pixelsPerPoint)
 		{
 			var ppi = pixelsPerPoint;
 			float lo =0, hi = 0;
-			switch( Alignment )
+			switch(Alignment)
 			{
 				case StrokeAlignment.Outside:
-					lo = Math.Ceil( (_offset - 0.5f)*ppi ) / ppi;
-					hi = lo + Adjust( _width, ppi );
+					lo = Math.Ceil((_offset - 0.5f)*ppi) / ppi;
+					hi = lo + Adjust(_width, ppi);
 					break;
 
 				case StrokeAlignment.Inside:
-					hi = Math.Floor( (_offset + 0.5f)*ppi ) / ppi;
-					lo = hi - Adjust( _width, ppi );
+					hi = Math.Floor((_offset + 0.5f)*ppi) / ppi;
+					lo = hi - Adjust(_width, ppi);
 					break;
 
 				case StrokeAlignment.Center:
 					lo = AdjustPosition(_offset - _width/2, ppi);
-					hi = lo + Adjust( _width, ppi );
+					hi = lo + Adjust(_width, ppi);
 					break;
 			}
 
@@ -176,21 +176,21 @@ namespace Fuse.Drawing
 
 		float AdjustPosition(float w, float ppi)
 		{
-			switch( Adjustment )
+			switch(Adjustment)
 			{
 				case StrokeAdjustment.None:
 					return w;
 
 				case StrokeAdjustment.PixelCeil:
-					w = Math.Ceil( w * ppi ) / ppi;
+					w = Math.Ceil(w * ppi) / ppi;
 					break;
 
 				case StrokeAdjustment.PixelNear:
-					w = Math.Floor( w * ppi + 0.5f ) / ppi;
+					w = Math.Floor(w * ppi + 0.5f) / ppi;
 					break;
 
 				case StrokeAdjustment.PixelFloor:
-					w = Math.Floor( w * ppi ) / ppi;
+					w = Math.Floor(w * ppi) / ppi;
 					break;
 			}
 			
@@ -201,7 +201,7 @@ namespace Fuse.Drawing
 		{
 			w = AdjustPosition(w,ppi);
 			//set minimum 1-pixel wide stroke
-			w = Math.Max( w, 1/ppi );
+			w = Math.Max(w, 1/ppi);
 			return w;
 		}
 

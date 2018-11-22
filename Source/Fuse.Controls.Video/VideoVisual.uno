@@ -112,7 +112,7 @@ namespace Fuse.Controls.VideoImpl
 		void IVideoCallbacks.OnError(Exception e)
 		{
 			ResetTriggers();
-			BusyTask.SetBusy(Control, ref _busyTask, BusyTaskActivity.Failed, e.Message );
+			BusyTask.SetBusy(Control, ref _busyTask, BusyTaskActivity.Failed, e.Message);
 			Fuse.Diagnostics.UnknownException("Video error", e, this);
 		}
 
@@ -288,7 +288,7 @@ namespace Fuse.Controls.VideoImpl
 			Fuse.Triggers.WhilePaused.SetState(Control, false);
 		}
 
-		public sealed override float2 GetMarginSize( LayoutParams lp)
+		public sealed override float2 GetMarginSize(LayoutParams lp)
 		{
 			_sizing.snapToPixels = Control.SnapToPixels;
 			_sizing.absoluteZoom = Control.AbsoluteZoom;
@@ -315,12 +315,12 @@ namespace Fuse.Controls.VideoImpl
 
 			var contentDesiredSize = GetSize();
 
-			_scale = _sizing.CalcScale( size, contentDesiredSize );
-			_origin = _sizing.CalcOrigin( size, contentDesiredSize * _scale );
+			_scale = _sizing.CalcScale(size, contentDesiredSize);
+			_origin = _sizing.CalcOrigin(size, contentDesiredSize * _scale);
 
 			_drawOrigin = _origin;
 			_drawSize = contentDesiredSize * _scale;
-			_uvClip = _sizing.CalcClip( size, ref _drawOrigin, ref _drawSize );
+			_uvClip = _sizing.CalcClip(size, ref _drawOrigin, ref _drawSize);
 
 			return size;
 		}
@@ -350,7 +350,7 @@ namespace Fuse.Controls.VideoImpl
 			//must be in the actual video part shown
 			var lp = htc.LocalPoint;
 			if (lp.X >= _drawOrigin.X && lp.X <= (_drawOrigin.X + _drawSize.X) &&
-				lp.Y >= _drawOrigin.Y && lp.Y <= (_drawOrigin.Y + _drawSize.Y) )
+				lp.Y >= _drawOrigin.Y && lp.Y <= (_drawOrigin.Y + _drawSize.Y))
 				htc.Hit(this);
 				
 			base.OnHitTest(htc);
@@ -460,8 +460,8 @@ namespace Fuse.Controls.VideoImpl
 					xv.X * margin.X + xv.Y * (scaleTextureSize.X-margin.Z) + xv.Z * scaleTextureSize.X,
 					yv.X * margin.Y + yv.Y * (scaleTextureSize.Y-margin.W) + yv.Z * scaleTextureSize.Y) / scaleTextureSize;
 
-				ClipPosition: Vector.Transform( WorldPosition, dc.Viewport.ViewProjectionTransform );
-				public float4 TextureColor: float4(sample( tex, TexCoord, SamplerState.LinearClamp ).XYZ, 1.0f);
+				ClipPosition: Vector.Transform(WorldPosition, dc.Viewport.ViewProjectionTransform);
+				public float4 TextureColor: float4(sample(tex, TexCoord, SamplerState.LinearClamp).XYZ, 1.0f);
 				PixelColor: TextureColor;
 			};
 

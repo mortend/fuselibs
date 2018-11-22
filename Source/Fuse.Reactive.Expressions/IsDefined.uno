@@ -20,7 +20,7 @@ namespace Fuse.Reactive
 		
 		[UXConstructor]
 		public IsDefined([UXParameter("Operand")] Expression operand)
-			: base( new Expression[]{ operand }, Flags.OmitComputeWarning | Flags.AllOptional )
+			: base(new Expression[]{ operand }, Flags.OmitComputeWarning | Flags.AllOptional)
 		{ }
 
 		protected sealed override bool TryCompute(Expression.Argument[] args, out object result)
@@ -66,7 +66,7 @@ namespace Fuse.Reactive
 		
 		[UXConstructor]
 		public NonNull([UXParameter("Operand")] Expression operand)
-			: base( new Expression[]{ operand }, Flags.OmitComputeWarning )
+			: base(new Expression[]{ operand }, Flags.OmitComputeWarning)
 		{ }
 		
 		protected override bool TryCompute(Expression.Argument[] args, out object result)

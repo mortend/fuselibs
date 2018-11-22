@@ -123,13 +123,13 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( p.A, p.Bind.Node );
-				Assert.AreEqual( p.A, p.Bind.Visual );
-				Assert.AreEqual( p.B, p.Bind.Trigger );
+				Assert.AreEqual(p.A, p.Bind.Node);
+				Assert.AreEqual(p.A, p.Bind.Visual);
+				Assert.AreEqual(p.B, p.Bind.Trigger);
 				
 				//https://github.com/fusetools/fuselibs-private/issues/3538
-				//Assert.AreEqual( p.C, p.SBind.Node );
-				Assert.AreEqual( p.B, p.SBind.Trigger );
+				//Assert.AreEqual(p.C, p.SBind.Node);
+				Assert.AreEqual(p.B, p.SBind.Trigger);
 			}
 		}
 		
@@ -140,11 +140,11 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( null, p.Bind.Node ); //not yet
+				Assert.AreEqual(null, p.Bind.Node); //not yet
 				
 				p.B.Value = true;
 				root.PumpDeferred();
-				Assert.AreEqual( p.A, p.Bind.Node );
+				Assert.AreEqual(p.A, p.Bind.Node);
 			}
 		}
 		
@@ -155,7 +155,7 @@ namespace Fuse.Reactive.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "Hello", p.B.File.ReadAllText() );
+				Assert.AreEqual("Hello", p.B.File.ReadAllText());
 			}
 		}
 		

@@ -1963,7 +1963,7 @@ function JSONCov(runner, output) {
     result.failures = failures.map(clean);
     result.passes = passes.map(clean);
     if (!output) return;
-    process.stdout.write(JSON.stringify(result, null, 2 ));
+    process.stdout.write(JSON.stringify(result, null, 2));
   });
 }
 
@@ -2678,13 +2678,13 @@ NyanCat.prototype.drawNyanCat = function(status) {
         var face;
         switch (status) {
           case 'pass':
-            face = '( ^ .^)';
+            face = '(^ .^)';
             break;
           case 'fail':
-            face = '( o .o)';
+            face = '(o .o)';
             break;
           default:
-            face = '( - .-)';
+            face = '(- .-)';
         }
         write(tail + '|' + padding + face + ' ');
         write('\n');
@@ -3186,7 +3186,7 @@ function test(test) {
   } else if (test.pending) {
     console.log(tag('testcase', attrs, false, tag('skipped', {}, true)));
   } else {
-    console.log(tag('testcase', attrs, true) );
+    console.log(tag('testcase', attrs, true));
   }
 }
 
@@ -4424,7 +4424,7 @@ exports.clean = function(str) {
     .replace(/^function *\(.*\) *{/, '')
     .replace(/\s+\}$/, '');
 
-  var spaces = str.match(/^\n?( *)/)[1].length
+  var spaces = str.match(/^\n?(*)/)[1].length
     , re = new RegExp('^ {' + spaces + '}', 'gm');
 
   str = str.replace(re, '');

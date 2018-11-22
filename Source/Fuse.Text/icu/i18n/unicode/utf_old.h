@@ -305,8 +305,8 @@ typedef int32_t UTextOffset;
         ((uint32_t)(c)<=0x7f ? 1 : \
             ((uint32_t)(c)<=0x7ff ? 2 : \
                 ((uint32_t)((c)-0x10000)>0xfffff ? 3 : 4) \
-            ) \
-        )
+           ) \
+       )
 #else
 #   define UTF8_CHAR_LENGTH(c) \
         ((uint32_t)(c)<=0x7f ? 1 : \
@@ -315,11 +315,11 @@ typedef int32_t UTextOffset;
                     ((uint32_t)(c)<=0x10ffff ? 4 : \
                         ((uint32_t)(c)<=0x3ffffff ? 5 : \
                             ((uint32_t)(c)<=0x7fffffff ? 6 : 3) \
-                        ) \
-                    ) \
-                ) \
-            ) \
-        )
+                       ) \
+                   ) \
+               ) \
+           ) \
+       )
 #endif
 
 /** The maximum number of bytes per code point. @deprecated ICU 2.4. Renamed to U8_MAX_LENGTH, see utf_old.h. */

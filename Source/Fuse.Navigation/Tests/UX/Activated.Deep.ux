@@ -11,12 +11,12 @@
 	
 	<JavaScript>
 		exports.step1 = function() {
-			router.goto( "AP2" )
+			router.goto("AP2")
 		}
 		
 		exports.step2 = function() {
 			//must be seen as a single change in full path activation
-			router.goto( "AP1", {}, "BP2" )
+			router.goto("AP1", {}, "BP2")
 		}
 	</JavaScript>
 	<Navigator Transition="None" ux:Name="A1" DefaultPath="AP1">

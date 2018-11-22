@@ -25,7 +25,7 @@ describe('task list tests', function() {
             new Task(false, 18),
             new Task(false, 0),
             new Task(false, 11)
-        );
+       );
 
         remainingCount = todoList.count(function(x) { return x.checked; });
         remainingCount.addSubscriber(function () {
@@ -54,7 +54,7 @@ describe('task list tests', function() {
             assert.equal(remainingCount.value, 3);
         });
         it('tasks where work > 10', function () {
-            var foo = todoList.where( function(x) { return (x.work.value + 2) > 10; });
+            var foo = todoList.where(function(x) { return (x.work.value + 2) > 10; });
             foo.addSubscriber(function () {
                 //do nothing;
             });

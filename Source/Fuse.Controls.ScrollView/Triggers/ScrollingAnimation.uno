@@ -145,7 +145,7 @@ namespace Fuse.Triggers
 				if (Math.Abs(range) < zeroTolerance)
 					return 0;
 
-				var p = Math.Clamp( at / range, 0, 1 );
+				var p = Math.Clamp(at / range, 0, 1);
 				return Inverse ? 1-p : p;
 			}
 		}

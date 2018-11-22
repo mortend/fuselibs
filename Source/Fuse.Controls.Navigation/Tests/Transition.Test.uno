@@ -24,7 +24,7 @@ namespace Fuse.Navigation.Test
 
 				var one0 = p.nav.Active as TBPage;
 
-				p.router.Push( new Route("two", "1"));
+				p.router.Push(new Route("two", "1"));
 				root.StepFrame();
 				var two1 = p.nav.Active as TBPage;
 
@@ -34,7 +34,7 @@ namespace Fuse.Navigation.Test
 				Assert.AreEqual(0,two1.f2.PerformedCount);
 				Assert.AreEqual(1,two1.b2.PerformedCount);
 
-				p.router.Push( new Route("one", "2"));
+				p.router.Push(new Route("one", "2"));
 				root.StepFrame();
 				var one2 = p.nav.Active as TBPage;
 
@@ -69,7 +69,7 @@ namespace Fuse.Navigation.Test
 				Assert.AreEqual(1,two1.b2.PerformedCount);
 
 				root.Children.Remove(p);
-				Assert.AreEqual(0, TransitionGroup.TestMemoryCount );
+				Assert.AreEqual(0, TransitionGroup.TestMemoryCount);
 			}
 		}
 		
@@ -92,7 +92,7 @@ namespace Fuse.Navigation.Test
 				Assert.AreEqual(0, p.two.f4.PerformedCount);
 				Assert.AreEqual(0, p.two.b4.PerformedCount);
 
-				p.router.Push( new Route("two"));
+				p.router.Push(new Route("two"));
 				root.StepFrame();
 				Assert.AreEqual(p.two, p.nav.Active);
 
@@ -117,12 +117,12 @@ namespace Fuse.Navigation.Test
 				Assert.AreEqual(0,TriggerProgress(p.two.t4));
 				Assert.AreEqual(0,TriggerProgress(p.two.t5));
 
-				p.router.Push( new Route("one"));
+				p.router.Push(new Route("one"));
 				root.StepFrame();
 				Assert.AreEqual(p.one, p.nav.Active);
 
 				root.Children.Remove(p);
-				Assert.AreEqual(0, TransitionGroup.TestMemoryCount );
+				Assert.AreEqual(0, TransitionGroup.TestMemoryCount);
 			}
 		}
 		
@@ -136,7 +136,7 @@ namespace Fuse.Navigation.Test
 
 				var p0 = p.nav.Active as TFBPage;
 
-				p.router.Push( new Route("one", "1"));
+				p.router.Push(new Route("one", "1"));
 				root.StepFrame();
 				var p1 = p.nav.Active as TFBPage;
 
@@ -164,7 +164,7 @@ namespace Fuse.Navigation.Test
 
 				var p0 = p.nav.Active as TIFBPage;
 
-				p.router.Push( new Route("one", "1"));
+				p.router.Push(new Route("one", "1"));
 				root.StepFrame();
 				var p1 = p.nav.Active as TIFBPage;
 
@@ -216,14 +216,14 @@ namespace Fuse.Navigation.Test
 
 				var p0 = p.nav.Active as TRPage;
 
-				p.router.Push( new Route("one", "1"));
+				p.router.Push(new Route("one", "1"));
 				root.StepFrame(1.1f);
 				var p1 = p.nav.Active as TRPage;
 
 				Assert.IsFalse(p.nav.Children.Contains(p0));
 				Assert.IsTrue(p.nav.Children.Contains(p1));
 
-				p.router.Push( new Route("popup", "2"));
+				p.router.Push(new Route("popup", "2"));
 				root.StepFrame(1.1f);
 				var p2 = p.nav.Active as TRPage;
 
@@ -237,7 +237,7 @@ namespace Fuse.Navigation.Test
 			var p = new UX.Transition.Interactive();
 			using (var root = TestRootPanel.CreateWithChild(p,int2(1000)))
 			{
-				p.router.Push( new Route( "two" ) );
+				p.router.Push(new Route("two"));
 				root.StepFrame(0.5f);
 				var eps = root.StepIncrement + _zeroTolerance;
 				Assert.AreEqual(0.5f, TriggerProgress(p.one.T2), eps);
@@ -273,7 +273,7 @@ namespace Fuse.Navigation.Test
 				root.StepFrameJS();
 				//get a base time, 1-2 frames anim is acceptable on sync
 				var b = (float)TriggerProgress(p.one.T1);
-				Assert.IsTrue( b < (2 * root.StepIncrement + _zeroTolerance) );
+				Assert.IsTrue(b < (2 * root.StepIncrement + _zeroTolerance));
 				root.StepFrame(0.4f - b);
 				
 				Assert.AreEqual(0.4f, TriggerProgress(p.one.T1));
@@ -288,7 +288,7 @@ namespace Fuse.Navigation.Test
 				p.FlashOne.Perform();
 				root.StepFrameJS();
 				b = (float)TriggerProgress(p.two.T3);
-				Assert.IsTrue( b < (2 * root.StepIncrement + _zeroTolerance) );
+				Assert.IsTrue(b < (2 * root.StepIncrement + _zeroTolerance));
 				root.StepFrame(0.4f - b);
 				
 				Assert.AreEqual(0f, TriggerProgress(p.one.T1));

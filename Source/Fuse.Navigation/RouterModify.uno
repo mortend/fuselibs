@@ -91,7 +91,7 @@ namespace Fuse.Navigation
 		[Obsolete]
 		public RouterModify() 
 		{ 
-			Fuse.Diagnostics.UserWarning( "RouterModify is deprecated. Use one of `ModifyRoute`, `GotoRoute` or `PushRoute` instead.", this );
+			Fuse.Diagnostics.UserWarning("RouterModify is deprecated. Use one of `ModifyRoute`, `GotoRoute` or `PushRoute` instead.", this);
 		}
 		
 		[Flags]
@@ -193,7 +193,7 @@ namespace Fuse.Navigation
 				if (!RouterRequest.ParseUXRoute(value, out route))
 					return;
 				
-				PerformRoute( (_pathSub as IContext).Node, route);
+				PerformRoute((_pathSub as IContext).Node, route);
 			}
 			finally
 			{
@@ -213,7 +213,7 @@ namespace Fuse.Navigation
 			var useRouter = Router ?? Fuse.Navigation.Router.TryFindRouter(n);
 			if (useRouter == null)
 			{
-				Fuse.Diagnostics.UserError( "Router not set and none could be found", this );
+				Fuse.Diagnostics.UserError("Router not set and none could be found", this);
 				return;
 			}
 			

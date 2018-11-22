@@ -19,7 +19,7 @@ namespace Fuse.Navigation.Test
 			{
 				root.StepFrameJS();
 				
-				Assert.AreEqual( "outer,inner", GetRecursiveText(p));
+				Assert.AreEqual("outer,inner", GetRecursiveText(p));
 			}
 		}
 	}	

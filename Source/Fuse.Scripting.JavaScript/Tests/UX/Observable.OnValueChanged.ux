@@ -4,7 +4,7 @@
 		
 		var a = Observable()
 		var b = Observable("init")
-		b.onValueChanged( module, function(v) {
+		b.onValueChanged(module, function(v) {
 			a.value = v
 		})
 		
@@ -19,11 +19,11 @@
 		}
 		
 		exports.add = function() {
-			b.add( "add" )
+			b.add("add")
 		}
 		
 		exports.replaceAll = function() {	
-			b.replaceAll( [ "one", "two", "three" ] )
+			b.replaceAll([ "one", "two", "three" ])
 		}
 		
 		exports.failed = function() {

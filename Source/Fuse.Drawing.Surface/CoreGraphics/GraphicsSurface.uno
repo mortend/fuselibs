@@ -21,7 +21,7 @@ namespace Fuse.Drawing
 		framebuffer _buffer;
 		float2 _size;
 
-		public override void Begin( DrawContext dc, framebuffer fb, float pixelsPerPoint )
+		public override void Begin(DrawContext dc, framebuffer fb, float pixelsPerPoint)
 		{
 			VerifyCreated();
 			_drawContext = dc;
@@ -103,7 +103,7 @@ namespace Fuse.Drawing
 		protected override void VerifyBegun()
 		{
 			if (_buffer == null)
-				throw new Exception( "Surface.Begin was not called" );
+				throw new Exception("Surface.Begin was not called");
 		}
 
 		/*
@@ -112,7 +112,7 @@ namespace Fuse.Drawing
 			We might end up not supporting ImageFill until this is fixed, but this is useful
 			here now to complete/test the sizing/tiling support.
 		*/
-		protected override void PrepareImageFill( ImageFill img )
+		protected override void PrepareImageFill(ImageFill img)
 		{
 			var src = img.Source;
 			var tex = src.GetTexture();
@@ -123,17 +123,17 @@ namespace Fuse.Drawing
 
 			if defined(OSX)
 			{
-				imageRef = LoadImage(_context, (int)tex.GLTextureHandle, src.PixelSize.X, src.PixelSize.Y );
+				imageRef = LoadImage(_context, (int)tex.GLTextureHandle, src.PixelSize.X, src.PixelSize.Y);
 			}
 			else
 			{
-				var fb = FramebufferPool.Lock( src.PixelSize, Uno.Graphics.Format.RGBA8888, false );
+				var fb = FramebufferPool.Lock(src.PixelSize, Uno.Graphics.Format.RGBA8888, false);
 
 				//TODO: this is not entirely correct since _drawContext could be null now -- but it isn't
 				//in any of our use cases, but the contract certainly allows for it
 				_drawContext.PushRenderTarget(fb);
 				Blitter.Singleton.Blit(tex, new Rect(float2(-1), float2(2)), float4x4.Identity, 1.0f, true);
-				imageRef = LoadImagePoor(_context, src.PixelSize.X, src.PixelSize.Y );
+				imageRef = LoadImagePoor(_context, src.PixelSize.X, src.PixelSize.Y);
 				FramebufferPool.Release(fb);
 				_drawContext.PopRenderTarget();
 			}
@@ -175,9 +175,9 @@ namespace Fuse.Drawing
 			auto tempRow = new UInt8[rowSize];
 			for (int y=0; y < height/2; ++y)
 			{
-				memcpy( tempRow, pixelData + y * rowSize, rowSize );
-				memcpy( pixelData + y * rowSize, pixelData + (height-y-1) * rowSize, rowSize );
-				memcpy( pixelData + (height-y-1) * rowSize, tempRow, rowSize );
+				memcpy(tempRow, pixelData + y * rowSize, rowSize);
+				memcpy(pixelData + y * rowSize, pixelData + (height-y-1) * rowSize, rowSize);
+				memcpy(pixelData + (height-y-1) * rowSize, tempRow, rowSize);
 			}
 
 			CFDataRef data = CFDataCreate(NULL, pixelData, size);

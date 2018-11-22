@@ -35,7 +35,7 @@ namespace Fuse.Triggers.Actions
 			if (t != null) 
 				t.Show();
 			else
-				Fuse.Diagnostics.UserError( "Cannot find an Element/IShow", this );
+				Fuse.Diagnostics.UserError("Cannot find an Element/IShow", this);
 		}
 	}
 
@@ -71,7 +71,7 @@ namespace Fuse.Triggers.Actions
 			if (t != null) 
 				t.Hide();
 			else
-				Fuse.Diagnostics.UserError( "Cannot find an Element/IHide", this );
+				Fuse.Diagnostics.UserError("Cannot find an Element/IHide", this);
 		}
 	}
 
@@ -107,7 +107,7 @@ namespace Fuse.Triggers.Actions
 			if (t != null) 
 				t.Collapse();
 			else
-				Fuse.Diagnostics.UserError( "Cannot find an Element/ICollapse", this );
+				Fuse.Diagnostics.UserError("Cannot find an Element/ICollapse", this);
 		}
 	}
 }

@@ -43,7 +43,7 @@ namespace Fuse.Reactive
 			
 			public void Init()
 			{
-				_listener.OnNewData(_func, _func.GetResult() );
+				_listener.OnNewData(_func, _func.GetResult());
 			}
 			
 			public void Dispose()

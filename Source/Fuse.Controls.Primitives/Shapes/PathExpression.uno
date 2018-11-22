@@ -30,7 +30,7 @@ namespace Fuse.Controls
 			return sub;
 		}
 
-		protected abstract object Calculate( SegmentedShape path, object param );
+		protected abstract object Calculate(SegmentedShape path, object param);
 		
 		class PathSubscription : ExpressionListener
 		{
@@ -53,7 +53,7 @@ namespace Fuse.Controls
 				var ss = args[0].Value as SegmentedShape;
 				if (ss == null)
 				{
-					Fuse.Diagnostics.UserError( _expr._name + " requires a SegmentedShape as first argument", this );
+					Fuse.Diagnostics.UserError(_expr._name + " requires a SegmentedShape as first argument", this);
 					ClearData();
 					return;
 				}
@@ -66,15 +66,15 @@ namespace Fuse.Controls
 			protected override void OnDataCleared()
 			{
 				base.OnDataCleared();
-				SwitchPath( null );
+				SwitchPath(null);
 			}
 			
 			void UpdateValue()
 			{
 				if (_path != null)
 				{
-					var result = _expr.Calculate( _path, _param );
-					SetData( result );
+					var result = _expr.Calculate(_path, _param);
+					SetData(result);
 				}
 			}
 		
@@ -94,7 +94,7 @@ namespace Fuse.Controls
 			void SegmentsChanged()
 			{
 				if (_path != null)
-					UpdateManager.AddDeferredAction( UpdateValue );
+					UpdateManager.AddDeferredAction(UpdateValue);
 			}
 			
 			public override void Dispose()
@@ -120,12 +120,12 @@ namespace Fuse.Controls
  		[UXConstructor]
  		public PathPointAtDistance([UXParameter("Path")] Fuse.Reactive.Expression path,
  			[UXParameter("Distance")] Fuse.Reactive.Expression distance) : 
- 			base(path, distance, "pathPointAtDistance" )
+ 			base(path, distance, "pathPointAtDistance")
 		{ }
 			
-		protected override object Calculate( SegmentedShape path, object param )
+		protected override object Calculate(SegmentedShape path, object param)
 		{
-			return path.PointAtDistance( Marshal.ToType<float>(param) );
+			return path.PointAtDistance(Marshal.ToType<float>(param));
 		}
 	}
 	
@@ -139,12 +139,12 @@ namespace Fuse.Controls
 		[UXConstructor]
 		public PathTangentAngleAtDistance([UXParameter("Path")] Fuse.Reactive.Expression path,
 			[UXParameter("Distance")] Fuse.Reactive.Expression distance) : 
-			base(path, distance, "pathTangentAngleAtDistance" )
+			base(path, distance, "pathTangentAngleAtDistance")
 		{ }
 			
-		protected override object Calculate( SegmentedShape path, object param )
+		protected override object Calculate(SegmentedShape path, object param)
 		{
-			var tangent = path.TangentAtDistance( Marshal.ToType<float>(param) );
+			var tangent = path.TangentAtDistance(Marshal.ToType<float>(param));
 			return Math.Atan2(tangent.Y, tangent.X);
 		}
 	}
@@ -159,12 +159,12 @@ namespace Fuse.Controls
  		[UXConstructor]
  		public PathPointAtTime([UXParameter("Path")] Fuse.Reactive.Expression path,
  			[UXParameter("Time")] Fuse.Reactive.Expression time) : 
- 			base(path, time, "pathPointAtTime" )
+ 			base(path, time, "pathPointAtTime")
 		{ }
 			
-		protected override object Calculate( SegmentedShape path, object param )
+		protected override object Calculate(SegmentedShape path, object param)
 		{
-			return path.PointAtTime( Marshal.ToType<float>(param) );
+			return path.PointAtTime(Marshal.ToType<float>(param));
 		}
 	}
 	
@@ -178,12 +178,12 @@ namespace Fuse.Controls
 		[UXConstructor]
 		public PathTangentAngleAtTime([UXParameter("Path")] Fuse.Reactive.Expression path,
 			[UXParameter("Time")] Fuse.Reactive.Expression time) :
-			base(path, time, "pathTangentAngleAtTime" )
+			base(path, time, "pathTangentAngleAtTime")
 		{ }
 			
-		protected override object Calculate( SegmentedShape path, object param )
+		protected override object Calculate(SegmentedShape path, object param)
 		{
-			var tangent = path.TangentAtTime( Marshal.ToType<float>(param) );
+			var tangent = path.TangentAtTime(Marshal.ToType<float>(param));
 			return Math.Atan2(tangent.Y, tangent.X);
 		}
 	}

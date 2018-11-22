@@ -195,9 +195,9 @@ public class ImageUtils {
 		Bitmap.CompressFormat fmt;
 		String lowerCaseType = options.outMimeType.toLowerCase();
 
-		if( lowerCaseType.contains("jpeg") || lowerCaseType.contains("jpg") ) {
+		if(lowerCaseType.contains("jpeg") || lowerCaseType.contains("jpg")) {
 			return Bitmap.CompressFormat.JPEG;
-		}else if( lowerCaseType.contains("png") ) {
+		}else if(lowerCaseType.contains("png")) {
 			return Bitmap.CompressFormat.PNG;
 		}else{
 			throw new Exception("Invalid image format");

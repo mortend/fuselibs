@@ -14,15 +14,15 @@ namespace Fuse.Controls.Test
 			var p = new UX.BringToFront.Basic();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "C,B,A", GetDudZ(p));
+				Assert.AreEqual("C,B,A", GetDudZ(p));
 				
 				p.bFront.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( "C,A,B", GetDudZ(p));
+				Assert.AreEqual("C,A,B", GetDudZ(p));
 				
 				p.cFront.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( "A,B,C", GetDudZ(p));
+				Assert.AreEqual("A,B,C", GetDudZ(p));
 			}
 		}
 		
@@ -32,15 +32,15 @@ namespace Fuse.Controls.Test
 			var p = new UX.BringToFront.BackBasic();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "C,B,A", GetDudZ(p));
+				Assert.AreEqual("C,B,A", GetDudZ(p));
 				
 				p.bBack.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( "B,C,A", GetDudZ(p));
+				Assert.AreEqual("B,C,A", GetDudZ(p));
 				
 				p.aBack.Pulse();
 				root.PumpDeferred();
-				Assert.AreEqual( "A,B,C", GetDudZ(p));
+				Assert.AreEqual("A,B,C", GetDudZ(p));
 			}
 		}
 	}

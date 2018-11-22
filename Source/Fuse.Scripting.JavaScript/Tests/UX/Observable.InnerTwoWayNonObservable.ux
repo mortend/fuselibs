@@ -9,7 +9,7 @@
 		
 		//some use "items" and some "sourceItems". We don't need an exhaustive check since the code is shared
 		exports.step1 = function() {
-			items.add( "b" )
+			items.add("b")
 		}
 		
 		exports.step2 = function() {
@@ -21,7 +21,7 @@
 		}
 		
 		exports.step4 = function() {
-			sourceItems.insertAll(1, ["d","e","f","g"] )
+			sourceItems.insertAll(1, ["d","e","f","g"])
 		}
 		
 		exports.step5 = function() {

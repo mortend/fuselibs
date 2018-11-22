@@ -228,7 +228,7 @@ namespace Fuse.Triggers.Actions
 		public Resume()
 		{
 			//DEPRECATED: 2017-02-27
-			Fuse.Diagnostics.Deprecated( "Use `Play` instead of `Resume`", this );
+			Fuse.Diagnostics.Deprecated("Use `Play` instead of `Resume`", this);
 		}
 	}
 	
@@ -285,7 +285,7 @@ namespace Fuse.Triggers.Actions
 		public PlayTo()
 		{
 			//DEPRECATED: 2017-02-27
-			Fuse.Diagnostics.Deprecated( "Use the TimelineAction with `How=\"PlayTo\" instead.", this );
+			Fuse.Diagnostics.Deprecated("Use the TimelineAction with `How=\"PlayTo\" instead.", this);
 		}
 		
 		protected override void Perform(Node target)

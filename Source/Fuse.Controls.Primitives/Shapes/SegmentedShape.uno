@@ -47,7 +47,7 @@ namespace Fuse.Controls
 					return;
 					
 				_pathStart = value;
-				OnPropertyChanged( NamePathStart );
+				OnPropertyChanged(NamePathStart);
 				InvalidateSurfacePath();
 			}
 		}
@@ -73,7 +73,7 @@ namespace Fuse.Controls
 					
 				_pathEnd = value;
 				_hasPathLength = false;
-				OnPropertyChanged( NamePathEnd );
+				OnPropertyChanged(NamePathEnd);
 				InvalidateSurfacePath();
 			}
 		}
@@ -100,7 +100,7 @@ namespace Fuse.Controls
 					
 				_hasPathLength = true;
 				_pathLength = value;
-				OnPropertyChanged( NamePathLength );
+				OnPropertyChanged(NamePathLength);
 				InvalidateSurfacePath();
 			}
 		}
@@ -189,8 +189,8 @@ namespace Fuse.Controls
 			if (end < start || (end-start) > 1)
 			{
 				//overlength and reverse could have logical meanings, so issue error instead of adjusting
-				Fuse.Diagnostics.UserError( "Unsupported Path start=" + start + 
-					", end=" + end, this );
+				Fuse.Diagnostics.UserError("Unsupported Path start=" + start + 
+					", end=" + end, this);
 				return surface.CreatePath(list);
 			}
 
@@ -203,28 +203,28 @@ namespace Fuse.Controls
 				endT = Splitter.DistanceToTime(endT);
 			}
 			
-			Splitter.SplitTime( startT, endT, list );
+			Splitter.SplitTime(startT, endT, list);
 			return surface.CreatePath(list);
 		}
 		
-		internal float2 PointAtDistance( float distance )
+		internal float2 PointAtDistance(float distance)
 		{
 			var t = Splitter.DistanceToTime(distance);
 			return Splitter.PointAtTime(t);
 		}
 		
-		internal float2 TangentAtDistance( float distance )
+		internal float2 TangentAtDistance(float distance)
 		{
 			var t = Splitter.DistanceToTime(distance);
 			return Vector.Normalize(Splitter.DirectionAtTime(t));
 		}
 
-		internal float2 PointAtTime( float time )
+		internal float2 PointAtTime(float time)
 		{
 			return Splitter.PointAtTime(time);
 		}
 		
-		internal float2 TangentAtTime( float time )
+		internal float2 TangentAtTime(float time)
 		{
 			return Vector.Normalize(Splitter.DirectionAtTime(time));
 		}

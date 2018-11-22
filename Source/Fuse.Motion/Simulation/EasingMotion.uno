@@ -30,7 +30,7 @@ namespace Fuse.Motion.Simulation
 			return q;
 		}
 		
-		static public EasingMotion<T> CreateUnit( MotionUnit unit )
+		static public EasingMotion<T> CreateUnit(MotionUnit unit)
 		{
 			switch(unit)
 			{
@@ -38,7 +38,7 @@ namespace Fuse.Motion.Simulation
 				case MotionUnit.Normalized: return CreateNormalized();
 				case MotionUnit.Radians: return CreateRadians();
 			}
-			throw new Exception( "Unsupported unit type: " +unit );
+			throw new Exception("Unsupported unit type: " +unit);
 		}
 		
 		bool _isDirty = true;
@@ -70,7 +70,7 @@ namespace Fuse.Motion.Simulation
 		//is the motion locked to the easing
 		bool _isLocked = true;
 		
-		public void Update( double elapsed )
+		public void Update(double elapsed)
 		{
 			if (_isDirty)
 				UpdateDestination(false);
@@ -80,11 +80,11 @@ namespace Fuse.Motion.Simulation
 			if (elapsed >= _transitionRemain)
 				_isLocked = true;
 			
-			var desiredPosition = _blender.Lerp(_source, _destination, _easing.Map((float)_progress) );
+			var desiredPosition = _blender.Lerp(_source, _destination, _easing.Map((float)_progress));
 			var prevPos = _blender.Lerp(_source, _destination, 
-				_easing.Map((float)_progress - 0.001f) );
-			var desiredVelocity = _blender.Weight( _blender.Sub(desiredPosition, prevPos), 
-				1 / 0.001f );
+				_easing.Map((float)_progress - 0.001f));
+			var desiredVelocity = _blender.Weight(_blender.Sub(desiredPosition, prevPos), 
+				1 / 0.001f);
 
 			if (_isLocked)
 			{
@@ -103,8 +103,8 @@ namespace Fuse.Motion.Simulation
 				return;
 			}
 			
-			_transitionPosition = _blender.Add( _transitionPosition, 
-				_blender.Weight( Velocity, elapsed ) );
+			_transitionPosition = _blender.Add(_transitionPosition, 
+				_blender.Weight(Velocity, elapsed));
 
 			_transitionRemain -= elapsed;
 			var rtp = (float)(_transitionRemain / _transitionTime);
@@ -165,7 +165,7 @@ namespace Fuse.Motion.Simulation
 			_source = Position;
 			_isStatic = false;
 			
-			var dist = _blender.Distance( _destination, Position );
+			var dist = _blender.Distance(_destination, Position);
 			var partial = dist  / _nominalDistance;
 			
 			var lenDuration = Duration * Math.Pow(partial, _durationExp);
@@ -192,7 +192,7 @@ namespace Fuse.Motion.Simulation
 			}
 			
 			//limit transition time to expected time left
-			_transitionRemain = _transitionTime = Math.Min( Duration / 2, lenDuration );
+			_transitionRemain = _transitionTime = Math.Min(Duration / 2, lenDuration);
 			_transitionPosition = Position;
 			_transitionVelocity = Velocity;
 			
@@ -228,7 +228,7 @@ namespace Fuse.Motion.Simulation
 			set { _nominalDistance = value; }
 		}
 
-		public void Reset( T destination )
+		public void Reset(T destination)
 		{
 			_position = destination;
 			_destination = destination;

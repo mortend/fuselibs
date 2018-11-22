@@ -33,7 +33,7 @@ namespace Fuse.Triggers
 			}
 			else
 			{
-				Diagnostics.UserRootError( "WebView", Parent, this );
+				Diagnostics.UserRootError("WebView", Parent, this);
 			}
 		}
 

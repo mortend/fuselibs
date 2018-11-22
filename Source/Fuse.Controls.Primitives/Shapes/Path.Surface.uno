@@ -12,12 +12,12 @@ namespace Fuse.Controls
 			var pos = CalcPositioning();
 			var list = new List<LineSegment>();
 			
-			for (int i=0; i < _segments.Count; ++i )
+			for (int i=0; i < _segments.Count; ++i)
 			{
 				var seg = _segments[i];
-				seg.Translate( -pos.Extents.Minimum );
-				seg.Scale( pos.Scale );
-				seg.Translate( pos.Offset + pos.Extents.Minimum );
+				seg.Translate(-pos.Extents.Minimum);
+				seg.Scale(pos.Scale);
+				seg.Translate(pos.Offset + pos.Extents.Minimum);
 				list.Add(seg);
 			}
 			

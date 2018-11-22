@@ -47,20 +47,20 @@ namespace Fuse.Charting
 			Offset = 0;
 		}
 		
-		public void CheckAttractor( AttractorConfig attractor, object where )
+		public void CheckAttractor(AttractorConfig attractor, object where)
 		{
 			if (attractor != null)
 			{
 				//still deciding, but leaning towards normalized everywhere (it's the simplest)
-				if (/*Style == PlotPointStyle.Axial &&*/ attractor.Unit != MotionUnit.Normalized )
-					Fuse.Diagnostics.UserWarning( "Expecting Unit=\"Normalized\" for attractor", where );
-				//if (Style == PlotPointStyle.Radial && attractor.Unit != MotionUnit.Radians )
-				//	Fuse.Diagnostics.UserWarning( "Expecting Unit=\"Radians\" for attractor", where );
+				if (/*Style == PlotPointStyle.Axial &&*/ attractor.Unit != MotionUnit.Normalized)
+					Fuse.Diagnostics.UserWarning("Expecting Unit=\"Normalized\" for attractor", where);
+				//if (Style == PlotPointStyle.Radial && attractor.Unit != MotionUnit.Radians)
+				//	Fuse.Diagnostics.UserWarning("Expecting Unit=\"Radians\" for attractor", where);
 			}
 		}
 		
 
-		public float2 ValueToPos( float2 value )
+		public float2 ValueToPos(float2 value)
 		{
 			switch (Style)
 			{
@@ -71,14 +71,14 @@ namespace Fuse.Charting
 				case PlotPointStyle.Radial:
 				{
 					var len = 1 + Offset;
-					return float2( (Math.Cos(value.X) * len + 1) / 2,
+					return float2((Math.Cos(value.X) * len + 1) / 2,
 						(Math.Sin(value.X) * len + 1) / 2);
 				}
 				
 				case PlotPointStyle.Angular:
 				{
 					var len = value[1] + Offset;
-					return float2( (Math.Cos(value[0]) * len + 1) / 2,
+					return float2((Math.Cos(value[0]) * len + 1) / 2,
 						(Math.Sin(value[0]) * len + 1) / 2);
 				}
 			}
@@ -86,14 +86,14 @@ namespace Fuse.Charting
 			return float2(0);
 		}
 		
-		public float2 AngleToAnchor( float angle )
+		public float2 AngleToAnchor(float angle)
 		{
 			angle = PiRange(angle);
 			var pi = Math.PIf;
 
 			//calculate tolerance for side placement (box will just border on the side)
-			var considerOffset = Math.Clamp( Offset, 0, 0.2f ); //after a point it just starts looking wrong
-			var axisEps = Math.Acos( 1 - considerOffset );
+			var considerOffset = Math.Clamp(Offset, 0, 0.2f); //after a point it just starts looking wrong
+			var axisEps = Math.Acos(1 - considerOffset);
 			
 			//expects -pi ... +pi range
 			return angle < -pi + axisEps ? float2(1,0.5f) :
@@ -106,7 +106,7 @@ namespace Fuse.Charting
 				angle < pi-axisEps ? float2(1,0) : float2(1,0.5f);
 		}
 		
-		public float2 PrepareEntry( PlotDataPoint entry )
+		public float2 PrepareEntry(PlotDataPoint entry)
 		{
 			var value = float2(0);
 			var rel = entry.ScreenRelativeValue;
@@ -138,7 +138,7 @@ namespace Fuse.Charting
 		//force angle into -pi...pi range
 		static float PiRange(float a)
 		{
-			var l = Math.Floor( (a + Math.PIf) / (Math.PIf * 2) );
+			var l = Math.Floor((a + Math.PIf) / (Math.PIf * 2));
 			return a -  l * Math.PIf * 2;
 		}
 		
@@ -176,7 +176,7 @@ namespace Fuse.Charting
 
 		public PlotPoint()
 		{
-			Anchor = new Size2( new Size(50, Unit.Percent), new Size(50,Unit.Percent) );
+			Anchor = new Size2(new Size(50, Unit.Percent), new Size(50,Unit.Percent));
 			RadialScale = 1;
 			_calc.Init();
 		}
@@ -238,26 +238,26 @@ namespace Fuse.Charting
 			_calc.CheckAttractor(Attractor, this);
 		}
 
-		void AnimUpdate( float2 value )
+		void AnimUpdate(float2 value)
 		{
 			value.X *= RadialScale;
 			value.X += RadialOffset * Math.PIf * 2;
 
 			var p = _calc.ValueToPos(value);
-			X = new Size( p.X * 100, Unit.Percent );
-			Y = new Size( p.Y * 100, Unit.Percent );
+			X = new Size(p.X * 100, Unit.Percent);
+			Y = new Size(p.Y * 100, Unit.Percent);
 					
 			if (EffectivePointAnchor == PlotPointAnchor.Radial)
 			{
 				var position = _calc.AngleToAnchor(value.X);
-				Anchor = new Size2( new Size( position.X * 100, Unit.Percent ),
-				new Size( position.Y * 100, Unit.Percent ) );
+				Anchor = new Size2(new Size(position.X * 100, Unit.Percent),
+				new Size(position.Y * 100, Unit.Percent));
 			}
 		}
 		
-		internal override void OnDataPointChanged( PlotDataPoint entry )
+		internal override void OnDataPointChanged(PlotDataPoint entry)
 		{
-			_animator.SetValue( _calc.PrepareEntry(entry), AnimUpdate );
+			_animator.SetValue(_calc.PrepareEntry(entry), AnimUpdate);
 		}
 		
 		protected override void OnUnrooted()

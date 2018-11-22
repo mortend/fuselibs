@@ -71,7 +71,7 @@ namespace Uno.Collections
 					}
 				}
 				
-				Mod.Add( new ModItem{ Item = item, Add = true } );
+				Mod.Add(new ModItem{ Item = item, Add = true });
 			}
 			else
 				_back.Add(item);
@@ -93,7 +93,7 @@ namespace Uno.Collections
 					
 				if (_back.Contains(item))
 				{
-					Mod.Add( new ModItem{ Item = item, Add = false } );
+					Mod.Add(new ModItem{ Item = item, Add = false });
 					return true;
 				}
 				

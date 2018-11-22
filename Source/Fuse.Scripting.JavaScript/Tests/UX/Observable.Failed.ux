@@ -5,14 +5,14 @@
 		exports.failed = Observable()
 		exports.a = Observable(1)
 		
-		exports.a.onFailed( module, function(err) {
+		exports.a.onFailed(module, function(err) {
 			exports.failed.value = err
 		}, function() {
 			exports.failed.clear()
 		})
 		
 		exports.fail = function() {
-			exports.a.failed( "NO" )
+			exports.a.failed("NO")
 		}
 		
 		exports.restore = function() {

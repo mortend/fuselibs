@@ -8,9 +8,9 @@ namespace Fuse.Internal
 		/**
 			This produces an output suitable for CubicHermitePoint
 		*/
-		public static void KochanekBartelTangent( float4 pa, float4 pb, float4 pc, float4 pd, 
+		public static void KochanekBartelTangent(float4 pa, float4 pb, float4 pc, float4 pd, 
 			float tension, float bias, float continuity,
-			out float4 tangentIn, out float4 tangentOut )
+			out float4 tangentIn, out float4 tangentOut)
 		{
 			var t = tension;
 			var b = bias;
@@ -26,9 +26,9 @@ namespace Fuse.Internal
 			
 			The meaning of the control values depends on the curve type.
 		*/
-		public delegate float4 PointInterpolater(float4 p0, float4 p1, float4 m0, float4 m1, float t );
+		public delegate float4 PointInterpolater(float4 p0, float4 p1, float4 m0, float4 m1, float t);
 		
-		public static float4 CubicHermitePoint( float4 p0, float4 p1, float4 m0, float4 m1, float t )
+		public static float4 CubicHermitePoint(float4 p0, float4 p1, float4 m0, float4 m1, float t)
 		{
 			var t2 = t * t;
 			var t3 = t2 * t;
@@ -39,7 +39,7 @@ namespace Fuse.Internal
 				(t3 - t2) * m1;
 		}
 		
-		public static float4 LinearPoint(float4 p0, float4 p1, float4 m0, float4 m1, float t )
+		public static float4 LinearPoint(float4 p0, float4 p1, float4 m0, float4 m1, float t)
 		{
 			return p0 +
 				t * (p1 - p0);
@@ -52,7 +52,7 @@ namespace Fuse.Internal
 			t2 = p1 - t2/3;
 		}
 		
-		public static float2 CalcBezierAt( float2 p0, float2 p1, float2 p2, float2 p3, float t)
+		public static float2 CalcBezierAt(float2 p0, float2 p1, float2 p2, float2 p3, float t)
 		{
 			var t2 = t * t;
 			var t3 = t2 * t;

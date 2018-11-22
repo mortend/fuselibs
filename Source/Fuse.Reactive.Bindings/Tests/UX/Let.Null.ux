@@ -1,6 +1,6 @@
 <Panel ux:Class="UX.Let.Null">
 	<FuseTest.Data ux:Name="nl"/>
-	<FuseTest.Data Value="( one: 1 )" ux:Name="nb"/>
+	<FuseTest.Data Value="(one: 1)" ux:Name="nb"/>
 	
 	<Let ux:Name="a" Expression="{Property nl.Value}.one"/>
 	<Let ux:Name="b" Expression="{nothing}"/>

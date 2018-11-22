@@ -105,7 +105,7 @@ namespace FuseTest
 			}
 		}
 
-		static public T[] GetChildren<T>( Visual v ) where T : class
+		static public T[] GetChildren<T>(Visual v) where T : class
 		{
 			var list = new List<T>();
 			for (int i=0; i < v.Children.Count; ++i)
@@ -181,14 +181,14 @@ namespace FuseTest
 			Use this rather than access Progress directly. It limits how many projects we have
 			to expose Internals to.
 		*/
-		protected double TriggerProgress( Trigger t )
+		protected double TriggerProgress(Trigger t)
 		{
 			return t.Progress;
 		}
 		
-		protected float4 ActualPositionSize( Element e)
+		protected float4 ActualPositionSize(Element e)
 		{
-			return float4( e.ActualPosition, e.ActualSize );
+			return float4(e.ActualPosition, e.ActualSize);
 		}
 		
 		protected float GestureHardCaptureSignificanceThreshold

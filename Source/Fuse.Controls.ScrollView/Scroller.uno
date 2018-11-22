@@ -27,7 +27,7 @@ namespace Fuse.Gestures
 		public Scroller()
 		{
 			//DEPRECATED: 2017-03-04
-			Fuse.Diagnostics.Deprecated( "Scroller should not be used directly as it is an internal class. The ScrollView provides the entire interface for scrolling.", this );
+			Fuse.Diagnostics.Deprecated("Scroller should not be used directly as it is an internal class. The ScrollView provides the entire interface for scrolling.", this);
 		}
 		
 		BoundedRegion2D _region;
@@ -46,7 +46,7 @@ namespace Fuse.Gestures
 			set 
 			{ 
 				_delayStart = value; 
-				Fuse.Diagnostics.Deprecated( "Scroller.DelayStart is no longer supported.", this );
+				Fuse.Diagnostics.Deprecated("Scroller.DelayStart is no longer supported.", this);
 			}
 		}
 
@@ -58,7 +58,7 @@ namespace Fuse.Gestures
 
 			_scrollable = Parent as ScrollView;
 			if (_scrollable == null)
-				throw new Exception( "Scroller can only be used in a ScrollView" );
+				throw new Exception("Scroller can only be used in a ScrollView");
 
 			_scrollable.AddPropertyListener(this);
 			//Set in ugly fashion, required by https://github.com/fusetools/fuselibs-private/issues/870
@@ -105,7 +105,7 @@ namespace Fuse.Gestures
 			set
 			{
 				//DEPRECATED: 2017-03-04
-				Fuse.Diagnostics.Deprecated( "This value bound to the ScrollView now, set ScrollView.UserScroll instead", this );
+				Fuse.Diagnostics.Deprecated("This value bound to the ScrollView now, set ScrollView.UserScroll instead", this);
 			}
 		}
 		
@@ -126,14 +126,14 @@ namespace Fuse.Gestures
 			if (shouldListen)
 			{
 				if (_gesture != null)
-					Fuse.Diagnostics.InternalError( "inconsistent gesture state" );
+					Fuse.Diagnostics.InternalError("inconsistent gesture state");
 				else
-					_gesture = Input.Gestures.Add( this, _scrollable, GestureType.Primary | GestureType.NodeShare);
+					_gesture = Input.Gestures.Add(this, _scrollable, GestureType.Primary | GestureType.NodeShare);
 			}
 			else if (_scrollable != null)
 			{
 				if (_gesture == null)
-					Fuse.Diagnostics.InternalError( "inconsistent gesture state" );
+					Fuse.Diagnostics.InternalError("inconsistent gesture state");
 				else
 				{
 					_gesture.Dispose();
@@ -142,7 +142,7 @@ namespace Fuse.Gestures
 			}
 			else
 			{
-				throw new Exception( "Invalid tear-down of pointer events" );
+				throw new Exception("Invalid tear-down of pointer events");
 			}
 
 			_pointerListening = shouldListen;
@@ -218,7 +218,7 @@ namespace Fuse.Gestures
 			return GestureRequest.Capture;
 		}
 
-		void IGesture.OnCaptureChanged( PointerEventArgs args, CaptureType how, CaptureType prev )
+		void IGesture.OnCaptureChanged(PointerEventArgs args, CaptureType how, CaptureType prev)
 		{
 			if (how.HasFlag(CaptureType.Soft))
 				_softCaptureStart = _softCaptureCurrent = args.WindowPoint;
@@ -228,7 +228,7 @@ namespace Fuse.Gestures
 			_prevPos = _startPos = _pointerPos;
 			_prevTime = args.Timestamp;
 
-			_velocity.Reset( FromWindow(_pointerPos), float2(0));
+			_velocity.Reset(FromWindow(_pointerPos), float2(0));
 			_region.StartUser();
 			_region.Position = _scrollable.ScrollPosition;
 			CheckNeedUpdated();
@@ -239,7 +239,7 @@ namespace Fuse.Gestures
 			return _scrollable.Parent.WindowToLocal(p);
 		}
 
-		void IGesture.OnLostCapture( bool forced ) 
+		void IGesture.OnLostCapture(bool forced) 
 		{ 
 			StopInvalidateVisual();
 			_significance = 0;
@@ -257,7 +257,7 @@ namespace Fuse.Gestures
 			1,
 			new DegreeSpan(-45.0f, 45.0f),
 			new DegreeSpan(-135.0f, -180.0f),
-			new DegreeSpan( 135.0f,  180.0f));
+			new DegreeSpan(135.0f,  180.0f));
 
 		GestureRequest IGesture.OnPointerMoved(PointerMovedArgs args)
 		{
@@ -288,7 +288,7 @@ namespace Fuse.Gestures
 			}
 
 			_pointerPos = args.WindowPoint;
-			MoveUser( !_delayStart || _gesture.IsHardCapture ? MoveUserFlags.Started : MoveUserFlags.None,
+			MoveUser(!_delayStart || _gesture.IsHardCapture ? MoveUserFlags.Started : MoveUserFlags.None,
 				args.Timestamp);
 			return GestureRequest.Capture;
 		}
@@ -304,9 +304,9 @@ namespace Fuse.Gestures
 			if (_region.IsUser)
 			{
 				_pointerPos = args.WindowPoint;
-				MoveUser( MoveUserFlags.Started | MoveUserFlags.Release, args.Timestamp );
+				MoveUser(MoveUserFlags.Started | MoveUserFlags.Release, args.Timestamp);
 
-				_region.EndUser( -_scrollable.ConstrainExtents(_velocity.CurrentVelocity) );
+				_region.EndUser(-_scrollable.ConstrainExtents(_velocity.CurrentVelocity));
 			}
 			
 			return GestureRequest.Cancel;
@@ -326,7 +326,7 @@ namespace Fuse.Gestures
 		{
 			//defer to post layout and post input
 			_pendingBringIntoView = args.Visual;
-			UpdateManager.AddDeferredAction( PerformBringIntoView, UpdateStage.Layout,
+			UpdateManager.AddDeferredAction(PerformBringIntoView, UpdateStage.Layout,
 				LayoutPriority.Post);
 		}
 
@@ -340,7 +340,7 @@ namespace Fuse.Gestures
         	_pendingBringIntoView = null;
 		}
 
-		public void Goto( float2 position )
+		public void Goto(float2 position)
 		{
 			if (_scrollable == null)
 				return;
@@ -351,7 +351,7 @@ namespace Fuse.Gestures
 			{
 				if (_region.IsStatic)
 					_region.Position = _scrollable.ScrollPosition;
-				_region.MoveTo( position );
+				_region.MoveTo(position);
 			}
 			CheckNeedUpdated();
 		}
@@ -381,12 +381,12 @@ namespace Fuse.Gestures
 			
 			if (_region == null || _scrollable == null)
 			{
-				Fuse.Diagnostics.InternalError( "Invalid scroller update" );
+				Fuse.Diagnostics.InternalError("Invalid scroller update");
 				return;
 			}
 			
 			UpdateScrollMax();
-			_region.Update( Time.FrameInterval );
+			_region.Update(Time.FrameInterval);
 			_scrollable.SetScrollPosition(_region.Position, this);
 			//allow turning off update now, this ensures we always get one update when _region changed
 			CheckNeedUpdated(true);
@@ -440,12 +440,12 @@ namespace Fuse.Gestures
 			{
 				//move relative to current always, in case it's changed (like sizing/removed)
 				_region.Position = _scrollable.ScrollPosition;
-				_region.StepUser( diff );
+				_region.StepUser(diff);
 				OnUpdated();
 			}
-			_velocity.AddSample( FromWindow(_pointerPos), (float)elapsed, 
+			_velocity.AddSample(FromWindow(_pointerPos), (float)elapsed, 
 				(!flags.HasFlag(MoveUserFlags.Started) ? SampleFlags.Tentative : SampleFlags.None) |
-				(flags.HasFlag(MoveUserFlags.Release) ? SampleFlags.Release : SampleFlags.None) );
+				(flags.HasFlag(MoveUserFlags.Release) ? SampleFlags.Release : SampleFlags.None));
 		}
 
 		public float2 OverflowExtent

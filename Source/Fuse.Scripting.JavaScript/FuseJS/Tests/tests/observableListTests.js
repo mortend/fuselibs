@@ -11,7 +11,7 @@ describe('observable list tests', function() {
             Observable(true),
             Observable(true),
             Observable(false)
-        );
+       );
 
         kcount = observableList.count(function(x) { return x; });
         kcount.addSubscriber(function() {

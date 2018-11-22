@@ -125,7 +125,7 @@ namespace Fuse.Animations
 		protected Visual Visual;
 		protected double TotalDuration;
 		
-		protected AnimatorState( CreateStateParams p, Visual useVisual = null )
+		protected AnimatorState(CreateStateParams p, Visual useVisual = null)
 		{
 			this.Variant = p.Variant;
 			this.Visual = useVisual ?? p.Attached;
@@ -136,7 +136,7 @@ namespace Fuse.Animations
 		internal abstract SeekResult SeekProgress(double progress, double interval, SeekDirection dir, 
 				double strength);
 		internal abstract SeekResult SeekTime(double nominal, double interval, SeekDirection dir,
-			double strength );
+			double strength);
 
 		public virtual bool IsOpenEnd { get { return false; } }
 		public virtual void Disable() { }

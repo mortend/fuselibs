@@ -186,7 +186,7 @@ namespace Fuse.Triggers.Test
 			foreach (var c in a.Children)
 			{
 				if (c is Visual)
-					v.Add( c as Visual );
+					v.Add(c as Visual);
 			}
 			return v;
 		}
@@ -509,7 +509,7 @@ namespace Fuse.Triggers.Test
 		{
 			var t = new UX.TriggerMatchOrder();
 			using (var root = TestRootPanel.CreateWithChild(t))
-				Assert.AreEqual( "123", GetText(t));
+				Assert.AreEqual("123", GetText(t));
 		}
 		
 		string GetText(Visual root)
@@ -545,44 +545,44 @@ namespace Fuse.Triggers.Test
 			var t = new UX.Trigger.PlayState();
 			using (var root = TestRootPanel.CreateWithChild(t))
 			{
-				Assert.AreEqual(0, t.PS.ChangedCount );
+				Assert.AreEqual(0, t.PS.ChangedCount);
 				t.PS.Activate();
-				Assert.AreEqual(1, t.PS.ChangedCount );
+				Assert.AreEqual(1, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Forward, t.PS.PlayState);
 				
 				t.PS.Deactivate();
-				Assert.AreEqual(2, t.PS.ChangedCount );
+				Assert.AreEqual(2, t.PS.ChangedCount);
 				//Backward is expected at first even though no time has elapsed in forward, it's to 
 				//resolve many trigger conditions/expectations on playback
 				Assert.AreEqual(TriggerPlayState.Backward, t.PS.PlayState); 
 				
 				root.IncrementFrame();
-				Assert.AreEqual(3, t.PS.ChangedCount );
+				Assert.AreEqual(3, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Stopped, t.PS.PlayState);
 				
 				t.PS.Activate();
-				Assert.AreEqual(4, t.PS.ChangedCount );
+				Assert.AreEqual(4, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Forward, t.PS.PlayState);
 				
 				root.StepFrame(0.5f);
-				Assert.AreEqual(4, t.PS.ChangedCount );
+				Assert.AreEqual(4, t.PS.ChangedCount);
 				
 				root.StepFrame(0.5f + 2*root.StepIncrement); //overkill to account for increment precision
-				Assert.AreEqual(5, t.PS.ChangedCount );
+				Assert.AreEqual(5, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Stopped, t.PS.PlayState);
 				
 				t.PS.Activate();
-				Assert.AreEqual(5, t.PS.ChangedCount );
+				Assert.AreEqual(5, t.PS.ChangedCount);
 				
 				t.PS.Deactivate();
-				Assert.AreEqual(6, t.PS.ChangedCount );
+				Assert.AreEqual(6, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Backward, t.PS.PlayState);
 				
 				root.StepFrame(0.5f);
-				Assert.AreEqual(6, t.PS.ChangedCount );
+				Assert.AreEqual(6, t.PS.ChangedCount);
 				
 				root.StepFrame(0.5f+ 2 * root.StepIncrement);
-				Assert.AreEqual(7, t.PS.ChangedCount );
+				Assert.AreEqual(7, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Stopped, t.PS.PlayState);
 			}
 		}
@@ -594,29 +594,29 @@ namespace Fuse.Triggers.Test
 			using (var root = TestRootPanel.CreateWithChild(t))
 			{
 				t.PS.PlayTo(0.5);
-				Assert.AreEqual(1, t.PS.ChangedCount );
+				Assert.AreEqual(1, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Forward, t.PS.PlayState);
 				
 				root.StepFrame(0.5f + root.StepIncrement);
-				Assert.AreEqual(2, t.PS.ChangedCount );
+				Assert.AreEqual(2, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Stopped, t.PS.PlayState);
 				
 				t.PS.PlayTo(0.5);
-				Assert.AreEqual(2, t.PS.ChangedCount );
+				Assert.AreEqual(2, t.PS.ChangedCount);
 				
 				t.PS.PlayTo(1.0);
-				Assert.AreEqual(3, t.PS.ChangedCount );
+				Assert.AreEqual(3, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Forward, t.PS.PlayState);
 				
 				root.StepFrame(1);
-				Assert.AreEqual(4, t.PS.ChangedCount );
+				Assert.AreEqual(4, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Stopped, t.PS.PlayState);
 				
 				t.PS.Activate();
-				Assert.AreEqual(4, t.PS.ChangedCount );
+				Assert.AreEqual(4, t.PS.ChangedCount);
 				
 				t.PS.PlayTo(0.5);
-				Assert.AreEqual(5, t.PS.ChangedCount );
+				Assert.AreEqual(5, t.PS.ChangedCount);
 				Assert.AreEqual(TriggerPlayState.Backward, t.PS.PlayState);
 			}
 		}
@@ -628,7 +628,7 @@ namespace Fuse.Triggers.Test
 			using (var root = TestRootPanel.CreateWithChild(t))
 			{
 				t.PS.Seek(0.5);
-				Assert.AreEqual(0, t.PS.NonSeekChangedCount );
+				Assert.AreEqual(0, t.PS.NonSeekChangedCount);
 				
 				t.PS.PlayTo(1.0);
 				root.StepFrame(0.5f + root.StepIncrement);
@@ -643,7 +643,7 @@ namespace Fuse.Triggers.Test
 			using (var root = TestRootPanel.CreateWithChild(t))
 			{
 				t.PS.Seek(0.5);
-				Assert.AreEqual(0, t.PS.NonSeekChangedCount );
+				Assert.AreEqual(0, t.PS.NonSeekChangedCount);
 				
 				t.PS.PlayTo(1.0);
 				root.StepFrame(0.5f + root.StepIncrement);
@@ -678,13 +678,13 @@ namespace Fuse.Triggers.Test
 			var t = new UX.Trigger.DeferredRootGroup();
 			using (var root = TestRootPanel.CreateWithChild(t))
 			{
-				Assert.AreEqual( 1, t.W1.Progress );
-				Assert.AreEqual( 0, t.W2.Progress );
-				Assert.AreEqual( 1, t.D1.Progress );
-				Assert.AreEqual( 0, t.L1.Progress );
+				Assert.AreEqual(1, t.W1.Progress);
+				Assert.AreEqual(0, t.W2.Progress);
+				Assert.AreEqual(1, t.D1.Progress);
+				Assert.AreEqual(0, t.L1.Progress);
 				
 				root.StepFrame(0.5f);
-				Assert.AreEqual(0.5, t.L1.Progress );
+				Assert.AreEqual(0.5, t.L1.Progress);
 			}
 		}
 	}

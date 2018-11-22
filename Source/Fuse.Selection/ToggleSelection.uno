@@ -43,7 +43,7 @@ namespace Fuse.Selection
 			Selection selection;
 			if (!Selection.TryFindSelectable(target, out selectable, out selection))
 			{
-				Fuse.Diagnostics.UserError( "Unable to locate Selectable", this);
+				Fuse.Diagnostics.UserError("Unable to locate Selectable", this);
 				return;
 			}
 

@@ -154,7 +154,7 @@ namespace Fuse.Elements.Test
 		
 		void WaitLoad(TestRootPanel root, Fuse.Triggers.Trigger t)
 		{
-			while( TriggerProgress(t) > 0 || t.PlayState != Fuse.Triggers.TriggerPlayState.Stopped) {
+			while(TriggerProgress(t) > 0 || t.PlayState != Fuse.Triggers.TriggerPlayState.Stopped) {
 				root.StepFrame();
 			}
 		}

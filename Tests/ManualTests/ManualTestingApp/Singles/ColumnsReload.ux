@@ -50,8 +50,8 @@
 		var startLoading = function(a,b) {
 			loading.value = true
 
-			setTimeout( clear, 700 )
-			setTimeout( loadNew, 1000 )
+			setTimeout(clear, 700)
+			setTimeout(loadNew, 1000)
 		}
 		
 		module.exports = {

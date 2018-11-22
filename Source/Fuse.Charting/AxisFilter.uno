@@ -77,11 +77,11 @@ namespace Fuse.Charting
 		{
 			var axisEntry = axisEntryObject as AxisEntry;
 			if (axisEntry != null)
-				return Accept( axisEntry.Index, axisIndex, axisCount, out windowIndex);
+				return Accept(axisEntry.Index, axisIndex, axisCount, out windowIndex);
 				
 			var plotData = axisEntryObject as PlotDataPoint;
 			if (plotData != null)
-				return Accept( plotData.Index, axisIndex, axisCount, out windowIndex);
+				return Accept(plotData.Index, axisIndex, axisCount, out windowIndex);
 				
 			windowIndex = 0;
 			return false;

@@ -99,16 +99,16 @@ namespace Fuse.Navigation
 			base.OnUnrooted();
 		}
 
-		void ProgressUpdated( double progress )
+		void ProgressUpdated(double progress)
 		{
 			progress = MapProgress(progress);
 			var set = progress >= Threshold;
 			if (_hasLimit)
 				set = set && progress <= Limit;
-			SetActive( set );
+			SetActive(set);
 		}
 		
-		internal abstract double MapProgress( double progress );
+		internal abstract double MapProgress(double progress);
 	}
 
 	/**
@@ -136,9 +136,9 @@ namespace Fuse.Navigation
 	*/
 	public class WhileActive : WhileNavigationTrigger
 	{
-		internal override double MapProgress( double progress )
+		internal override double MapProgress(double progress)
 		{
-			return 1 - Math.Min( 1, Math.Abs(progress) );
+			return 1 - Math.Min(1, Math.Abs(progress));
 		}
 	}
 
@@ -167,7 +167,7 @@ namespace Fuse.Navigation
 	*/
 	public class WhileInactive : WhileNavigationTrigger
 	{
-		internal override double MapProgress( double progress )
+		internal override double MapProgress(double progress)
 		{
 			return Math.Abs(progress);
 		}
@@ -180,7 +180,7 @@ namespace Fuse.Navigation
 	*/
 	public class WhileInExitState : WhileNavigationTrigger
 	{
-		internal override double MapProgress( double progress )
+		internal override double MapProgress(double progress)
 		{
 			return -progress;
 		}
@@ -193,7 +193,7 @@ namespace Fuse.Navigation
 	*/
 	public class WhileInEnterState : WhileNavigationTrigger
 	{
-		internal override double MapProgress( double progress )
+		internal override double MapProgress(double progress)
 		{
 			return progress;
 		}

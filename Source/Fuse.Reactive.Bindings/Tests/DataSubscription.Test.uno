@@ -15,7 +15,7 @@ namespace Fuse.Reactive.Bindings.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "hi", p.txt.Value );
+				Assert.AreEqual("hi", p.txt.Value);
 			}
 		}
 		
@@ -26,10 +26,10 @@ namespace Fuse.Reactive.Bindings.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "1", p.a1.Value );
-				Assert.AreEqual( "B", p.b1.Value );
-				Assert.AreEqual( "2", p.a2.Value );
-				Assert.AreEqual( "B", p.b2.Value );
+				Assert.AreEqual("1", p.a1.Value);
+				Assert.AreEqual("B", p.b1.Value);
+				Assert.AreEqual("2", p.a2.Value);
+				Assert.AreEqual("B", p.b2.Value);
 			}
 		}
 		
@@ -45,17 +45,17 @@ namespace Fuse.Reactive.Bindings.Test
 					using (var root = TestRootPanel.CreateWithChild(p))
 					{
 						root.StepFrameJS();
-						Assert.AreEqual( "hi", p.a.Value );
-						Assert.AreEqual( "1", GetText(p.b));
-						Assert.AreEqual( "2", GetText(p.c));
-						Assert.AreEqual( "3,4", GetText(p.d));
+						Assert.AreEqual("hi", p.a.Value);
+						Assert.AreEqual("1", GetText(p.b));
+						Assert.AreEqual("2", GetText(p.c));
+						Assert.AreEqual("3,4", GetText(p.d));
 					}
 				}
 				finally
 				{
 					var dm = dg.DequeueAll();
 					foreach (var d in dm) 
-						Assert.IsTrue( d.Message.IndexOf( "deprecated" ) != -1 );
+						Assert.IsTrue(d.Message.IndexOf("deprecated") != -1);
 				}
 			}
 		}

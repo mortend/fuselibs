@@ -54,7 +54,7 @@ public partial class UpdatePage
 		// prone to working artificially
 		if (_lastFrame >= UpdateManager.FrameIndex)
 		{
-			Fuse.Diagnostics.InternalError( "Timing error ");
+			Fuse.Diagnostics.InternalError("Timing error ");
 			//it will never complete now
 			UpdateManager.RemoveAction(WaitNoDraw);
 			return;

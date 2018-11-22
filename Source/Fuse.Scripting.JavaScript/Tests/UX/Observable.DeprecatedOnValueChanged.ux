@@ -4,7 +4,7 @@
 		
 		var a = Observable()
 		var b = Observable()
-		var c = a.onValueChanged( function(v) {
+		var c = a.onValueChanged(function(v) {
 			b.value = v
 		})
 		

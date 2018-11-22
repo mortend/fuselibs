@@ -71,8 +71,8 @@ namespace Fuse.Controls.Test
 			var p = new UX.NodeGroup.Resources();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( float4(0.5f,1,0.5f,1), p.T.TextColor );
-				Assert.AreEqual( "😀", p.T.Value );
+				Assert.AreEqual(float4(0.5f,1,0.5f,1), p.T.TextColor);
+				Assert.AreEqual("😀", p.T.Value);
 			}
 		}
 	}

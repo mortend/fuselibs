@@ -12,7 +12,7 @@
 	<PageControl Transition="None">
 		<Page ux:Name="one"/>
 		<Page ux:Name="two">
-			<FuseTest.Invoke Handler="pushRoute( 'three': (id: parameter(two).id + 10))" ux:Name="pushParam"/>
+			<FuseTest.Invoke Handler="pushRoute('three': (id: parameter(two).id + 10))" ux:Name="pushParam"/>
 		</Page>
 		<Page ux:Name="three"/>
 		
@@ -28,9 +28,9 @@
 
 	<RangeControl ux:Name="range" Value="8"/>
 	<FuseTest.Invoke ux:Name="gotoProp" Handler='modifyRoute(
-		path: ( "one": (id: {Property range.Value}) ), how: "Goto" )'/>
+		path: ("one": (id: {Property range.Value})), how: "Goto")'/>
 		
-	<FuseTest.Invoke Handler="modifyRoute( bookmark: 'four' )" ux:Name="gotoBookmark" />
+	<FuseTest.Invoke Handler="modifyRoute(bookmark: 'four')" ux:Name="gotoBookmark" />
 	
-	<FuseTest.Invoke Handler="modifyRoute( path: 'b', relative: inner )" ux:Name="gotoRelative" />
+	<FuseTest.Invoke Handler="modifyRoute(path: 'b', relative: inner)" ux:Name="gotoRelative" />
 </Panel>

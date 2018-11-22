@@ -23,7 +23,7 @@ namespace Fuse.Animations
 	/**
 		Animates the change in a value.
 		
-		The syntax is `attract( value, config )`
+		The syntax is `attract(value, config)`
 		
 		This requires an @AttractorConfig that defines the style of the animation.
 		
@@ -44,7 +44,7 @@ namespace Fuse.Animations
 		
 		[UXConstructor]
 		public Attract([UXParameter("Value")] Fuse.Reactive.Expression value, 
-			[UXParameter("Config")] AttractorConfig config )
+			[UXParameter("Config")] AttractorConfig config)
 		{
 			_config = config;
 			_sourceValue = value;
@@ -97,13 +97,13 @@ namespace Fuse.Animations
 			void OnValueUpdate1(float value) { OnValueUpdate(value); }
 
 			//these must be filtered out since they'll permanently break the simulation
-			bool BadValue( float4 value ) 
+			bool BadValue(float4 value) 
 			{
 				var q = value.X + value.Y + value.Z + value.W;
 				return float.IsInfinity(q) || float.IsNaN(q);
 			}
 			
-			protected override void OnNewData( IExpression source, object oValue )
+			protected override void OnNewData(IExpression source, object oValue)
 			{
 				var value = float4(0);
 				int size = 0;
@@ -120,16 +120,16 @@ namespace Fuse.Animations
 				NeedSim(size);
 				
 				if (_simulation1 != null)
-					_simulation1.SetValue( value.X, OnValueUpdate1 );
+					_simulation1.SetValue(value.X, OnValueUpdate1);
 				if (_simulation2 != null)
-					_simulation2.SetValue( value.XY, OnValueUpdate2 );
+					_simulation2.SetValue(value.XY, OnValueUpdate2);
 				if (_simulation3 != null)
-					_simulation3.SetValue( value.XYZ, OnValueUpdate3 );
+					_simulation3.SetValue(value.XYZ, OnValueUpdate3);
 				if (_simulation4 != null)
-					_simulation4.SetValue( value, OnValueUpdate4 );
+					_simulation4.SetValue(value, OnValueUpdate4);
 			}
 			
-			protected override void OnLostData( IExpression source )
+			protected override void OnLostData(IExpression source)
 			{
 				CleanSimulation();
 				if (_target != null)
@@ -146,7 +146,7 @@ namespace Fuse.Animations
 				
 				if (size < 0 || size > 4)
 				{
-					Fuse.Diagnostics.InternalError( "Unexpected size for attract: " + size, this );
+					Fuse.Diagnostics.InternalError("Unexpected size for attract: " + size, this);
 					return;
 				}
 					

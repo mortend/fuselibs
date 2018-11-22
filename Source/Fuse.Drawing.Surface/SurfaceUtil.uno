@@ -16,11 +16,11 @@ namespace Fuse.Drawing
 			
 			Even if the bakend supports arcs it's likely easier to call this rather than try and translate the parameters. Most backends end up using bezier curves anyway (CoreGraphics, Android, SVG in Web libraries).
 		*/
-		static public void EllipticArcToBezierCurve( float2 from, LineSegment arc, IList<LineSegment> curves )
+		static public void EllipticArcToBezierCurve(float2 from, LineSegment arc, IList<LineSegment> curves)
 		{
-			if (EllipticArcOutOfRange( from, arc ))
+			if (EllipticArcOutOfRange(from, arc))
 			{
-				curves.Add( new LineSegment{ Type = LineSegmentType.Straight, To = arc.To } );
+				curves.Add(new LineSegment{ Type = LineSegmentType.Straight, To = arc.To });
 				return;
 			}
 			
@@ -29,20 +29,20 @@ namespace Fuse.Drawing
 			var center = float2(0);
 			var angles = float2(0);
 			
-			EndpointToCenterArcParams( from, arc.To, ref radius, xAngle,
-				arc.Flags.HasFlag( LineSegmentFlags.EllipticArcLarge ),
-				arc.Flags.HasFlag( LineSegmentFlags.EllipticArcSweep ),
-				out center, out angles );
+			EndpointToCenterArcParams(from, arc.To, ref radius, xAngle,
+				arc.Flags.HasFlag(LineSegmentFlags.EllipticArcLarge),
+				arc.Flags.HasFlag(LineSegmentFlags.EllipticArcSweep),
+				out center, out angles);
 
-			EllipticArcToBezierCurve( center, radius, xAngle, angles[0], angles[1], false, curves );
+			EllipticArcToBezierCurve(center, radius, xAngle, angles[0], angles[1], false, curves);
 		}
 
 		const float _zeroTolerance = 1e-05f;
 
-		static internal bool EllipticArcOutOfRange( float2 from, LineSegment arc )
+		static internal bool EllipticArcOutOfRange(float2 from, LineSegment arc)
 		{
 			//F.6.2 Out-of-range parameters
-			var len = Vector.Length( arc.To - from );
+			var len = Vector.Length(arc.To - from);
 			if (len < _zeroTolerance)
 				return true;
 			
@@ -53,8 +53,8 @@ namespace Fuse.Drawing
 			return false;
 		}
 		
-		static public void EllipticArcToBezierCurve( float2 center, float2 radius, float xAngle, float startAngle, 
-			float deltaAngle, bool moveToStart, IList<LineSegment> curves )
+		static public void EllipticArcToBezierCurve(float2 center, float2 radius, float xAngle, float startAngle, 
+			float deltaAngle, bool moveToStart, IList<LineSegment> curves)
 		{
 			var s = startAngle;
 			var e = s + deltaAngle;
@@ -62,23 +62,23 @@ namespace Fuse.Drawing
 			float sign = neg ? -1 : 1;
 			var remain = Math.Abs(e - s);
 
-			var prev = EllipticArcPoint( center, radius, xAngle, s );
+			var prev = EllipticArcPoint(center, radius, xAngle, s);
 			if (moveToStart)
-				curves.Add( new LineSegment{ Type = LineSegmentType.Move, To = prev } );
+				curves.Add(new LineSegment{ Type = LineSegmentType.Move, To = prev });
 			
-			while( remain > _zeroTolerance )
+			while(remain > _zeroTolerance)
 			{
-				var step = Math.Min( remain, Math.PIf / 4 );
+				var step = Math.Min(remain, Math.PIf / 4);
 				var signStep = step * sign;
 				
 				var p1 = prev;
-				var p2 = SurfaceUtil.EllipticArcPoint( center, radius, xAngle, s + signStep );
+				var p2 = SurfaceUtil.EllipticArcPoint(center, radius, xAngle, s + signStep);
 				
 				var alphaT = Math.Tan(signStep / 2);
 				var alpha = Math.Sin(signStep) * (Math.Sqrt(4 + 3 * alphaT * alphaT)- 1) / 3;
-				var q1 = p1 + alpha * EllipticArcDerivative( center, radius, xAngle, s );
-				var q2 = p2 - alpha * EllipticArcDerivative( center, radius, xAngle, s + signStep );
-				curves.Add( new LineSegment{ Type = LineSegmentType.BezierCurve, To = p2,
+				var q1 = p1 + alpha * EllipticArcDerivative(center, radius, xAngle, s);
+				var q2 = p2 - alpha * EllipticArcDerivative(center, radius, xAngle, s + signStep);
+				curves.Add(new LineSegment{ Type = LineSegmentType.BezierCurve, To = p2,
 					A = q1, B = q2 });
 				
 				s += signStep;
@@ -93,8 +93,8 @@ namespace Fuse.Drawing
 			
 			@param r must be a ref in case it needs to be scaled up, as per the SVG spec
 		*/
-		internal static void EndpointToCenterArcParams( float2 p1, float2 p2, ref float2 r_, float xAngle, 
-			bool flagA, bool flagS, out float2 c, out float2 angles )
+		internal static void EndpointToCenterArcParams(float2 p1, float2 p2, ref float2 r_, float xAngle, 
+			bool flagA, bool flagS, out float2 c, out float2 angles)
 		{
 			double rX = Math.Abs(r_.X);
 			double rY = Math.Abs(r_.Y);
@@ -123,7 +123,7 @@ namespace Fuse.Drawing
 			}
 			double dq = (rxs * y1ps + rys * x1ps);
 			double pq = (rxs*rys - dq) / dq;
-			double q = Math.Sqrt( Math.Max(0,pq) ); //use Max to account for float precision
+			double q = Math.Sqrt(Math.Max(0,pq)); //use Max to account for float precision
 			if (flagA == flagS)
 				q = -q;
 			double cxp = q * rX * y1p / rY;
@@ -134,12 +134,12 @@ namespace Fuse.Drawing
 			double cy = Math.Sin(xAngle)*cxp + Math.Cos(xAngle)*cyp + (p1.Y + p2.Y)/2;
 
 			//(F.6.5.5)
-			double theta = svgAngle( 1,0, (x1p-cxp) / rX, (y1p - cyp)/rY );
+			double theta = svgAngle(1,0, (x1p-cxp) / rX, (y1p - cyp)/rY);
 			//(F.6.5.6)
 			double delta = svgAngle(
 				(x1p - cxp)/rX, (y1p - cyp)/rY,
 				(-x1p - cxp)/rX, (-y1p-cyp)/rY);
-			delta = Math.Mod(delta, Math.PIf * 2 );
+			delta = Math.Mod(delta, Math.PIf * 2);
 			if (!flagS)
 				delta -= 2 * Math.PIf;
 
@@ -149,15 +149,15 @@ namespace Fuse.Drawing
 		}
 
 		//TODO: Check if this is one of our standard angle calculations
-		static float svgAngle( double ux, double uy, double vx, double vy )
+		static float svgAngle(double ux, double uy, double vx, double vy)
 		{
 			var u = float2((float)ux, (float)uy);
 			var v = float2((float)vx, (float)vy);
 			//(F.6.5.4)
 			var dot = Vector.Dot(u,v);
 			var len = Vector.Length(u) * Vector.Length(v);
-			var ang = Math.Acos( Math.Clamp(dot / len,-1,1) ); //floating point precision, slightly over values appear
-			if ( (u.X*v.Y - u.Y*v.X) < 0)
+			var ang = Math.Acos(Math.Clamp(dot / len,-1,1)); //floating point precision, slightly over values appear
+			if ((u.X*v.Y - u.Y*v.X) < 0)
 				ang = -ang;
 			return ang;
 		}
@@ -168,18 +168,18 @@ namespace Fuse.Drawing
 					by L. Maisonobe
 			http://www.spaceroots.org/documents/ellipse/elliptical-arc.pdf
 		*/
-		static public float2 EllipticArcPoint( float2 c, float2 r, float xAngle, float t )
+		static public float2 EllipticArcPoint(float2 c, float2 r, float xAngle, float t)
 		{
 			return float2(
 				c.X + r.X * Math.Cos(xAngle) * Math.Cos(t) - r.Y * Math.Sin(xAngle) * Math.Sin(t),
 				c.Y + r.X * Math.Sin(xAngle) * Math.Cos(t) + r.Y * Math.Cos(xAngle) * Math.Sin(t));
 		}
 		
-		static public float2 EllipticArcDerivative( float2 c, float2 r, float xAngle, float t ) 
+		static public float2 EllipticArcDerivative(float2 c, float2 r, float xAngle, float t) 
 		{
 			return float2(
 				-r.X * Math.Cos(xAngle) * Math.Sin(t) - r.Y * Math.Sin(xAngle) * Math.Cos(t),
-				-r.X * Math.Sin(xAngle) * Math.Sin(t) + r.Y * Math.Cos(xAngle) * Math.Cos(t) );
+				-r.X * Math.Sin(xAngle) * Math.Sin(t) + r.Y * Math.Cos(xAngle) * Math.Cos(t));
 		}
 
 		static public bool AngleInRange(float angle, float start, float end)
@@ -195,8 +195,8 @@ namespace Fuse.Drawing
 			if (delta >= 2* Math.PIf)
 				return true;
 				
-			angle = Math.Mod( angle, 2*Math.PIf);
-			var pStartAngle = Math.Mod( start, 2*Math.PIf );
+			angle = Math.Mod(angle, 2*Math.PIf);
+			var pStartAngle = Math.Mod(start, 2*Math.PIf);
 			var pEndAngle = pStartAngle + delta;
 
 			if (angle >= pStartAngle && angle <= pEndAngle)
@@ -206,7 +206,7 @@ namespace Fuse.Drawing
 			return false;
 		}		
 		
-		static public float2 BezierCurveDerivative( float2 p0, float2 p1, float2 p2, float2 p3, float t )
+		static public float2 BezierCurveDerivative(float2 p0, float2 p1, float2 p2, float2 p3, float t)
 		{
 			var t2 = t * t;
 			return 3 * (-(p0-3*p1-p3+3*p2)*t2  + 2*(p0-2*p1+p2)*t - p0 + p1);

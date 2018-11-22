@@ -60,22 +60,22 @@ namespace Fuse
 		}
 		
 		public static bool TryAdd(object a, object b, out object result) 
-		{ return TryOp( Computer.TypeOp.Add, a, b, out result ); }
+		{ return TryOp(Computer.TypeOp.Add, a, b, out result); }
 		
 		public static bool TrySubtract(object a, object b, out object result) 
-		{ return TryOp( Computer.TypeOp.Subtract, a, b, out result ); }
+		{ return TryOp(Computer.TypeOp.Subtract, a, b, out result); }
 		
 		public static bool TryMultiply(object a, object b, out object result) 
-		{ return TryOp( Computer.TypeOp.Multiply, a, b, out result ); }
+		{ return TryOp(Computer.TypeOp.Multiply, a, b, out result); }
 		
 		public static bool TryDivide(object a, object b, out object result) 
-		{ return TryOp( Computer.TypeOp.Divide, a, b, out result ); }
+		{ return TryOp(Computer.TypeOp.Divide, a, b, out result); }
 		
 		public static bool TryMin(object a, object b, out object result) 
-		{ return TryOp( Computer.TypeOp.Min, a, b, out result ); }
+		{ return TryOp(Computer.TypeOp.Min, a, b, out result); }
 		
 		public static bool TryMax(object a, object b, out object result) 
-		{ return TryOp( Computer.TypeOp.Max, a, b, out result ); }
+		{ return TryOp(Computer.TypeOp.Max, a, b, out result); }
 		
 		static bool TryOp(Computer.BoolOp op, object a, object b, out bool result)
 		{
@@ -90,19 +90,19 @@ namespace Fuse
 		}
 		
 		public static bool TryLessThan(object a, object b, out bool result)
-		{ return TryOp(Computer.BoolOp.LessThan, a, b, out result ); }
+		{ return TryOp(Computer.BoolOp.LessThan, a, b, out result); }
 		
 		public static bool TryLessOrEqual(object a, object b, out bool result)
-		{ return TryOp(Computer.BoolOp.LessOrEqual, a, b, out result ); }
+		{ return TryOp(Computer.BoolOp.LessOrEqual, a, b, out result); }
 
 		public static bool TryGreaterThan(object a, object b, out bool result)
-		{ return TryOp(Computer.BoolOp.GreaterThan, a, b, out result ); }
+		{ return TryOp(Computer.BoolOp.GreaterThan, a, b, out result); }
 
 		public static bool TryGreaterOrEqual(object a, object b, out bool result)
-		{ return TryOp(Computer.BoolOp.GreaterOrEqual, a, b, out result ); }
+		{ return TryOp(Computer.BoolOp.GreaterOrEqual, a, b, out result); }
 		
 		public static bool TryEqualTo(object a, object b, out bool result)
-		{ return TryOp(Computer.BoolOp.EqualTo, a, b, out result ); }
+		{ return TryOp(Computer.BoolOp.EqualTo, a, b, out result); }
 
 
 		[Obsolete]
@@ -117,32 +117,32 @@ namespace Fuse
 		[Obsolete]
 		/** @deprecated Use TryAdd instead. 2018-01-02*/
 		public static object Add(object a, object b)
-		{ return DepOp( Computer.TypeOp.Add, a, b); }
+		{ return DepOp(Computer.TypeOp.Add, a, b); }
 		
 		[Obsolete]
 		/** @deprecated Use TrySubtract instead. 2018-01-02*/
 		public static object Subtract(object a, object b)
-		{ return DepOp( Computer.TypeOp.Subtract, a, b); }
+		{ return DepOp(Computer.TypeOp.Subtract, a, b); }
 		
 		[Obsolete]
 		/** @deprecated Use TryMultiply instead. 2018-01-02*/
 		public static object Multiply(object a, object b)
-		{ return DepOp( Computer.TypeOp.Multiply, a, b); }
+		{ return DepOp(Computer.TypeOp.Multiply, a, b); }
 		
 		[Obsolete]
 		/** @deprecated Use TryDivide instead. 2018-01-02*/
 		public static object Divide(object a, object b)
-		{ return DepOp( Computer.TypeOp.Divide, a, b); }
+		{ return DepOp(Computer.TypeOp.Divide, a, b); }
 		
 		[Obsolete]
 		/** @deprecated Use TryMin instead. 2018-01-02*/
 		public static object Min(object a, object b)
-		{ return DepOp( Computer.TypeOp.Min, a, b); }
+		{ return DepOp(Computer.TypeOp.Min, a, b); }
 		
 		[Obsolete]
 		/** @deprecated Use TryMax instead. 2018-01-02*/
 		public static object Max(object a, object b)
-		{ return DepOp( Computer.TypeOp.Max, a, b); }
+		{ return DepOp(Computer.TypeOp.Max, a, b); }
 		
 		[Obsolete]
 		static object DepOp(Computer.BoolOp op, object a, object b)

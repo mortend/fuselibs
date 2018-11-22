@@ -93,12 +93,12 @@ namespace Fuse.Resources
 			//otherwise cause a layout invalidation during layout. 
 			//mortoray: it feels wrong to have this here, that somehow this is layout's problem, not ImageSource's
 			if (Changed != null)
-				UpdateManager.AddDeferredAction( new ImageSourceChangedArgs(this).Post );
+				UpdateManager.AddDeferredAction(new ImageSourceChangedArgs(this).Post);
 		}
 		internal void ProxyChanged(object s, EventArgs a)
 		{
 			if (Changed != null)
-				Changed( s, a );
+				Changed(s, a);
 		}
 		internal void FireChanged(ImageSourceChangedArgs args)
 		{
@@ -107,15 +107,15 @@ namespace Fuse.Resources
 		}
 
 		public event ImageSourceErrorHandler Error;
-		protected void OnError( String msg, Exception e = null )
+		protected void OnError(String msg, Exception e = null)
 		{
-			Fuse.Diagnostics.UnknownException( "ImageSource error: '"+msg+"'", e, this );
+			Fuse.Diagnostics.UnknownException("ImageSource error: '"+msg+"'", e, this);
 			if (Error != null)
 			{
 				var sa = new ImageSourceErrorArgs(this);
 				sa.Reason = msg;
 				sa.ExceptionCause = e;
-				UpdateManager.AddDeferredAction( sa.Post );
+				UpdateManager.AddDeferredAction(sa.Post);
 			}
 		}
 		internal void ProxyError(object s, ImageSourceErrorArgs a)
@@ -166,7 +166,7 @@ namespace Fuse.Resources
 			if (file != null)
 				return file.TestIsClean;
 			
-			throw new Exception( "Unrecognized ImageSource in Test:" + image );
+			throw new Exception("Unrecognized ImageSource in Test:" + image);
 		}
 	}
 }

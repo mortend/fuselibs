@@ -51,7 +51,7 @@ namespace Fuse.Scripting
 					if (id.StartsWith(uxPrefix))
 					{
 						if (_rt == null)
-							throw new Error( "require(): unable to resolve ux: prefixes: " + id );
+							throw new Error("require(): unable to resolve ux: prefixes: " + id);
 							
 						Dependency res;
 						if (_rt.TryGetValue(id.Substring(uxPrefix.Length), out res)) return res.Value;

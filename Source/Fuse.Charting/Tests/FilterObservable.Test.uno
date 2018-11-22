@@ -21,34 +21,34 @@ namespace Fuse.Test
 				root.Children.Add(calt);
 				root.IncrementFrame();
 			
-				Assert.AreEqual( "", calt.JoinValues() );
+				Assert.AreEqual("", calt.JoinValues());
 			
-				source.Add( "0" );
-				source.Add( "1" );
-				source.Add( "2" );
-				source.Add( "3" );
+				source.Add("0");
+				source.Add("1");
+				source.Add("2");
+				source.Add("3");
 				root.PumpDeferred();
-				Assert.AreEqual( "1,3", calt.JoinValues() );
+				Assert.AreEqual("1,3", calt.JoinValues());
 				
 				source.RemoveAt(1);
 				root.PumpDeferred();
-				Assert.AreEqual( "2", calt.JoinValues() );
+				Assert.AreEqual("2", calt.JoinValues());
 			
 				source.Add("4");
 				root.PumpDeferred();
-				Assert.AreEqual( "2,4", calt.JoinValues() );
+				Assert.AreEqual("2,4", calt.JoinValues());
 				
 				source.Insert(3,"5");
 				root.PumpDeferred();
-				Assert.AreEqual( "2,5", calt.JoinValues() );
+				Assert.AreEqual("2,5", calt.JoinValues());
 				
 				source.Replace(3,"6");
 				root.PumpDeferred();
-				Assert.AreEqual( "2,6", calt.JoinValues() );
+				Assert.AreEqual("2,6", calt.JoinValues());
 				
 				source.Clear();
 				root.PumpDeferred();
-				Assert.AreEqual( "", calt.JoinValues() );
+				Assert.AreEqual("", calt.JoinValues());
 			}
 		}
 		
@@ -65,12 +65,12 @@ namespace Fuse.Test
 				root.Children.Add(calt);
 				root.IncrementFrame();
 				
-				source.Add( "X" );
+				source.Add("X");
 				for (int i=0; i < 100; ++i)
 				{
-					source.Insert( r.NextInt(source.Count), "" + i );
+					source.Insert(r.NextInt(source.Count), "" + i);
 					if (i % 3 == 0)
-						source.RemoveAt( r.NextInt(source.Count) );
+						source.RemoveAt(r.NextInt(source.Count));
 						
 					var q = "";
 					for (int j=2; j < sa.Length - 2; ++j)
@@ -80,11 +80,11 @@ namespace Fuse.Test
 						q += sa[j];
 					}
 					root.PumpDeferred();
-					Assert.AreEqual(q, calt.JoinValues() );
+					Assert.AreEqual(q, calt.JoinValues());
 				}
 				
 				root.PumpDeferred();
-				Assert.AreEqual( 67, sa.Length );
+				Assert.AreEqual(67, sa.Length);
 			}
 		}
 	}
@@ -99,7 +99,7 @@ namespace Fuse.Test
 	
 	class FilterEnd2 : FilterObservable
 	{
-		override protected bool Accept(object v, int index, int count )
+		override protected bool Accept(object v, int index, int count)
 		{
 			return index >= 2 && index < (count - 2);
 		}

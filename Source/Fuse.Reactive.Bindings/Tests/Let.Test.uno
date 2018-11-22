@@ -76,17 +76,17 @@ namespace Fuse.Test
 			var p = new UX.Let.TwoWayProperty();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "init", p.inner.t.Value );
-				Assert.AreEqual( "init", p.inner.pt.Value );
-				Assert.AreEqual( "init", p.inner.lTitle.Value );
-				Assert.AreEqual( "init", p.inner.title );
+				Assert.AreEqual("init", p.inner.t.Value);
+				Assert.AreEqual("init", p.inner.pt.Value);
+				Assert.AreEqual("init", p.inner.lTitle.Value);
+				Assert.AreEqual("init", p.inner.title);
 				
 				p.inner.set.Pulse();
 				root.StepFrame();
-				Assert.AreEqual( "flip", p.inner.t.Value );
-				Assert.AreEqual( "flip", p.inner.pt.Value );
-				Assert.AreEqual( "flip", p.inner.lTitle.Value );
-				Assert.AreEqual( "flip", p.inner.title );
+				Assert.AreEqual("flip", p.inner.t.Value);
+				Assert.AreEqual("flip", p.inner.pt.Value);
+				Assert.AreEqual("flip", p.inner.lTitle.Value);
+				Assert.AreEqual("flip", p.inner.title);
 			}
 		}
 		
@@ -97,7 +97,7 @@ namespace Fuse.Test
 			var p = new UX.Let.Array();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "5,4,3,2,1", GetDudZ(p));
+				Assert.AreEqual("5,4,3,2,1", GetDudZ(p));
 			}
 		}
 		
@@ -107,11 +107,11 @@ namespace Fuse.Test
 			var p = new UX.Let.ExpressionChain();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( 5, p.oc.Value );
+				Assert.AreEqual(5, p.oc.Value);
 				
 				p.set.Pulse();
 				root.StepFrame();
-				Assert.AreEqual( 7, p.oc.Value );
+				Assert.AreEqual(7, p.oc.Value);
 			}
 		}
 		
@@ -121,17 +121,17 @@ namespace Fuse.Test
 			var p = new UX.Let.Null();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( false, p.ha.BoolValue );
-				Assert.AreEqual( false, p.hb.BoolValue );
-				Assert.AreEqual( true, p.hc.BoolValue ); //can't be undefiend due to `Property` binding
-				Assert.AreEqual( false, p.hd.BoolValue );
+				Assert.AreEqual(false, p.ha.BoolValue);
+				Assert.AreEqual(false, p.hb.BoolValue);
+				Assert.AreEqual(true, p.hc.BoolValue); //can't be undefiend due to `Property` binding
+				Assert.AreEqual(false, p.hd.BoolValue);
 				
 				p.d.Value = null;
 				p.nl.Value = p.nb.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( true, p.ha.BoolValue );
-				Assert.AreEqual( true, p.hc.BoolValue );
-				Assert.AreEqual( true, p.hd.BoolValue );
+				Assert.AreEqual(true, p.ha.BoolValue);
+				Assert.AreEqual(true, p.hc.BoolValue);
+				Assert.AreEqual(true, p.hd.BoolValue);
 			}
 		}
 		
@@ -142,33 +142,33 @@ namespace Fuse.Test
 			var p = new UX.Let.Float();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( 2, p.ao.Value );
-				Assert.AreEqual( 2, p.bo.Value );
+				Assert.AreEqual(2, p.ao.Value);
+				Assert.AreEqual(2, p.bo.Value);
 				
 				p.wt.Value = true;
 				root.StepFrame();
-				Assert.AreEqual( 5, p.ao.Value );
-				Assert.AreEqual( 5, p.bo.Value );
+				Assert.AreEqual(5, p.ao.Value);
+				Assert.AreEqual(5, p.bo.Value);
 				
 				p.wt.Value = false;
 				root.StepFrame();
-				Assert.AreEqual( 2, p.ao.Value );
-				Assert.AreEqual( 2, p.bo.Value );
+				Assert.AreEqual(2, p.ao.Value);
+				Assert.AreEqual(2, p.bo.Value);
 				
 				p.tl.PulseForward();
 				root.StepFrame();
-				Assert.AreEqual( 3, p.ao.Value );
-				Assert.AreEqual( 3, p.bo.Value );
+				Assert.AreEqual(3, p.ao.Value);
+				Assert.AreEqual(3, p.bo.Value);
 				
 				//slider binding
 				for (int i=0; i < 3; ++i)
 				{
-					Assert.AreEqual( 50 + i, p.sl.Value );
-					Assert.AreEqual( 50 + i, p.sv.Value );
+					Assert.AreEqual(50 + i, p.sl.Value);
+					Assert.AreEqual(50 + i, p.sv.Value);
 					p.sl.Value = -10 + i;
 					root.PumpDeferred();
-					Assert.AreEqual( -10 + i, p.sv.Value );
-					Assert.AreEqual( -10 + i, p.sl.Value );
+					Assert.AreEqual(-10 + i, p.sv.Value);
+					Assert.AreEqual(-10 + i, p.sl.Value);
 					
 					p.sv.Value = 50 + (i+1);
 					root.PumpDeferred();
@@ -182,13 +182,13 @@ namespace Fuse.Test
 			var p = new UX.Let.String();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "abc", p.ta.Value );
-				Assert.AreEqual( "*", p.dn.StringValue );
-				Assert.AreEqual( "", p.de.StringValue );
+				Assert.AreEqual("abc", p.ta.Value);
+				Assert.AreEqual("*", p.dn.StringValue);
+				Assert.AreEqual("", p.de.StringValue);
 				
 				p.ta.Value = "def";
 				root.PumpDeferred();
-				Assert.AreEqual( "def", p.a.Value );
+				Assert.AreEqual("def", p.a.Value);
 				
 			}
 		}
@@ -199,15 +199,15 @@ namespace Fuse.Test
 			var p = new UX.Let.Float2();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( float2(10,20), p.rc.Value );
-				Assert.AreEqual( float2(10,20), p.b.Value );
-				Assert.AreEqual( float2(10,20), p.db.ObjectValue );
+				Assert.AreEqual(float2(10,20), p.rc.Value);
+				Assert.AreEqual(float2(10,20), p.b.Value);
+				Assert.AreEqual(float2(10,20), p.db.ObjectValue);
 				
 				p.rc.Value = float2(-10,5);
 				root.PumpDeferred();
-				Assert.AreEqual( float2(-10,5), p.a.Value );
-				Assert.AreEqual( float2(-10,5), p.b.Value );
-				Assert.AreEqual( float2(-10,5), p.db.ObjectValue );
+				Assert.AreEqual(float2(-10,5), p.a.Value);
+				Assert.AreEqual(float2(-10,5), p.b.Value);
+				Assert.AreEqual(float2(-10,5), p.db.ObjectValue);
 			}
 		}
 		
@@ -217,15 +217,15 @@ namespace Fuse.Test
 			var p = new UX.Let.Float3();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( float3(10,20,30), p.c.Value );
-				Assert.AreEqual( float3(10,20,30), p.b.Value );
-				Assert.AreEqual( float3(10,20,30), p.db.ObjectValue );
+				Assert.AreEqual(float3(10,20,30), p.c.Value);
+				Assert.AreEqual(float3(10,20,30), p.b.Value);
+				Assert.AreEqual(float3(10,20,30), p.db.ObjectValue);
 				
 				p.c.Value = float3(-10,5,1);
 				root.PumpDeferred();
-				Assert.AreEqual( float3(-10,5,1), p.a.Value );
-				Assert.AreEqual( float3(-10,5,1), p.b.Value );
-				Assert.AreEqual( float3(-10,5,1), p.db.ObjectValue );
+				Assert.AreEqual(float3(-10,5,1), p.a.Value);
+				Assert.AreEqual(float3(-10,5,1), p.b.Value);
+				Assert.AreEqual(float3(-10,5,1), p.db.ObjectValue);
 			}
 		}
 		
@@ -235,15 +235,15 @@ namespace Fuse.Test
 			var p = new UX.Let.Float4();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( float4(10,20,30,40), p.c.Value );
-				Assert.AreEqual( float4(10,20,30,40), p.b.Value );
-				Assert.AreEqual( float4(10,20,30,40), p.db.ObjectValue );
+				Assert.AreEqual(float4(10,20,30,40), p.c.Value);
+				Assert.AreEqual(float4(10,20,30,40), p.b.Value);
+				Assert.AreEqual(float4(10,20,30,40), p.db.ObjectValue);
 				
 				p.c.Value = float4(-10,5,0,1);
 				root.PumpDeferred();
-				Assert.AreEqual( float4(-10,5,0,1), p.a.Value );
-				Assert.AreEqual( float4(-10,5,0,1), p.b.Value );
-				Assert.AreEqual( float4(-10,5,0,1), p.db.ObjectValue );
+				Assert.AreEqual(float4(-10,5,0,1), p.a.Value);
+				Assert.AreEqual(float4(-10,5,0,1), p.b.Value);
+				Assert.AreEqual(float4(-10,5,0,1), p.db.ObjectValue);
 			}
 		}
 		
@@ -271,9 +271,9 @@ namespace Fuse.Test
 			var p = new UX.Let.Size();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( new Size(10, Unit.Unspecified), p.p.X );
-				Assert.AreEqual( new Size(20, Unit.Percent), p.p.Y );
-				Assert.AreEqual( new Size2( new Size(10, Unit.Unspecified), new Size(20,Unit.Percent)), p.p.Offset );
+				Assert.AreEqual(new Size(10, Unit.Unspecified), p.p.X);
+				Assert.AreEqual(new Size(20, Unit.Percent), p.p.Y);
+				Assert.AreEqual(new Size2(new Size(10, Unit.Unspecified), new Size(20,Unit.Percent)), p.p.Offset);
 			}
 		}
 		
@@ -285,8 +285,8 @@ namespace Fuse.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				//TODO: Once the "size" function is merged from https://github.com/fuse-open/fuselibs/pull/905
-				//Assert.AreEqual( new Size2( new Size(20, Unit.Percent), new Size(30,Unit.Percent)), p.p1.Offset );
-				Assert.AreEqual( new Size2( new Size(10, Unit.Unspecified), new Size(20,Unit.Points)), p.p2.Offset );
+				//Assert.AreEqual(new Size2(new Size(20, Unit.Percent), new Size(30,Unit.Percent)), p.p1.Offset);
+				Assert.AreEqual(new Size2(new Size(10, Unit.Unspecified), new Size(20,Unit.Points)), p.p2.Offset);
 			}
 		}
 		
@@ -297,14 +297,14 @@ namespace Fuse.Test
 			var p = new UX.Let.Property();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "title", p.lp.sc.Value );
-				Assert.AreEqual( float2(10,20), p.lp.rc.Value );
+				Assert.AreEqual("title", p.lp.sc.Value);
+				Assert.AreEqual(float2(10,20), p.lp.rc.Value);
 				
 				p.lp.sc.Value = "bye";
 				p.lp.rc.Value = float2(5,10);
 				root.PumpDeferred();
-				Assert.AreEqual( "bye", p.ss.Value );
-				Assert.AreEqual( float2(5,10), p.sf2.Value );
+				Assert.AreEqual("bye", p.ss.Value);
+				Assert.AreEqual(float2(5,10), p.sf2.Value);
 			}
 		}
 	}

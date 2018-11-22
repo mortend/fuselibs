@@ -115,7 +115,7 @@ namespace Fuse.Scripting.JavaScript
 
 				if (_om.Object == null)
 				{
-					Fuse.Diagnostics.InternalError( "Unexpected null object", this );
+					Fuse.Diagnostics.InternalError("Unexpected null object", this);
 					return;
 				}
 
@@ -129,7 +129,7 @@ namespace Fuse.Scripting.JavaScript
 
 				if (_om.Object == null)
 				{
-					Fuse.Diagnostics.InternalError( "Unexpected null object", this );
+					Fuse.Diagnostics.InternalError("Unexpected null object", this);
 					return;
 				}
 

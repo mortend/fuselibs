@@ -158,7 +158,7 @@ namespace Fuse.Gestures
 			if (ppa != null) { _pressedPosition = Parent.WindowToLocal(ppa.WindowPoint); }
 
 			//TODO: PointerType?
-			SetActive( _inside && Parent.IsContextEnabled && Pointer.IsPressed() );
+			SetActive(_inside && Parent.IsContextEnabled && Pointer.IsPressed());
 		}
 	}
 

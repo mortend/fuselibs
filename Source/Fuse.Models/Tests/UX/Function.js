@@ -4,7 +4,7 @@ export default class Function {
 	}
 	
 	get stars() {
-		return "*".repeat( this.count )
+		return "*".repeat(this.count)
 	}
 	
 	incr() {

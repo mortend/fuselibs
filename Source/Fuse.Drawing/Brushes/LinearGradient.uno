@@ -268,7 +268,7 @@ namespace Fuse.Drawing
 		
 		static LinearGradient()
 		{
-			_gradientSize = Math.Min( 1028, texture2D.MaxSize );
+			_gradientSize = Math.Min(1028, texture2D.MaxSize);
 		}
 		
 		static int _gradientSize = 256;
@@ -281,7 +281,7 @@ namespace Fuse.Drawing
 		{
 			if (_gradientBuffer == null)
 			{
-				_gradientBuffer = FramebufferPool.Lock( int2(_gradientSize,1), Format.RGBA8888, false );
+				_gradientBuffer = FramebufferPool.Lock(int2(_gradientSize,1), Format.RGBA8888, false);
 				_invalid = true;
 			}
 			
@@ -306,14 +306,14 @@ namespace Fuse.Drawing
 			base.OnUnpinned();
 		}
 		
-		public float4 GetEffectiveEndPoints( float2 size ) 
+		public float4 GetEffectiveEndPoints(float2 size) 
 		{
 			if (!HasAngle)
 				return float4(StartPoint * size, EndPoint * size);
 				
 			//for Angle this matches the CSS definition so that the gradient nominal start/end (0,1) are in the two corners
-			var angleLen = Math.Abs( size.X * Math.Cos(Angle) ) + 
-				Math.Abs( size.Y * Math.Sin(Angle) );
+			var angleLen = Math.Abs(size.X * Math.Cos(Angle)) + 
+				Math.Abs(size.Y * Math.Sin(Angle));
 			var angleSlope = float2(Math.Cos(Angle), Math.Sin(Angle));
 			var angleStartPoint = (size/2 - angleSlope*angleLen/2);
 			var angleEndPoint = (size/2 + angleSlope*angleLen/2);

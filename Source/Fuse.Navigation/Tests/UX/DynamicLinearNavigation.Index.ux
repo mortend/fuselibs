@@ -6,8 +6,8 @@
 		exports.items = Observable()
 		
 		exports.add = function() {
-			for (var i=0; i < 5; ++i ) {
-				exports.items.add( { id: i } )
+			for (var i=0; i < 5; ++i) {
+				exports.items.add({ id: i })
 			}
 		}
 	</JavaScript>

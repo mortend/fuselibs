@@ -23,13 +23,13 @@ namespace Fuse.Animations
 
 		const float _zeroTolerance = 1e-05f;
 
-		public PlayerPart( double currentProgress = 0 )
+		public PlayerPart(double currentProgress = 0)
 		{
 			IsProgress = true;
 			Current = currentProgress;
 		}
 		
-		public void PlayToProgress( double progress )
+		public void PlayToProgress(double progress)
 		{
 			bool nIsProgress;
 			double nTarget;
@@ -85,15 +85,15 @@ namespace Fuse.Animations
 
 			if (Target > Source)
 			{
-				Current = IsProgress ? 1.0 : Math.Min( elapsed + Source, Duration );
+				Current = IsProgress ? 1.0 : Math.Min(elapsed + Source, Duration);
 			}
 			else
 			{
-				Current = IsProgress ? 0.0 : Math.Max( Source - elapsed, 0 );
+				Current = IsProgress ? 0.0 : Math.Max(Source - elapsed, 0);
 			}
 				
-			if ( (Target >= Source && Current >= Target) ||
-				(Target <= Source && Current <= Target) )
+			if ((Target >= Source && Current >= Target) ||
+				(Target <= Source && Current <= Target))
 			{
 				Current = Target;
 				Animate = false;
@@ -122,8 +122,8 @@ namespace Fuse.Animations
 			bool wrap = false;
 			if (Current >= Duration || Current < 0)
 			{
-				var loops = Math.Abs( Math.Floor( Current / Duration ) );
-				Current = Math.Mod( Current, Duration );
+				var loops = Math.Abs(Math.Floor(Current / Duration));
+				Current = Math.Mod(Current, Duration);
 				SourceTime += Duration * loops / _timeMultiplier;
 				wrap = true;
 			}
@@ -131,9 +131,9 @@ namespace Fuse.Animations
 			return wrap;
 		}
 		
-		public void SeekProgress( double p )
+		public void SeekProgress(double p)
 		{
-			p = Math.Clamp( p, 0, 1 );
+			p = Math.Clamp(p, 0, 1);
 			Animate = false;
 			if (Duration < _zeroTolerance)
 			{
@@ -154,7 +154,7 @@ namespace Fuse.Animations
 				if (IsProgress)
 					return Current;
 				else
-					return Math.Clamp( Current / Duration, 0, 1 );
+					return Math.Clamp(Current / Duration, 0, 1);
 			}
 		}
 		
@@ -205,8 +205,8 @@ namespace Fuse.Animations
 		
 		public void TimeChanged()
 		{
-			_progress.AlterDuration( Animation.GetAnimatorsDuration(Variant), 
-				Animation.GetTimeMultiplier(Variant) );
+			_progress.AlterDuration(Animation.GetAnimatorsDuration(Variant), 
+				Animation.GetTimeMultiplier(Variant));
 		}
 
 		public double AnimatorsDuration { get { return _progress.Duration; } }
@@ -272,7 +272,7 @@ namespace Fuse.Animations
 			if (!_isStarted)
 			{
 				_isStarted = true;
-				UpdateManager.AddAction( this );
+				UpdateManager.AddAction(this);
 			}
 		}
 		
@@ -281,7 +281,7 @@ namespace Fuse.Animations
 			if (_isStarted)
 			{	
 				_isStarted = false;
-				UpdateManager.RemoveAction( this );
+				UpdateManager.RemoveAction(this);
 			}
 		}
 		
@@ -339,9 +339,9 @@ namespace Fuse.Animations
 			}
 		}
 		
-		public void SeekProgress( double progress, bool triggerUpdate = true )
+		public void SeekProgress(double progress, bool triggerUpdate = true)
 		{
-			_progress.SeekProgress( progress );
+			_progress.SeekProgress(progress);
 			_isDone = true; //will not trigger done
 			CheckUpdate();
 			
@@ -373,10 +373,10 @@ namespace Fuse.Animations
 				SeekResult stable;
 				if (_progress.IsProgress)
 					stable = s.SeekProgress(_progress.Current, interval, 
-						_seekDirection, _strength.Progress );
+						_seekDirection, _strength.Progress);
 				else
 					stable = s.SeekTime(_progress.Current, interval, _seekDirection,
-						_strength.Progress );
+						_strength.Progress);
 					
 				allStable = allStable && stable.HasFlag(SeekResult.Stable);
 			}
@@ -388,7 +388,7 @@ namespace Fuse.Animations
 		//so the OpenAnimator's understand they are off, not just stuck at the beginning.
 		SeekDirection _seekDirection = SeekDirection.Backward;
 		
-		public void PlayToProgress( double progress )
+		public void PlayToProgress(double progress)
 		{	
 			if (progress != _progress.Progress)
 				_seekDirection = progress > _progress.Progress ? SeekDirection.Forward : SeekDirection.Backward;

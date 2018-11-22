@@ -34,7 +34,7 @@ namespace Fuse.Drawing
 
 		protected float2 ElementSize { get; private set; }
 		
-		public void SetElementSize( float2 size )
+		public void SetElementSize(float2 size)
 		{
 			ElementSize = size;
 		}
@@ -54,7 +54,7 @@ namespace Fuse.Drawing
 			Only 2D translation, rotation, and scaling need should be supported.
 		*/
 		
-		public abstract void PushTransform( float4x4 transform );
+		public abstract void PushTransform(float4x4 transform);
 		/**
 			Removes the transform added via`PushTransform`
 		*/
@@ -63,26 +63,26 @@ namespace Fuse.Drawing
 		/** 
 			Creates a pth from the provided list of segments.
 		*/
-		abstract public SurfacePath CreatePath( IList<LineSegment> segments, FillRule fillRule = FillRule.NonZero );
+		abstract public SurfacePath CreatePath(IList<LineSegment> segments, FillRule fillRule = FillRule.NonZero);
 		
 		/**
 			Disposes of a path object created by `CreatePath`.
 		*/
-		abstract public void DisposePath( SurfacePath path );
+		abstract public void DisposePath(SurfacePath path);
 	
 		/**
 			Fills the path with the given brush.
 			
 			This brush must have been passed to `Prepare` previously.
 		*/
-		abstract public void FillPath( SurfacePath path, Brush fill );
+		abstract public void FillPath(SurfacePath path, Brush fill);
 		
 		/**
 			Strokes the path with the given stroke.
 			
 			This stroke, and it's brush, must have been passed to `Prepare` previously.
 		*/
-		abstract public void StrokePath( SurfacePath path, Stroke stroke );
+		abstract public void StrokePath(SurfacePath path, Stroke stroke);
 		
 		/**
 			(TEMPORARY)
@@ -102,21 +102,21 @@ namespace Fuse.Drawing
 		/**
 			Prepares this brush for drawing. If this is called a second time with the same `Brush` it indicates the properties of that brush have changed.
 		*/
-		abstract public void Prepare( Brush brush );
+		abstract public void Prepare(Brush brush);
 		/**
 			Indicates the brush will no longer be used for drawing. It's resources can be freed.
 		*/
-		abstract public void Unprepare( Brush brush );
+		abstract public void Unprepare(Brush brush);
 
 		/*
 			The GL drawing interface for an element on a DrawContext.
 			
 			@hide
 		*/
-		public void Draw( DrawContext dc, Element elm, ISurfaceDrawable drawable )
+		public void Draw(DrawContext dc, Element elm, ISurfaceDrawable drawable)
 		{
 			if (elm != drawable)
-				Fuse.Diagnostics.InternalError( "GLDraw called with mismatched elements", this );
+				Fuse.Diagnostics.InternalError("GLDraw called with mismatched elements", this);
 				
 			var pixelsPerPoint = elm.Viewport.PixelsPerPoint;
 			var bounds = elm.RenderBoundsWithoutEffects;
@@ -143,7 +143,7 @@ namespace Fuse.Drawing
 			
 			This assumes the canvas has been configured to have coordinates local to the drawable already.
 		*/
-		public void DrawLocal( ISurfaceDrawable drawable )
+		public void DrawLocal(ISurfaceDrawable drawable)
 		{
 			//This is needed for brushes as they are relative to the element size.
 			SetElementSize(drawable.ElementSize);

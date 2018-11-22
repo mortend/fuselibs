@@ -190,13 +190,13 @@ namespace Fuse.Controls
 			_isBusy = should;
 			if (_isBusy)
 			{
-				BusyTask.SetBusy(this, ref _prepareBusy, BusyTaskActivity.Preparing );
-				UpdateManager.AddAction( OnBusyUpdate );
+				BusyTask.SetBusy(this, ref _prepareBusy, BusyTaskActivity.Preparing);
+				UpdateManager.AddAction(OnBusyUpdate);
 			}
 			else
 			{
-				BusyTask.SetBusy(this, ref _prepareBusy, BusyTaskActivity.None );
-				UpdateManager.RemoveAction( OnBusyUpdate );
+				BusyTask.SetBusy(this, ref _prepareBusy, BusyTaskActivity.None);
+				UpdateManager.RemoveAction(OnBusyUpdate);
 			}
 		}
 		

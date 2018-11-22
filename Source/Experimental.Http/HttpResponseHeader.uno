@@ -11,7 +11,7 @@ namespace Experimental.Http
 		//all keys are lower-case
 		public Dictionary<string,string> Headers { get; internal set; }
 		
-		void WriteSafe( BinaryWriter w, String s )
+		void WriteSafe(BinaryWriter w, String s)
 		{
 			if (s == null || s.Length ==0)
 				w.Write("!");
@@ -19,7 +19,7 @@ namespace Experimental.Http
 				w.Write(s);
 		}
 		
-		internal void Write( BinaryWriter w )
+		internal void Write(BinaryWriter w)
 		{
 			w.Write(StatusCode);
 			//UNO: https://github.com/fusetools/Uno/issues/20
@@ -27,14 +27,14 @@ namespace Experimental.Http
 			
 			int c = Headers.Count;
 			w.Write(c);
-			foreach( var h in Headers )
+			foreach(var h in Headers)
 			{
 				WriteSafe(w, h.Key);
-				WriteSafe(w, h.Value );
+				WriteSafe(w, h.Value);
 			}
 		}
 		
-		static internal HttpResponseHeader Read( BinaryReader r )
+		static internal HttpResponseHeader Read(BinaryReader r)
 		{
 			var h = new HttpResponseHeader();
 			h.StatusCode = r.ReadInt();

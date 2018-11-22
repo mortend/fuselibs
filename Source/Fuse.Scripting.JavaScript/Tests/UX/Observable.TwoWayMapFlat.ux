@@ -6,12 +6,12 @@
 		var ivalue = Observable()
 		exports.ivalue = ivalue.inner()
 		exports.ovalue = ivalue.innerTwoWay().mapTwoWay(
-			function( dt ) { 
+			function(dt) { 
 				return dt 
 			},
-			function( bit, whole ) { 
+			function(bit, whole) { 
 				return bit 
-			} )
+			})
 		
 		exports.step1 = function() {
 			ivalue.value = source

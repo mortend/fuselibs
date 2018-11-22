@@ -30,7 +30,7 @@ namespace Fuse.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( "Text", p.txt.Value );
+				Assert.AreEqual("Text", p.txt.Value);
 			}
 		}
 		

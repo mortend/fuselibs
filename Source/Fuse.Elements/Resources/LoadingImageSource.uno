@@ -20,7 +20,7 @@ namespace Fuse.Resources
 		double IMemoryResource.LastUsed { get { return _lastUsed; } }
 		void IMemoryResource.SoftDispose()
 		{	
-			Cleanup( CleanupReason.Disposed );
+			Cleanup(CleanupReason.Disposed);
 		}
 		
 		protected void MarkUsed()
@@ -35,7 +35,7 @@ namespace Fuse.Resources
 			set 
 			{
 				if (value == null)
-					throw new Exception( "value-cannot-be-null" );
+					throw new Exception("value-cannot-be-null");
 				_policy = value;
 			}
 		}
@@ -73,17 +73,17 @@ namespace Fuse.Resources
 
 		public override void Reload() 
 		{
-			Cleanup( CleanupReason.Normal );
+			Cleanup(CleanupReason.Normal);
 			LoadTexture();
 		}
 		
 		protected void ChangePrep()
 		{
-			Cleanup( CleanupReason.Normal );
+			Cleanup(CleanupReason.Normal);
 		}
 		
 		bool _inDisposal;
-		protected void Cleanup( CleanupReason reason )
+		protected void Cleanup(CleanupReason reason)
 		{
 			if (_texture != null)
 			{
@@ -106,14 +106,14 @@ namespace Fuse.Resources
 		
 		protected bool IsLoaded { get { return _texture != null; } }
 		
-		protected void SetTexture( texture2D texture )
+		protected void SetTexture(texture2D texture)
 		{
 			_texture = texture;
 			_textureSize = texture.Size;
 			
 			if (!_inDisposal)
 			{
-				DisposalManager.Add( this );
+				DisposalManager.Add(this);
 				_inDisposal = true;
 			}
 			MarkUsed();

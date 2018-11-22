@@ -83,7 +83,7 @@ namespace Fuse.Charting
 			if (_syncDefer)
 				return;
 				
-			UpdateManager.AddDeferredAction( SyncDeferAction );
+			UpdateManager.AddDeferredAction(SyncDeferAction);
 			_syncDefer = true;
 		}
 		
@@ -94,7 +94,7 @@ namespace Fuse.Charting
 			for (int i=0; i < _sourceItems.Count; ++i)
 			{	
 				var si = _sourceItems[i];
-				si.Accept = Accept( si.Value, i, _sourceItems.Count );
+				si.Accept = Accept(si.Value, i, _sourceItems.Count);
 			}
 
 			//remove all undesired items
@@ -110,7 +110,7 @@ namespace Fuse.Charting
 			
 			//add missing ones
 			int outAt = 0;
-			for (int i=0; i < _sourceItems.Count; ++i )
+			for (int i=0; i < _sourceItems.Count; ++i)
 			{
 				if (!_sourceItems[i].Desired)
 					continue;
@@ -127,7 +127,7 @@ namespace Fuse.Charting
 			}
 		}
 		
-		protected abstract bool Accept( object value, int index, int count );
+		protected abstract bool Accept(object value, int index, int count);
 		
 		void ClearSource()
 		{
@@ -146,7 +146,7 @@ namespace Fuse.Charting
 		{
 			ClearSource();
 			for (int i=0; i < values.Length; ++i)
-				_sourceItems.Add( new SourceItem{ Index = i, Value = values[i] } );
+				_sourceItems.Add(new SourceItem{ Index = i, Value = values[i] });
 			SyncItems();
 		}
 		
@@ -154,20 +154,20 @@ namespace Fuse.Charting
 		{	
 			_sourceItems[index].Index = -1;
 			_sourceItems.RemoveAt(index);
-			_sourceItems.Insert(index, new SourceItem { Index = index, Value = newValue } );
+			_sourceItems.Insert(index, new SourceItem { Index = index, Value = newValue });
 			SyncItems();
 		}
 		
 		void IObserver.OnSet(object newValue)
 		{
 			ClearSource();
-			_sourceItems.Add( new SourceItem{ Index = 0, Value = newValue } );
+			_sourceItems.Add(new SourceItem{ Index = 0, Value = newValue });
 			SyncItems();
 		}
 		
 		void IObserver.OnAdd(object addedValue)
 		{
-			_sourceItems.Add( new SourceItem { Index = _sourceItems.Count, Value = addedValue } );
+			_sourceItems.Add(new SourceItem { Index = _sourceItems.Count, Value = addedValue });
 			SyncItems();
 		}
 		
@@ -184,7 +184,7 @@ namespace Fuse.Charting
 		{
 			for (int i=index; i < _sourceItems.Count; ++i)
 				_sourceItems[i].Index = i + 1;
-			_sourceItems.Insert(index, new SourceItem { Index = index, Value = value } );
+			_sourceItems.Insert(index, new SourceItem { Index = index, Value = value });
 			SyncItems();
 		}
 		

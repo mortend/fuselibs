@@ -48,7 +48,7 @@
 	BOOL success = YES;
 
 	if (error) {
-		NSLog( @"Movie file finishing error: %@", error );
+		NSLog(@"Movie file finishing error: %@", error);
 		success = [error.userInfo[AVErrorRecordingSuccessfullyFinishedKey] boolValue];
 	}
 

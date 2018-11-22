@@ -20,7 +20,7 @@ namespace Fuse.Controls
 		
 		public float2 RelativeScrollPosition { get; private set; }
 		
-		public ScrollPositionChangedArgs( float2 scrollPos, float2 arrangeOffset, bool isAdjustment,
+		public ScrollPositionChangedArgs(float2 scrollPos, float2 arrangeOffset, bool isAdjustment,
 			IPropertyListener origin, float2 relativeScrollPos) 
 			: base(scrollPos)
 		{
@@ -207,7 +207,7 @@ namespace Fuse.Controls
 			{
 				_motion = value;
 				if (IsRootingCompleted)
-					Fuse.Diagnostics.UserError( "Motion should not be changed post-rooting", this );
+					Fuse.Diagnostics.UserError("Motion should not be changed post-rooting", this);
 			}
 		}
 		
@@ -307,9 +307,9 @@ namespace Fuse.Controls
 			}
 			
 			if (!SnapMinTransform)
-				position = Math.Max( MinScroll, position );
+				position = Math.Max(MinScroll, position);
 			if (!SnapMaxTransform)
-				position = Math.Min( MaxScroll, position );
+				position = Math.Min(MaxScroll, position);
 			var nv = float3(-position,0);
 			if (Vector.LengthSquared(nv - _scrollTranslation.Vector) > _zeroTolerance)
 			{
@@ -342,7 +342,7 @@ namespace Fuse.Controls
 		/**
 			Obtain scroll position needed to scroll to the center of the @Visual.
 		*/
-		public float2 GetVisualScrollPosition( Visual n )
+		public float2 GetVisualScrollPosition(Visual n)
 		{
 			if (n == null || Element == null)
 				return float2(0);
@@ -363,10 +363,10 @@ namespace Fuse.Controls
 
 			This uses the `Motion.Goto...` settings.
 		*/
-		public void Goto( float2 position )
+		public void Goto(float2 position)
 		{
 			if (_scroller == null)
-				ScrollPosition = Math.Min( MaxScroll, Math.Max( MinScroll, ScrollPosition ) );
+				ScrollPosition = Math.Min(MaxScroll, Math.Max(MinScroll, ScrollPosition));
 			else
 				_scroller.Goto(position);
 		}
@@ -376,17 +376,17 @@ namespace Fuse.Controls
 
 			@see RelativeScrollPosition
 		*/
-		public void GotoRelative( float2 position )
+		public void GotoRelative(float2 position)
 		{
-			Goto( RelativeToAbsolutePosition(position) );
+			Goto(RelativeToAbsolutePosition(position));
 		}
 		
-		internal float2 RelativeToAbsolutePosition( float2 pos )
+		internal float2 RelativeToAbsolutePosition(float2 pos)
 		{
 			return MinScroll + (MaxScroll - MinScroll) * pos;
 		}
 		
-		float2 FromScalarPosition( float value )
+		float2 FromScalarPosition(float value)
 		{
 			if (AllowedScrollDirections == ScrollDirections.Horizontal)
 				return float2(value,0);
@@ -395,7 +395,7 @@ namespace Fuse.Controls
 			return float2(value);
 		}
 		
-		internal float ToScalarPosition( float2 value )
+		internal float ToScalarPosition(float2 value)
 		{
 			if (AllowedScrollDirections == ScrollDirections.Horizontal)
 				return value.X;
@@ -453,8 +453,8 @@ namespace Fuse.Controls
 				if (Element == null) 
 					return float2(0);
 
-				return ConstrainUp( Math.Max(ContentMarginSize + Element.ActualPosition + 
-					Padding.XY + Padding.ZW - ActualSize, float2(0)) );
+				return ConstrainUp(Math.Max(ContentMarginSize + Element.ActualPosition + 
+					Padding.XY + Padding.ZW - ActualSize, float2(0)));
 			}
 		}
 		
@@ -478,7 +478,7 @@ namespace Fuse.Controls
 			{ 
 				if (Element == null) return float2(0);
 
-				return ConstrainDown( Math.Min( float2(0), Element.ActualPosition - Padding.XY ) );
+				return ConstrainDown(Math.Min(float2(0), Element.ActualPosition - Padding.XY));
 			}
 		}
 		
@@ -493,7 +493,7 @@ namespace Fuse.Controls
 			}
 		}
 		
-		internal float2 ConstrainExtents( float2 t )
+		internal float2 ConstrainExtents(float2 t)
 		{
 			if (AllowedScrollDirections == ScrollDirections.Horizontal)
 				t.Y = 0;
@@ -502,17 +502,17 @@ namespace Fuse.Controls
 			return t;
 		}
 		
-		internal float2 Constrain( float2 t )
+		internal float2 Constrain(float2 t)
 		{
 			return IfSnap(ConstrainExtents(t));
 		}
 		
-		float2 ConstrainUp( float2 t )
+		float2 ConstrainUp(float2 t)
 		{
 			return IfSnapUp(ConstrainExtents(t));
 		}
 
-		float2 ConstrainDown( float2 t )
+		float2 ConstrainDown(float2 t)
 		{
 			return IfSnapDown(ConstrainExtents(t));
 		}

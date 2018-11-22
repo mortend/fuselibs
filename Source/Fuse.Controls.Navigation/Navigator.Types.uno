@@ -21,7 +21,7 @@ namespace Fuse.Controls
 		public string OperationStyle;
 		public NavigationGotoMode Mode;
 		
-		public NavigatorSwitchedArgs( Visual v ) 
+		public NavigatorSwitchedArgs(Visual v) 
 			: base(v)
 		{
 		}

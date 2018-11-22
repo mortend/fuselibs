@@ -31,8 +31,8 @@ namespace Fuse.Navigation
 	*/
 	class RoutePageProxy
 	{
-		public delegate void ProgressUpdated( double progress );
-		public delegate void ActiveChanged( bool isActive, bool isRoot );
+		public delegate void ProgressUpdated(double progress);
+		public delegate void ActiveChanged(bool isActive, bool isRoot);
 		
 		RoutePagePath _path = RoutePagePath.Full;
 		public RoutePagePath Path 
@@ -66,14 +66,14 @@ namespace Fuse.Navigation
 		List<Level> _levels = new List<Level>();
 		
 		/** `Init()` must be called to finish initialization. */
-		public RoutePageProxy( Visual source, ProgressUpdated progressUpdated )
+		public RoutePageProxy(Visual source, ProgressUpdated progressUpdated)
 		{
 			_progressUpdated = progressUpdated;
 			_source = source;
 		}
 		
 		/** `Init()` must be called to finish initialization. */
-		public RoutePageProxy( Visual source, ActiveChanged activeChanged )
+		public RoutePageProxy(Visual source, ActiveChanged activeChanged)
 		{
 			_activeChanged = activeChanged;
 			_source = source;
@@ -116,7 +116,7 @@ namespace Fuse.Navigation
 				if (sender == _levels[i].PageProxy)
 					return i;
 			}
-			Fuse.Diagnostics.InternalError( "Unexpected sender", this );
+			Fuse.Diagnostics.InternalError("Unexpected sender", this);
 			return -1;
 		}
 		
@@ -222,7 +222,7 @@ namespace Fuse.Navigation
 				
 				var pp = level.PageProxy.Navigation.GetPageState(level.PageProxy.Page);
 				var lp = pp.Progress;
-				if (i == 0 || Math.Abs(lp) > Math.Abs(p) )
+				if (i == 0 || Math.Abs(lp) > Math.Abs(p))
 					p = lp;
 			}
 			return p;
@@ -236,8 +236,8 @@ namespace Fuse.Navigation
 			if (_activeChanged != null)
 			{
 				bool ignoreStable;
-				GetState( out _isActive, out ignoreStable );
-				_activeChanged( _isActive, true );
+				GetState(out _isActive, out ignoreStable);
+				_activeChanged(_isActive, true);
 			}	
 		}
 		
@@ -247,7 +247,7 @@ namespace Fuse.Navigation
 				_progressUpdated(GetProgress());
 		}
 		
-		void GetState( out bool isActive, out bool isStable)
+		void GetState(out bool isActive, out bool isStable)
 		{
 			isActive = false;
 			isStable = true;
@@ -293,8 +293,8 @@ namespace Fuse.Navigation
 			_activeChangedPending = false;
 			
 			bool newActive, stable;
-			GetState( out newActive, out stable );
-			if (newActive == _isActive || (!stable && TriggerWhen == RoutePageTriggerWhen.Stable) )
+			GetState(out newActive, out stable);
+			if (newActive == _isActive || (!stable && TriggerWhen == RoutePageTriggerWhen.Stable))
 				return;
 			_isActive = newActive;
 			_activeChanged(_isActive, false);

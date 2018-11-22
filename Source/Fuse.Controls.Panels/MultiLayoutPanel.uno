@@ -101,7 +101,7 @@ namespace Fuse.Controls
 		MultiLayout _multiLayout = new MultiLayout();
 		public MultiLayoutPanel()
 		{
-			Children.Add( _multiLayout );
+			Children.Add(_multiLayout);
 		}
 
 		public Element LayoutElement

@@ -16,8 +16,8 @@ namespace Fuse.Drawing.Test
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
 				root.StepFrameJS();
-				Assert.AreEqual( float4(1,0.5f,0,1), (p.A.Fill as SolidColor).Color );
-				Assert.AreEqual( float4(8/15f,1,8/15f,1), (p.B.Fill as SolidColor).Color );
+				Assert.AreEqual(float4(1,0.5f,0,1), (p.A.Fill as SolidColor).Color);
+				Assert.AreEqual(float4(8/15f,1,8/15f,1), (p.B.Fill as SolidColor).Color);
 			}
 		}
 	}

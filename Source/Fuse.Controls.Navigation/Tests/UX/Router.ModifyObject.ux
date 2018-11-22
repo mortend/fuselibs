@@ -58,10 +58,10 @@
 	</Navigator>
 	
 	<Timeline ux:Name="gotoR">
-		<GotoRoute Path="( '$path': 'one', id: 5)"/>
+		<GotoRoute Path="('$path': 'one', id: 5)"/>
 	</Timeline>
 	<Timeline ux:Name="pushSecond">
-		<PushRoute Path="( '$path': 'two', id: 6 ), ( '$path': 'second', title: 'happy' )"/>
+		<PushRoute Path="('$path': 'two', id: 6), ('$path': 'second', title: 'happy')"/>
 	</Timeline>
 	<Timeline ux:Name="pushFirst">
 		<PushRoute Path="{firstPath}"/>

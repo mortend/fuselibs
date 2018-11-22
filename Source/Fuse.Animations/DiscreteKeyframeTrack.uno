@@ -42,7 +42,7 @@ namespace Fuse.Animations
 			out object value, out double strength)
 		{
 			return (this as DiscreteTrackProvider).GetSeekTime(tas, progress * _duration, interval, dir,
-				out value, out strength );
+				out value, out strength);
 		}
 		
 		SeekResult DiscreteTrackProvider.GetSeekTime(TrackAnimatorState tas,double elapsed, 

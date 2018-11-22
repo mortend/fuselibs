@@ -18,7 +18,7 @@ namespace Fuse.Navigation
 		protected override void OnRooted()
 		{
 			base.OnRooted();
-			UpdateState( true );
+			UpdateState(true);
 		}
 
 		public override void OnChildAddedWhileRooted(Node child)
@@ -34,18 +34,18 @@ namespace Fuse.Navigation
 				Goto(null, NavigationGotoMode.Transition);
 		}
 
-		public override void Goto( Visual visual, NavigationGotoMode mode )
+		public override void Goto(Visual visual, NavigationGotoMode mode)
 		{
 			if (mode == NavigationGotoMode.Bypass ||
 				mode == NavigationGotoMode.Transition)
-				TransitionTo( visual, mode == NavigationGotoMode.Bypass );
+				TransitionTo(visual, mode == NavigationGotoMode.Bypass);
 		}
 
-		void TransitionTo( Visual visual, bool bypass )
+		void TransitionTo(Visual visual, bool bypass)
 		{
 			var oldActive = _active;
 			_active = visual;
-			UpdateState( bypass );
+			UpdateState(bypass);
 
 			if (oldActive != _active)
 			{
@@ -54,7 +54,7 @@ namespace Fuse.Navigation
 			}
 		}
 
-		void UpdateState( bool bypass )
+		void UpdateState(bool bypass)
 		{
 			for (int t = 0; t < Pages.Count; t++)
 			{
@@ -73,7 +73,7 @@ namespace Fuse.Navigation
 			get { return _active; }
 			set
 			{
-				TransitionTo( value, false);
+				TransitionTo(value, false);
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace Fuse.Navigation
 			var pd = GetPageData(elm);
 			if (pd == null)
 			{
-				Fuse.Diagnostics.InternalError( "Unexpected null page", elm );
+				Fuse.Diagnostics.InternalError("Unexpected null page", elm);
 				return;
 			}
 			

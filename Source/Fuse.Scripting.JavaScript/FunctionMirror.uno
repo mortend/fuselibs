@@ -48,7 +48,7 @@ namespace Fuse.Scripting
 				{
 					_f._func.Call(context, obj);
 				}
-				catch( ScriptException ex )
+				catch(ScriptException ex)
 				{
 					_f.SetDiagnostic(ex);
 				}

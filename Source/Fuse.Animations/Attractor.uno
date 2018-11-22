@@ -50,7 +50,7 @@ namespace Fuse.Animations
 			{ 
 				_motion = value;
 				if (IsRootingCompleted)
-					Fuse.Diagnostics.UserError( "Motion should not be changed post-rooting", this );
+					Fuse.Diagnostics.UserError("Motion should not be changed post-rooting", this);
 			}
 		}
 		
@@ -117,7 +117,7 @@ namespace Fuse.Animations
 					return;
 				_isEnabled = true;
 				if (!_isEnabled && _sim != null)
-					_sim.Reset( Target.Get() );
+					_sim.Reset(Target.Get());
 				CheckNeedUpdate();
 			}
 		}
@@ -146,7 +146,7 @@ namespace Fuse.Animations
 				}
 				else 
 				{
-					Target.Set( value, this );
+					Target.Set(value, this);
 				}
 			}
 		}
@@ -169,7 +169,7 @@ namespace Fuse.Animations
 		{
 			base.OnRooted();
 			_sim = Motion.Create();
-			_sim.Reset( Target.Get() );
+			_sim.Reset(Target.Get());
 			Target.AddListener(this);
 		}
 
@@ -198,7 +198,7 @@ namespace Fuse.Animations
 			var val = Target.Get();
 
 			if (!IsEnabled || _sim.IsStatic)
-				_sim.Reset( val );
+				_sim.Reset(val);
 			else
 				_sim.Position = val;
 				

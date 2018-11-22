@@ -180,8 +180,8 @@ namespace Fuse.Animations
 			}
 		}
 		
-		static internal double CompleteFrames( IList<Keyframe> frames,
-			float tension, float bias, float continuity )
+		static internal double CompleteFrames(IList<Keyframe> frames,
+			float tension, float bias, float continuity)
 		{
 			double time = 0;
 			//complete details per frame

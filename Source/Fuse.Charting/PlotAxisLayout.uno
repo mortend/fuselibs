@@ -141,13 +141,13 @@ namespace Fuse.Charting
 			{
 				var sz = nlp.Size.Y / count;
 				step.Y = -sz;
-				nlp.SetY( sz * Scale );
+				nlp.SetY(sz * Scale);
 				origin = float2(0,lp.Size.Y);
 			}
 			else
 			{
 				step.X = nlp.Size.X / count;
-				nlp.SetX( step.X * Scale );	
+				nlp.SetX(step.X * Scale);	
 			}
 			
 			return new CellSizing{ LP = nlp, Step = step, Origin = origin, IsVert = isVert };
@@ -164,7 +164,7 @@ namespace Fuse.Charting
 				if (!AffectsLayout(n))
 					continue;
 					
-				var sz = n.GetMarginSize( cs.LP );
+				var sz = n.GetMarginSize(cs.LP);
 				max = Math.Max(sz,max);
 				count++;
 			}
@@ -180,7 +180,7 @@ namespace Fuse.Charting
 		internal override void ArrangePaddingBox(Visual container, float4 padding, LayoutParams lp)
 		{
 			if (padding != float4(0))
-				Fuse.Diagnostics.UserWarning( "PlotAxisLayout does not support the `Padding` property", this );
+				Fuse.Diagnostics.UserWarning("PlotAxisLayout does not support the `Padding` property", this);
 				
 			var cs = CellSize(lp);
 
@@ -200,7 +200,7 @@ namespace Fuse.Charting
 				if (axisEntry != null)
 					axisIndex = axisEntry.ScreenIndex;
 				
-				n.ArrangeMarginBox( (axisIndex + dataOffset) * cs.Step + posOffset + cs.Origin, cs.LP );
+				n.ArrangeMarginBox((axisIndex + dataOffset) * cs.Step + posOffset + cs.Origin, cs.LP);
 				c++;
 			}
 		}
@@ -213,7 +213,7 @@ namespace Fuse.Charting
 				return null;
 			
 			object o;
-			provider.TryGetDataProvider( n, Node.DataType.Prime, out o );
+			provider.TryGetDataProvider(n, Node.DataType.Prime, out o);
 			return o as AxisEntry;
 		}
 		

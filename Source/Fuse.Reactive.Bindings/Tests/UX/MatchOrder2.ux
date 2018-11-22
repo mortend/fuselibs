@@ -1,6 +1,6 @@
 <Panel ux:Class="UX.MatchOrder2">
 	<JavaScript>
-		var Observable = require( "FuseJS/Observable" )
+		var Observable = require("FuseJS/Observable")
 		exports.yes =Observable(true)
 		exports.no = Observable(false)
 		

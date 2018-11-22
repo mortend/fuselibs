@@ -167,7 +167,7 @@ namespace Fuse.Motion
 				
 				default:
 				{
-					Fuse.Diagnostics.UserError( "Invalidate simulation type: " + Type, this );
+					Fuse.Diagnostics.UserError("Invalidate simulation type: " + Type, this);
 					dest = ElasticForce<T>.CreateNormalized();
 					break;
 				}

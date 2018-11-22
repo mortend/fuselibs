@@ -59,7 +59,7 @@ namespace Fuse.Triggers
 		{
 			if (_stateGroup == null)
 			{
-				Fuse.Diagnostics.InternalError( "Cannot call `Goto` on an unrooted `State`");
+				Fuse.Diagnostics.InternalError("Cannot call `Goto` on an unrooted `State`");
 				return;
 			}
 			

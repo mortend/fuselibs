@@ -647,14 +647,14 @@ namespace Fuse.Platform
 				int revision = 0;
 				try {
 					var ver = GetOSVersion();
-					string[] parts = ver.Split( new []{'.'});
+					string[] parts = ver.Split(new []{'.'});
 					if (parts.Length > 0)
-						Int.TryParse( parts[0], out major );
+						Int.TryParse(parts[0], out major);
 					if (parts.Length > 1)
-						Int.TryParse( parts[1], out minor );
+						Int.TryParse(parts[1], out minor);
 					if (parts.Length > 2)
-						Int.TryParse( parts[2], out revision );
-				} catch( Exception ex ) {
+						Int.TryParse(parts[2], out revision);
+				} catch(Exception ex) {
 					//safe to ignore, may have partial results in major/minor, which is good
 				}
 				return int3(major, minor, revision);

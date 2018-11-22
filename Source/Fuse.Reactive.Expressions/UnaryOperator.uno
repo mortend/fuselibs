@@ -8,12 +8,12 @@ namespace Fuse.Reactive
 	public abstract class UnaryOperator: ComputeExpression
 	{
 		public Expression Operand { get { return GetArgument(0); } }
-		protected UnaryOperator(Expression operand, Flags flags = Flags.DeprecatedVirtualFlags | Flags.DeprecatedVirtualUnary )
-			: base( new Expression[]{ operand }, flags )
+		protected UnaryOperator(Expression operand, Flags flags = Flags.DeprecatedVirtualFlags | Flags.DeprecatedVirtualUnary)
+			: base(new Expression[]{ operand }, flags)
 		{ }
 			
 		protected UnaryOperator(Expression operand, string name, Flags flags = Flags.None)
-			: base( new Expression[]{ operand }, flags, name )
+			: base(new Expression[]{ operand }, flags, name)
 		{ }
 		
 		internal override Flags GetFlags()
@@ -29,7 +29,7 @@ namespace Fuse.Reactive
 		*/
 		protected virtual bool TryCompute(object operand, out object result)
 		{
-			Fuse.Diagnostics.Deprecated( " No `TryCompute`, or a deprecated form, overriden. Migrate your code to override the one with `bool` return. ", this );
+			Fuse.Diagnostics.Deprecated(" No `TryCompute`, or a deprecated form, overriden. Migrate your code to override the one with `bool` return. ", this);
 			result = Compute(operand);
 			return true;
 		}
@@ -52,7 +52,7 @@ namespace Fuse.Reactive
 			}
 			else
 			{
-				Fuse.Diagnostics.UserWarning( "Failed to compute value: " + operand, this );
+				Fuse.Diagnostics.UserWarning("Failed to compute value: " + operand, this);
 				listener.OnLostData(this);
 			}
 		}

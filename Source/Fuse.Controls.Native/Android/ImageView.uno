@@ -243,7 +243,7 @@ namespace Fuse.Controls.Native.Android
 		[Foreign(Language.Java)]
 		static void SetBitmap(Java.Object handle, Java.Object bitmapHandle)
 		@{
-			((android.widget.ImageView)handle).setImageBitmap( (android.graphics.Bitmap)bitmapHandle );
+			((android.widget.ImageView)handle).setImageBitmap((android.graphics.Bitmap)bitmapHandle);
 			((android.widget.ImageView)handle).invalidate();
 		@}
 

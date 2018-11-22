@@ -16,13 +16,13 @@ namespace FuseTest
 		public TestRootViewport(Uno.Platform.Window window, float pixelsPerPoint = 0)
 			: base(window, pixelsPerPoint)
 		{ 
-			OverrideSize( float2(100), pixelsPerPoint, pixelsPerPoint );
+			OverrideSize(float2(100), pixelsPerPoint, pixelsPerPoint);
 		}
 
 		extern(Android || iOS)
 		public TestRootViewport(Uno.Platform.Window window, float pixelsPerPoint = 0)
 		{
-			OverrideSize( float2(100), pixelsPerPoint, pixelsPerPoint );
+			OverrideSize(float2(100), pixelsPerPoint, pixelsPerPoint);
 		}
 
 		public void Resize(float2 size)
@@ -60,9 +60,9 @@ namespace FuseTest
 			CleanLowMemory();
 			
 			//restore margins to defaults
-			if( !defined(iOS||Android))
+			if(!defined(iOS||Android))
 			{
-				Fuse.Platform.SystemUI.SetMargins( float4(0), float4(0), float4(0) );
+				Fuse.Platform.SystemUI.SetMargins(float4(0), float4(0), float4(0));
 			}
 		}
 		
@@ -113,27 +113,27 @@ namespace FuseTest
 			return CreateWithChildImpl(child, int2(800,600), flags, 1);
 		}
 		
-		public new void Layout( float2 clientSizeInPoint )
+		public new void Layout(float2 clientSizeInPoint)
 		{
 			_rootViewport.Resize(clientSizeInPoint);
-			PerformLayout( clientSizeInPoint );
+			PerformLayout(clientSizeInPoint);
 		}
 
 		/**
 			Sets the layout size but does not perform layout. A call to IncrementFrame will invoke
 			the standard layout handling.
 		*/
-		public void SetLayoutSize( float2 clientSizeInPoint )
+		public void SetLayoutSize(float2 clientSizeInPoint)
 		{
 			_rootViewport.Resize(clientSizeInPoint);
 		}
 		
-		public new void Layout( int2 cp ) { Layout( float2(cp.X,cp.Y) ); }
+		public new void Layout(int2 cp) { Layout(float2(cp.X,cp.Y)); }
 
 		//usually called in next frame in live app, layout phase
 		public void UpdateLayout()
 		{
-			Layout( _rootViewport.Size );
+			Layout(_rootViewport.Size);
 		}
 
 		public float2 SnapToPixelsPos(float2 p)
@@ -197,7 +197,7 @@ namespace FuseTest
 					w.WaitIdle();
 			}
 				
-			Time.Set( Time.FrameTime + elapsedTime );
+			Time.Set(Time.FrameTime + elapsedTime);
 			UpdateManager.Update();
 			if (flags.HasFlag(StepFlags.IncrementFrame))
 				UpdateManager.IncreaseFrameIndex();
@@ -233,7 +233,7 @@ namespace FuseTest
 			//at the moment this is the quickest way to fake the context, by creating a real one. Otherwise
 			//we need to make `DrawContext` mockable and replace it in this test -- though something would still
 			//need to make `draw` statements work.
-			var fb = FramebufferPool.Lock( (int2)_rootViewport.PixelSize, Uno.Graphics.Format.RGBA8888, true);
+			var fb = FramebufferPool.Lock((int2)_rootViewport.PixelSize, Uno.Graphics.Format.RGBA8888, true);
 			_dc.PushRenderTarget(fb);
 
 			if defined(FUSELIBS_DEBUG_DRAW_RECTS)
@@ -292,7 +292,7 @@ namespace FuseTest
 			var e = 0f;
 			while (e < (elapsedTime - zeroTolerance))
 			{
-				var s = Math.Min( _frameIncrement, elapsedTime - e );
+				var s = Math.Min(_frameIncrement, elapsedTime - e);
 				IncrementFrame(s);
 				e += s;
 			}
@@ -314,7 +314,7 @@ namespace FuseTest
 		{
 			var w = Fuse.Reactive.JavaScript.Worker;
 			if (w == null)
-				throw new Exception("Calling stepFrameJS though there is no JavaScript worker" );
+				throw new Exception("Calling stepFrameJS though there is no JavaScript worker");
 				
 			var fence = Fuse.Reactive.JavaScript.Worker.PostFence();
 			var loop = true;
@@ -329,7 +329,7 @@ namespace FuseTest
 			if (elapsedTime > 0)
 			{
 				if (e >= elapsedTime)
-					throw new Exception( "Unable to satisfy time constraint in stepping" );
+					throw new Exception("Unable to satisfy time constraint in stepping");
 				StepFrame(elapsedTime - e);
 			}
 		}
@@ -396,7 +396,7 @@ namespace FuseTest
 			var len = Vector.Length(to - from);
 			var unit = Vector.Normalize(to - from);
 			var step = _frameIncrement * speed;
-			int steps = (int)Math.Ceil( len / step );
+			int steps = (int)Math.Ceil(len / step);
 			
 			for (int i=0; i <= steps; ++i)
 				PointerMove(from + unit * Math.Min(len, i * step));
@@ -404,7 +404,7 @@ namespace FuseTest
 		
 		public void PointerSlideRel(float2 offset, float speed = 500)
 		{
-			PointerSlide( _pointerWindowPoint, _pointerWindowPoint + offset, speed  );
+			PointerSlide(_pointerWindowPoint, _pointerWindowPoint + offset, speed );
 		}
 		
 		public void PointerSwipe(float2 from, float2 to, float speed = 500)
@@ -414,7 +414,7 @@ namespace FuseTest
 			
 			PointerPress(from);
 			var at = _frameIncrement * speed;
-			while( at < len )
+			while(at < len)
 			{
 				PointerMove(from + unit * at);
 				at = Math.Min(len, at + _frameIncrement * speed);
@@ -464,13 +464,13 @@ namespace FuseTest
 					return;
 			}
 			
-			_modules.Add( new T() );
+			_modules.Add(new T());
 		}
 		static List<object> _modules;
 		
-		extern(!iOS && !Android) public void SetSafeMargins( float4 margins ) 
+		extern(!iOS && !Android) public void SetSafeMargins(float4 margins) 
 		{
-			Fuse.Platform.SystemUI.SetMargins( float4(0), margins, margins );
+			Fuse.Platform.SystemUI.SetMargins(float4(0), margins, margins);
 		}
 	}
 
@@ -481,12 +481,12 @@ namespace FuseTest
 	{
 		public TestRootSingletonsGuard(TestRootPanel trp)
 		{
-			AppBase.TestSetRootViewport( trp.RootViewport );
+			AppBase.TestSetRootViewport(trp.RootViewport);
 		}
 		
 		void IDisposable.Dispose()
 		{
-			AppBase.TestSetRootViewport( null );
+			AppBase.TestSetRootViewport(null);
 		}
 	}
 }

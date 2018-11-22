@@ -17,51 +17,51 @@ namespace Fuse.Reactive.Test
 			var p = new UX.QuaternaryOperator.Basic();
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.AreEqual( "nope", p.a.ObjectValue );
-				Assert.AreEqual( "nope", p.b.ObjectValue );
-				Assert.AreEqual( "nope", p.c.ObjectValue );
-				Assert.AreEqual( "nope", p.d.ObjectValue );
-				Assert.AreEqual( "nope", p.e.ObjectValue );
+				Assert.AreEqual("nope", p.a.ObjectValue);
+				Assert.AreEqual("nope", p.b.ObjectValue);
+				Assert.AreEqual("nope", p.c.ObjectValue);
+				Assert.AreEqual("nope", p.d.ObjectValue);
+				Assert.AreEqual("nope", p.e.ObjectValue);
 				
 				p.strct.Value = p.strctData1.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "nope", p.a.ObjectValue );
-				Assert.AreEqual( "nope", p.b.ObjectValue );
-				Assert.AreEqual( "nope", p.c.ObjectValue );
-				Assert.AreEqual( "nope", p.d.ObjectValue );
-				Assert.AreEqual( "xyz*", p.e.ObjectValue );
+				Assert.AreEqual("nope", p.a.ObjectValue);
+				Assert.AreEqual("nope", p.b.ObjectValue);
+				Assert.AreEqual("nope", p.c.ObjectValue);
+				Assert.AreEqual("nope", p.d.ObjectValue);
+				Assert.AreEqual("xyz*", p.e.ObjectValue);
 				
 				p.strct.Value = p.strctData2.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "nope", p.a.ObjectValue );
-				Assert.AreEqual( "nope", p.b.ObjectValue );
-				Assert.AreEqual( "nope", p.c.ObjectValue );
-				Assert.AreEqual( "xy*w", p.d.ObjectValue );
-				Assert.AreEqual( "nope", p.e.ObjectValue );
+				Assert.AreEqual("nope", p.a.ObjectValue);
+				Assert.AreEqual("nope", p.b.ObjectValue);
+				Assert.AreEqual("nope", p.c.ObjectValue);
+				Assert.AreEqual("xy*w", p.d.ObjectValue);
+				Assert.AreEqual("nope", p.e.ObjectValue);
 				
 				p.strct.Value = p.strctData3.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "nope", p.a.ObjectValue );
-				Assert.AreEqual( "nope", p.b.ObjectValue );
-				Assert.AreEqual( "x*zw", p.c.ObjectValue );
-				Assert.AreEqual( "nope", p.d.ObjectValue );
-				Assert.AreEqual( "nope", p.e.ObjectValue );
+				Assert.AreEqual("nope", p.a.ObjectValue);
+				Assert.AreEqual("nope", p.b.ObjectValue);
+				Assert.AreEqual("x*zw", p.c.ObjectValue);
+				Assert.AreEqual("nope", p.d.ObjectValue);
+				Assert.AreEqual("nope", p.e.ObjectValue);
 				
 				p.strct.Value = p.strctData4.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "nope", p.a.ObjectValue );
-				Assert.AreEqual( "*yzw", p.b.ObjectValue );
-				Assert.AreEqual( "nope", p.c.ObjectValue );
-				Assert.AreEqual( "nope", p.d.ObjectValue );
-				Assert.AreEqual( "nope", p.e.ObjectValue );
+				Assert.AreEqual("nope", p.a.ObjectValue);
+				Assert.AreEqual("*yzw", p.b.ObjectValue);
+				Assert.AreEqual("nope", p.c.ObjectValue);
+				Assert.AreEqual("nope", p.d.ObjectValue);
+				Assert.AreEqual("nope", p.e.ObjectValue);
 				
 				p.strct.Value = p.strctData5.Value;
 				root.PumpDeferred();
-				Assert.AreEqual( "xyzw", p.a.ObjectValue );
-				Assert.AreEqual( "xyzw", p.b.ObjectValue );
-				Assert.AreEqual( "xyzw", p.c.ObjectValue );
-				Assert.AreEqual( "xyzw", p.d.ObjectValue );
-				Assert.AreEqual( "xyzw", p.e.ObjectValue );
+				Assert.AreEqual("xyzw", p.a.ObjectValue);
+				Assert.AreEqual("xyzw", p.b.ObjectValue);
+				Assert.AreEqual("xyzw", p.c.ObjectValue);
+				Assert.AreEqual("xyzw", p.d.ObjectValue);
+				Assert.AreEqual("xyzw", p.e.ObjectValue);
 			}
 		}
 		
@@ -72,20 +72,20 @@ namespace Fuse.Reactive.Test
 			using (var dg = new RecordDiagnosticGuard())
 			using (var root = TestRootPanel.CreateWithChild(p))
 			{
-				Assert.IsFalse( p.iq.BoolValue );
+				Assert.IsFalse(p.iq.BoolValue);
 				
 				p.d.Value = "triggerBad";
 				
 				var d = dg.DequeueAll();
-				Assert.IsTrue( d.Count == 1 || d.Count == 2 ); //TODO: there is a double OnNewData somewhere, not relevant to this feature though!
-				Assert.Contains( "Failed to compute", d[0].Message );
+				Assert.IsTrue(d.Count == 1 || d.Count == 2); //TODO: there is a double OnNewData somewhere, not relevant to this feature though!
+				Assert.Contains("Failed to compute", d[0].Message);
 
-				Assert.IsFalse( p.iq.BoolValue );
+				Assert.IsFalse(p.iq.BoolValue);
 		
 				p.d.Value = 4;
 				root.PumpDeferred();
-				Assert.IsTrue( p.iq.BoolValue );
-				Assert.AreEqual( "1234", p.q.StringValue );
+				Assert.IsTrue(p.iq.BoolValue);
+				Assert.AreEqual("1234", p.q.StringValue);
 			}
 		}
 	}

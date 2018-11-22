@@ -178,7 +178,7 @@ namespace Fuse.Charting
 			_plot = PlotBehavior.FindPlot(this);
 			if (_plot == null)
 			{
-				Fuse.Diagnostics.UserError( "Could not find PlotBehavior", this );
+				Fuse.Diagnostics.UserError("Could not find PlotBehavior", this);
 			}
 			else
 			{
@@ -203,7 +203,7 @@ namespace Fuse.Charting
 			InvalidateSurfacePath();
 		}
 			
-		void GetOrientation( int axis, out float2 xVector, out float2 yVector )
+		void GetOrientation(int axis, out float2 xVector, out float2 yVector)
 		{
 			var o = _plot.GetAxisOrientation(axis);
 			if (o == PlotOrientation.Horizontal)
@@ -225,20 +225,20 @@ namespace Fuse.Charting
 			if (_plot != null)
 			{
 				if (Axis.HasFlag(PlotTickAxis.X))
-					DrawLine( list, 0 );
+					DrawLine(list, 0);
 				if (Axis.HasFlag(PlotTickAxis.Y))
-					DrawLine( list, 1 );
+					DrawLine(list, 1);
 			}
 			
 			return surface.CreatePath(list.Segments);
 		}
 		
-		void DrawLine( LineSegments list, int axis )
+		void DrawLine(LineSegments list, int axis)
 		{
-			_filter.IsCountAxis = _plot.IsCountAxis( axis );
+			_filter.IsCountAxis = _plot.IsCountAxis(axis);
 			var items = _plot.GetAxisItems(axis);
 			
-			var isOffset = _plot.AxisMetric( axis ) == PlotAxisMetric.OffsetCount;
+			var isOffset = _plot.AxisMetric(axis) == PlotAxisMetric.OffsetCount;
 			var offset = isOffset ? 0.5f : 0f;
 			var steps = _plot.PlotStats.Steps[axis];
 			var sz = ActualSize;
@@ -251,8 +251,8 @@ namespace Fuse.Charting
 					GetOrientation(axis, out a, out b);
 					if (_hasAxisLine)
 					{
-						list.MoveTo( _axisLine * b * sz );
-						list.LineToRel( a * sz );
+						list.MoveTo(_axisLine * b * sz);
+						list.LineToRel(a * sz);
 					}
 				
 					for (int i=0; i < items.Length; ++i)
@@ -262,8 +262,8 @@ namespace Fuse.Charting
 							continue;
 							
 						var pos = (w + offset) / (float)steps;
-						list.MoveTo( pos * a * sz );
-						list.LineToRel( b * sz );
+						list.MoveTo(pos * a * sz);
+						list.LineToRel(b * sz);
 					}
 					break;
 				}
@@ -272,9 +272,9 @@ namespace Fuse.Charting
 				{
 					if (_hasAxisLine)
 					{
-						list.MoveTo( float2(_axisLine,0) * sz/2 + sz/2 );
-						list.EllipticArcToRel( float2(-_axisLine,0) * sz, _axisLine * sz/2, 0, false, true );
-						list.EllipticArcToRel( float2(_axisLine,0) * sz, _axisLine * sz/2, 0, false, true );
+						list.MoveTo(float2(_axisLine,0) * sz/2 + sz/2);
+						list.EllipticArcToRel(float2(-_axisLine,0) * sz, _axisLine * sz/2, 0, false, true);
+						list.EllipticArcToRel(float2(_axisLine,0) * sz, _axisLine * sz/2, 0, false, true);
 					}
 					
 					for (int i=0; i < items.Length; ++i)
@@ -284,9 +284,9 @@ namespace Fuse.Charting
 							continue;
 							
 						var angle = (w + offset) / (float)steps * Math.PIf * 2;
-						var position = float2( Math.Cos(angle), Math.Sin(angle) );
-						list.MoveTo( sz * 0.5f + position * sz/2 * BaseOffset );
-						list.LineToRel( position * sz/2 * (1-BaseOffset) );
+						var position = float2(Math.Cos(angle), Math.Sin(angle));
+						list.MoveTo(sz * 0.5f + position * sz/2 * BaseOffset);
+						list.LineToRel(position * sz/2 * (1-BaseOffset));
 					}
 					break;
 				}

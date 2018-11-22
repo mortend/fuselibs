@@ -52,7 +52,7 @@ namespace Fuse.Controls
 			get { return sizing.stretchDirection; }
 			set
 			{
-				if (sizing.SetStretchDirection(value) )
+				if (sizing.SetStretchDirection(value))
 					OnSizingChanged();
 			}
 		}
@@ -71,50 +71,50 @@ namespace Fuse.Controls
 			return Content == null ? float2(0) : Content.GetMarginSize(LayoutParams.CreateEmpty());
 		}
 		
-		protected override float2 GetContentSize( LayoutParams lp )
+		protected override float2 GetContentSize(LayoutParams lp)
 		{
 			var natural = GetNaturalContentSize();
 			sizing.padding = float4(0);
-			var r = sizing.ExpandFillSize( natural, lp );
+			var r = sizing.ExpandFillSize(natural, lp);
 			return r;
 		}
 		
-		protected override void ArrangePaddingBox( LayoutParams lp )
+		protected override void ArrangePaddingBox(LayoutParams lp)
 		{
 			sizing.padding = Padding;
-			if( Content != null )
+			if(Content != null)
 			{
 				sizing.align = Content.Alignment;
 			}
 
 			var contentDesiredSize = GetNaturalContentSize();
-			_scale = sizing.CalcScale( lp.Size, contentDesiredSize );
+			_scale = sizing.CalcScale(lp.Size, contentDesiredSize);
 
 			// Force recalc of implicit transform
 			InvalidateLocalTransform();
 
-			var origin = sizing.CalcOrigin( lp.Size, contentDesiredSize * _scale );
+			var origin = sizing.CalcOrigin(lp.Size, contentDesiredSize * _scale);
 			//must divide by scale since the transform is applied to this offset as well
-			if ( _scale.X > _zeroTolerance && _scale.Y > _zeroTolerance)
+			if (_scale.X > _zeroTolerance && _scale.Y > _zeroTolerance)
 				origin /= _scale;
 
-			if( Content != null )
+			if(Content != null)
 			{
 				var nlp = lp.CloneAndDerive();
 				nlp.SetSize(contentDesiredSize);
-				Content.ArrangeMarginBox( origin, nlp );
+				Content.ArrangeMarginBox(origin, nlp);
 			}
 		}
 		
-		protected override void PrependImplicitTransform( Fuse.FastMatrix m )
+		protected override void PrependImplicitTransform(Fuse.FastMatrix m)
 		{
 			base.PrependImplicitTransform(m);
 			//TODO: actually, it should be hidden entirely if scale is so small!
 			if (Vector.Length(_scale) > _zeroTolerance)
-				m.PrependScale( float3( _scale.X, _scale.Y, 1) );
+				m.PrependScale(float3(_scale.X, _scale.Y, 1));
 		}
 		
-		protected override LayoutDependent IsMarginBoxDependent( Visual child )
+		protected override LayoutDependent IsMarginBoxDependent(Visual child)
 		{
 			return LayoutDependent.Yes;
 		}

@@ -66,7 +66,7 @@ namespace Fuse.Drawing
 		public void Prepare(DrawContext dc, float2 canvasSize) 
 		{ 
 			if (!IsPinned)
-				Fuse.Diagnostics.InternalError( "Brush is not pinned, preparation invalid", this );
+				Fuse.Diagnostics.InternalError("Brush is not pinned, preparation invalid", this);
 			OnPrepare(dc, canvasSize);
 		}
 		

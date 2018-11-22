@@ -283,22 +283,22 @@ namespace Fuse.Controls.Test
 		{
 			//https://github.com/Outracks/RealtimeStudio/issues/1485
 			var c = new List<Column>();
-			Column.Parse( " 12 , 1.5 *, auto", c );
-			Assert.AreEqual( 3, c.Count );
-			Assert.AreEqual( Metric.Absolute, c[0].WidthMetric );
-			Assert.AreEqual( 12, c[0].Width );
-			Assert.AreEqual( Metric.Proportion, c[1].WidthMetric );
-			Assert.AreEqual( 1.5f, c[1].Width );
-			Assert.AreEqual( Metric.Auto, c[2].WidthMetric );
+			Column.Parse(" 12 , 1.5 *, auto", c);
+			Assert.AreEqual(3, c.Count);
+			Assert.AreEqual(Metric.Absolute, c[0].WidthMetric);
+			Assert.AreEqual(12, c[0].Width);
+			Assert.AreEqual(Metric.Proportion, c[1].WidthMetric);
+			Assert.AreEqual(1.5f, c[1].Width);
+			Assert.AreEqual(Metric.Auto, c[2].WidthMetric);
 			
 			var r = new List<Row>();
-			Row.Parse( " 12, 0.275e1* ,auto ", r );
-			Assert.AreEqual( 3, r.Count );
-			Assert.AreEqual( Metric.Absolute, r[0].HeightMetric );
-			Assert.AreEqual( 12, r[0].Height );
-			Assert.AreEqual( Metric.Proportion, r[1].HeightMetric );
-			Assert.AreEqual( 2.75f, r[1].Height );
-			Assert.AreEqual( Metric.Auto, r[2].HeightMetric );
+			Row.Parse(" 12, 0.275e1* ,auto ", r);
+			Assert.AreEqual(3, r.Count);
+			Assert.AreEqual(Metric.Absolute, r[0].HeightMetric);
+			Assert.AreEqual(12, r[0].Height);
+			Assert.AreEqual(Metric.Proportion, r[1].HeightMetric);
+			Assert.AreEqual(2.75f, r[1].Height);
+			Assert.AreEqual(Metric.Auto, r[2].HeightMetric);
 		}
 
 		[Test]
@@ -356,11 +356,11 @@ namespace Fuse.Controls.Test
 				//check that state in Grid doesn't affect layout (particularly for spanning items)
 				for (int i=0; i < 2; ++i)
 				{
-					Assert.AreEqual( float2(100,100), grid.C11.ActualPosition );
-					Assert.AreEqual( float2(100,200), grid.C21.ActualPosition );
-					Assert.AreEqual( float2(300,200), grid.C23.ActualPosition );
-					Assert.AreEqual( float2(0,300), grid.C30.ActualPosition );
-					Assert.AreEqual( float2(200,400), grid.C42.ActualPosition );
+					Assert.AreEqual(float2(100,100), grid.C11.ActualPosition);
+					Assert.AreEqual(float2(100,200), grid.C21.ActualPosition);
+					Assert.AreEqual(float2(300,200), grid.C23.ActualPosition);
+					Assert.AreEqual(float2(0,300), grid.C30.ActualPosition);
+					Assert.AreEqual(float2(200,400), grid.C42.ActualPosition);
 				
 					grid.InvalidateLayout();
 					root.StepFrame();
@@ -377,11 +377,11 @@ namespace Fuse.Controls.Test
 				//check that state in Grid doesn't affect layout (particularly for spanning items)
 				for (int i=0; i < 2; ++i)
 				{
-					Assert.AreEqual( float2(100,100), grid.C11.ActualPosition );
-					Assert.AreEqual( float2(200,100), grid.C21.ActualPosition );
-					Assert.AreEqual( float2(200,300), grid.C23.ActualPosition );
-					Assert.AreEqual( float2(300,0), grid.C30.ActualPosition );
-					Assert.AreEqual( float2(400,200), grid.C42.ActualPosition );
+					Assert.AreEqual(float2(100,100), grid.C11.ActualPosition);
+					Assert.AreEqual(float2(200,100), grid.C21.ActualPosition);
+					Assert.AreEqual(float2(200,300), grid.C23.ActualPosition);
+					Assert.AreEqual(float2(300,0), grid.C30.ActualPosition);
+					Assert.AreEqual(float2(400,200), grid.C42.ActualPosition);
 				
 					grid.InvalidateLayout();
 					root.StepFrame();
@@ -398,7 +398,7 @@ namespace Fuse.Controls.Test
 				root.Children.Add(grid);
 				var spacing = root.SnapToPixelsSize(grid.CellSpacing);
 				
-				var sz = root.SnapToPixelsSize( float2(400) );
+				var sz = root.SnapToPixelsSize(float2(400));
 				root.Layout(sz);
 				
 				Assert.AreEqual(grid.C12.ActualPosition.X + grid.C12.ActualSize.X,
@@ -412,7 +412,7 @@ namespace Fuse.Controls.Test
 				Assert.AreEqual(grid.C42.ActualPosition.Y + grid.C42.ActualSize.Y + spacing,
 					grid.C44.ActualPosition.Y, 1e-4f);
 
-				Assert.AreEqual( sz, grid.C44.ActualPosition + grid.C44.ActualSize,
+				Assert.AreEqual(sz, grid.C44.ActualPosition + grid.C44.ActualSize,
 					1e-4f);
 			}
 		}
@@ -761,7 +761,7 @@ namespace Fuse.Controls.Test
 			var p = new UX.Grid.Issue1019();
 			using (var root = TestRootPanel.CreateWithChild(p,int2(200)))
 			{
-				Assert.AreEqual( float2(200,150), p.g.ActualSize );
+				Assert.AreEqual(float2(200,150), p.g.ActualSize);
 			}
 			
 		}
@@ -772,10 +772,10 @@ namespace Fuse.Controls.Test
 			var p = new UX.Grid.Issue842_1();
 			using (var root = TestRootPanel.CreateWithChild(p,int2(1000)))
 			{
-				Assert.AreEqual( float2(100,100), p.t1.ActualSize );
-				Assert.AreEqual( float2(100,50), p.t2.ActualSize );
-				Assert.AreEqual( float2(100,150), p.g.ActualSize );
-				Assert.AreEqual( float2(100,150), p.s.ActualSize );
+				Assert.AreEqual(float2(100,100), p.t1.ActualSize);
+				Assert.AreEqual(float2(100,50), p.t2.ActualSize);
+				Assert.AreEqual(float2(100,150), p.g.ActualSize);
+				Assert.AreEqual(float2(100,150), p.s.ActualSize);
 			}
 		}
 		
@@ -785,10 +785,10 @@ namespace Fuse.Controls.Test
 			var p = new UX.Grid.Issue842_2();
 			using (var root = TestRootPanel.CreateWithChild(p,int2(100,1000)))
 			{
-				Assert.AreEqual( float2(100,100), p.t1.ActualSize );
-				Assert.AreEqual( float2(100,50), p.t2.ActualSize );
-				Assert.AreEqual( float2(100,150), p.g.ActualSize );
-				Assert.AreEqual( float2(100,150), p.s.ActualSize );
+				Assert.AreEqual(float2(100,100), p.t1.ActualSize);
+				Assert.AreEqual(float2(100,50), p.t2.ActualSize);
+				Assert.AreEqual(float2(100,150), p.g.ActualSize);
+				Assert.AreEqual(float2(100,150), p.s.ActualSize);
 			}
 		}
 		

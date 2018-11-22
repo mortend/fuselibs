@@ -6,7 +6,7 @@
 		exports.ovalue = source.inner()
 		
 		exports.step1 = function() {
-			source.replaceAll( ["q","r"] )
+			source.replaceAll(["q","r"])
 		}
 	</JavaScript>
 	<Text Value="{ovalue}" ux:Name="OV"/>

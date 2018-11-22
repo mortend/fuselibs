@@ -5,7 +5,7 @@ namespace Fuse.Drawing.Primitives
 		public float3 Position: float3(-1, -1, 0);
 		public float2 Size: float2(2, 2);
 
-		float2[] Vertices : new [] {float2(0,0),float2( 1,0),float2( 1, 1),float2(0, 1)};
+		float2[] Vertices : new [] {float2(0,0),float2(1,0),float2(1, 1),float2(0, 1)};
 		ushort[] Indices : new ushort[] { 0,1,2,2,3,0 };
 		VertexCount : 6;
 		float2 VertexData : vertex_attrib(Vertices, Indices);
@@ -23,7 +23,7 @@ namespace Fuse.Drawing.Primitives
 		public float3 Position: float3(-1, -1, 0);
 		public float2 Size: float2(2, 2);
 
-		float2[] Vertices : new [] {float2(0,0),float2( 1,0),float2( 1, 1),float2(0, 1)};
+		float2[] Vertices : new [] {float2(0,0),float2(1,0),float2(1, 1),float2(0, 1)};
 		ushort[] Indices : new ushort[] { 0,1,2,3,0 };
 		VertexCount : 6;
 		float2 VertexData : vertex_attrib(Vertices, Indices);

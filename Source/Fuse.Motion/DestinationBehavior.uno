@@ -14,7 +14,7 @@ namespace Fuse.Animations
 	{
 		public DestinationMotionConfig Motion;
 		
-		public delegate void ValueHandler( T value );
+		public delegate void ValueHandler(T value);
 		
 		ValueHandler _handler;
 		DestinationSimulation<T> _simulation;
@@ -27,9 +27,9 @@ namespace Fuse.Animations
 				return;
 			}
 				
-			_simulation.Update( Time.FrameInterval );
+			_simulation.Update(Time.FrameInterval);
 			if (_handler != null)
-				_handler( _simulation.Position );
+				_handler(_simulation.Position);
 			
 			if (_simulation.IsStatic)
 				StopListenUpdate();
@@ -40,7 +40,7 @@ namespace Fuse.Animations
 		{
 			if (_listenUpdate)
 			{
-				UpdateManager.RemoveAction( OnUpdate );
+				UpdateManager.RemoveAction(OnUpdate);
 				_listenUpdate = false;
 			}
 		}
@@ -52,11 +52,11 @@ namespace Fuse.Animations
 			_handler = null;
 		}
 		
-		public void SetValue( T value, ValueHandler handler )
+		public void SetValue(T value, ValueHandler handler)
 		{
 			if (Motion == null)
 			{
-				handler( value );
+				handler(value);
 				return;
 			}
 			
@@ -64,10 +64,10 @@ namespace Fuse.Animations
 			if (_simulation == null)
 			{
 				_simulation = Motion.Create<T>();
-				_simulation.Reset( value );
+				_simulation.Reset(value);
 				//force in first frame to avoid unset initial values being rendered
 				if (_handler != null)
-					_handler( _simulation.Position );
+					_handler(_simulation.Position);
 			}
 			else
 			{
@@ -77,7 +77,7 @@ namespace Fuse.Animations
 				
 			if (!_listenUpdate)
 			{
-				UpdateManager.AddAction( OnUpdate );
+				UpdateManager.AddAction(OnUpdate);
 				_listenUpdate = true;
 			}
 		}
