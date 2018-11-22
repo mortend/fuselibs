@@ -68,7 +68,7 @@ namespace Fuse.Profiling
 
 
 		double _durationMs;
-        public IEnumerable<Node> Children { get { return _children; } }
+		public IEnumerable<Node> Children { get { return _children; } }
 		public IEnumerable<Event> Events { get { return _events; } }
 
 		public Node(string source)
@@ -100,9 +100,9 @@ namespace Fuse.Profiling
 
 	public class Frame
 	{
-        public double Duration { get { return _durationMs; } }
+		public double Duration { get { return _durationMs; } }
 
-        public double DurationMs100 { get { return _durationMs * 4.0; /* * 4.0 because of bar in XAML code */ } }
+		public double DurationMs100 { get { return _durationMs * 4.0; /* * 4.0 because of bar in XAML code */ } }
 
 		public int FrameIndex { get { return _frameIndex; } }
 
@@ -122,17 +122,17 @@ namespace Fuse.Profiling
 
 		public List<Event> Events = new List<Event>();
 
-        Node _root;
-        public Node Root { get { return _root; } }
+		Node _root;
+		public Node Root { get { return _root; } }
 
 		readonly Stack<Node> _nodeStack = new Stack<Node>();
 
 		public void PushNode(string source)
 		{
-            var n = new Node(source);
+			var n = new Node(source);
 
-            if (_root == null)
-                _root = n;
+			if (_root == null)
+				_root = n;
 			
 			if (_nodeStack.Count != 0)
 				_nodeStack.Peek().AddChild(n);
@@ -150,24 +150,24 @@ namespace Fuse.Profiling
 			_durationMs = durationMs;
 		}
 
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            Serializer.Serialize(this, sb, 0);
-            return sb.ToString();
-        }
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			Serializer.Serialize(this, sb, 0);
+			return sb.ToString();
+		}
 
 	}
 
-    static class Serializer
-    {
-        internal static void Serialize(Frame f, StringBuilder sb, int indent)
-        {
-            Indent(sb, indent);
-            sb.AppendLine("Frame " + f.FrameIndex + " - Duration: " + (f.Duration) + " ms");
+	static class Serializer
+	{
+		internal static void Serialize(Frame f, StringBuilder sb, int indent)
+		{
+			Indent(sb, indent);
+			sb.AppendLine("Frame " + f.FrameIndex + " - Duration: " + (f.Duration) + " ms");
 			Serialize(f.Events, sb, indent + 1);
-            Serialize(f.Root, sb, indent+1);
-        }
+			Serialize(f.Root, sb, indent+1);
+		}
 
 		static void Serialize(IEnumerable<Event> events, StringBuilder sb, int indent)
 		{
@@ -178,21 +178,21 @@ namespace Fuse.Profiling
 			}
 		}
 
-        static void Serialize(Node n, StringBuilder sb, int indent)
-        {
-            Indent(sb, indent);
-            sb.AppendLine(n.Source + " - Duration: " + (n.Duration) + " ms");
+		static void Serialize(Node n, StringBuilder sb, int indent)
+		{
+			Indent(sb, indent);
+			sb.AppendLine(n.Source + " - Duration: " + (n.Duration) + " ms");
 			Serialize(n.Events, sb, indent + 1);
-            foreach (var c in n.Children)
-                Serialize(c, sb, indent+1);
-        }
+			foreach (var c in n.Children)
+				Serialize(c, sb, indent+1);
+		}
 
-        static void Indent(StringBuilder sb, int indent)
-        {
-            for (int i = 0; i < indent; i++)
-                sb.Append("  ");
-        }
-    }
+		static void Indent(StringBuilder sb, int indent)
+		{
+			for (int i = 0; i < indent; i++)
+				sb.Append("  ");
+		}
+	}
 
 	public class Profiler : IProfiler
 	{
@@ -241,10 +241,10 @@ namespace Fuse.Profiling
 			_currentFrame.PopNode(duration / 100.0);	
 		}
 
-        public void EndDrawNodeInt(int duration)
-        {
-            _currentFrame.PopNode(duration / 100.0);
-        }
+		public void EndDrawNodeInt(int duration)
+		{
+			_currentFrame.PopNode(duration / 100.0);
+		}
 
 		public void BeginDraw(int frameIndex)
 		{
@@ -253,19 +253,19 @@ namespace Fuse.Profiling
 
 		public void EndDrawByte(byte duration)
 		{
-            EndDrawInt(duration);
+			EndDrawInt(duration);
 		}
 
-        public void EndDrawInt(int duration)
-        {
-            _currentFrame.End(duration / 100.0);
+		public void EndDrawInt(int duration)
+		{
+			_currentFrame.End(duration / 100.0);
 
-            var c = _currentFrame;
+			var c = _currentFrame;
 
-            Task.Run(() => _dispatcher(() => _frames.Add(c)));
+			Task.Run(() => _dispatcher(() => _frames.Add(c)));
 
-            _currentFrame = null;
-        }
+			_currentFrame = null;
+		}
 
 
 		public void NewFramebufferByte(byte duration, int x, int y)

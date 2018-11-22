@@ -9,10 +9,10 @@ namespace Fuse.Internal
 		public int Width;
 
 		/*
-		                         +---------
-		         X     Width     |
-		        Y+---------------+
-		         |
+								 +---------
+				 X	 Width	 |
+				Y+---------------+
+				 |
 		---------+
 
 		*/

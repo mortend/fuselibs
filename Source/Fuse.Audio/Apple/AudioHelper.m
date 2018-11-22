@@ -56,7 +56,7 @@ static int _idPool = 0;
 						successfully: (BOOL) completed
 {
 	if (completed)
-    {
+	{
 		self.player = nil;
 		[_helper kill:self];
 	}

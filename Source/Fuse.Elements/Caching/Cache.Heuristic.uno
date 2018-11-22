@@ -31,7 +31,7 @@ namespace Fuse.Elements
 			}
 
 			if (cachingRect.Size.X > dc.RenderTarget.Size.X * 1.2 ||
-			    cachingRect.Size.Y > dc.RenderTarget.Size.Y * 1.2)
+				cachingRect.Size.Y > dc.RenderTarget.Size.Y * 1.2)
 			{
 				if defined(FUSELIBS_PROFILING)
 					Profiling.LogEvent("Not caching: Too big caching rect", 0);

@@ -195,9 +195,9 @@ namespace Fuse.Controls
 			float4 Color)
 		{
 			Blitter.Singleton.Blit(tex, GetSamplerState(resampleMode), false,
-			                       new Rect(uvPosition, uvSize), imageTransform,
-			                       new Rect(offset, size), dc.GetLocalToClipTransform(element),
-			                       Color);
+								   new Rect(uvPosition, uvSize), imageTransform,
+								   new Rect(offset, size), dc.GetLocalToClipTransform(element),
+								   Color);
 
 			if defined(FUSELIBS_DEBUG_DRAW_RECTS)
 				DrawRectVisualizer.Capture(offset, size, element.WorldTransform, dc);

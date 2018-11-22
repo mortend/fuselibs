@@ -5,11 +5,11 @@ using Fuse.Controls;
 
 public partial class Children
 {
-    public Panel FirstChild { get; private set; }
+	public Panel FirstChild { get; private set; }
 
  	public Children()
-    {
-        InitializeUX();
-        FirstChild = firstChild;
-    }
+	{
+		InitializeUX();
+		FirstChild = firstChild;
+	}
 }

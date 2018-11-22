@@ -32,7 +32,7 @@ namespace Fuse.Layouts
 				return (bool)v;
 				
 			return n.Layer == Layer.Background ||
-			       n.Layer == Layer.Underlay;
+				   n.Layer == Layer.Underlay;
 		}
 		
 		[UXAttachedPropertyResetter("Layout.FillPadding")]

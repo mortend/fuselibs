@@ -68,16 +68,16 @@ namespace Fuse
 		[UXPrimary]
 		public FontFace FontFace { get; set; }
 
-        public float GetLineHeight(float fontSize)
-        {
-            if (FontFace == null) return 0.0f;
+		public float GetLineHeight(float fontSize)
+		{
+			if (FontFace == null) return 0.0f;
 
-            var size = Math.Clamp(fontSize, 4, 400);
+			var size = Math.Clamp(fontSize, 4, 400);
 
-            var lineHeight = FontFace.GetLineHeight(size);
+			var lineHeight = FontFace.GetLineHeight(size);
 
-            return lineHeight;
-        }
+			return lineHeight;
+		}
 
 		public float GetLineHeightVirtual(float fontSize, float absoluteZoom)
 		{

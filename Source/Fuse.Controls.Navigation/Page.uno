@@ -31,12 +31,12 @@ namespace Fuse.Controls
 		The following example illustrates subclassing @Page and using it in a @PageControl.
 		
 			<Page ux:Class="MyPage">
-			    <Text Alignment="Center">This is a page!</Text>
+				<Text Alignment="Center">This is a page!</Text>
 			</Page>
 			
 			<PageControl>
-			    <MyPage />
-			    <MyPage />
+				<MyPage />
+				<MyPage />
 			</PageControl>
 		
 		## Remarks

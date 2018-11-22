@@ -26,8 +26,8 @@ namespace Fuse.Triggers
 		>
 		> ```
 		> <Timeline>
-		>     <Change rect.Opacity="1" Delay="0.0" Duration="0.5" />
-		>     <Change rect.Opacity="0" Delay="0.5" Duration="0.5" />
+		>	 <Change rect.Opacity="1" Delay="0.0" Duration="0.5" />
+		>	 <Change rect.Opacity="0" Delay="0.5" Duration="0.5" />
 		> </Timeline>
 		> ```
 		>
@@ -35,10 +35,10 @@ namespace Fuse.Triggers
 		>
 		> ```
 		> <Timeline>
-		>     <Change Target="rect.Opacity">
-		>         <Keyframe Value="1" Time="0.5" />
-		>         <Keyframe Value="0" Time="1.0" />
-		>     </Change>
+		>	 <Change Target="rect.Opacity">
+		>		 <Keyframe Value="1" Time="0.5" />
+		>		 <Keyframe Value="0" Time="1.0" />
+		>	 </Change>
 		> </Timeline>
 		> ```
 

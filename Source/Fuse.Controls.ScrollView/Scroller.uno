@@ -337,7 +337,7 @@ namespace Fuse.Gestures
 
 			var pos = _scrollable.GetVisualScrollPosition(_pendingBringIntoView);
 			Goto(pos);
-        	_pendingBringIntoView = null;
+			_pendingBringIntoView = null;
 		}
 
 		public void Goto(float2 position)

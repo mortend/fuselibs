@@ -2,6 +2,6 @@
 @implementation NoZoomDelegate
   -(UIView*) viewForZoomingInScrollView:(UIScrollView*)scrollView 
   {
-    return nil;
+	return nil;
   }
 @end

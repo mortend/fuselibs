@@ -856,7 +856,7 @@ namespace Fuse.Navigation
 			for (int i=cp.Count - 1; i >= 0; --i)
 			{
 				var childPage = cp[i];
-				ret += TestDumpHistory(childPage, indent + "    ");
+				ret += TestDumpHistory(childPage, indent + "	");
 			}
 			
 			return ret;

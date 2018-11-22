@@ -172,8 +172,8 @@ namespace Fuse.Charting
 						<GridLayout Rows="1*,40" Columns="40,1*"/>
 						<c:DataSeries Data="{data}" />
 						<c:PlotAxis Row="0" Column="0" Axis="Y">
-						    <Text ux:Template="Label" Alignment="Center" FontSize="14" Color="#666"
-						        Value="{Plot axis.value}"/>
+							<Text ux:Template="Label" Alignment="Center" FontSize="14" Color="#666"
+								Value="{Plot axis.value}"/>
 						</c:PlotAxis>
 						<c:PlotData>
 							<c:PlotBar Row="0" Column="1">

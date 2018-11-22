@@ -52,14 +52,14 @@ namespace Fuse.Controls
 				<Router ux:Name="router" />
 
 				<JavaScript>
-				    router.bookmark({
-				        name: "indigo",
-				        path: [ "indigoPanel", { } ]
-				    });
-				    router.bookmark({
-				        name: "red",
-				        path: [ "redPanel", { } ]
-				    });
+					router.bookmark({
+						name: "indigo",
+						path: [ "indigoPanel", { } ]
+					});
+					router.bookmark({
+						name: "red",
+						path: [ "redPanel", { } ]
+					});
 				</JavaScript>
 
 				<DockPanel ux:Class="NamedPanel">

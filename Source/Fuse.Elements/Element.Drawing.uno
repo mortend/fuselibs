@@ -35,7 +35,7 @@ namespace Fuse.Elements
 			var pixelSize = Math.Ceil(sz * AbsoluteZoom);
 			var fsz = int2((int)pixelSize.X,(int)pixelSize.Y);
 			if (fsz.X > texture2D.MaxSize ||
-			    fsz.Y > texture2D.MaxSize)
+				fsz.Y > texture2D.MaxSize)
 			{
 				debug_log "CaptureRegion bigger than maximum texture size, dropping rendering (size: " +
 					fsz + ", max-size: " + texture2D.MaxSize;

@@ -23,9 +23,9 @@ namespace Fuse.Camera
 			var camera = require('FuseJS/Camera');
 			camera.takePicture(640,480).then(function(image)
 			{
-			    //Do things with image here
+				//Do things with image here
 			}).catch(function(error) {
-			    //Something went wrong, see error for details
+				//Something went wrong, see error for details
 			});
 	*/
 	[UXGlobalModule]

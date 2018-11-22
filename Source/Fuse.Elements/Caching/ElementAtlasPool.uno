@@ -128,13 +128,13 @@ namespace Fuse.Elements
 
 			var displaySizeHint = DisplayHelpers.DisplaySizeHint;
 			if (displaySizeHint.X < 1 ||
-			    displaySizeHint.Y < 1)
+				displaySizeHint.Y < 1)
 			{
 				displaySizeHint = int2(2048);
 			}
 
 			ElementAtlasSize = int2(Math.Min((displaySizeHint.X * 3) / 2, maxTextureSize),
-			                        Math.Min(displaySizeHint.Y / 2, maxTextureSize));
+									Math.Min(displaySizeHint.Y / 2, maxTextureSize));
 		}
 
 		static void OnResized(object sender, EventArgs args)

@@ -18,11 +18,11 @@ namespace FuseJS
 
 			var Environment = require('FuseJS/Environment');
 
-			if(Environment.ios)        console.log("Running on iOS");
-			if(Environment.android)    console.log("Running on Android");
-			if(Environment.preview)    console.log("Running in preview mode");
-			if(Environment.mobile)     console.log("Running on iOS or Android");
-			if(Environment.desktop)    console.log("Running on desktop");
+			if(Environment.ios)		console.log("Running on iOS");
+			if(Environment.android)	console.log("Running on Android");
+			if(Environment.preview)	console.log("Running in preview mode");
+			if(Environment.mobile)	 console.log("Running on iOS or Android");
+			if(Environment.desktop)	console.log("Running on desktop");
 
 		You can also get the version of the current *mobile* OS as a
 		human-readable string using the `mobileOSVersion` property.

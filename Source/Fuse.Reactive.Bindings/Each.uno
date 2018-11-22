@@ -61,11 +61,11 @@ namespace Fuse.Reactive
 		If you want the ability to control the template on a per-item basis, the similar `MatchKey`-property can be used:
 
 			<JavaScript>
-			    var Observable = require("FuseJS/Observable");
+				var Observable = require("FuseJS/Observable");
 
-			    module.exports.posts = Observable(
-				    {postType: "text", body: "Lorem ipsum", title: "Hello, world"}, 
-				    {postType: "quote", quote: "Stuff", title: "A quote"}
+				module.exports.posts = Observable(
+					{postType: "text", body: "Lorem ipsum", title: "Hello, world"}, 
+					{postType: "quote", quote: "Stuff", title: "A quote"}
 			   );
 			</JavaScript>
 

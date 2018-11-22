@@ -34,10 +34,10 @@ namespace Fuse.Profiling
 		void Error();
 		void BeginDrawNode(byte stringId);
 		void EndDrawNodeByte(byte duration);
-        void EndDrawNodeInt(int duration);
+		void EndDrawNodeInt(int duration);
 		void BeginDraw(int frameIndex);
 		void EndDrawByte(byte duration);
-        void EndDrawInt(int duration);
+		void EndDrawInt(int duration);
 		void LogEventByte(byte duration, byte stringId);
 		void LogEventInt(int duration, byte stringId);
 		void NewFramebufferByte(byte duration, int x, int y);

@@ -5,8 +5,8 @@ namespace Fuse.Platform
 	public enum ApplicationState
 	{
 		Uninitialized,
-		Background,     // Not rendering
-		Foreground,     // Rendering, not interactive
+		Background,	 // Not rendering
+		Foreground,	 // Rendering, not interactive
 		Interactive,
 		Terminating = -1
 	}

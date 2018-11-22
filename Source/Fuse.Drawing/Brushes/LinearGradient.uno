@@ -97,7 +97,7 @@ namespace Fuse.Drawing
 
 		```
 		<LinearGradient Angle="2.4" />
-		              or
+					  or
 		<LinearGradient AngleDegrees="45" />
 		```
 	*/

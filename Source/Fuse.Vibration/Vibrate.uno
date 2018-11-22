@@ -29,7 +29,7 @@ namespace Fuse.Vibration
 	public class Vibrate : TriggerAction
 	{
 		public double Duration { get; set;}
-	        
+			
 		protected override void Perform(Node target)
 		{
 			Vibration.Vibrate(Duration);

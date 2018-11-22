@@ -133,7 +133,7 @@ namespace Fuse
 		public void Update(IViewport viewport, IFrustum frustum)
 		{
 			if (frustum.TryGetProjectionTransform(viewport, out ProjectionTransform) &&
-			    frustum.TryGetProjectionTransformInverse(viewport, out ProjectionTransformInverse))
+				frustum.TryGetProjectionTransformInverse(viewport, out ProjectionTransformInverse))
 			{
 				ViewTransform = frustum.GetViewTransform(viewport);
 				ViewTransformInverse = frustum.GetViewTransformInverse(viewport);

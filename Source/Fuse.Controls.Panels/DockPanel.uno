@@ -12,18 +12,18 @@ namespace Fuse.Controls
 		One can specify which side per element by using the @Dock property like this:
 
 			<DockPanel>
-			    <Rectangle Dock="Left"/>
+				<Rectangle Dock="Left"/>
 			</DockPanel>
 
 		The @Dock property can be assigned to be either Left, Right, Top, Bottom or Fill (which is the default).
 
 			<DockPanel>
-			    <Rectangle ux:Class="MyRectangle" MinWidth="100" MinHeight="200" />
-			    <MyRectangle Color="Red" Dock="Left"/>
-			    <MyRectangle Color="Green" Dock="Top"/>
-			    <MyRectangle Color="Blue" Dock="Right"/>
-			    <MyRectangle Color="Yellow" Dock="Bottom"/>
-			    <MyRectangle Color="Teal" />
+				<Rectangle ux:Class="MyRectangle" MinWidth="100" MinHeight="200" />
+				<MyRectangle Color="Red" Dock="Left"/>
+				<MyRectangle Color="Green" Dock="Top"/>
+				<MyRectangle Color="Blue" Dock="Right"/>
+				<MyRectangle Color="Yellow" Dock="Bottom"/>
+				<MyRectangle Color="Teal" />
 			</DockPanel>
 	*/
 	public class DockPanel: Panel

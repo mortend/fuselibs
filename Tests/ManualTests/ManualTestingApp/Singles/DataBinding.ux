@@ -9,7 +9,7 @@
 		  var texin = Observable("This is text");
 
 		  function click() {
-		    texin.value = "This is text";
+			texin.value = "This is text";
 		  }
 
 		  var sliderval = Observable(50);
@@ -22,12 +22,12 @@
 		  }
 
 		   module.exports = {
-		      click : click,
-		      texin : texin,
-		      sliderval : sliderval,
-		      sliderlabel : sliderlabel,
-		      resetslider : resetslider
-		    }
+			  click : click,
+			  texin : texin,
+			  sliderval : sliderval,
+			  sliderlabel : sliderlabel,
+			  resetslider : resetslider
+			}
 		</JavaScript>
 		<StackPanel>
 			<StackPanel ux:Class="dbThing" Margin="5,15,5,15" Padding="10" ItemSpacing="5">

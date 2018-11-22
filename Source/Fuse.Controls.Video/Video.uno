@@ -65,20 +65,20 @@ namespace Fuse.Controls
 		## Useful triggers that can be used with `Video`
 
 			<Video>
-				<WhilePlaying />    <!-- Active while the video is playing -->
-				<WhilePaused />     <!-- Active while the video is paused -->
+				<WhilePlaying />	<!-- Active while the video is playing -->
+				<WhilePaused />	 <!-- Active while the video is paused -->
 				<WhileCompleted />  <!-- Active while the video is done playing -->
-				<WhileLoading />    <!-- Active while the video is loading -->
-				<WhileFailed />     <!-- Active if the video failed to load or an error occured -->
+				<WhileLoading />	<!-- Active while the video is loading -->
+				<WhileFailed />	 <!-- Active if the video failed to load or an error occured -->
 			</Video>
 
 		## Useful actions that can be used to control `Video`
 
 		Fuse comes with a set of actions that can be used to control video playback. They all have a common `Target` property that specifies which `Video` element they control.
 
-			<Pause />                   <!-- Pauses playback, leaving the current position as-is -->
-			<Stop />                    <!-- Stops playback and returns to the beginning of the video -->
-			<Resume />                  <!-- Resumes playback from the current position -->
+			<Pause />				   <!-- Pauses playback, leaving the current position as-is -->
+			<Stop />					<!-- Stops playback and returns to the beginning of the video -->
+			<Resume />				  <!-- Resumes playback from the current position -->
 
 		## Supported formats
 

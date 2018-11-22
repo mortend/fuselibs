@@ -150,9 +150,9 @@ namespace Fuse.Models
 					"if (!(modelClass instanceof Function)) { throw new Error('\"" + _modulePath + "\" does not export a class or function required to construct a Model'); }\n"+
 					"var modelInstance = Object.create(modelClass.prototype);\n"+
 					"module.exports = new Model(modelInstance, function() {\n"+
-					"    modelClass.call(modelInstance" + argsString + ");\n"+
-					"    ViewModelAdapter.adaptView(self, module, modelInstance);\n"+
-					"    return modelInstance;\n"+
+					"	modelClass.call(modelInstance" + argsString + ");\n"+
+					"	ViewModelAdapter.adaptView(self, module, modelInstance);\n"+
+					"	return modelInstance;\n"+
 					"});\n";
 			Code = code;
 		}

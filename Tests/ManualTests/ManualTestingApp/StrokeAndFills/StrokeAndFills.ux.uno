@@ -6,11 +6,11 @@ using Fuse.Animations;
 
 public partial class StrokeAndFills 
 {
-    public StrokeAndFills()
-    {
-        InitializeUX();
-        this.Title = "Stroke & Fills";
-    }
+	public StrokeAndFills()
+	{
+		InitializeUX();
+		this.Title = "Stroke & Fills";
+	}
 
 }
 

@@ -29,7 +29,7 @@ namespace Fuse.Reactive
 			{
 				if (l < 0.5) 
 					s = del_max / (max + min);
-				else           
+				else		   
 					s = del_max / (2 - max - min);
 
 				var del_r = (((max - r) / 6) + (del_max / 2)) / del_max;
@@ -61,7 +61,7 @@ namespace Fuse.Reactive
 			float var_2;
 			if (l < 0.5f) 
 				var_2 = l * (1.0f + s);
-			else           
+			else		   
 				var_2 = (l + s) - (s * l);
 
 			var var_1 = 2 * l - var_2;

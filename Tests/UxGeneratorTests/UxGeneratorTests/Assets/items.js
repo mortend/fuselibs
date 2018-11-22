@@ -1,5 +1,5 @@
 items = Observable([]);
 
 function addItem() {
-    items.add({ text: "This is an item" });
+	items.add({ text: "This is an item" });
 }

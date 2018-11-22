@@ -19,7 +19,7 @@ namespace Fuse.Controls
 
 		## Example		
 
-		    <Grid Alignment="Center" Rows="100,100,100" Columns="100">
+			<Grid Alignment="Center" Rows="100,100,100" Columns="100">
 				<Rectangle Margin="10" CornerRadius="4">
 					<SolidColor Color="#a542db" />
 				</Rectangle>

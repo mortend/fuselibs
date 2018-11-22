@@ -232,7 +232,7 @@ namespace Fuse.iOS.Bindings
 				
 			var pixelSize = (int2)Math.Ceil(_textLayout.PixelBounds.Size);
 			if (pixelSize.X < 1 || pixelSize.Y < 1 ||
-			    pixelSize.X > Texture2D.MaxSize || pixelSize.Y > Texture2D.MaxSize)
+				pixelSize.X > Texture2D.MaxSize || pixelSize.Y > Texture2D.MaxSize)
 				return;
 
 			var pointSize = (float2)pixelSize / _control.Viewport.PixelsPerPoint;

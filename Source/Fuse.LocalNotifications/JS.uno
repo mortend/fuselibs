@@ -80,7 +80,7 @@ namespace Fuse.LocalNotifications
 					(string)args[2],  // body
 					(args[3]!=null ? (string)args[3] : ""), // payload
 					(hasSoundArg ? (bool)args[4] : true),   // sound
-					badgeNumber);     // badgeNumber
+					badgeNumber);	 // badgeNumber
 			}
 			return null;
 		}
@@ -106,7 +106,7 @@ namespace Fuse.LocalNotifications
 					(string)args[1],  // body
 					(args[2]==null ? "" : (string)args[2]), // payload
 					(hasSoundArg ? (bool)args[3] : true),   // sound
-					badgeNumber);     // badgeNumber
+					badgeNumber);	 // badgeNumber
 			}
 			return null;
 		}

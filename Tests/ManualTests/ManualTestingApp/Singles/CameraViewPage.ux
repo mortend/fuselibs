@@ -13,5 +13,5 @@
 			</NativeViewHost>
 		</Panel>
 	</DockPanel>
-    <FpsMeter/>
+	<FpsMeter/>
 </Page>

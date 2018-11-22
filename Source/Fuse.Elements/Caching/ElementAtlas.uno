@@ -126,7 +126,7 @@ namespace Fuse.Elements
 			float2 rightBottom = WindowCoordToClipSpace(input.RightBottom, viewportSize);
 			// TODO: figure out why we need to negate these!
 			return Rect.ContainingPoints(float2(leftTop.X, -leftTop.Y),
-			                             float2(rightBottom.X, -rightBottom.Y));
+										 float2(rightBottom.X, -rightBottom.Y));
 		}
 
 		public static Rect GetScissorRectInClipSpace(DrawContext dc)
