@@ -17,15 +17,15 @@ namespace Fuse.Common
 			}
 
 			Blit(texture, SamplerState.LinearClamp, true,
-			     new Rect(float2(0, 0), float2(1, 1)), textureTransform,
-			     rect, localToClipTransform,
-			     float4(1, 1, 1, opacity));
+				 new Rect(float2(0, 0), float2(1, 1)), textureTransform,
+				 rect, localToClipTransform,
+				 float4(1, 1, 1, opacity));
 		}
 
 		public void Blit(Texture2D texture, SamplerState samplerState, bool preMultiplied,
-		                 Rect textureRect, float3x3 textureTransform,
-		                 Rect localRect, float4x4 localToClipTransform,
-		                 float4 color, PolygonFace cullFace = PolygonFace.None)
+						 Rect textureRect, float3x3 textureTransform,
+						 Rect localRect, float4x4 localToClipTransform,
+						 float4 color, PolygonFace cullFace = PolygonFace.None)
 		{
 			BlendOperand srcRGB, dstRGB;
 			BlendOperand srcA, dstA;

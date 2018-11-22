@@ -43,11 +43,11 @@ namespace Basic
 				control.SetResource(ColorCodes[i], Uno.Color.Parse(s[i]));
 		}
 
-        static string[] GetColorScheme(ColorScheme scheme)
-        {
-        	switch (scheme)
-        	{
-        		case ColorScheme.Amber: return Amber;
+		static string[] GetColorScheme(ColorScheme scheme)
+		{
+			switch (scheme)
+			{
+				case ColorScheme.Amber: return Amber;
 				case ColorScheme.BlueGrey: return BlueGrey;
 				case ColorScheme.Blue: return Blue;
 				case ColorScheme.Brown: return Brown;
@@ -67,10 +67,10 @@ namespace Basic
 				case ColorScheme.Teal: return Teal;
 				case ColorScheme.Yellow: return Yellow;
 				default: throw new Exception("Invalid color scheme");
-        	}
-        }
+			}
+		}
 
-        static string[] ColorCodes = new [] { "Basic.C50", "Basic.C100", "Basic.C200", "Basic.C300", "Basic.C400", "Basic.C500", "Basic.C600", "Basic.C700", "Basic.C800", "Basic.C900" };
+		static string[] ColorCodes = new [] { "Basic.C50", "Basic.C100", "Basic.C200", "Basic.C300", "Basic.C400", "Basic.C500", "Basic.C600", "Basic.C700", "Basic.C800", "Basic.C900" };
 		static string[] Red = new [] { "#FFEBEE", "#FFCDD2", "#EF9A9A", "#E57373", "#EF5350", "#F44336", "#E53935", "#D32F2F", "#C62828", "#B71C1C" };
 		static string[] Pink = new [] { "#FCE4EC", "#F8BBD0", "#F48FB1", "#F06292", "#EC407A", "#E91E63", "#D81B60", "#C2185B", "#AD1457", "#880E4F" };
 		static string[] Purple = new [] { "#F3E5F5", "#E1BEE7", "#CE93D8", "#BA68C8", "#AB47BC", "#9C27B0", "#8E24AA", "#7B1FA2", "#6A1B9A", "#4A148C" };

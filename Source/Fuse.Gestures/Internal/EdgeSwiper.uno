@@ -202,7 +202,7 @@ namespace Fuse.Gestures.Internal
 						withinBounds = _leftRightSwipe.IsWithinBounds(diff);
 						break;
 
-					case Edge.Top:    
+					case Edge.Top:	
 					case Edge.Bottom:
 						withinBounds = _upDownSwipe.IsWithinBounds(diff);
 						break;

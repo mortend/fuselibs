@@ -8,16 +8,16 @@
 }
 
 +(NSString *)contentTypeForImageData:(NSData *)data {
-    uint8_t c;
-    [data getBytes:&c length:1];
-    switch (c) {
+	uint8_t c;
+	[data getBytes:&c length:1];
+	switch (c) {
 		  case 0xFF:
-		      return @"jpg";
+			  return @"jpg";
 		  case 0x89:
-		      return @"png";
+			  return @"png";
 			default:
 					return nil;
-    }
+	}
 }
 
 +(NSString*)imageFromDataSync:(NSData*)data {

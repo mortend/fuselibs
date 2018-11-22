@@ -4,10 +4,10 @@ using Fuse.Controls;
 
 public partial class TranslateAnimatorTest_00
 {
-    public TranslateAnimatorTest_00()
-    {
-        InitializeUX();
-    }
+	public TranslateAnimatorTest_00()
+	{
+		InitializeUX();
+	}
 
 	public Translation Translation1
 	{

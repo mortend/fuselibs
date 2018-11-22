@@ -398,7 +398,7 @@ namespace Fuse.Animations
 			get { return Math.RadiansToDegrees(Y); }
 			set { Y = Math.DegreesToRadians(value); }
 		}
-	    
+		
 		/** Shear angle from the X and Y axes, in radians */
 		public float2 XY
 		{

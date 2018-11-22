@@ -135,13 +135,13 @@ namespace Fuse.Gestures
 		
 		bool _hasDirection;
 		SwipeDirection _direction;
-	    
+		
 		/**
 			The direction of movement to detect swipe gestures for.
 
 			When `Type="Active"`, the opposite direction is used to deactivate the trigger.
 		*/
-    
+	
 		public SwipeDirection Direction
 		{
 			get { return _direction; }
@@ -181,7 +181,7 @@ namespace Fuse.Gestures
 			Note that since SwipeGesture applies some physics, deceleration also counts when calculating
 			progress.
 		*/
-    
+	
 		public float Length
 		{
 			get { return (float)_region.Length; }

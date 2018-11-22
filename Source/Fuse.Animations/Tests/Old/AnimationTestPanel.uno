@@ -33,7 +33,7 @@ namespace AnimationTests.Test
 						PointerType = Uno.Platform.PointerType.Mouse}, this));
 		}
 
-	    public Panel Panel1
+		public Panel Panel1
 		{
 			get
 			{

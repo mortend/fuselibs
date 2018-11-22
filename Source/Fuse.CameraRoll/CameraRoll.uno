@@ -25,11 +25,11 @@ namespace Fuse.CameraRoll
 			var cameraRoll = require("FuseJS/CameraRoll");
 			
 			cameraRoll.getImage()
-			    .then(function(image) {
-			        // Will be called if the user successfully selected an image.
-			    }, function(error) {
-			        // Will be called if the user aborted the selection or if an error occurred.
-			    });
+				.then(function(image) {
+					// Will be called if the user successfully selected an image.
+				}, function(error) {
+					// Will be called if the user aborted the selection or if an error occurred.
+				});
 		
 		Taking a picture with the camera and adding it to the camera roll:
 		
@@ -37,14 +37,14 @@ namespace Fuse.CameraRoll
 			var camera = require("FuseJS/Camera");
 			
 			camera.takePicture(640, 480)
-			    .then(function(image) {
-			        return cameraRoll.publishImage(image);
-			    })
-			    .then(function() {
-			        // Will be called if the image was successfully added to the camera roll.
-			    }, function(error) {
-			        // Will called if an error occurred.
-			    });
+				.then(function(image) {
+					return cameraRoll.publishImage(image);
+				})
+				.then(function() {
+					// Will be called if the image was successfully added to the camera roll.
+				}, function(error) {
+					// Will called if an error occurred.
+				});
 		
 		> **Note**: You also need to add a package reference to `Fuse.Camera` for the above example to work.
 	*/

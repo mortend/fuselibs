@@ -10,7 +10,7 @@ namespace Fuse.Internal
 		{
 			var depth = far - near;
 			if (Math.Min(Math.Abs(width), Math.Abs(height)) < _zeroTolerance ||
-			    Math.Abs(depth) < _zeroTolerance)
+				Math.Abs(depth) < _zeroTolerance)
 			{
 				result = float4x4.Identity;
 				return false;
@@ -77,7 +77,7 @@ namespace Fuse.Internal
 		{
 			var zdiff = znear - zfar;
 			if (Math.Min(Math.Abs(viewSize.X), Math.Abs(viewSize.Y)) < _zeroTolerance ||
-			    Math.Abs(zdiff) < _zeroTolerance)
+				Math.Abs(zdiff) < _zeroTolerance)
 			{
 				result = float4x4.Identity;
 				return false;
@@ -96,7 +96,7 @@ namespace Fuse.Internal
 		{
 			float zdiv = 2*zfar*znear;
 			if (Math.Abs(distance) < _zeroTolerance ||
-			    Math.Abs(zdiv)  < _zeroTolerance)
+				Math.Abs(zdiv)  < _zeroTolerance)
 			{
 				result = float4x4.Identity;
 				return false;

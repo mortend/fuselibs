@@ -65,5 +65,5 @@
 			<Change Target="Label5.Visibility" Value="Visible" Delay="4.5"/>
 		</WhileTrue>
 	</DockPanel>
-    <FpsMeter/>
+	<FpsMeter/>
 </Page>

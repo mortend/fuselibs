@@ -50,15 +50,15 @@ namespace Uno.Collections
 			}
 		}
 		
-        public void Clear()
-        {
+		public void Clear()
+		{
 			_back.Clear();
 			if (_mod != null)
 				_mod.Clear();
-        }
-        
-        public void Add(T item)
-        {
+		}
+		
+		public void Add(T item)
+		{
 			if (_defer)
 			{
 				//prefer to erase pending remove first
@@ -75,10 +75,10 @@ namespace Uno.Collections
 			}
 			else
 				_back.Add(item);
-        }
-        
-        public bool Remove(T item)
-        {
+		}
+		
+		public bool Remove(T item)
+		{
 			if (_defer)
 			{
 				//prefer to erase pending add first
@@ -101,10 +101,10 @@ namespace Uno.Collections
 			}
 			
 			return _back.Remove(item);
-        }
-        
-        public bool Contains(T item)
-        {
+		}
+		
+		public bool Contains(T item)
+		{
 			if (_mod != null)
 			{
 				for (int i=0; i < _mod.Count; ++i)
@@ -118,10 +118,10 @@ namespace Uno.Collections
 			}
 			
 			return _back.Contains(item);
-        }
-        
-        public int Count 
-        { 
+		}
+		
+		public int Count 
+		{ 
 			get 
 			{ 
 				var c = _back.Count;

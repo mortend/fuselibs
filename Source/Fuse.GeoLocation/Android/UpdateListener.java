@@ -9,12 +9,12 @@ public class UpdateListener implements android.location.LocationListener{
   
   public UpdateListener(Action_Object onLocationChanged)
   {
-    _onLocationChanged = onLocationChanged;
+	_onLocationChanged = onLocationChanged;
   }
   
   public void	onLocationChanged(Location location)
   {
-    _onLocationChanged.run(location);
+	_onLocationChanged.run(location);
   }
   
   public void	onProviderDisabled(String provider)

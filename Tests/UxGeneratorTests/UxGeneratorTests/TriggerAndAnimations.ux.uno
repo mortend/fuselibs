@@ -6,7 +6,7 @@ using Fuse.Controls;
 public partial class TriggerAndAnimators
 {
  	public TriggerAndAnimators()
-    {
-        InitializeUX();
-    }
+	{
+		InitializeUX();
+	}
 }

@@ -13,11 +13,11 @@ namespace Fuse.Reactive
 		You can hook up event handlers to call JavaScript functions with similar syntax to data bindings:
 
 			<JavaScript>
-			    module.exports = {
-			        clickHandler: function (args) {
-			            console.log("I was clicked: " + JSON.stringify(args));
-			        }
-			    };
+				module.exports = {
+					clickHandler: function (args) {
+						console.log("I was clicked: " + JSON.stringify(args));
+					}
+				};
 			</JavaScript>
 			<Button Clicked="{clickHandler}" Text="Click me!" />
 

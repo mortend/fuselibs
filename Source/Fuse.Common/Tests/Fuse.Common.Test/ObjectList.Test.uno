@@ -400,32 +400,32 @@ namespace Fuse.Test
 	
 	static class TestExtensions
 	{
-        public static int UsingIndexOf<T>(this IEnumerable<T> self, T element)
-        {
-            int i = 0;
-            using (var iter = self.GetEnumerator())
-            {
+		public static int UsingIndexOf<T>(this IEnumerable<T> self, T element)
+		{
+			int i = 0;
+			using (var iter = self.GetEnumerator())
+			{
 				while (iter.MoveNext())
 				{
 					if (iter.Current.Equals(element))
 						return i;
 					i++;
 				}
-            }
-            return -1;
-        }
-        
-        public static int ForeachIndexOf<T>(this IEnumerable<T> self, T element)
-        {
-            int i = 0;
-            foreach (var item in self)
-            {
-                if (item.Equals(element))
-                    return i;
-                i++;
-            }
-            return -1;
-        }
-        
+			}
+			return -1;
+		}
+		
+		public static int ForeachIndexOf<T>(this IEnumerable<T> self, T element)
+		{
+			int i = 0;
+			foreach (var item in self)
+			{
+				if (item.Equals(element))
+					return i;
+				i++;
+			}
+			return -1;
+		}
+		
 	}
 }

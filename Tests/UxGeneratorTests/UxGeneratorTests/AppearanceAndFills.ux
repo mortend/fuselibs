@@ -1,5 +1,5 @@
 <Panel ux:Class="AppearanceAndFills">
-    <Rectangle Layer="Background">
-        <SolidColor Color="0.6, 1, 1, 1" />
-    </Rectangle>
+	<Rectangle Layer="Background">
+		<SolidColor Color="0.6, 1, 1, 1" />
+	</Rectangle>
 </Panel>

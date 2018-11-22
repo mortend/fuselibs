@@ -385,7 +385,7 @@ namespace Fuse.Elements
 		
 		//IViewport
 		public Ray PointToWorldRay(float2 pointPos)
-        {
+		{
 			if (IsDisabled)
 				return Parent.Viewport.PointToWorldRay(pointPos);
 
@@ -398,7 +398,7 @@ namespace Fuse.Elements
 
 			var r = ViewportHelpers.PointToWorldRay(this, FrustumViewport.ViewProjectionTransformInverse, pointPos);
 			return r;
-        }
+		}
 
 		public Ray WorldToLocalRay(IViewport world, Ray worldRay, Visual where)
 		{

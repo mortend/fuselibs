@@ -97,27 +97,27 @@ namespace Fuse.Views
 					result[0] = a.get(0);
 					result[1] = a.get(1);
 				}
-			    public void onSizeChanged(int w, int h, int oldw, int oldh) {
-			    	@{global::Fuse.Views.View:Of(_this).OnSizeChanged(int,int,int,int):Call(w, h, oldw, oldh)};
-			    }
-			    public void onLayout(boolean changed, int left, int top, int right, int bottom) {
+				public void onSizeChanged(int w, int h, int oldw, int oldh) {
+					@{global::Fuse.Views.View:Of(_this).OnSizeChanged(int,int,int,int):Call(w, h, oldw, oldh)};
+				}
+				public void onLayout(boolean changed, int left, int top, int right, int bottom) {
 					@{global::Fuse.Views.View:Of(_this).OnLayout(bool,int,int,int,int):Call(changed, left, top, right, bottom)};
-			    }
-			    public void onAttachedToWindow() {
-			    	@{global::Fuse.Views.View:Of(_this).OnAttachedToWindow():Call()};
-			    }
-			    public void onDetachedFromWindow() {
-			    	@{global::Fuse.Views.View:Of(_this).OnDetachedFromWindow():Call()};
-			    }
-			    public void setDataJson(String json) {
+				}
+				public void onAttachedToWindow() {
+					@{global::Fuse.Views.View:Of(_this).OnAttachedToWindow():Call()};
+				}
+				public void onDetachedFromWindow() {
+					@{global::Fuse.Views.View:Of(_this).OnDetachedFromWindow():Call()};
+				}
+				public void setDataJson(String json) {
 					@{global::Fuse.Views.View:Of(_this).SetDataJson(string):Call(json)};
-			    }
-			    public void setDataString(String key, String value) {
+				}
+				public void setDataString(String key, String value) {
 					@{global::Fuse.Views.View:Of(_this).SetDataString(string,string):Call(key,value)};
-			    }
-			    public void setCallback(String key, com.fuse.views.ICallback callback) {
-			    	@{global::Fuse.Views.View:Of(_this).SetCallback(string,Java.Object):Call(key,callback)};
-			    }
+				}
+				public void setCallback(String key, com.fuse.views.ICallback callback) {
+					@{global::Fuse.Views.View:Of(_this).SetCallback(string,Java.Object):Call(key,callback)};
+				}
 			};
 		@}
 

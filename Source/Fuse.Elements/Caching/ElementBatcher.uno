@@ -126,8 +126,8 @@ namespace Fuse.Elements
 		{
 			var maxSize = MaxElementSize;
 			return size.X <= maxSize.X &&
-			       size.Y <= maxSize.Y &&
-			       size.X * size.Y <= MaxElementPixels;
+				   size.Y <= maxSize.Y &&
+				   size.X * size.Y <= MaxElementPixels;
 		}
 
 		public static bool ShouldBatchElementWithCachingMode(CachingMode mode)
@@ -217,8 +217,8 @@ namespace Fuse.Elements
 					var newRenderBounds = batchRenderBounds.Merge(elmRenderBounds);
 
 					if (newRenderBounds.Size.X > maxBatchRenderBounds.X ||
-					    newRenderBounds.Size.Y > maxBatchRenderBounds.Y ||
-					    batch.IsFull())
+						newRenderBounds.Size.Y > maxBatchRenderBounds.Y ||
+						batch.IsFull())
 						emitNewBatch = true;
 				}
 
@@ -247,7 +247,7 @@ namespace Fuse.Elements
 					// create a new batch for the atlas, and insert element
 					batch = allocBatch(atlas);
 					if ((elm.ElementBatchEntry == null || elm.ElementBatchEntry._atlas != atlas) &&
-					    !atlas.AddElement(elm))
+						!atlas.AddElement(elm))
 					{
 						// insert failed, fall back to single elements (this should never happen in reality)
 						debug_log "BUG: atlas-insertion failed, but should not!";
@@ -314,8 +314,8 @@ namespace Fuse.Elements
 				if (ElementBatch.TryGetCachingRect(elm, out cachingRect))
 				{
 					if ((cachingRect.Size.X <= e.AtlasRect.Size.X &&
-					     cachingRect.Size.Y <= e.AtlasRect.Size.Y) ||
-					    atlas.ReinsertElement(elm, cachingRect))
+						 cachingRect.Size.Y <= e.AtlasRect.Size.Y) ||
+						atlas.ReinsertElement(elm, cachingRect))
 						continue;
 				}
 

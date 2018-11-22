@@ -35,7 +35,7 @@ namespace Fuse.Elements.Test
 			using (var root = TestRootPanel.CreateWithChild(p,int2(1000)))
 			{
 				while (p.E1.Source.State != ImageSourceState.Ready ||
-				       p.E2.Source.State != ImageSourceState.Ready)
+					   p.E2.Source.State != ImageSourceState.Ready)
 				{
 					Uno.Threading.Thread.Sleep(10);
 					root.StepFrame();

@@ -76,5 +76,5 @@
 		</WhileTrue>
 	</Grid>
 </DockPanel>
-<!--    <FpsMeter/>-->
+<!--	<FpsMeter/>-->
 </Page>

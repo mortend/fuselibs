@@ -88,10 +88,10 @@ namespace Fuse.Effects
 				float2 tc4: tc + offsets.YZ / texSize;
 
 				PixelColor: sample(tex, tc,  Uno.Graphics.SamplerState.LinearClamp) * centerWeight +
-				            sample(tex, tc1, Uno.Graphics.SamplerState.LinearClamp) * diagonalWeight +
-				            sample(tex, tc2, Uno.Graphics.SamplerState.LinearClamp) * diagonalWeight +
-				            sample(tex, tc3, Uno.Graphics.SamplerState.LinearClamp) * diagonalWeight +
-				            sample(tex, tc4, Uno.Graphics.SamplerState.LinearClamp) * diagonalWeight;
+							sample(tex, tc1, Uno.Graphics.SamplerState.LinearClamp) * diagonalWeight +
+							sample(tex, tc2, Uno.Graphics.SamplerState.LinearClamp) * diagonalWeight +
+							sample(tex, tc3, Uno.Graphics.SamplerState.LinearClamp) * diagonalWeight +
+							sample(tex, tc4, Uno.Graphics.SamplerState.LinearClamp) * diagonalWeight;
 			};
 
 			dc.PopRenderTarget();
@@ -118,7 +118,7 @@ namespace Fuse.Effects
 				float2 tc: VertexPosition.XY * 0.5f + 0.5f;
 				float3 crossOffsets: float3(float2(offset) / texSize, 0);
 				float4 cornerOffsets: float4(float2(offset) / texSize,
-				                             -float2(offset) / texSize);
+											 -float2(offset) / texSize);
 				float2 tc1: tc + crossOffsets.XZ;
 				float2 tc2: tc - crossOffsets.XZ;
 				float2 tc3: tc + crossOffsets.ZY;
@@ -130,14 +130,14 @@ namespace Fuse.Effects
 				float2 tc8: tc + cornerOffsets.ZW;
 
 				PixelColor: sample(tex, tc,  Uno.Graphics.SamplerState.LinearClamp) * centerWeight +
-				            sample(tex, tc1, Uno.Graphics.SamplerState.LinearClamp) * crossWeight +
-				            sample(tex, tc2, Uno.Graphics.SamplerState.LinearClamp) * crossWeight +
-				            sample(tex, tc3, Uno.Graphics.SamplerState.LinearClamp) * crossWeight +
-				            sample(tex, tc4, Uno.Graphics.SamplerState.LinearClamp) * crossWeight +
-				            sample(tex, tc5, Uno.Graphics.SamplerState.LinearClamp) * cornerWeight +
-				            sample(tex, tc6, Uno.Graphics.SamplerState.LinearClamp) * cornerWeight +
-				            sample(tex, tc7, Uno.Graphics.SamplerState.LinearClamp) * cornerWeight +
-				            sample(tex, tc8, Uno.Graphics.SamplerState.LinearClamp) * cornerWeight;
+							sample(tex, tc1, Uno.Graphics.SamplerState.LinearClamp) * crossWeight +
+							sample(tex, tc2, Uno.Graphics.SamplerState.LinearClamp) * crossWeight +
+							sample(tex, tc3, Uno.Graphics.SamplerState.LinearClamp) * crossWeight +
+							sample(tex, tc4, Uno.Graphics.SamplerState.LinearClamp) * crossWeight +
+							sample(tex, tc5, Uno.Graphics.SamplerState.LinearClamp) * cornerWeight +
+							sample(tex, tc6, Uno.Graphics.SamplerState.LinearClamp) * cornerWeight +
+							sample(tex, tc7, Uno.Graphics.SamplerState.LinearClamp) * cornerWeight +
+							sample(tex, tc8, Uno.Graphics.SamplerState.LinearClamp) * cornerWeight;
 			};
 
 			dc.PopRenderTarget();

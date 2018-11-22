@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 
 public class LocalNotificationReceiver extends BroadcastReceiver {
-    public static boolean InForeground = false;
+	public static boolean InForeground = false;
 
-    @Override
-    public void onReceive(Context context, Intent intent)
-    {
-        com.foreign.Fuse.LocalNotifications.AndroidImpl.OnNotificationRecieved(context, intent);
-    }
+	@Override
+	public void onReceive(Context context, Intent intent)
+	{
+		com.foreign.Fuse.LocalNotifications.AndroidImpl.OnNotificationRecieved(context, intent);
+	}
 }

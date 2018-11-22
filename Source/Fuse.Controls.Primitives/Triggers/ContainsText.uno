@@ -67,7 +67,7 @@ a password field:
 	}
 
 	/** 
-	    DEPRECATED: Use @WhileContainsText instead 
+		DEPRECATED: Use @WhileContainsText instead 
 		
 	*/
 	public class ContainingText : WhileContainsText

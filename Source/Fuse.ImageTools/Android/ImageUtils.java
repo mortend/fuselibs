@@ -61,15 +61,15 @@ public class ImageUtils {
 	}
 
 	public static String getContentTypeForImageData(byte[] bytes) {
-	    int c = bytes[0];
-	    switch (c) {
+		int c = bytes[0];
+		switch (c) {
 			  case 0xFF:
-			      return "jpg";
+				  return "jpg";
 			  case 0x89:
-			      return "png";
+				  return "png";
 				default:
 						return null;
-	    }
+		}
 	}
 
 	public static Image resize(Image inImage, int desiredWidth, int desiredHeight, ResizeMode mode, int quality, boolean performInPlace) throws Exception{

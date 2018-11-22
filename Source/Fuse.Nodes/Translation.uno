@@ -10,8 +10,8 @@ namespace Fuse
 		an instance of `PlacedArgs`, containing the following fields:
 		
 			{
-				x,      // X-coordinate of the element's new position
-				y,      // Y-coordinate of the element's new position
+				x,	  // X-coordinate of the element's new position
+				y,	  // Y-coordinate of the element's new position
 				width,  // The new width of the element.
 				height  // The new height of the element
 			}

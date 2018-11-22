@@ -16,16 +16,16 @@ namespace Fuse.Navigation
 		In this example, the pages become slightly smaller when you are navigating them:
 
 			<App>
-			    <Page ux:Class="ScalingPanel">
-			        <Scaling ux:Name="scale" Factor="1" />
-			        <WhileNavigating>
-			            <Change scale.Factor=".7" Duration=".1" />
-			        </WhileNavigating>
-			    </Page>
-			    <PageControl>
-			        <ScalingPanel Color="Red" />
-			        <ScalingPanel Color="Blue" />
-			    </PageControl>
+				<Page ux:Class="ScalingPanel">
+					<Scaling ux:Name="scale" Factor="1" />
+					<WhileNavigating>
+						<Change scale.Factor=".7" Duration=".1" />
+					</WhileNavigating>
+				</Page>
+				<PageControl>
+					<ScalingPanel Color="Red" />
+					<ScalingPanel Color="Blue" />
+				</PageControl>
 			</App>
 	*/
 	public class WhileNavigating : WhileTrigger

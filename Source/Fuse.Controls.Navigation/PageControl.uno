@@ -28,19 +28,19 @@ namespace Fuse.Controls
 		You can disable this behavior by setting the @IsRouterOutlet property to `false`.
 		
 			<JavaScript>
-			    module.exports = {
-			        gotoPage1: function() { router.goto("page1"); },
-			        gotoPage2: function() { router.goto("page2"); },
-			        gotoPage3: function() { router.goto("page3"); }
-			    };
+				module.exports = {
+					gotoPage1: function() { router.goto("page1"); },
+					gotoPage2: function() { router.goto("page2"); },
+					gotoPage3: function() { router.goto("page3"); }
+				};
 			</JavaScript>
 
 			<Router ux:Name="router" />
 
 			<PageControl>
-			    <Panel ux:Name="page1" Color="#e74c3c" Clicked="{gotoPage2}" />
-			    <Panel ux:Name="page2" Color="#2ecc71" Clicked="{gotoPage3}" />
-			    <Panel ux:Name="page3" Color="#3498db" Clicked="{gotoPage1}" />
+				<Panel ux:Name="page1" Color="#e74c3c" Clicked="{gotoPage2}" />
+				<Panel ux:Name="page2" Color="#2ecc71" Clicked="{gotoPage3}" />
+				<Panel ux:Name="page3" Color="#3498db" Clicked="{gotoPage1}" />
 			</PageControl>
 
 		By using data binding, you can set the currently active page by `Name` using the `Active` property.

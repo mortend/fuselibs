@@ -34,43 +34,43 @@ namespace Fuse.Elements
 		HorizontalCenter = 2,
 
 		/** Aligns element to the right. */
-	    Right = 3,
+		Right = 3,
 
 		/** Aligns element to the top. */
-	    Top = 1<<2,
+		Top = 1<<2,
 
 		/** Centers element vertically. */
-	    VerticalCenter = 2<<2,
+		VerticalCenter = 2<<2,
 
 		/** Aligns element to the bottom. */
-	    Bottom = 3<<2,
+		Bottom = 3<<2,
 
 		/** Aligns element to the top left corner. */
-	    TopLeft = Left | Top,
+		TopLeft = Left | Top,
 
 		/** Centers element horizontally and aligns it to the top. */
-	    TopCenter = HorizontalCenter | Top,
+		TopCenter = HorizontalCenter | Top,
 
 		/** Aligns element to the top right corner. */
-	    TopRight = Right | Top,
+		TopRight = Right | Top,
 
 		/** Centers element vertically and aligns it to the left. */
-	    CenterLeft = Left | VerticalCenter,
+		CenterLeft = Left | VerticalCenter,
 
 		/** Centers element both horizontally and vertically. */
-	    Center = HorizontalCenter | VerticalCenter,
+		Center = HorizontalCenter | VerticalCenter,
 
 		/** Centers element vertically and aligns it to the right. */
-	    CenterRight = Right | VerticalCenter,
+		CenterRight = Right | VerticalCenter,
 
 		/** Aligns element to the bottom left corner. */
-	    BottomLeft = Left | Bottom,
+		BottomLeft = Left | Bottom,
 
 		/** Centers element horizontally and aligns it to the bottom. */
-	    BottomCenter = HorizontalCenter | Bottom,
+		BottomCenter = HorizontalCenter | Bottom,
 
 		/** Aligns element to the bottom right corner. */
-	    BottomRight = Right | Bottom
+		BottomRight = Right | Bottom
 	}
 	
 	public static class AlignmentHelpers

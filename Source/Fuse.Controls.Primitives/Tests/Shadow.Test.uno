@@ -36,9 +36,9 @@ namespace Fuse.Controls.Primitives.Test
 			using (var root = TestRootPanel.CreateWithChild(p, int2(300, 300)))
 			using (var fb = root.CaptureDraw())
 			{
-				fb.AssertPixel(float4(1, 0, 0, 1),        int2(50, 50));
+				fb.AssertPixel(float4(1, 0, 0, 1),		int2(50, 50));
 				fb.AssertPixel(Fuse.Drawing.Colors.Green, int2(41, 41), 0.01f);
-				fb.AssertPixel(float4(0, 0, 0, 0),        int2(39, 39));
+				fb.AssertPixel(float4(0, 0, 0, 0),		int2(39, 39));
 			}
 		}
 
@@ -81,7 +81,7 @@ namespace Fuse.Controls.Primitives.Test
 						var cornerEdge = (1.0f - 1.0f / Math.Sqrt(2.0f)) * radius;
 						var innerPixel = 40 + (int)Math.Floor(cornerEdge - 1.5f);
 						var outerPixel = 40 + (int)Math.Ceil(cornerEdge + 1.5f);
-						fb.AssertPixel(float4(0, 0, 0, 0),        int2(innerPixel));
+						fb.AssertPixel(float4(0, 0, 0, 0),		int2(innerPixel));
 						fb.AssertPixel(Fuse.Drawing.Colors.Green, int2(outerPixel), 0.01f);
 					}
 				}
@@ -101,7 +101,7 @@ namespace Fuse.Controls.Primitives.Test
 			using (var fb = root.CaptureDraw())
 			{
 				fb.AssertPixel(float4(0.5f, 0.25f, 0, 1), int2(50), 0.01f);
-				fb.AssertPixel(float4(0, 0.5f, 0, 1),     int2(41), 0.01f);
+				fb.AssertPixel(float4(0, 0.5f, 0, 1),	 int2(41), 0.01f);
 			}
 		}
 
@@ -118,7 +118,7 @@ namespace Fuse.Controls.Primitives.Test
 			using (var fb = root.CaptureDraw())
 			{
 				fb.AssertPixel(float4(0.5f, 0.25f, 0, 1), int2(50), 0.01f);
-				fb.AssertPixel(float4(0, 0.5f, 0, 1),     int2(41), 0.01f);
+				fb.AssertPixel(float4(0, 0.5f, 0, 1),	 int2(41), 0.01f);
 			}
 		}
 

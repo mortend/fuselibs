@@ -6,8 +6,8 @@ using Uno.Collections;
 
 namespace FuseJS
 {
-    /**
-        @scriptmodule FuseJS/Base64
+	/**
+		@scriptmodule FuseJS/Base64
 		
 		Allows you to encode and decode strings from Base64.
 		
@@ -20,7 +20,7 @@ namespace FuseJS
 			console.log(string); //LOG: Hello, world!
 			console.log(Base64.encodeAscii(string)); //LOG: SGVsbG8sIHdvcmxkIQ==
 		
-    */
+	*/
 	[UXGlobalModule]
 	public sealed class Base64 : NativeModule
 	{
@@ -87,7 +87,7 @@ namespace FuseJS
 		}
 
 		/** @scriptmethod decodeLatin1(stringToDecode)
-		    Decodes the given base64 Latin-1 encoded bytes to a string.
+			Decodes the given base64 Latin-1 encoded bytes to a string.
 
 				var Base64 = require("FuseJS/Base64");
 				// Prints "hello world"
@@ -106,7 +106,7 @@ namespace FuseJS
 		}
 
 		/** @scriptmethod encodeLatin1(stringToEncode)
-		    Encodes the given string to a Latin-1 base64 string.
+			Encodes the given string to a Latin-1 base64 string.
 
 				var Base64 = require("FuseJS/Base64");
 				// Prints "aGVsbG8gd29ybGQ="

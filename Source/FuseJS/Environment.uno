@@ -17,11 +17,11 @@ namespace FuseJS
 
 			var Environment = require('FuseJS/Environment');
 
-			if(Environment.ios)        console.log("Running on iOS");
-			if(Environment.android)    console.log("Running on Android");
-			if(Environment.preview)    console.log("Running in preview mode");
-			if(Environment.mobile)     console.log("Running on iOS or Android");
-			if(Environment.desktop)    console.log("Running on desktop");
+			if(Environment.ios)		console.log("Running on iOS");
+			if(Environment.android)	console.log("Running on Android");
+			if(Environment.preview)	console.log("Running in preview mode");
+			if(Environment.mobile)	 console.log("Running on iOS or Android");
+			if(Environment.desktop)	console.log("Running on desktop");
 			
 		You can also get the version of the current *mobile* OS as a
 		human-readable string using the `mobileOSVersion` property.
@@ -46,7 +46,7 @@ namespace FuseJS
 			(e.g. `1.0` or `3.4b5`).
 			On iOS, it returns a string in the format of `<major>.<minor>.<patch>` (e.g. `9.2.1`).
 			Returns an empty string on all other platforms.
-    */
+	*/
 	[UXGlobalModule]
 	public sealed class Environment : NativeModule
 	{

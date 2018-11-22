@@ -16,17 +16,17 @@ namespace Fuse.Controls
 		The following `WrapPanel` lays out its children horizontally from right to left.
 
 			<WrapPanel FlowDirection="RightToLeft">
-			    <Each Count="10">
-			        <Rectangle Margin="5" Width="100" Height="100" Color="Blue"/>
-			    </Each>
+				<Each Count="10">
+					<Rectangle Margin="5" Width="100" Height="100" Color="Blue"/>
+				</Each>
 			</WrapPanel>
 
 		The `Orientation` property can be used to make a vertical WrapPanel like so:
 
 			<WrapPanel Orientation="Vertical">
-			    <Each Count="10">
-			        <Rectangle Margin="5" Width="100" Height="100" Color="Blue"/>
-			    </Each>
+				<Each Count="10">
+					<Rectangle Margin="5" Width="100" Height="100" Color="Blue"/>
+				</Each>
 			</WrapPanel>
 		
 		You can also specify the maximum area the `WrapPanel` will allocate an element by using the `ItemWidth` and `ItemHeight` properties.
@@ -52,9 +52,9 @@ namespace Fuse.Controls
 			The `Orientation` property can be used to make a vertical WrapPanel like so:
 
 				<WrapPanel Orientation="Vertical">
-				    <Each Count="10">
-				        <Rectangle Margin="5" Width="100" Height="100" Color="Blue"/>
-				    </Each>
+					<Each Count="10">
+						<Rectangle Margin="5" Width="100" Height="100" Color="Blue"/>
+					</Each>
 				</WrapPanel>
 
 			See also the `FlowDirection` property.

@@ -15,7 +15,7 @@ namespace Fuse.Elements
 		float GetEffectiveOpacity()
 		{
 			if (_elm.Visibility == Visibility.Visible)
-			        return _elm.Opacity;
+					return _elm.Opacity;
 			return 0.0f;
 		}
 
@@ -122,9 +122,9 @@ namespace Fuse.Elements
 			int2 origin = (int2)Math.Floor(r.Minimum);
 			int2 size = (int2)Math.Ceil(r.Size + 0.01f);
 			return new Recti(origin.X,
-			                 origin.Y,
-			                 origin.X + size.X + 1,
-			                 origin.Y + size.Y + 1);
+							 origin.Y,
+							 origin.X + size.X + 1,
+							 origin.Y + size.Y + 1);
 		}
 
 		public static bool TryGetCachingRect(Element elm, out Recti cachingRect)

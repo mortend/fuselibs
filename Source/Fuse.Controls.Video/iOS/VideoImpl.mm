@@ -155,9 +155,9 @@ namespace FuseVideoImpl
 					vs->LoadedHandler = loadedCallback;
 					vs->_presentationSizeObserver = [[PresentationSizeObserver alloc] init];
 					[vs->Player addObserver: vs->_presentationSizeObserver
-					             forKeyPath: @"currentItem.presentationSize"
-					                options: (NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
-					                context: vs];
+								 forKeyPath: @"currentItem.presentationSize"
+									options: (NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
+									context: vs];
 
 					[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:NULL];
 					if (errorCallback != NULL)

@@ -93,12 +93,12 @@ namespace Fuse.Controls
 
 			<App>
 				<NativeViewHost>
-				    <StackPanel>
-				        <Button Text="I'm a Native button!" />
-				        <GraphicsView>
-				            <Button Text="I'm a graphics-button!" />
-				        </GraphicsView>
-				    </StackPanel>
+					<StackPanel>
+						<Button Text="I'm a Native button!" />
+						<GraphicsView>
+							<Button Text="I'm a graphics-button!" />
+						</GraphicsView>
+					</StackPanel>
 				</NativeViewHost>
 			</App>
 

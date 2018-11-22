@@ -48,7 +48,7 @@ namespace Fuse.Drawing.Primitives
 		public float Radius = 1;
 		public float Center = 0;
 
-	    public float EdgeDistance: req(RawDistance as float)
+		public float EdgeDistance: req(RawDistance as float)
 			Math.Abs(RawDistance-Center) - Radius;
 	}
 
