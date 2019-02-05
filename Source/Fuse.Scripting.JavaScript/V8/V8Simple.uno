@@ -42,9 +42,6 @@ namespace Fuse.Scripting.V8.Simple
 	[DotNetType("Fuse.Scripting.V8.Simple.JSCallbackFinalizer")]
 	extern(USE_V8) delegate void JSCallbackFinalizer(IntPtr data);
 
-	[DotNetType("Fuse.Scripting.V8.Simple.JSDebugMessageHandler")]
-	extern(USE_V8) delegate void JSDebugMessageHandler(IntPtr data, JSString message);
-
 	[DotNetType("Fuse.Scripting.V8.Simple.JSContext")]
 	[Set("TypeName", "::JSContext*")]
 	[Require("Header.Include", "include/V8Simple.h")]
@@ -141,22 +138,6 @@ namespace Fuse.Scripting.V8.Simple
 		public static extern JSValue EvaluateCreate(JSContext context, JSString fileName, JSString code, out JSScriptException error) @{ return ::JSContextEvaluateCreate($0, $1, $2, $3); @}
 		public static extern JSObject CopyGlobalObject(JSContext context) @{ return ::JSContextCopyGlobalObject($0); @}
 		public static extern string GetV8Version() @{ return ::uString::Ansi(::GetV8Version()); @}
-	}
-
-	// -------------------------------------------------------------------------
-	// Debug
-	[DotNetType("Fuse.Scripting.V8.Simple.Debug")]
-	[Require("Header.Include", "include/V8Simple.h")]
-	[TargetSpecificImplementation]
-	extern(USE_V8) static class Debug
-	{
-		public static extern(DOTNET) void SetMessageHandler(JSContext context, IntPtr data, JSDebugMessageHandler messageHandler);
-		public static extern void SendCommand(JSContext context, string command, int length) @{ 
-			//::SendJSDebugCommand($0, (uint16_t*)$1->Ptr(), $2); 
-		@}
-		public static extern void ProcessMessages(JSContext context) @{ 
-			//::ProcessJSDebugMessages($0); 
-		@}
 	}
 
 	// -------------------------------------------------------------------------

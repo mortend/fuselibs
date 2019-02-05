@@ -12,7 +12,6 @@ namespace Fuse.Scripting.V8
 	public extern(USE_V8) class Context: Fuse.Scripting.JavaScript.JSContext
 	{
 		internal Simple.JSContext _context;
-		extern(DEBUG_V8) Debugger _debugger;
 		internal Action<Simple.JSScriptException> _errorHandler;
 
 		internal Function _instanceOf;
@@ -38,9 +37,6 @@ namespace Fuse.Scripting.V8
 				_handleExternalFree = Handle.Free;
 				_context = Simple.Context.Create(_handleCallbackFree, _handleExternalFree);
 			}
-
-			if defined(DEBUG_V8)
-				_debugger = new Debugger(this, 5858);
 
 			_instanceOf = Evaluate("(instanceof)", "(function(x, y) { return x instanceof y; })") as Function;
 		}
@@ -134,11 +130,6 @@ namespace Fuse.Scripting.V8
 		public override void Dispose()
 		{
 			_errorHandler = null;
-			if defined(DEBUG_V8)
-			{
-				_debugger.Dispose();
-				_debugger = null;
-			}
 			IsDisposed = true;
 			_context.Release();
 			_context = default(Simple.JSContext);

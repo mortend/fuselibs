@@ -252,29 +252,6 @@ namespace Fuse.Scripting.V8
 		public static int GetLineNumber(this JSScriptException jse) { return Simple.ScriptException.GetLineNumber(jse); }
 		public static string GetStackTrace(this JSScriptException jse, JSContext context) { return Simple.ScriptException.GetStackTrace(jse).ToStr(context); }
 		public static string GetSourceLine(this JSScriptException jse, JSContext context) { return Simple.ScriptException.GetSourceLine(jse).ToStr(context); }
-
-		// Debug
-		static extern(DOTNET) JSDebugMessageHandler _cilMessageHandler = CilMessageHandlerImpl;
-		static extern(DOTNET) void CilMessageHandlerImpl(IntPtr data, JSString message)
-		{
-			var wrappedCallback = Handle.Target(data) as Action<JSString>;
-			wrappedCallback(message);
-		}
-		public static extern(DOTNET) void SetDebugMessageHandler(JSContext context, Action<JSString> messageHandler)
-		{
-			Simple.Debug.SetMessageHandler(context, Handle.Create(messageHandler), _cilMessageHandler);
-		}
-		public static extern(CPlusPlus) void SetDebugMessageHandler(JSContext context, Action<JSString> messageHandler)
-		@{
-			/*::SetJSDebugMessageHandler(
-				$0,
-				@{Handle.Create(object):Call($1)},
-				([] (void* data, ::JSString* message) -> void
-				{
-					@{Action<JSString>} handler = (@{Action<JSString>})data;
-					@{Action<JSString>:Of(handler).Call(message)};
-				}));*/
-		@}
 	}
 
 	[Require("Header.Include", "include/V8Simple.h")]
