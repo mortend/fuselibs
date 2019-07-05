@@ -40,22 +40,22 @@ fs.listFiles(testDir).then(function (files) {
 
 fw.testStarted("FileSystem writeTextToFile then readTextFromFile");
 fs.writeTextToFile(dir + "writeTextToFile.tmp", "content").then(function() {
-	fs.readTextFromFile(dir + "writeTextToFile.tmp").then(function(contents){
+	fs.readTextFromFile(dir + "writeTextToFile.tmp").then(function(contents) {
 		fw.assertEqual("content", contents);
 		// router.goto("passed");
-	}, function(error){
+	}, function(error) {
 		fw.testFailed("Could not read from file: " + error)
 	});
-}).catch(function(error){
+}).catch(function(error) {
 	fw.testFailed("Writing threw an error: " + error);
 });
 
 fw.testStarted("FileSystem exists");
 fs.writeTextToFileSync(dir + "fileThatExists.tmp", "content")
-fs.exists(dir + "fileThatExists.tmp").then(function(fileExists){
+fs.exists(dir + "fileThatExists.tmp").then(function(fileExists) {
 	fw.assertEqual(true, fileExists);
 	// router.goto("passed");
-}, function(error){
+}, function(error) {
 	fw.testFailed("Could not check if file exists due to error: " + error)
 });
 
@@ -64,14 +64,14 @@ var writtenBuffer = new ArrayBuffer(4);
 var bufferView = new Uint32Array(writtenBuffer);
 bufferView[0] = 0xdeadb001;
 fs.writeBufferToFile(dir + "writeBufferToFile.tmp", writtenBuffer).then(function() {
-	fs.readBufferFromFile(dir + "writeBufferToFile.tmp").then(function(readBuffer){
+	fs.readBufferFromFile(dir + "writeBufferToFile.tmp").then(function(readBuffer) {
 		fw.assertEqual(4, readBuffer.byteLength);
 		fw.assertEqual(0xdeadb001, (new Uint32Array(readBuffer))[0]);
 		router.goto("passed");
-	}, function(error){
+	}, function(error) {
 		fw.testFailed("Could not read from file: " + error)
 	});
-}).catch(function(error){
+}).catch(function(error) {
 	fw.testFailed("Writing threw an error: " + error);
 });
 
@@ -93,7 +93,7 @@ fs.getDirectoryInfo(testDir, writtenBuffer).then(function(info) {
 	// Just check that the timestamps is correct within a 10 minute bound
 	assertDateIsValid(info.lastWriteTime);
 	assertDateIsValid(info.lastAccessTime);
-}).catch(function(error){
+}).catch(function(error) {
 	fw.testFailed("getFileInfo threw error: " + error);
 });
 
@@ -106,7 +106,7 @@ fs.getFileInfo(testDirContainedFile, writtenBuffer).then(function(info) {
 	// Just check that the timestamps is correct within a 10 minute bound
 	assertDateIsValid(info.lastWriteTime);
 	assertDateIsValid(info.lastAccessTime);
-}).catch(function(error){
+}).catch(function(error) {
 	fw.testFailed("getFileInfo threw error: " + error);
 });
 

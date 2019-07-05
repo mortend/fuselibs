@@ -25,7 +25,7 @@ namespace Fuse.Android.Controls.WebViewUtils
 			webViewHandle.LoadUrl("javascript:"+expression);
 		}
 		
-		public void HandleResult(string result){
+		public void HandleResult(string result) {
 			if(_handler!=null)
 				_handler(result);
 		}
@@ -59,7 +59,7 @@ namespace Fuse.Android.Controls.WebViewUtils
 			_currentRequest.Execute(_webViewHandle, CreateExpression(_currentRequest.JavaScript));
 		}
 		
-		string CreateExpression(string original){
+		string CreateExpression(string original) {
 			return _interfaceName+".onResult(eval(\'"+original+"\'));";
 		}
 		

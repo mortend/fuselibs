@@ -646,8 +646,8 @@ uloc_getDisplayVariant(const char* locale,
  *    UChar displayKeyword[256];
  *    int32_t displayKeywordLen = 0;
  *    UEnumeration* keywordEnum = uloc_openKeywords("de_DE@collation=PHONEBOOK;calendar=TRADITIONAL", &status);
- *    for(keywordCount = uenum_count(keywordEnum, &status); keywordCount > 0 ; keywordCount--){
- *          if(U_FAILURE(status)){
+ *    for(keywordCount = uenum_count(keywordEnum, &status); keywordCount > 0 ; keywordCount--) {
+ *          if(U_FAILURE(status)) {
  *              ...something went wrong so handle the error...
  *              break;
  *          }

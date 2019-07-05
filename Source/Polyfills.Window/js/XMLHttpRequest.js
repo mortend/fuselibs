@@ -165,7 +165,7 @@
 	}
 
 	fuseXMLHttpRequest.prototype.send = function(data) {
-		if(this._fuseHttpRequest !== null){
+		if(this._fuseHttpRequest !== null) {
 			this._fuseHttpRequest.setTimeout(this.timeout);
 			this._fuseHttpRequest.sendAsync(data);
 		}

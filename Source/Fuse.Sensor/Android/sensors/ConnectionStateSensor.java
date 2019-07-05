@@ -19,7 +19,7 @@ public class ConnectionStateSensor {
         mBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if (ConnectionStateSensor.this.onDataChanged != null){
+                if (ConnectionStateSensor.this.onDataChanged != null) {
                     boolean connectionStatus = false;
                     NetworkInfo networkInfo =(NetworkInfo) intent.getExtras().get(ConnectivityManager.EXTRA_NETWORK_INFO);
                     if(networkInfo!=null && networkInfo.getState() == NetworkInfo.State.CONNECTED) {

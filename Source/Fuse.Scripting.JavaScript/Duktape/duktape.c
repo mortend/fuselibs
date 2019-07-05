@@ -30532,7 +30532,7 @@ DUK_INTERNAL duk_ret_t duk_bi_function_constructor(duk_context *ctx) {
 	 */
 	duk_push_string(ctx, "function(");
 	duk_dup(ctx, 1);
-	duk_push_string(ctx, "){");
+	duk_push_string(ctx, ") {");
 	duk_dup(ctx, 0);
 	duk_push_string(ctx, "}");
 	duk_concat(ctx, 5);
@@ -31953,7 +31953,7 @@ DUK_INTERNAL duk_ret_t duk_bi_global_object_require(duk_context *ctx) {
 	 *  (although expected to be quite rare).
 	 */
 
-	duk_push_string(ctx, "(function(require,exports,module){");
+	duk_push_string(ctx, "(function(require,exports,module) {");
 
 	/* Duktape.modSearch(resolved_id, fresh_require, exports, module). */
 	duk_get_prop_stridx(ctx, 4, DUK_STRIDX_MOD_SEARCH);  /* Duktape.modSearch */
@@ -71996,7 +71996,7 @@ DUK_INTERNAL duk_double_t duk_js_tonumber(duk_hthread *thr, duk_tval *tv) {
 		return (p != NULL ? 1.0 : 0.0);
 	}
 	case DUK_TAG_LIGHTFUNC: {
-		/* +(function(){}) -> NaN */
+		/* +(function() {}) -> NaN */
 		return DUK_DOUBLE_NAN;
 	}
 #if defined(DUK_USE_FASTINT)

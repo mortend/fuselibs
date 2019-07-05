@@ -4,9 +4,9 @@
 		var Observable = require("FuseJS/Observable")
 		var result = Observable()
 		module.exports = {
-			test : function(){
+			test : function() {
 				Bundle.read("assets/test.txt")
-					.then(function(text){
+					.then(function(text) {
 						result.value = text=="Hello world";
 					})
 			},

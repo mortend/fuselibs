@@ -85,7 +85,7 @@
 	-(BOOL)authorized
 	{
 		CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-		switch(status){
+		switch(status) {
 			case kCLAuthorizationStatusAuthorizedWhenInUse:
 			case kCLAuthorizationStatusAuthorizedAlways:
 				return true;
@@ -102,7 +102,7 @@
 
 	-(void)requestLocationAuthentication:(void(^)(bool))onRequestResult
 	{
-		if([self authorized]){
+		if([self authorized]) {
 			if(onRequestResult!=nil)
 				onRequestResult(true);
 		}else{
@@ -172,7 +172,7 @@
 	{
 		id annotation = view.annotation;
         	if (![annotation isKindOfClass:[MKUserLocation class]]) {
-			if(markerSelectBlock){
+			if(markerSelectBlock) {
 				FusePinAnnotation* a = [view annotation];
 				markerSelectBlock(a.markerID, a.title);
 			}

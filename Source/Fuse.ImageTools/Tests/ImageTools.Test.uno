@@ -17,7 +17,7 @@ namespace Fuse.ImageTools.Test
 		[extern(Android) Ignore("https://github.com/fuse-open/fuselibs/issues/690")]
 		public void CreatingAnImageSucceeds()
 		{
-			using (var root = new TestRootPanel()){
+			using (var root = new TestRootPanel()) {
 				var future = ImageTools.ImageFromBase64("iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPAQMAAAABGAcJAAAABlBMVEX9//wAAQATpOzaAAAAH0l" + "EQVQI12MAAoMHIFLAAYSEwIiJgYGZASrI38AAAwBamgM5VF7xgwAAAABJRU5ErkJggg==");
 				future.Then(SaveImage, Fail);
 				_done.WaitOne();

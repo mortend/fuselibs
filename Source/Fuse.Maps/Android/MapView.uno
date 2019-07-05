@@ -164,7 +164,7 @@ namespace Fuse.Maps.Android
 			}
 		}
 
-		public void UpdateMarkers(){
+		public void UpdateMarkers() {
 			if(!IsReady) return;
 			ForeignHelpers.Clear(_mapView);
 			foreach(MapMarker m in Markers)
@@ -216,11 +216,11 @@ namespace Fuse.Maps.Android
 			ForeignHelpers.MoveCamera(_mapView, latitude, longitude, (float)zoomlevel, (float)tilt, (float)orientation, 0.0);
 		}
 
-		void ConfigUI(){
+		void ConfigUI() {
 			if(IsReady) ForeignHelpers.ConfigureUI(_mapView, _showCompass, _showLocationButton);
 		}
 
-		void ConfigGestures(){
+		void ConfigGestures() {
 			if(IsReady) ForeignHelpers.ConfigureGestures(_mapView, _allowZoom, _allowRotate, _allowTilt, _allowScroll);
 		}
 

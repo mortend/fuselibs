@@ -4,7 +4,7 @@
 		var Observable = require("FuseJS/Observable")
 		var result = Observable()
 		module.exports = {
-			test : function(){
+			test : function() {
 				result.value = Bundle.readSync("assets/test.txt") == "Hello world";
 			},
 			result : result

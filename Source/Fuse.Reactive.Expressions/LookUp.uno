@@ -252,14 +252,14 @@ namespace Fuse.Reactive
 				_lu = null;
 			}
 
-			void IObserver.OnClear(){ ResultChanged(); }
-			void IObserver.OnSet(object newValue){ ResultChanged(); }
-			void IObserver.OnAdd(object addedValue){ ResultChanged(); }
-			void IObserver.OnNewAt(int index, object value){ ResultChanged(); }
-			void IObserver.OnFailed(string message){ ResultChanged(); }
-			void IObserver.OnNewAll(IArray values){ ResultChanged(); }
-			void IObserver.OnRemoveAt(int index){ ResultChanged(); }
-			void IObserver.OnInsertAt(int index, object value){ ResultChanged(); }		
+			void IObserver.OnClear() { ResultChanged(); }
+			void IObserver.OnSet(object newValue) { ResultChanged(); }
+			void IObserver.OnAdd(object addedValue) { ResultChanged(); }
+			void IObserver.OnNewAt(int index, object value) { ResultChanged(); }
+			void IObserver.OnFailed(string message) { ResultChanged(); }
+			void IObserver.OnNewAll(IArray values) { ResultChanged(); }
+			void IObserver.OnRemoveAt(int index) { ResultChanged(); }
+			void IObserver.OnInsertAt(int index, object value) { ResultChanged(); }		
 		}
 	}
 }

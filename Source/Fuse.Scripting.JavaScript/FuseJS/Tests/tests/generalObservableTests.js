@@ -7,12 +7,12 @@ describe('general observable tests', function() {
     it('test_01', function () {
         var tasks = Observable({name: "123 hi guys", isDone: false}, {name: "456 testing", isDone: true});
 
-        var tasksDoneText = tasks.count(function(x){
+        var tasksDoneText = tasks.count(function(x) {
             return x.isDone;
-        }).map(function(x){
+        }).map(function(x) {
             return "There are " + x + " completed tasks";
         });
-        tasksDoneText.addSubscriber(function(){
+        tasksDoneText.addSubscriber(function() {
             //console.log(tasksDoneText.value);
         });
 
@@ -23,11 +23,11 @@ describe('general observable tests', function() {
     });
     it('test_02', function () {
         var fruits = Observable({name: "Apple", isGood: true}, {name: "Banana", isGood: true}, {name: "Pear", isGood: false}, {name: "Tomato", isGood: true});
-        var goodFruits = fruits.where(function(e){ return e.isGood; });
+        var goodFruits = fruits.where(function(e) { return e.isGood; });
 
-        goodFruits.addSubscriber(function(){
+        goodFruits.addSubscriber(function() {
             //console.log("Good fruits:");
-            //goodFruits.forEach(function(e){
+            //goodFruits.forEach(function(e) {
             //    console.log(e.name + " " + (e.isGood ? "is a good fruit" : "is not a good fruit, and should not of been on the list"));
             //});
         });
@@ -44,7 +44,7 @@ describe('general observable tests', function() {
         var books = Observable("UX and you", "Observing the observer", "Documenting the documenter");
 
         var numBooks = books.count();
-        numBooks.addSubscriber(function(){
+        numBooks.addSubscriber(function() {
             //console.log("There are " + numBooks.value + " books. That is " + (numBooks.value == books.length ? "correct!" : "wrong!"));
         });
 
@@ -60,11 +60,11 @@ describe('general observable tests', function() {
         var beveragesPlusOne = Observable(function() { return beverages.length + 1; });
         var numProducts = Observable(function() { return beverages.length + snacks.length; });
 
-        beveragesPlusOne.addSubscriber(function(){
+        beveragesPlusOne.addSubscriber(function() {
             //console.log("There are " + beveragesPlusOne.value + " beverages if you add another. That is " + (beveragesPlusOne.value == beverages.length + 1 ? "correct." : "incorrect!"));
         });
 
-        numProducts.addSubscriber(function(){
+        numProducts.addSubscriber(function() {
             //console.log("There are " + numProducts.value + " products. That is " + (numProducts.value == beverages.length + snacks.length ? "correct." : "incorrect!"));
         });
 
@@ -86,7 +86,7 @@ describe('general observable tests', function() {
 
         var difference = Observable(function() { return people.length - other_people.length; });
 
-        difference.addSubscriber(function(){
+        difference.addSubscriber(function() {
             //console.log("There are " + difference.value + " more people in the first people list. That is " + (difference.value == people.length - other_people.length ? "correct." : "incorrect."));
         });
 
@@ -103,7 +103,7 @@ describe('general observable tests', function() {
 
         var numWeekdays = Observable(function() { return days.length - 2; });
 
-        numWeekdays.addSubscriber(function(){
+        numWeekdays.addSubscriber(function() {
             //console.log("There are " + numWeekdays.value + " weekdays. That is " + (numWeekdays.value == days.length-1 ? "correct." : "incorrect."));
         });
 
@@ -119,7 +119,7 @@ describe('general observable tests', function() {
 
         var difference = Observable(function() { return people.length - other_people.length; });
 
-        difference.addSubscriber(function(){
+        difference.addSubscriber(function() {
             //console.log("The difference between the two lists is " + difference.value + ". That is " + (difference.value == people.value - other_people.value ? "correct." : "incorrect."));
         });
 
@@ -138,7 +138,7 @@ describe('general observable tests', function() {
 
         var breakfastCombinations = Observable(function() { return onTop.length * breadTypes.length; });
 
-        breakfastCombinations.addSubscriber(function(){
+        breakfastCombinations.addSubscriber(function() {
             //console.log("There are " + breakfastCombinations.value + " combinations for breakfast. That is " + (breakfastCombinations.value == onTop.value * breadTypes.value ? "correct." : "incorrect!"));
         });
 
@@ -157,7 +157,7 @@ describe('general observable tests', function() {
         var projects = Observable("Fix tickets", "Finalize design", "Debug backend");
         var estNeededPeople = Observable(function() { return projects.length * 2; });
             
-        estNeededPeople.addSubscriber(function(){
+        estNeededPeople.addSubscriber(function() {
             //console.log("Estimated people: " + estNeededPeople.value + ". That is " + (estNeededPeople.value == 6 ? "correct." : "incorrect!"));
         });
 
@@ -171,7 +171,7 @@ describe('general observable tests', function() {
 
         var isNumberLarge = Observable(function() { return number.value > 5; });
 
-        isNumberLarge.addSubscriber(function(){
+        isNumberLarge.addSubscriber(function() {
             //console.log(number.value + " is " + (isNumberLarge.value ? "larger then " : "less then ") + "5. That is " + (isNumberLarge.value == (number.value > 5) ? "correct." : "incorrect!"));
         })
 
@@ -185,7 +185,7 @@ describe('general observable tests', function() {
 
         var enoughStaff = Observable(function() { return staff.length > 2; });
 
-        enoughStaff.addSubscriber(function(){
+        enoughStaff.addSubscriber(function() {
             //console.log("There is " + (enoughStaff.value ? "enough " : "not enough ") + "staff. That is " + (enoughStaff.value ? "correct" : "incorrect"));
         });
 
@@ -203,7 +203,7 @@ describe('general observable tests', function() {
 
         var enoughMoney = Observable(function() { return funds >= price; });
 
-        enoughMoney.addSubscriber(function(){
+        enoughMoney.addSubscriber(function() {
             //console.log("We " + (enoughMoney.value ? "have enough" : "do not have enough") + " money. That is " + (enoughMoney.value == (funds.value > price.value) ? "correct." : "incorrect!"));
         });
 
@@ -248,7 +248,7 @@ describe('general observable tests', function() {
 
         var spaceOnOneScreen = Observable(function() { return members.length <= 5; });
 
-        spaceOnOneScreen.addSubscriber(function(){
+        spaceOnOneScreen.addSubscriber(function() {
             //console.log("There " + (spaceOnOneScreen.value ? "is" : "is not") + " space on one screen for all the members. That is " + (spaceOnOneScreen.value == (members.length <= 5) ? "correct." : "incorrect!"));
         });
 
@@ -266,7 +266,7 @@ describe('general observable tests', function() {
 
         var x = Observable(function() { return secondGroup.length <= firstGroup.length; });
 
-        x.addSubscriber(function(){
+        x.addSubscriber(function() {
             //console.log("The second group " + (x.value ? "is" : "is not") + " less than or equal to the first group. That is " + (x.value == (secondGroup.length <= firstGroup.length) ? "correct." : "incorrect!"));
         });
 
@@ -281,7 +281,7 @@ describe('general observable tests', function() {
 
         var sameSize = Observable(function() { return userList1.length == userList2.length; });
 
-        sameSize.addSubscriber(function(){
+        sameSize.addSubscriber(function() {
             //console.log("The two lists " + (sameSize.value ? "are " : "are not ") + "the same size. This is " + (sameSize.value == (userList1.length == userList2.length) ? "correct." : "incorrect!"));
         });
 
@@ -295,7 +295,7 @@ describe('general observable tests', function() {
 
         var isThreeFruits = Observable(function() { return fruits.length == 3});
 
-        isThreeFruits.addSubscriber(function(){
+        isThreeFruits.addSubscriber(function() {
             //console.log("There " + (isThreeFruits.value ? "is " : "is not ") + "three fruits in the list. This is " + (isThreeFruits.value == (fruits.length == 3) ? "correct." : "incorrect!"));
         });
 
@@ -311,7 +311,7 @@ describe('general observable tests', function() {
 
         var differentSize = Observable(function() { return userList1.length != userList2.length; });
 
-        differentSize.addSubscriber(function(){
+        differentSize.addSubscriber(function() {
             //console.log("The two lists " + (differentSize.value ? "are " : "are not ") + "the same size. This is " + (differentSize.value == (userList1.length != userList2.length) ? "correct." : "incorrect!"));
         });
 
@@ -325,7 +325,7 @@ describe('general observable tests', function() {
 
         var isNotThreeFruits = Observable(function() { return fruits.length != 3; });
 
-        isNotThreeFruits.addSubscriber(function(){
+        isNotThreeFruits.addSubscriber(function() {
             //console.log("There " + (isNotThreeFruits.value ? "is " : "is not ") + "three fruits in the list. This is " + (isNotThreeFruits.value == (fruits.length != 3) ? "correct." : "incorrect!"));
         });
 
@@ -341,7 +341,7 @@ describe('general observable tests', function() {
 
         var qualifiesForBeta = Observable(function() { return appsMade.value >= 2 || yearsExperience.value >= 1; });
 
-        qualifiesForBeta.addSubscriber(function(){
+        qualifiesForBeta.addSubscriber(function() {
             //console.log("The user " + (qualifiesForBeta.value ? "qualifies" : "does not qualify") + " for beta. This is " + (qualifiesForBeta.value == (appsMade.value >=2) || (yearsExperience.value >= 1) ? "correct." : "incorrect!"));
         });
 
@@ -418,7 +418,7 @@ describe('general observable tests', function() {
 
         var trueValue = falseValue.not();
 
-        trueValue.addSubscriber(function(){
+        trueValue.addSubscriber(function() {
             //console.log("The not() value is " + trueValue.value + ". That is " + (trueValue.value == !falseValue.value ? "correct." : "incorrect!"));
         });
         assert.equal(trueValue.value, true);
@@ -486,7 +486,7 @@ describe('general observable tests', function() {
     it('test_32', function() {
 	/*
 	var rootObservable = Observable(1);
-	var filteredObservable = rootObservable.filter(function(x){
+	var filteredObservable = rootObservable.filter(function(x) {
 	    return x%2==1;
 	});
 
@@ -527,7 +527,7 @@ describe('general observable tests', function() {
     it('test_34', function() {
         var obs = Observable("ha", "ka", "nya", "la", "pa", "nah");
         var obs_derived = obs.where(function(x) { return x.length == 3; });
-        obs_derived.addSubscriber(function(x){});
+        obs_derived.addSubscriber(function(x) {});
 
         var expected = ["nya", "nah"];
         assert.equal(obs_derived.length, 2);
@@ -538,7 +538,7 @@ describe('general observable tests', function() {
     it('test_35', function() {
         var obs = Observable("foo", "boo");
         var obs_derived = obs.where(function(x) {return x.indexOf("o") != -1});
-        obs_derived.addSubscriber(function(x){});
+        obs_derived.addSubscriber(function(x) {});
 
         obs.insertAll(1, ["who", "bar"]);
 
@@ -556,7 +556,7 @@ describe('general observable tests', function() {
     it('test_36', function() {
         var obs = Observable("ha", "ka", "nya", "la", "pa", "nah");
         var obs_derived = obs.where(function(x) { return x.length == 3; });
-        obs_derived.addSubscriber(function(x){});
+        obs_derived.addSubscriber(function(x) {});
 
         assert.equal(obs_derived.length, 2);
         obs.removeRange(1, 3);
@@ -570,7 +570,7 @@ describe('general observable tests', function() {
     it('test_37', function() {
         var obs = Observable("one", "two");
         var obs_derived = obs.where(function(x) {return x.indexOf("o") != -1});
-        obs_derived.addSubscriber(function(x){});
+        obs_derived.addSubscriber(function(x) {});
 
         obs.add("three");
         assert.equal(obs.length, 3);
@@ -582,7 +582,7 @@ describe('general observable tests', function() {
     it('test_38', function() {
         var obs = Observable("one", "two", "three");
         var obs_derived = obs.where(function(x) {return x.indexOf("o") != -1});
-        obs_derived.addSubscriber(function(x){});
+        obs_derived.addSubscriber(function(x) {});
 
         assert.equal(obs_derived.getAt(0), "one");
         assert.equal(obs_derived.getAt(1), "two");
@@ -598,7 +598,7 @@ describe('general observable tests', function() {
     it('test_39', function() {
         var obs = Observable("one", "two", "three");
         var obs_derived = obs.where(function(x) {return x.indexOf("o") != -1});
-        obs_derived.addSubscriber(function(x){});
+        obs_derived.addSubscriber(function(x) {});
 
         assert.equal(obs_derived.length, 2);
         obs.removeAt(1);
@@ -613,7 +613,7 @@ describe('general observable tests', function() {
     it('test_42', function() {
         var obs = Observable("one", "two", 3);
         var identityObs = obs.identity();
-        identityObs.addSubscriber(function(x){});
+        identityObs.addSubscriber(function(x) {});
 
         var expectedValues = ["one", "two", 3];
         for(var i = 0; i < expectedValues.length; i++) {
@@ -634,7 +634,7 @@ describe('general observable tests', function() {
 
         var day = date.twoWayMap(function(dt) { return dt.getDate(); }, function(d, dt) { dt.setDate(d); return dt; });
 
-        day.addSubscriber(function(x){});
+        day.addSubscriber(function(x) {});
 
         assert.equal(day.value, real_date.getDate());
 
@@ -645,7 +645,7 @@ describe('general observable tests', function() {
         var val_padded = new Observable(new Observable(1));
         //This test will fail if the day changes between these two functions
         var val = val_padded.innerDeprecated();
-        val.addSubscriber(function(x){});
+        val.addSubscriber(function(x) {});
 
         val.setInnerValue(2);
 

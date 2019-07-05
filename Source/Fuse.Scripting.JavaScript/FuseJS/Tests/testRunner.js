@@ -20,7 +20,7 @@ function runTests(opts, callback) {
         }
 
         var defaults = {};
-        if (opts["teamcity"]){
+        if (opts["teamcity"]) {
             defaults.reporter = "mocha-teamcity-reporter";
         }
 

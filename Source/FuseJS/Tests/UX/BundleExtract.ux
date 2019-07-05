@@ -5,10 +5,10 @@
 		var Observable = require("FuseJS/Observable")
 		var result = Observable()
 		module.exports = {
-			test : function(){
+			test : function() {
                 var rootPath = FileSystem.dataDirectory;
                 Bundle.extract("assets/test.txt", rootPath + "/test.txt")
-                    .then(function(outPath){
+                    .then(function(outPath) {
                         result.value = outPath == rootPath + "/test.txt";
                     })
 			},

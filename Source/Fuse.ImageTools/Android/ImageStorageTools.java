@@ -30,10 +30,10 @@ public class ImageStorageTools {
 	{
 		try{
 			File[] files = new File(getTempFileDir()).listFiles();
-			for(File f : files){
+			for(File f : files) {
 				f.delete();
 			}
-		}catch(Exception e){
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -181,7 +181,7 @@ public class ImageStorageTools {
 			int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			cursor.moveToFirst();
 			return cursor.getString(column_index);
-		}catch(java.lang.IllegalArgumentException e){
+		}catch(java.lang.IllegalArgumentException e) {
 			Log.e(getAppName(), "Failed to get file path from uri " + contentUri);
 			e.printStackTrace();
 			throw(e);

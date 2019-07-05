@@ -1,4 +1,4 @@
-(function(timer, ctx){
+(function(timer, ctx) {
 
 	'use strict';
 	

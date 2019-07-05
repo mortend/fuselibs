@@ -3,7 +3,7 @@
 	<JavaScript>
 		var Observable = require('FuseJS/Observable');
 
-		function Color(name, category){
+		function Color(name, category) {
 			this.name = name;
 			this.category = category;
 		}
@@ -26,15 +26,15 @@
 			new Color('O3', COLOR_TYPES.OTHER)
 		);
 
-		exports.filteredItems = currentCategory.flatMap(function(category){
-			return items.where(function(item){
+		exports.filteredItems = currentCategory.flatMap(function(category) {
+			return items.where(function(item) {
 				return item.category === category || category === COLOR_TYPES.ALL;
 			})
 		})
 
-		exports.gotoReds = function(){ currentCategory.value = COLOR_TYPES.REDS; }
-		exports.gotoGreens = function(){ currentCategory.value = COLOR_TYPES.GREENS; }
-		exports.gotoOther = function(){ currentCategory.value = COLOR_TYPES.OTHER; }
+		exports.gotoReds = function() { currentCategory.value = COLOR_TYPES.REDS; }
+		exports.gotoGreens = function() { currentCategory.value = COLOR_TYPES.GREENS; }
+		exports.gotoOther = function() { currentCategory.value = COLOR_TYPES.OTHER; }
 		exports.gotoAll = function() { currentCategory.value = COLOR_TYPES.ALL; }
 	</JavaScript>
 	<Panel ux:Name="P">

@@ -1,4 +1,4 @@
-if (typeof window == 'undefined') (function (g){
+if (typeof window == 'undefined') (function (g) {
 
     'use strict';
 

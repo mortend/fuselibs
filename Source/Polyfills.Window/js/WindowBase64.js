@@ -1,4 +1,4 @@
-(function(window, base64){
+(function(window, base64) {
 
 	'use strict';
 

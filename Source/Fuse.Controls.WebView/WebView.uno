@@ -278,7 +278,7 @@ namespace Fuse.Controls
 		*/
 		public bool ZoomEnabled { 
 			set { 
-				if(WebViewClient != _fallbackClient){
+				if(WebViewClient != _fallbackClient) {
 					debug_log("ZoomEnabled cannot be changed once rooted");
 					return;
 				} 
@@ -293,7 +293,7 @@ namespace Fuse.Controls
 		*/
 		public bool ScrollEnabled { 
 			set { 
-				if(WebViewClient != _fallbackClient){
+				if(WebViewClient != _fallbackClient) {
 					debug_log("ScrollEnabled cannot be changed once rooted");
 					return;
 				} 

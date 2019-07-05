@@ -5,16 +5,16 @@
 		<Router ux:Dependency="Router"/>
 
 		<JavaScript>
-			exports.gotoOne = function(){ 
+			exports.gotoOne = function() { 
 				Router.gotoRelative(theNav, "One")
 			}
-			exports.gotoTwo = function(){ 
+			exports.gotoTwo = function() { 
 				Router.gotoRelative(theNav, "Two")
 			}
-			exports.pushOne = function(){ 
+			exports.pushOne = function() { 
 				Router.pushRelative(theNav, "One")
 			}
-			exports.pushTwo = function(){ 
+			exports.pushTwo = function() { 
 				Router.pushRelative(theNav, "Two")
 			}
 		</JavaScript>

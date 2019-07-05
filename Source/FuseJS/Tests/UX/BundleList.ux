@@ -4,10 +4,10 @@
 		var Observable = require("FuseJS/Observable")
 		var result = Observable()
 		module.exports = {
-			test : function(){
+			test : function() {
 				Bundle.list()
-					.then(function(list){
-						result.value = list.filter(function(path){ return path.indexOf("test.txt") >- 1 }).length > 0;
+					.then(function(list) {
+						result.value = list.filter(function(path) { return path.indexOf("test.txt") >- 1 }).length > 0;
 					})
 			},
 			result : result

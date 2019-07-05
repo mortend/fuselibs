@@ -55,7 +55,7 @@ namespace Fuse.GeoLocation
 		@{
 			Handler h = new Handler(Looper.getMainLooper());
 			h.postDelayed(onTimeout, (long)timeout);				
-			h.post(new Runnable(){
+			h.post(new Runnable() {
 				@Override
 				public void run() {
 					LocationManager lm = (LocationManager) locationManager; 

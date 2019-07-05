@@ -283,7 +283,7 @@ namespace Fuse.iOS.Controls
 			string data = "";
 			try{
 				data = file.ReadAllText();
-			}catch(Uno.Exception e){
+			}catch(Uno.Exception e) {
 				data = e.ToString();
 			}finally{
 				LoadHtml(data);

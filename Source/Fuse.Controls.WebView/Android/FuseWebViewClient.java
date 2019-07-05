@@ -47,7 +47,7 @@ public class FuseWebViewClient extends WebViewClient
 			return true;
 		}
 
-		if(!loadingFinished){
+		if(!loadingFinished) {
 			redirect = true;
 		}else{
 			if (_pageStartedAction != null)
@@ -58,7 +58,7 @@ public class FuseWebViewClient extends WebViewClient
 		return false;
 	}
 	
-	private boolean tryInterceptUriScheme(String url){
+	private boolean tryInterceptUriScheme(String url) {
 		boolean hasUriSchemeHandler = _hasUriSchemeHandler.run();
 		if(hasUriSchemeHandler)
 		{
@@ -77,7 +77,7 @@ public class FuseWebViewClient extends WebViewClient
 	@Override
 	public void onPageStarted(WebView view, String url, Bitmap favIcon)
 	{
-		if(loadingFinished){
+		if(loadingFinished) {
 			if (_pageStartedAction != null)
 				_pageStartedAction.run();
 		}
@@ -93,7 +93,7 @@ public class FuseWebViewClient extends WebViewClient
 		if(!redirect)
 			loadingFinished = true;
 			
-		if(loadingFinished && !redirect){
+		if(loadingFinished && !redirect) {
 			loadingFinished = true;
 			if (_pageLoadedAction != null)
 				_pageLoadedAction.run();

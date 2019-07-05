@@ -55,7 +55,7 @@ namespace Fuse.CameraRoll
 		@{
 			PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
 			if (status == PHAuthorizationStatusNotDetermined)
-				[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
+				[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
 					if (status == PHAuthorizationStatusAuthorized)
 						dispatch_async(dispatch_get_main_queue(), ^{
 							[[CameraRollHelper instance] selectPictureWithCompletionHandler:onComplete onFail:onFail];
@@ -92,7 +92,7 @@ namespace Fuse.CameraRoll
 		@{
 			PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
 			if (status == PHAuthorizationStatusNotDetermined)
-				[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
+				[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
 					if (status == PHAuthorizationStatusAuthorized)
 						onComplete(@"PHAuthorizationStatusAuthorized");
 					else

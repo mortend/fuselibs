@@ -13,7 +13,7 @@ namespace Fuse.Controls.Native.Android
 		}
 
 		void OnSurfaceRedrawNeeded(Java.Object holder) { }
-		void OnSurfaceChanged(Java.Object holder, int f, int w, int h){ }
+		void OnSurfaceChanged(Java.Object holder, int f, int w, int h) { }
 		void OnSurfaceCreated(Java.Object holder)
 		{
 			SetSurface(GetSurface(holder));

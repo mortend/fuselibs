@@ -22,7 +22,7 @@ namespace Fuse.ImageTools
 				Image inImage = Image.fromPath(path);
 				values.set(0, inImage.getWidth());
 				values.set(1, inImage.getHeight());
-			}catch(Exception e){
+			}catch(Exception e) {
 			}
 		@}
 
@@ -34,7 +34,7 @@ namespace Fuse.ImageTools
 					try{
 						Image outImage = ImageUtils.resize(inImage, width, height, ImageUtils.ResizeMode.values()[mode], 100, performInPlace);
 						onSuccess.run(outImage.getFilePath());
-					}catch(Exception e){
+					}catch(Exception e) {
 						onFail.run(e.getMessage());
 						e.printStackTrace();
 					}
@@ -50,7 +50,7 @@ namespace Fuse.ImageTools
 					byte[] bitmapdata = bytes.copyArray();
 					Image outImage = Image.fromBytes(bitmapdata);
 					onSuccess.run(outImage.getFilePath());
-				}catch(Exception e){
+				}catch(Exception e) {
 					onFail.run(e.getMessage());
 				}
 			}});
@@ -64,7 +64,7 @@ namespace Fuse.ImageTools
 				byte[] bitmapdata = bytes.copyArray();
 				Image outImage = Image.fromBytes(bitmapdata);
 				return outImage.getFilePath();
-			}catch(Exception e){
+			}catch(Exception e) {
 				e.printStackTrace();
 				return null;
 			}
@@ -78,7 +78,7 @@ namespace Fuse.ImageTools
 				try{
 					Image outImage = ImageUtils.crop(inImage, width, height, x, y, 100, performInPlace);
 					onSuccess.run(outImage.getFilePath());
-				}catch(Exception e){
+				}catch(Exception e) {
 					onFail.run(e.getMessage());
 					e.printStackTrace();
 				}

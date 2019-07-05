@@ -188,11 +188,11 @@ function then(onFulfillment, onRejection) {
   passed `value`. It is shorthand for the following:
 
   ```javascript
-  let promise = new Promise(function(resolve, reject){
+  let promise = new Promise(function(resolve, reject) {
     resolve(1);
   });
 
-  promise.then(function(value){
+  promise.then(function(value) {
     // value === 1
   });
   ```
@@ -202,7 +202,7 @@ function then(onFulfillment, onRejection) {
   ```javascript
   let promise = Promise.resolve(1);
 
-  promise.then(function(value){
+  promise.then(function(value) {
     // value === 1
   });
   ```
@@ -592,7 +592,7 @@ Enumerator.prototype._willSettleAt = function (promise, i) {
   let promise3 = resolve(3);
   let promises = [ promise1, promise2, promise3 ];
 
-  Promise.all(promises).then(function(array){
+  Promise.all(promises).then(function(array) {
     // The array here would be [ 1, 2, 3 ];
   });
   ```
@@ -609,7 +609,7 @@ Enumerator.prototype._willSettleAt = function (promise, i) {
   let promise3 = reject(new Error("3"));
   let promises = [ promise1, promise2, promise3 ];
 
-  Promise.all(promises).then(function(array){
+  Promise.all(promises).then(function(array) {
     // Code here never runs because there are rejected promises!
   }, function(error) {
     // error.message === "2"
@@ -636,19 +636,19 @@ function all(entries) {
   Example:
 
   ```javascript
-  let promise1 = new Promise(function(resolve, reject){
-    setTimeout(function(){
+  let promise1 = new Promise(function(resolve, reject) {
+    setTimeout(function() {
       resolve('promise 1');
     }, 200);
   });
 
-  let promise2 = new Promise(function(resolve, reject){
-    setTimeout(function(){
+  let promise2 = new Promise(function(resolve, reject) {
+    setTimeout(function() {
       resolve('promise 2');
     }, 100);
   });
 
-  Promise.race([promise1, promise2]).then(function(result){
+  Promise.race([promise1, promise2]).then(function(result) {
     // result === 'promise 2' because it was resolved before promise1
     // was resolved.
   });
@@ -661,21 +661,21 @@ function all(entries) {
   promise will become rejected:
 
   ```javascript
-  let promise1 = new Promise(function(resolve, reject){
-    setTimeout(function(){
+  let promise1 = new Promise(function(resolve, reject) {
+    setTimeout(function() {
       resolve('promise 1');
     }, 200);
   });
 
-  let promise2 = new Promise(function(resolve, reject){
-    setTimeout(function(){
+  let promise2 = new Promise(function(resolve, reject) {
+    setTimeout(function() {
       reject(new Error('promise 2'));
     }, 100);
   });
 
-  Promise.race([promise1, promise2]).then(function(result){
+  Promise.race([promise1, promise2]).then(function(result) {
     // Code here never runs
-  }, function(reason){
+  }, function(reason) {
     // reason.message === 'promise 2' because promise 2 became rejected before
     // promise 1 became fulfilled
   });
@@ -717,13 +717,13 @@ function race(entries) {
   It is shorthand for the following:
 
   ```javascript
-  let promise = new Promise(function(resolve, reject){
+  let promise = new Promise(function(resolve, reject) {
     reject(new Error('WHOOPS'));
   });
 
-  promise.then(function(value){
+  promise.then(function(value) {
     // Code here doesn't run because the promise is rejected!
-  }, function(reason){
+  }, function(reason) {
     // reason.message === 'WHOOPS'
   });
   ```
@@ -733,9 +733,9 @@ function race(entries) {
   ```javascript
   let promise = Promise.reject(new Error('WHOOPS'));
 
-  promise.then(function(value){
+  promise.then(function(value) {
     // Code here doesn't run because the promise is rejected!
-  }, function(reason){
+  }, function(reason) {
     // reason.message === 'WHOOPS'
   });
   ```
@@ -818,7 +818,7 @@ function needsNew() {
 
   ```js
   function getJSON(url) {
-    return new Promise(function(resolve, reject){
+    return new Promise(function(resolve, reject) {
       let xhr = new XMLHttpRequest();
 
       xhr.open('GET', url);
@@ -852,7 +852,7 @@ function needsNew() {
   Promise.all([
     getJSON('/posts'),
     getJSON('/comments')
-  ]).then(function(values){
+  ]).then(function(values) {
     values[0] // => postsJSON
     values[1] // => commentsJSON
 
@@ -893,9 +893,9 @@ Promise.prototype = {
     reason why the promise cannot be fulfilled.
   
     ```js
-    findUser().then(function(user){
+    findUser().then(function(user) {
       // user is available
-    }, function(reason){
+    }, function(reason) {
       // user is unavailable, and you are given the reason why
     });
     ```
@@ -989,7 +989,7 @@ Promise.prototype = {
     Errback Example
   
     ```js
-    findResult(function(result, err){
+    findResult(function(result, err) {
       if (err) {
         // failure
       } else {
@@ -1001,9 +1001,9 @@ Promise.prototype = {
     Promise Example;
   
     ```javascript
-    findResult().then(function(result){
+    findResult().then(function(result) {
       // success
-    }, function(reason){
+    }, function(reason) {
       // failure
     });
     ```
@@ -1037,7 +1037,7 @@ Promise.prototype = {
   
     }
   
-    findAuthor(function(author, err){
+    findAuthor(function(author, err) {
       if (err) {
         failure(err);
         // failure
@@ -1067,9 +1067,9 @@ Promise.prototype = {
     ```javascript
     findAuthor().
       then(findBooksByAuthor).
-      then(function(books){
+      then(function(books) {
         // found books
-    }).catch(function(reason){
+    }).catch(function(reason) {
       // something went wrong
     });
     ```
@@ -1087,7 +1087,7 @@ Promise.prototype = {
     as the catch block of a try/catch statement.
   
     ```js
-    function findAuthor(){
+    function findAuthor() {
       throw new Error('couldn't find that author');
     }
   
@@ -1099,7 +1099,7 @@ Promise.prototype = {
     }
   
     // async with promises
-    findAuthor().catch(function(reason){
+    findAuthor().catch(function(reason) {
       // something went wrong
     });
     ```

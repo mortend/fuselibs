@@ -140,12 +140,12 @@ namespace Fuse.Camera
 			ImagePromise.Then(ResolveTaken, _promise.Reject);
 		}
 
-		void ResolveTaken(Image img){
+		void ResolveTaken(Image img) {
 			ImagePromise = (Promise<Image>) ImageTools.ImageTools.Resize(img, _width, _height, ResizeMode.KeepAspect);
 			ImagePromise.Then(ResolveResized, _promise.Reject);
 		}
 
-		void ResolveResized(Image img){
+		void ResolveResized(Image img) {
 			_promise.Resolve(img);
 		}
 	}

@@ -2,16 +2,16 @@
 	<Router ux:Name="router" IsMasterRouter="false"/>
 	
 	<JavaScript>
-		exports.gotoTwo = function(){ 
+		exports.gotoTwo = function() { 
 			router.modify({ how: "Goto", relative: one, path: [ "two" ] })
 		}
-		exports.gotoI2 = function(){ 
+		exports.gotoI2 = function() { 
 			inner.modify({ how: "Goto", relative: i1, path: [ "i2" ] })
 		}
-		exports.gotoN2 = function(){ 
+		exports.gotoN2 = function() { 
 			inner.modify({ how: "Goto", relative: n1, path: [ "n2" ] })
 		}
-		exports.pushOne = function(){ 
+		exports.pushOne = function() { 
 			router.modify({ how: "Push", relative: two, path: [ "one" ] })
 		}
 	</JavaScript>

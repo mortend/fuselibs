@@ -219,7 +219,7 @@ namespace Fuse.Controls
 			UpdateMarkersNextFrame();
 		}
 
-		public void ClearMarkers(){
+		public void ClearMarkers() {
 			_markers.Clear();
 			UpdateMarkers();
 		}

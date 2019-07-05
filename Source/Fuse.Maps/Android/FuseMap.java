@@ -98,7 +98,7 @@ public class FuseMap extends FrameLayout {
 		return false;
 	}
 
-	public void setMyLocationEnabled(boolean b){
+	public void setMyLocationEnabled(boolean b) {
 		_googleMap.setMyLocationEnabled(b);
 	}
 
@@ -169,7 +169,7 @@ public class FuseMap extends FrameLayout {
 		stopAnimation();
 	}
 
-	public boolean isInitialized(){ return _googleMap != null; }
+	public boolean isInitialized() { return _googleMap != null; }
 
 	/* Markers */
 
@@ -202,7 +202,7 @@ public class FuseMap extends FrameLayout {
 		performCameraMove(cu, duration);
 	}
 
-	private LatLng getPosition(){
+	private LatLng getPosition() {
 		return _googleMap.getCameraPosition().target;
 	}
 
@@ -223,7 +223,7 @@ public class FuseMap extends FrameLayout {
 		settings.setMyLocationButtonEnabled(myLocationButton);
 	}
 
-	public void configureGestures(boolean zoom, boolean rotate, boolean tilt, boolean scroll){
+	public void configureGestures(boolean zoom, boolean rotate, boolean tilt, boolean scroll) {
 		UiSettings settings = _googleMap.getUiSettings();
 		settings.setZoomGesturesEnabled(zoom);
 		settings.setRotateGesturesEnabled(rotate);
@@ -231,18 +231,18 @@ public class FuseMap extends FrameLayout {
 		settings.setScrollGesturesEnabled(scroll);
 	}
 
-	public void zoomIn(double duration){
+	public void zoomIn(double duration) {
 		zoomBy(1.0f, duration);
 	}
 
-	public void zoomOut(double duration){ zoomBy(-1.0f, duration); }
+	public void zoomOut(double duration) { zoomBy(-1.0f, duration); }
 
 	public float getZoom()
 	{
 		return _googleMap.getCameraPosition().zoom;
 	}
 
-	public void clear(){
+	public void clear() {
 		_markerIDs.clear();
 		_googleMap.clear();
 	}
@@ -299,7 +299,7 @@ public class FuseMap extends FrameLayout {
 
 	private void performCameraMove(CameraUpdate cu, double duration)
 	{
-		if(duration == 0.0){
+		if(duration == 0.0) {
 			_googleMap.moveCamera(cu);
 			return;
 		}
@@ -308,12 +308,12 @@ public class FuseMap extends FrameLayout {
 		startAnimation();
 	}
 
-	private void startAnimation(){
+	private void startAnimation() {
 		_isAnimating = true;
 		_callback.onAnimationStart();
 	}
 
-	private void stopAnimation(){
+	private void stopAnimation() {
 		_isAnimating = false;
 		_callback.onAnimationStop();
 	}
@@ -359,22 +359,22 @@ public class FuseMap extends FrameLayout {
 
 	/* LIFECYCLE */
 
-	public void onCreate(Bundle bundle){
+	public void onCreate(Bundle bundle) {
 		_mapView.onCreate(bundle);
 	}
-	public void onResume(){
+	public void onResume() {
 		_mapView.onResume();
 	}
-	public void onPause(){
+	public void onPause() {
 		_mapView.onPause();
 	}
-	public void onDestroy(){
+	public void onDestroy() {
 		_mapView.onDestroy();
 	}
-	public void onSaveInstanceState(Bundle outState){
+	public void onSaveInstanceState(Bundle outState) {
 		_mapView.onSaveInstanceState(outState);
 	}
-	public void onLowMemory(){
+	public void onLowMemory() {
 		_mapView.onLowMemory();
 	}
 }

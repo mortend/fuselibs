@@ -13,11 +13,11 @@
 		  }
 
 		  var sliderval = Observable(50);
-		  var sliderlabel = Observable(function(){
+		  var sliderlabel = Observable(function() {
 		  	return Math.round(sliderval.value).toString() + "%";
 		  });
 
-		  function resetslider(){
+		  function resetslider() {
 		  	sliderval.value = 50;
 		  }
 

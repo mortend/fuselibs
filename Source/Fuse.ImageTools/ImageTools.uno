@@ -103,7 +103,7 @@ namespace Fuse.ImageTools
 		{
 			var p = new Promise<Image>();
 			var cb = new ImagePromiseCallback(p);
-			if(args.Length == 1){
+			if(args.Length == 1) {
 				var bytes = args[0] as byte[];
 				if(bytes!=null)
 				{
@@ -149,7 +149,7 @@ namespace Fuse.ImageTools
 		Future<byte[]> BufferFromImageInterface(object[] args)
 		{
 			var p = new Promise<byte[]>();
-			if(args.Length == 1){
+			if(args.Length == 1) {
 				var img = Image.FromObject(args[0]);
 				if(img != null)
 				{

@@ -176,7 +176,7 @@ namespace Fuse.FileSystem
 			string[] files = ListEntriesSync(source);
 			foreach (string file in files)
 			{
-				if (Directory.Exists(file)){
+				if (Directory.Exists(file)) {
 					CopyDirectory(file, destination);
 					continue;
 				}

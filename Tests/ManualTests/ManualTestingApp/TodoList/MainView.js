@@ -1,6 +1,6 @@
 var Observable = require("FuseJS/Observable");
 
-function Task(title){
+function Task(title) {
 	var self = this;
 	this.title = title;
 }

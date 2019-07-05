@@ -35,7 +35,7 @@ namespace Fuse.CameraRoll
 							scratch.correctOrientationFromExif();
 
 						onComplete.run(scratch.getFilePath());
-					}catch(Exception e){
+					}catch(Exception e) {
 						e.printStackTrace();
 						onFail.run(e.getMessage());
 					}
@@ -87,7 +87,7 @@ namespace Fuse.CameraRoll
 			if(grantedPermissions.Length == 2)
 			{
 				var intent = CreateIntent();
-				if(intent==null){
+				if(intent==null) {
 					throw new Exception("Couldn't create valid intent");
 				}
 				ActivityUtils.StartActivity(intent, _closure.OnActivityResult);
@@ -146,7 +146,7 @@ namespace Fuse.CameraRoll
 				mediaScanIntent.setData(newImage.getFileUri());
 				com.fuse.Activity.getRootActivity().sendBroadcast(mediaScanIntent);
 				success.run();
-			}catch(Exception e){
+			}catch(Exception e) {
 				reject.run(e.getMessage());
 			}
 		@}

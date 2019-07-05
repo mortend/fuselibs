@@ -88,7 +88,7 @@ public class ImageUtils {
 
 		options.inScaled = true;
 
-		if(width<height){
+		if(width<height) {
 			options.inDensity = (int)height;
 			options.inTargetDensity = desiredHeight;
 		}else{
@@ -98,7 +98,7 @@ public class ImageUtils {
 
 		sourceBitmap = BitmapFactory.decodeFile(inImage.getFilePath(), options);
 
-		switch(mode){
+		switch(mode) {
 			case SCALE_AND_CROP:
 				ratio = 1.0f;
 				if (width > height) {

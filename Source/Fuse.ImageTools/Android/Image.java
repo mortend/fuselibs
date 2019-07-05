@@ -63,7 +63,7 @@ public class Image {
 		return getFile().getAbsolutePath();
 	}
 
-	public static BitmapFactory.Options getBitmapOptionsWithoutDecoding(String url){
+	public static BitmapFactory.Options getBitmapOptionsWithoutDecoding(String url) {
 		BitmapFactory.Options opts = new BitmapFactory.Options();
 		opts.inJustDecodeBounds = true;
 		BitmapFactory.decodeFile(url, opts);
@@ -71,13 +71,13 @@ public class Image {
 	}
 
 	//ref: https://stackoverflow.com/a/32206045/2139770
-	public static int getBitmapSizeWithoutDecoding(String url){
+	public static int getBitmapSizeWithoutDecoding(String url) {
 		BitmapFactory.Options opts = getBitmapOptionsWithoutDecoding(url);
 		return opts.outHeight*opts.outWidth*32/(1024*1024*8);
 	}
 
 	//ref: http://stackoverflow.com/questions/6073744/android-how-to-check-how-much-memory-is-remaining
-	public static double availableMemoryMB(){
+	public static double availableMemoryMB() {
 		Runtime runtime = Runtime.getRuntime();
 		long maxHeapSizeInMB=runtime.maxMemory() / 1048576L;
 		long usedMemInMB=(runtime.totalMemory() - runtime.freeMemory()) / 1048576L;
@@ -179,13 +179,13 @@ public class Image {
 			}
 			ImageStorageTools.saveBitmap(bmp, getFilePath());
 			bmp.recycle();
-		}catch(Exception e){
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
 
-	public Bitmap getBitmap(){
+	public Bitmap getBitmap() {
 		return BitmapFactory.decodeFile(_fileUri.getPath(), null);
 	}
 

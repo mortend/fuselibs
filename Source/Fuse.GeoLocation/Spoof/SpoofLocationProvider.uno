@@ -13,7 +13,7 @@ namespace Fuse.GeoLocation
 		{
 			SpoofLocation = new Location(new GeoCoordinates(59.9115546,10.73888), 100, 50, 0.5, ZonedDateTime.Now.LocalDateTime);
 		}
-		public Location GetLastKnownPosition(){
+		public Location GetLastKnownPosition() {
 			return SpoofLocation;
 		}
 

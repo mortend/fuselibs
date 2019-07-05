@@ -1,4 +1,4 @@
-(function(window, timer){
+(function(window, timer) {
 
 	'use strict';
 	

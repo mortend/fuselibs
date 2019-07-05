@@ -216,7 +216,7 @@
 
 		if (width > desiredWidth || height > desiredHeight)
 		{
-			switch(mode){
+			switch(mode) {
 				case 1:
 					//Keep aspect
 					if (width > desiredWidth) {
@@ -300,7 +300,7 @@
 			//No resizing necessary
 			onComplete(path);
 		}
-	}@catch (NSException * e){
+	}@catch (NSException * e) {
 		onFail([NSString stringWithFormat:@"Image resize error: %@", e]);
 	}
 }
@@ -327,7 +327,7 @@
 	@try {
 		NSString* b64 = [UIImageJPEGRepresentation(img, 0.9f) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 		a(b64);
-	}@catch(NSException* e){
+	}@catch(NSException* e) {
 		b(@"Could not encode image");
 	}
 }

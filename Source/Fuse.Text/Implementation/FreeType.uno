@@ -63,7 +63,7 @@ namespace Fuse.Text.Implementation
 
 			// TODO
 			/* @{
-				atexit([](){ @{Done():Call()}; });
+				atexit([]() { @{Done():Call()}; });
 			@} */
 			_initialized = true;
 		}

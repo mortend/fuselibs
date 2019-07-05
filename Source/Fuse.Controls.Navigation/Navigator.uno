@@ -373,7 +373,7 @@ namespace Fuse.Controls
 				
 				_prepareBack = operation == RoutingOperation.Pop;
 				
-				var args = new NavigatorSwitchedArgs(this){
+				var args = new NavigatorSwitchedArgs(this) {
 					OldPath = _current.RouterPage.Path,
 					NewPath = _prepared.RouterPage.Path,
 					OldParameter = _current.RouterPage.Parameter,
@@ -494,7 +494,7 @@ namespace Fuse.Controls
 			NavigationGotoMode gotoMode, RoutingOperation operation, string operationStyle,
 			bool usedPrepared)
 		{
-			var args = new NavigatorSwitchedArgs(this){
+			var args = new NavigatorSwitchedArgs(this) {
 				OldPath = _current.RouterPage.Path,
 				NewPath = newPage.RouterPage.Path,
 				OldParameter = _current.RouterPage.Parameter,

@@ -132,7 +132,7 @@ namespace Fuse.Triggers.Actions
 				return "";
 
 			js = js.Trim();
-			js = "JSON.stringify((function(){" + js + "})());";
+			js = "JSON.stringify((function() {" + js + "})());";
 			return js;
 		}
 
