@@ -59,7 +59,7 @@ namespace Fuse
 			return res;
 		}
 
-		public static Selector GetName(Node obj)
+		internal static Selector GetName(Node obj)
 		{
 			if (!_names.ContainsKey(obj)) return default(Selector);
 			return _names[obj];
