@@ -12,22 +12,10 @@ namespace Experimental.TextureLoader
 	[Obsolete]
 	public static class TextureLoader
 	{
-		[Obsolete("Use the returning overload instead")]
-		public static void JpegByteArrayToTexture2D(byte[] arr, Uno.Action<texture2D> callback)
-		{
-			callback(JpegByteArrayToTexture2D(arr));
-		}
-
 		[Obsolete]
 		public static texture2D JpegByteArrayToTexture2D(byte[] arr)
 		{
 			return Uno.Graphics.Utils.TextureLoader.Load2DJpeg(arr);
-		}
-
-		[Obsolete("Use the returning overload instead")]
-		public static void PngByteArrayToTexture2D(byte[] arr, Uno.Action<texture2D> callback)
-		{
-			callback(PngByteArrayToTexture2D(arr));
 		}
 
 		[Obsolete]
@@ -36,22 +24,10 @@ namespace Experimental.TextureLoader
 			return Uno.Graphics.Utils.TextureLoader.Load2DPng(arr);
 		}
 
-		[Obsolete("Use the returning overload instead")]
-		public static void ByteArrayToTexture2DFilename(byte[] arr, string filename, Uno.Action<texture2D> callback)
-		{
-			callback(ByteArrayToTexture2DFilename(arr, filename));
-		}
-
 		[Obsolete]
 		public static texture2D ByteArrayToTexture2DFilename(byte[] arr, string filename)
 		{
 			return Uno.Graphics.Utils.TextureLoader.Load2D(filename, arr);
-		}
-
-		[Obsolete("Use the returning overload instead")]
-		public static void ByteArrayToTexture2DContentType(byte[] arr, string contentType, Uno.Action<texture2D> callback)
-		{
-			callback(ByteArrayToTexture2DContentType(arr, contentType));
 		}
 
 		[Obsolete]
