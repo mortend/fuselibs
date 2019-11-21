@@ -137,34 +137,12 @@ namespace Fuse.Navigation
 				RootImpl(source);
 			}
 		}
-		
-		//Obsolete stuff
-		[Obsolete] //2017-04-06
-		public NavigationPageProxy( Action ready, Action unready )
-		{
-			Fuse.Diagnostics.Deprecated( "NavigationPageProxy is not meant to be used directly, use specific navigation triggers", this );
-			var q = new ObsoleteWrapper{ Ready= ready, Unready = unready };
-			_ready = q.ReadyImpl;
-			_unready = q.UnreadyImpl;
-		}
-		
+
 		class ObsoleteWrapper
 		{
 			public Action Ready, Unready;
 			public void ReadyImpl(NavigationPageProxy npp) { Ready(); }
 			public void UnreadyImpl(NavigationPageProxy npp) { Unready(); }
-		}
-		
-		[Obsolete] //2017-04-06
-		public void Rooted( Visual source )
-		{
-			RootImpl(source);
-		}
-		
-		[Obsolete] //2017-04-06
-		public void Unrooted()
-		{
-			UnrootImpl();
 		}
 	}
 }

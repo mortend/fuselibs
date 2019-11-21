@@ -33,15 +33,6 @@ namespace Fuse.Reactive
 		{
 			VarArgFunction _func;
 			IContext _context;
-
-			/** @deprecated Use constructor without context and call Init(context) instead 2017-12-15 */
-			[Obsolete]
-			protected Subscription(VarArgFunction func, IContext context)
-				: base( func.Arguments.ToArray(), Flags.AllOptional )
-			{
-				_func = func;
-				_context = context;
-			}
 			
 			/** Be sure to call "Init" after done initializing */
 			protected Subscription(VarArgFunction func)
@@ -49,15 +40,7 @@ namespace Fuse.Reactive
 			{
 				_func = func;
 			}
-			
-			//TODO: deprecate
-			/** @deprecated Use Init(context) instead 2017-12-15 */
-			[Obsolete]
-			protected void Init()
-			{
-				base.Init(_context);
-			}
-			
+
 			//Not abstract for compatibility reasons, but should be
 			internal override void OnClearData()
 			{

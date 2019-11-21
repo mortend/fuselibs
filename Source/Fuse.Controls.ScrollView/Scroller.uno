@@ -22,14 +22,7 @@ namespace Fuse.Gestures
 	{
 		//to avoid warning on deprecated public ctor
 		internal Scroller(bool ignore) { }
-		
-		[Obsolete]
-		public Scroller()
-		{
-			//DEPRECATED: 2017-03-04
-			Fuse.Diagnostics.Deprecated( "Scroller should not be used directly as it is an internal class. The ScrollView provides the entire interface for scrolling.", this );
-		}
-		
+
 		BoundedRegion2D _region;
 
 		PointerVelocity<float2> _velocity = new PointerVelocity<float2>();
@@ -98,17 +91,6 @@ namespace Fuse.Gestures
 			base.OnUnrooted();
 		}
 
-		[Obsolete]
-		public bool UserScroll
-		{
-			get { return ScrollableUserScroll; }
-			set
-			{
-				//DEPRECATED: 2017-03-04
-				Fuse.Diagnostics.Deprecated( "This value bound to the ScrollView now, set ScrollView.UserScroll instead", this );
-			}
-		}
-		
 		//this exists just so `UserScroll` can be `Obsolete` for a few releases
 		bool ScrollableUserScroll
 		{
