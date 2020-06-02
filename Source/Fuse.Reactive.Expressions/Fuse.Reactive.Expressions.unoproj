@@ -18,6 +18,7 @@
     "../Fuse.Platform/Fuse.Platform.unoproj",
   ],
   "InternalsVisibleTo": [
+    "AllTests",
     "Fuse.Scripting.Test",
     "Fuse.Common.Test.Helpers",
     "Fuse.Controls.Panels",
