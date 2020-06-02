@@ -77,7 +77,7 @@ namespace Fuse.Reactive.Test
 		}
 	}
 
-	extern(!DOTNET)
+	extern(!DOTNET || !HOST_MAC)
 	class ObservableObjectTest : TestBase
 	{
 		[Test]
