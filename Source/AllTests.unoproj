@@ -1,5 +1,8 @@
 {
   "BuildCondition": "UNO_TEST",
+  "Packages": [
+    "Uno.Testing"
+  ],
   "Projects": [
     "**Test.unoproj"
   ],
