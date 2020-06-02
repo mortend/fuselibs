@@ -4,6 +4,7 @@
     "Uno.Testing"
   ],
   "Projects": [
+    "Fuse.Reactive.Expressions/Tests/Fuse.Expressions.Test.unoproj",
     "**Test.unoproj"
   ],
   "Includes": []
