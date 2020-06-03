@@ -1,8 +1,6 @@
 os: osx
-osx_image: xcode9.2
-language: node_js
-node_js:
-  - 10
+language: csharp
+mono: latest
 
 env:
   global:
@@ -10,6 +8,7 @@ env:
     - LOG_TRACE=1
 
 install:
+  - nvm install 10
   - npm install
 
 before_script:
