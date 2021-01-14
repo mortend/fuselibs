@@ -288,7 +288,6 @@ namespace Fuse.Controls.iOS
 		}
 
 		[Foreign(Language.ObjC)]
-		[Require("Xcode.Framework", "MobileCoreServices")]
 		[Require("Source.Include", "MobileCoreServices/MobileCoreServices.h")]
 		[Require("Source.Include", "ImageIO/CGImageDestination.h")]
 		[Require("Source.Include", "CoreMedia/CoreMedia.h")]
@@ -377,7 +376,6 @@ namespace Fuse.Controls.iOS
 
 		[Foreign(Language.ObjC)]
 		[Require("Xcode.Framework", "Accelerate")]
-		[Require("Xcode.Framework", "MobileCoreServices")]
 		[Require("Source.Include", "CoreMedia/CoreMedia.h")]
 		[Require("Source.Include", "Accelerate/Accelerate.h")]
 		[Require("Source.Include", "MobileCoreServices/MobileCoreServices.h")]
