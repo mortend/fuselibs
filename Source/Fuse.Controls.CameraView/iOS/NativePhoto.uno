@@ -288,8 +288,8 @@ namespace Fuse.Controls.iOS
 		}
 
 		[Foreign(Language.ObjC)]
-		[Require("Xcode.Framework", "MobileCoreServices")]
-		[Require("Source.Include", "MobileCoreServices/MobileCoreServices.h")]
+		[Require("Xcode.Framework", "CoreServices")]
+		[Require("Source.Include", "CoreServices/CoreServices.h")]
 		[Require("Source.Include", "ImageIO/CGImageDestination.h")]
 		[Require("Source.Include", "CoreMedia/CoreMedia.h")]
 		static void Save(IntPtr sampleBuffer, Action<string> resolve, Action<string> reject)
@@ -377,10 +377,10 @@ namespace Fuse.Controls.iOS
 
 		[Foreign(Language.ObjC)]
 		[Require("Xcode.Framework", "Accelerate")]
-		[Require("Xcode.Framework", "MobileCoreServices")]
+		[Require("Xcode.Framework", "CoreServices")]
 		[Require("Source.Include", "CoreMedia/CoreMedia.h")]
 		[Require("Source.Include", "Accelerate/Accelerate.h")]
-		[Require("Source.Include", "MobileCoreServices/MobileCoreServices.h")]
+		[Require("Source.Include", "CoreServices/CoreServices.h")]
 		[Require("Source.Include", "ImageIO/CGImageDestination.h")]
 		static void SaveThumbnail(
 			IntPtr sampleBuffer,
